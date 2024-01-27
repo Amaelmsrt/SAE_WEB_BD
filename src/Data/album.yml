@@ -1,0 +1,216 @@
+- by: 1
+  entryId: 1
+  genre: [Rap Français, New Wave]
+  img: edlp.jpeg
+  releaseYear: 2023
+  title: L'enfant de la pluie
+  songs:
+    - title: Opening
+      duration: 3:08
+      mp3: opening.mp3
+    - title: Remontada
+      duration: 2:56
+      mp3: remontada.mp3
+    - title: 99 Avenue
+      duration: 3:03
+      mp3: 99avenue.mp3
+    - title: Bloqué
+      duration: 3:12
+      mp3: bloque.mp3
+    - title: Un jour d'été
+      duration: 2:42
+      mp3: unjour.mp3
+    - title: Perte de temps
+      duration: 3:09
+      mp3: perte.mp3
+    - title: L'Allemande
+      duration: 2:24
+      mp3: allemande.mp3
+    - title: 10 Hummers
+      duration: 3:03
+      mp3: 10hummers.mp3
+    - title: Bip bip
+      duration: 2:41
+      mp3: bipbip.mp3
+    - title: Sali
+      duration: 3:04
+      mp3: sali.mp3
+    - title: Interlude : Froide Averse
+      duration: 3:06
+      mp3: interlude.mp3
+    - title: Suspects
+      duration: 3:29
+      mp3: suspects.mp3
+    - title: OP
+      duration: 2:27
+      mp3: op.mp3
+    - title: Le dernier maître de l'eau
+      duration: 1:48
+      mp3: maitre.mp3
+    - title: Les toits de la ville
+      duration: 2:48
+      mp3: toits.mp3
+    - title: Triste temps
+      duration: 2:40
+      mp3: triste.mp3
+    - title: Au BPM
+      duration: 3:05
+      mp3: bpm.mp3
+    - title: Sales images
+      duration: 2:20
+      mp3: sales.mp3
+
+- by: 2
+  entryId: 2
+  genre: [Rap Français, Drill Française]
+  img: adc.jpg
+  releaseYear: 2023
+  title: ADC
+  songs:
+  - title: MW2
+    duration: 4:47
+    mp3: mw2.mp3
+  - title: Isshin Ashina
+    duration: 4:53
+    mp3: isshin.mp3
+  - title: Shavkat
+    duration: 3:40
+    mp3: shavkat.mp3
+  - title: Amérique du Sud
+    duration: 3:31
+    mp3: amerique.mp3
+  - title: Ancelotti
+    duration: 3:41
+    mp3: ancelotti.mp3
+  - title: Tse Chi Lop
+    duration: 3:18
+    mp3: tse.mp3
+  - title: Kpop
+    duration: 3:01
+    mp3: kpop.mp3
+  - title: L’homme méthode
+    duration: 3:10
+    mp3: homme.mp3
+  - title: Bill Clinton
+    duration: 3:29
+    mp3: bill.mp3
+  - title: Voldemort
+    duration: 3:48
+    mp3: voldemort.mp3
+  - title: Argent noir part.3
+    duration: 2:57
+    mp3: argent.mp3
+  - title: Jour de plus
+    duration: 3:29
+    mp3: jour.mp3
+  - title: Lamborghini bénie
+    duration: 3:53
+    mp3: lambo.mp3
+
+- by: 3
+  entryId: 3
+  genre: [Rap Français, New Wave]
+  img: garcon.jpeg
+  releaseYear: 2022
+  title: GARÇON
+  songs:
+  - title: PK TU M'APL ?
+    duration: 3:01
+    mp3: pk.mp3
+  - title: ALAKAZAM
+    duration: 3:05
+    mp3: alakazam.mp3
+  - title: BLAKE & MORTIMER
+    duration: 1:39
+    mp3: blake.mp3
+  - title: MA VIE D'AVANT
+    duration: 3:08
+    mp3: vie.mp3
+  - title: LESSGUI
+    duration: 2:35
+    mp3: lessgui.mp3
+  - title: LE SANG
+    duration: 2:49
+    mp3: sang.mp3
+  - title: TORIEL - VENI VIDI VIDE
+    duration: 2:20
+    mp3: toriel.mp3
+  - title: GARÇON
+    duration: 2:24
+    mp3: garcon.mp3
+
+- by: 4
+  entryId: 4
+  genre: [Rap Français, New Wave]
+  img: mp.jpeg
+  releaseYear: 2023
+  title: MATIÈRE PREMIÈRE
+  songs:
+  - title: Comment ça s’passe ?
+    duration: 2:11
+    mp3: comment.mp3
+  - title: Aquarelle
+    duration: 2:53
+    mp3: aquarelle.mp3
+  - title: Présidentiel flow
+    duration: 2:36
+    mp3: presidentiel.mp3
+  - title: Gamberge FM
+    duration: 2:57
+    mp3: gamberge.mp3
+  - title: Au max
+    duration: 2:30
+    mp3: au.mp3
+  - title: Dièses
+    duration: 2:45
+    mp3: dieses.mp3
+  - title: Wazinc
+    duration: 2:33
+    mp3: wazinc.mp3
+  - title: Les Cristaux
+    duration: 1:22
+    mp3: cristaux.mp3
+  - title: Pshiitt…
+    duration: 3:08
+    mp3: pshiitt.mp3
+  - title: Opale Système
+    duration: 3:06
+    mp3: opale.mp3
+  - title: Google Maps
+    duration: 2:31
+    mp3: google.mp3
+
+- by: 5
+  entryId: 5
+  genre: [Rap Français]
+  img: 999.jpeg
+  releaseYear: 2021
+  title: MELANCHOLIA 999
+  songs:
+  - title: PJP NMR
+    duration: 2:46
+    mp3: pjp.mp3
+  - title: Evidemment
+    duration: 2:53
+    mp3: evidemment.mp3
+  - title: Fumée nocive
+    duration: 2:11
+    mp3: fumee.mp3
+  - title: Eyeliner
+    duration: 2:07
+    mp3: eyeliner.mp3
+  - title: Nouveau monde
+    duration: 2:02
+    mp3: nouveau.mp3
+  - title: BB Part.3
+    duration: 2:07
+    mp3: bb.mp3
+  - title: Comme un aimant
+    duration: 2:25
+    mp3: aimant.mp3
+  - title: California
+    duration: 2:43
+    mp3: california.mp3
+  - title: Magic City 999
+    duration: 2:58
+    mp3: magic.mp3
