@@ -1,65 +1,178 @@
 <?php
 
+define('CREATE_GENRE_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS GENRE (
+        idGenre INTEGER PRIMARY KEY AUTOINCREMENT,
+        titreGenre VARCHAR(255) NOT NULL
+    );
+SQL);
+
+define('CREATE_ARTISTE_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS ARTISTE (
+        idArtiste INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomArtiste VARCHAR(255) NOT NULL,
+        imageArtiste mediumblob
+    );
+SQL);
+
+define('CREATE_ALBUM_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS ALBUM (
+        idAlbum INTEGER PRIMARY KEY AUTOINCREMENT,
+        titreAlbum VARCHAR(255) NOT NULL,
+        descriptionAlbum VARCHAR(255) NOT NULL,
+        dateAlbum DATE NOT NULL,
+        coverAlbum mediumblob,
+        idArtiste INTEGER NOT NULL,
+        FOREIGN KEY (idArtiste) REFERENCES ARTISTE(idArtiste)
+    );
+SQL);
+
+define('CREATE_APPARTENIR_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS APPARTENIR (
+        idGenre INTEGER NOT NULL,
+        idAlbum INTEGER NOT NULL,
+        PRIMARY KEY (idGenre, idAlbum),
+        FOREIGN KEY (idGenre) REFERENCES GENRE(idGenre),
+        FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
+    );
+SQL);
+
+define('CREATE_SON_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS SON (
+        idSon INTEGER PRIMARY KEY AUTOINCREMENT,
+        titreSon VARCHAR(255) NOT NULL,
+        dureeSon TIME NOT NULL,
+        fichierMp3 mediumblob,
+        idAlbum INTEGER NOT NULL,
+        FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
+    );
+SQL);
+
+define('CREATE_SORTIR_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS SORTIR (
+        idArtiste INTEGER NOT NULL,
+        idAlbum INTEGER NOT NULL,
+        PRIMARY KEY (idArtiste, idAlbum),
+        FOREIGN KEY (idArtiste) REFERENCES ARTISTE(idArtiste),
+        FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
+    );
+SQL);
+
+define('CREATE_UTILISATEUR_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS UTILISATEUR (
+        idUtilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomUtil VARCHAR(255) NOT NULL,
+        prenomUtil VARCHAR(255) NOT NULL,
+        pseudoUtil VARCHAR(255) NOT NULL,
+        mdpUtil VARCHAR(255) NOT NULL
+    );
+SQL);
+
+define('CREATE_LIKERARTISTE_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS LIKERARTISTE (
+        idUtilisateur INTEGER NOT NULL,
+        idArtiste INTEGER NOT NULL,
+        PRIMARY KEY (idUtilisateur, idArtiste),
+        FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
+        FOREIGN KEY (idArtiste) REFERENCES ARTISTE(idArtiste)
+    );
+SQL);
+
+define('CREATE_LIKERALBUM_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS LIKERALBUM (
+        idUtilisateur INTEGER NOT NULL,
+        idAlbum INTEGER NOT NULL,
+        PRIMARY KEY (idUtilisateur, idAlbum),
+        FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
+        FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
+    );
+SQL);
+
+define('CREATE_LIKERSON_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS LIKERSON (
+        idUtilisateur INTEGER NOT NULL,
+        idSon INTEGER NOT NULL,
+        PRIMARY KEY (idUtilisateur, idSon),
+        FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
+        FOREIGN KEY (idSon) REFERENCES SON(idSon)
+    );
+SQL);
+
+define('CREATE_PLAYLIST_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS PLAYLIST (
+        idPlaylist INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomPlaylist VARCHAR(255) NOT NULL,
+        idUtilisateur INTEGER NOT NULL,
+        FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur)
+    );
+SQL);
+
+define('CREATE_CONSTITUER_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS CONSTITUER (
+        idPlaylist INTEGER NOT NULL,
+        idSon INTEGER NOT NULL,
+        PRIMARY KEY (idPlaylist, idSon),
+        FOREIGN KEY (idPlaylist) REFERENCES PLAYLIST(idPlaylist),
+        FOREIGN KEY (idSon) REFERENCES SON(idSon)
+    );
+SQL);
+
+define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
+    CREATE TABLE IF NOT EXISTS ECOUTERRECEMENT (
+        idUtilisateur INTEGER NOT NULL,
+        idSon INTEGER NOT NULL,
+        PRIMARY KEY (idUtilisateur, idSon),
+        FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
+        FOREIGN KEY (idSon) REFERENCES SON(idSon)
+    );
+SQL);
+
 $pdo = new PDO('sqlite:' . SQLITE_DB);
 
 switch ($argv[2]) {
     case 'create-database':
-        echo '→ Go create database "quiz.db"' . PHP_EOL;
+        echo 'Création de la base de données' . PHP_EOL;
         shell_exec('sqlite3 ' . SQLITE_DB);
         break;
 
-    case 'create-table':
-        echo '→ Go create "quiz" table' . PHP_EOL;
-        $query =<<<EOF
-            CREATE TABLE IF NOT EXISTS quiz (
-                uuid        TEXT NOT NULL PRIMARY KEY,
-                type        TEXT NOT NULL,
-                label       TEXT NOT NULL,
-                choices     TEXT NULL,
-                correct     TEXT NOT NULL
-            )
-        EOF;
+    case 'create-tables':
+        echo 'Création des tables' . PHP_EOL;
+        $pdo->exec(CREATE_GENRE_TABLE);
+        $pdo->exec(CREATE_ARTISTE_TABLE);
+        $pdo->exec(CREATE_ALBUM_TABLE);
+        $pdo->exec(CREATE_APPARTENIR_TABLE);
+        $pdo->exec(CREATE_SON_TABLE);
+        $pdo->exec(CREATE_SORTIR_TABLE);
+        $pdo->exec(CREATE_UTILISATEUR_TABLE);
+        $pdo->exec(CREATE_LIKERARTISTE_TABLE);
+        $pdo->exec(CREATE_LIKERALBUM_TABLE);
+        $pdo->exec(CREATE_LIKERSON_TABLE);
+        $pdo->exec(CREATE_PLAYLIST_TABLE);
+        $pdo->exec(CREATE_CONSTITUER_TABLE);
+        $pdo->exec(CREATE_ECOUTERRECEMENT_TABLE);
         break;
 
-    case 'delete-table':
-        echo '→ Go delete table "quiz"' . PHP_EOL;
-        $query =<<<EOF
-            DROP TABLE quiz
-        EOF;
-        break;
-
-    case 'load-data':
-        echo '→ Go load data to table "quiz"' . PHP_EOL;
-        $dataFrom = json_decode(file_get_contents('Data/model.json'), true);
-        $query = null;
-        $stmt = $pdo->prepare('
-            INSERT INTO quiz(uuid, type, label, choices, correct)
-            VALUES(:uuid, :type, :label, :choices, :correct)
+    case 'delete-tables':
+        echo 'Suppression des tables' . PHP_EOL;
+        $pdo->exec('
+            DROP TABLE IF EXISTS ECOUTERRECEMENT;
+            DROP TABLE IF EXISTS CONSTITUER;
+            DROP TABLE IF EXISTS PLAYLIST;
+            DROP TABLE IF EXISTS LIKERSON;
+            DROP TABLE IF EXISTS LIKERALBUM;
+            DROP TABLE IF EXISTS LIKERARTISTE;
+            DROP TABLE IF EXISTS UTILISATEUR;
+            DROP TABLE IF EXISTS SORTIR;
+            DROP TABLE IF EXISTS SON;
+            DROP TABLE IF EXISTS APPARTENIR;
+            DROP TABLE IF EXISTS ALBUM;
+            DROP TABLE IF EXISTS ARTISTE;
+            DROP TABLE IF EXISTS GENRE;
         ');
-        foreach ($dataFrom as $data) {
-            try {
-                $stmt->execute([
-                    ':uuid' => $data['uuid'], 
-                    ':type' => $data['type'], 
-                        ':label' => $data['label'], 
-                    ':choices' => !empty($data['choices']) ? implode(',', $data['choices']) : null, 
-                    ':correct' => $data['correct']
-                ]);
-            } catch (PDOException $e) {
-                echo '→ '.$e->getMessage().PHP_EOL;
-            }
-        }
         break;
-    
-    default:
-        echo 'No action defined 🙀'.PHP_EOL;
-        break;
-}
 
-if ($query) {
-    try {
-        $pdo->exec($query);
-    } catch (PDOException $e) {
-        var_dump($e->getMessage());
-    }
+
+    default:
+        echo 'Aucune action définie' . PHP_EOL;
+        break;
 }
