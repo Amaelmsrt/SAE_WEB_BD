@@ -12,10 +12,10 @@ $artists = $artist->findAll();
 
 <div id="lesArtistes">
 <?php foreach ($artists as $artist) : ?>
-    <div class="artiste">
+    <a class="artiste" href="index.php?action=artist&id=<?= $artist->getId() ?>">
         <img src="data:image/jpeg;base64,<?= $artist->getPicture() ?>" alt="Photo de l'artiste">
         <p class="artiste__name"><?= $artist->getName() ?></p>
-    </div>
+    </a>
 <?php endforeach; ?>
 </div>
 

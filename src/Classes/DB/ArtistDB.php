@@ -28,4 +28,16 @@ class ArtistDB
         }
         return $artistList;
     }
+
+    public function find(int $id): Artist
+    {
+        $sql = "SELECT * FROM artiste WHERE idArtiste = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        $imageData = $artist['imageArtiste'];
+        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        return new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
+    }
 }

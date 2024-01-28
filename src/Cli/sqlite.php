@@ -43,6 +43,7 @@ define('CREATE_SON_TABLE', <<<SQL
         titreSon VARCHAR(255) NOT NULL,
         dureeSon TIME NOT NULL,
         fichierMp3 mediumblob,
+        nbStream INTEGER DEFAULT 0,
         idAlbum INTEGER NOT NULL,
         FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
     );
@@ -233,6 +234,17 @@ switch ($argv[2]) {
             }
         }
         break;
+
+    case 'u':
+        $stmt = $pdo->prepare('INSERT INTO UTILISATEUR (nomUtil, prenomUtil, pseudoUtil, mdpUtil) VALUES (:nomUtil, :prenomUtil, :pseudoUtil, :mdpUtil)');
+        $stmt->execute([
+            ':nomUtil' => 'Chédeville',
+            ':prenomUtil' => 'Baptiste',
+            ':pseudoUtil' => 'Baptched',
+            ':mdpUtil' => password_hash('b', PASSWORD_DEFAULT)
+        ]);
+        break;
+
     default:
         echo 'Aucune action définie' . PHP_EOL;
         break;

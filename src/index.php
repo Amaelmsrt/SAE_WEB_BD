@@ -11,10 +11,17 @@ Autoloader::register();
 
 $action = $_REQUEST['action'] ?? "home";
 $layout = "main";
+session_start();
+$_SESSION['user'] = 1;
+
 
 
 ob_start();
 switch ($action) {
+    case 'artist':
+        include 'Action/artist.php';
+        $layout = "artist";
+        break;
     case 'home':
         include 'Action/home.php';
         break;
