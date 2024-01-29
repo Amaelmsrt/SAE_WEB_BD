@@ -2,7 +2,7 @@
 
 use DB\DataBaseManager;
 
-$message_erreur = "";
+$messageErreur = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
@@ -12,19 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mdpConfirmation = $_POST['mdpConfirmation'];
 
     if (strlen($mdp) < 8) {
-        $message_erreur = "Le mot de passe doit contenir au moins 8 caractères.";
+        $messageErreur = "Le mot de passe doit contenir au moins 8 caractères.";
     }
     if (!preg_match('/\d/', $mdp)) {
-        $message_erreur = "Le mot de passe doit contenir au moins un chiffre.";
+        $messageErreur = "Le mot de passe doit contenir au moins un chiffre.";
     } 
     if (!preg_match('/[A-Z]/', $mdp)) {
-        $message_erreur = "Le mot de passe doit contenir au moins une lettre majuscule.";
+        $messageErreur = "Le mot de passe doit contenir au moins une lettre majuscule.";
     }
     if ($mdp !== $mdpConfirmation) {
-        $message_erreur = "Les mots de passe ne correspondent pas.";
+        $messageErreur = "Les mots de passe ne correspondent pas.";
     }
 
-    if ($message_erreur === "") {
+    if ($messageErreur === "") {
         $manager = new DataBaseManager();
         $utilisateurBD = $manager->getUtilisateurDB();
         $utilisateur = $utilisateurBD-> find($pseudo);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $utilisateurBD->insertUser($nom, $prenom, $pseudo, $mdp);
             header('Location: index.php?action=connexion');
         } else {
-            $message_erreur = "Ce pseudo est déjà utilisé.";
+            $messageErreur = "Ce pseudo est déjà utilisé.";
         }
     }
 
@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="mdpConfirmation" id="mdpConfirmation" required>
         </div>
         <?php
-            if (!empty($message_erreur)) {
-                echo "<p class='erreur'>$message_erreur</p>";
+            if (!empty($messageErreur)) {
+                echo "<p class='erreur'>$messageErreur</p>";
             }
         ?>
         <div class="boutons">

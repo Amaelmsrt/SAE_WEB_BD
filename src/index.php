@@ -33,7 +33,7 @@ switch ($action) {
         include 'Action/playlist.php';
         break;
     case "connexion":
-        include 'Action/login.php';
+        include 'Action/connexion.php';
         break;
     case "inscription":
         include 'Action/inscription.php';
