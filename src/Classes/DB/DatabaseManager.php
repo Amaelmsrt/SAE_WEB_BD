@@ -19,6 +19,8 @@ class DataBaseManager {
 
     private LikeAlbumDB $likeAlbumDB;
 
+    private UtilisateurDB $utilisateurDB;
+
     public function __construct() {
         $pdo = new PDO('sqlite:' . SQLITE_DB) ;
         $this->artistDB = new ArtistDB($pdo);
@@ -27,6 +29,7 @@ class DataBaseManager {
         $this->sonDB = new SonDB($pdo);
         $this->albumDB = new AlbumDB($pdo);
         $this->likeAlbumDB = new LikeAlbumDB($pdo);
+        $this->utilisateurDB = new UtilisateurDB($pdo);
     }
 
     public function getArtistDB(): ArtistDB {
@@ -51,5 +54,9 @@ class DataBaseManager {
 
     public function getLikeAlbumDB(): LikeAlbumDB {
         return $this->likeAlbumDB;
+    }
+
+    public function getUtilisateurDB(): UtilisateurDB {
+        return $this->utilisateurDB;
     }
 }

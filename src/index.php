@@ -32,6 +32,12 @@ switch ($action) {
     case "playlist":
         include 'Action/playlist.php';
         break;
+    case "connexion":
+        include 'Action/login.php';
+        break;
+    case "inscription":
+        include 'Action/inscription.php';
+        break;
     default:
         include 'Action/connexion.php';
         break;
