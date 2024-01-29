@@ -26,6 +26,18 @@ class AlbumDB
         return new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
     }
 
+    function findAlbum(int $idAlbum): Album
+    {
+        $sql = "SELECT * FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $album = $stmt->fetch();
+        $imageData = $album['coverAlbum'];
+        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        return new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
+    }
+
     function findAlbumsArtist(int $idArtiste): array
     {
         $sql = "SELECT * FROM album WHERE idArtiste = :idArtiste";

@@ -16,3 +16,14 @@ img{
     width: 100px;
     object-fit: cover;
 }
+
+.btn-like{
+    background-color: black;
+    border: none;
+    outline: none;
+}
+
+.btn-like.liked{
+    background-color: red;
+
+}
