@@ -47,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="index.php?action=inscription" method="post">
         <div class="champs">
             <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" required>
+            <input type="text" name="nom" id="nom" value="<?php echo isset($nom) ? $nom : ''; ?>" required>
             <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" required>
+            <input type="text" name="prenom" id="prenom" value="<?php echo isset($prenom) ? $prenom : ''; ?>" required>
             <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo" id="pseudo" required>
+            <input type="text" name="pseudo" id="pseudo" value="<?php echo isset($pseudo) ? $pseudo : ''; ?>" required>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" id="mdp" required>
             <label for="mdpConfirmation">Confirmation du mot de passe</label>

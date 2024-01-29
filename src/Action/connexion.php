@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         ?>
         <div class="boutons">
-            <a href="index.php?action=connexion">Inscription</a>
+            <a href="index.php?action=inscription">Inscription</a>
             <button type="submit">Me connecter</button>
         </div>
     </form>
