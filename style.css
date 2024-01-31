@@ -145,7 +145,7 @@ body main .container-connexion{
 
 body main .logo{
     align-self: flex-start;
-    height: 8rem;
+    height: 6rem;
 }
 
 body main form{
@@ -241,7 +241,13 @@ body main form .bottom-content .buttons button.secondary img{
     height: 1.5rem;
 }
 
+body main form .container-textfields{
+    display: flex;
+    gap: 2rem;
+}
+
 body main form .text-field{
+    width: 100%;
     display: flex;
     position: relative;
     padding: 1.625rem 1.875rem;
@@ -265,6 +271,98 @@ body main form .text-field input{
     font-size: 1.25rem;
 }
 
+body main form .text-field.no-space input{
+    padding-left: 1rem;
+}
+
 body main form .text-field input:focus{
     border-bottom: 1.5px solid var(--yellow);
+}
+
+body header nav{
+    position: relative;
+    display: flex;
+    background-color: var(--background-secondary);
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 5.1875rem;
+    display: flex;
+}
+
+body header nav ul{
+    display: flex;
+    gap: 0.85rem;
+    height: 100%;
+    z-index: 2;
+}
+
+body header nav #activeSquare{
+    position: absolute;
+    width: 11.25rem;
+    top:0.8rem;
+    height: 3.5rem;
+    z-index: 0;
+    left: 25.5rem;
+    background-color: var(--yellow);
+    border-radius: 0.8rem;
+}
+
+body header nav ul li a {
+    width: 11.25rem;
+    text-decoration: none;
+    color: var(--text-color);
+    gap:0.7rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
+body header nav ul li a svg{
+    position: relative;
+    bottom: 3%;
+}
+
+body .left{
+    padding: 3rem;
+    width: 100%;
+    display: flex;
+    gap:2rem;
+    flex-direction: column;
+}
+
+body .left header{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 4.7rem;
+}
+
+body .left header img{
+    align-self: flex-start;
+}
+
+body .section-accueil{
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    gap:1.8rem;
+    width: 100%;
+}
+
+body .content-block{
+    display: flex;
+    background-color: var(--background-secondary);
+    border-radius: 1rem;
+    padding: 1.9rem 2.4rem;
+    width: 100%;
+}
+
+body .content-block h2{
+    display: flex;
+    font-size: 3rem;
+    align-items: center;
+    color: var(--text-color);
 }
