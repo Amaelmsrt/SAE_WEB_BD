@@ -383,6 +383,7 @@ body .left{
     flex-direction: column;
 }
 
+
 body .left header{
     align-self: flex-start;
     display: flex;
@@ -394,15 +395,32 @@ body .left header img{
     align-self: flex-start;
 }
 
-body .section-accueil{
+body .left .container-tabs{
+    position: relative;
+}
+
+body .tab{
+    position: absolute;
     padding:0;
     display: flex;
     flex-direction: column;
     gap:1.8rem;
     width: 65vw;
+    height: 67vh;
     max-height: 67vh;
     overflow: auto;
     padding-right: 2rem;
+    padding-bottom: 2rem;
+}
+
+body #SectionRecherche{
+    background-color: red;
+    opacity: 0;
+}
+
+body #SectionPlaylists{
+    background-color: blue;
+    opacity: 0;
 }
 
 body .content-block{
