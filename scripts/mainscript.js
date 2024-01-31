@@ -4,6 +4,8 @@ const goToAccueilBtn = document.querySelector("#goToAccueil")
 const goToRechercheBtn = document.querySelector("#goToRecherche")
 const goToPlaylists = document.querySelector("#goToPlaylists")
 
+const songcards = document.querySelectorAll(".song-card");
+
 // Fonction pour changer de formulaire
 function changeCurrentMenu(e,index) {
     e?.preventDefault();
@@ -38,7 +40,31 @@ function changeCurrentMenu(e,index) {
 
 changeCurrentMenu(null,0);
 
+const handleSongCardHover = (e, isLeaving) => {
+    // j'ai envie de get les enfants de la songcard qui a été hover
+    const songcard = e.currentTarget;
+    const background = songcard.querySelector(".background");
+    const cover = songcard.querySelector(".cover");
+    const playBtn = songcard.querySelector(".play");
+
+    // fais une transition sur l'opacité avec gsap sur le background
+    gsap.to(background, { opacity: isLeaving ? 0 : 1, duration: 0.6,ease: "power4.out" });
+
+    // le play btn passe de Y : 5 rem à y 0 quand il est hover
+    gsap.to(playBtn, { y: isLeaving ? "5rem" : 0, opacity: isLeaving? 0 : 1,  duration: 0.6,ease: "power4.out" });
+
+    // la cover de l'opacité de 1 à 0.7
+
+    gsap.to(cover, { opacity: isLeaving ? 1 : 0.5, duration: 0.6,ease: "power4.out" });
+
+}
+
 // Gestionnaires d’événements
 goToAccueilBtn.addEventListener('click', (e) => changeCurrentMenu(e,0));
 goToRechercheBtn.addEventListener('click', (e) => changeCurrentMenu(e,1));
 goToPlaylists.addEventListener('click', (e) => changeCurrentMenu(e,2));
+
+songcards.forEach(songcard => {
+    songcard.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
+    songcard.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
+})
