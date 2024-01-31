@@ -10,6 +10,8 @@ const sectionAccueil = document.querySelector("#SectionAccueil")
 const sectionRechercher = document.querySelector("#SectionRecherche")
 const sectionPlaylists = document.querySelector("#SectionPlaylists") 
 
+const menuDots = document.querySelectorAll(".menu-dots")
+
 function clearActiveSections(){
     if (sectionAccueil.classList != null)
         sectionAccueil.classList.remove("active-section")
@@ -99,6 +101,37 @@ const handleSongCardHover = (e, isLeaving) => {
 
 }
 
+function handleMenuDotsClick(e) {
+    const parent = e.currentTarget.parentElement.parentElement.parentElement;
+    const menu = parent.querySelector(".menu");
+
+    if (menu.style.display == "none" || menu.style.display == "") {
+        gsap.fromTo(menu, {opacity: 0, y: "-10vh"}, {opacity:1, y:0, duration:0.6, ease:"power4.out"})
+        menu.style.display = "block";
+    }
+    else {
+        gsap.to(menu, {opacity:0, y:"-10vh", duration:0.6, ease:"power4.out"})
+        setTimeout(() => {
+            menu.style.display = "none";
+        }, 600);
+    }
+}
+
+function handleUnfocusEverything(e) {
+    if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu") || e.target.classList.contains("menu-item")) {
+        return;
+    }
+    menuDots.forEach(menuDot => {
+        const menu = menuDot.parentElement.parentElement.parentElement.querySelector(".menu");
+        if (menu.style.display == "block") {
+            gsap.to(menu, {opacity:0, y:"-10vh", duration:0.6, ease:"power4.out"})
+            setTimeout(() => {
+                menu.style.display = "none";
+            }, 600);
+        }
+    })
+}
+
 // Gestionnaires d’événements
 goToAccueilBtn.addEventListener('click', (e) => changeCurrentMenu(e,0));
 goToRechercheBtn.addEventListener('click', (e) => changeCurrentMenu(e,1));
@@ -108,3 +141,9 @@ songcards.forEach(songcard => {
     songcard.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
     songcard.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
 })
+
+menuDots.forEach(menuDot => {
+    menuDot.addEventListener('click', handleMenuDotsClick)
+})
+
+document.addEventListener('click', handleUnfocusEverything)
