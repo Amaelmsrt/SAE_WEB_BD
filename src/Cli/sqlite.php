@@ -65,7 +65,9 @@ define('CREATE_UTILISATEUR_TABLE', <<<SQL
         nomUtil VARCHAR(255) NOT NULL,
         prenomUtil VARCHAR(255) NOT NULL,
         pseudoUtil VARCHAR(255) NOT NULL,
-        mdpUtil VARCHAR(255) NOT NULL
+        emailUtil VARCHAR(255) NOT NULL,
+        mdpUtil VARCHAR(255) NOT NULL,
+        statutUser VARCHAR(255) NOT NULL DEFAULT 'User'
     );
 SQL);
 
@@ -236,11 +238,12 @@ switch ($argv[2]) {
         break;
 
     case 'u':
-        $stmt = $pdo->prepare('INSERT INTO UTILISATEUR (nomUtil, prenomUtil, pseudoUtil, mdpUtil) VALUES (:nomUtil, :prenomUtil, :pseudoUtil, :mdpUtil)');
+        $stmt = $pdo->prepare("INSERT INTO UTILISATEUR (nomUtil, prenomUtil, pseudoUtil, emailUtil, mdpUtil, statutUser) VALUES (:nomUtil, :prenomUtil, :pseudoUtil, :emailUtil, :mdpUtil, 'User')");
         $stmt->execute([
             ':nomUtil' => 'Chédeville',
             ':prenomUtil' => 'Baptiste',
             ':pseudoUtil' => 'Baptched',
+            ':emailUtil' => 'baptched@gmail.com',
             ':mdpUtil' => password_hash('b', PASSWORD_DEFAULT)
         ]);
         break;

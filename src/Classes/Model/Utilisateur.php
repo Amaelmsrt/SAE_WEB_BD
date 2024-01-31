@@ -7,13 +7,17 @@ class Utilisateur {
     private $nom;
     private $prenom;
     private $pseudo;
+    private $email;
     private $mdp;
 
-    public function __construct($id, $nom, $prenom, $pseudo, $mdp) {
+    private $statut = "User";
+
+    public function __construct($id, $nom, $prenom, $pseudo, $email, $mdp) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->pseudo = $pseudo;
+        $this->email = $email;
         $this->mdp = $mdp;
     }
 
@@ -33,8 +37,16 @@ class Utilisateur {
         return $this->pseudo;
     }
 
+    function getEmail() {
+        return $this->email;
+    }
+
     function getMdp() {
         return $this->mdp;
+    }
+
+    function getStatut() {
+        return $this->statut;
     }
 }
 

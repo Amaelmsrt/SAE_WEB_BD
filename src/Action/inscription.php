@@ -8,34 +8,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $pseudo = $_POST['pseudo'];
+    $email = $_POST['email'];
     $mdp = $_POST['mdp'];
     $mdpConfirmation = $_POST['mdpConfirmation'];
 
-    if (strlen($mdp) < 8) {
-        $messageErreur = "Le mot de passe doit contenir au moins 8 caractères.";
-    }
-    if (!preg_match('/\d/', $mdp)) {
-        $messageErreur = "Le mot de passe doit contenir au moins un chiffre.";
-    } 
-    if (!preg_match('/[A-Z]/', $mdp)) {
-        $messageErreur = "Le mot de passe doit contenir au moins une lettre majuscule.";
-    }
-    if ($mdp !== $mdpConfirmation) {
-        $messageErreur = "Les mots de passe ne correspondent pas.";
-    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $pseudo = $_POST['pseudo'];
+        $email = $_POST['email'];
+        $mdp = $_POST['mdp'];
+        $mdpConfirmation = $_POST['mdpConfirmation'];
 
-    if ($messageErreur === "") {
-        $manager = new DataBaseManager();
-        $utilisateurBD = $manager->getUtilisateurDB();
-        $utilisateur = $utilisateurBD-> find($pseudo);
-        if ($utilisateur === null) {
-            $utilisateurBD->insertUser($nom, $prenom, $pseudo, $mdp);
-            header('Location: index.php?action=connexion');
-        } else {
-            $messageErreur = "Ce pseudo est déjà utilisé.";
+        if (strlen($mdp) < 8) {
+            $messageErreur = "Le mot de passe doit contenir au moins 8 caractères.";
+        }
+        if (!preg_match('/\d/', $mdp)) {
+            $messageErreur = "Le mot de passe doit contenir au moins un chiffre.";
+        } 
+        if (!preg_match('/[A-Z]/', $mdp)) {
+            $messageErreur = "Le mot de passe doit contenir au moins une lettre majuscule.";
+        }
+        if ($mdp !== $mdpConfirmation) {
+            $messageErreur = "Les mots de passe ne correspondent pas.";
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $messageErreur = "L'adresse email n'est pas valide.";
+        }
+
+        if ($messageErreur === "") {
+            $manager = new DataBaseManager();
+            $utilisateurBD = $manager->getUtilisateurDB();
+            $utilisateur = $utilisateurBD->find($pseudo);
+            if ($utilisateur === null) {
+                $utilisateurBD->insertUser($nom, $prenom, $pseudo, $email, $mdp);
+                header('Location: index.php?action=connexion');
+            } else {
+                $messageErreur = "Ce pseudo est déjà utilisé.";
+            }
         }
     }
-
 }
 
 ?>
@@ -52,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="prenom" id="prenom" value="<?php echo isset($prenom) ? $prenom : ''; ?>" required>
             <label for="pseudo">Pseudo</label>
             <input type="text" name="pseudo" id="pseudo" value="<?php echo isset($pseudo) ? $pseudo : ''; ?>" required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="<?php echo isset($email) ? $email : ''; ?>" required>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" id="mdp" required>
             <label for="mdpConfirmation">Confirmation du mot de passe</label>

@@ -4,10 +4,6 @@ use DB\DataBaseManager;
 
 $id = $_GET['id'] ?? null;
 
-if (isset($_SESSION[$id])) {
-    header("Location: index.php?action=home");
-}
-
 $manager = new DataBaseManager();
 $utilisateurDB = $manager->getUtilisateurDB();
 $messageErreur = "";
@@ -27,7 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $messageErreur = "Mot de passe ou nom d'utilisateur incorrect";
     }
+
 }
+
+// if (isset($_SESSION[$id])) {
+//     header("Location: index.php?action=home");
+// }
 
 ?>
 
