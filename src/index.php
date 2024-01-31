@@ -34,12 +34,15 @@ switch ($action) {
         break;
     case "connexion":
         include 'Action/connexion.php';
+        $layout = "connexion";
         break;
     case "inscription":
         include 'Action/inscription.php';
+        $layout = 'inscription';
         break;
     default:
         include 'Action/connexion.php';
+        $layout = "connexion";
         break;
 }
 $content = ob_get_clean();
