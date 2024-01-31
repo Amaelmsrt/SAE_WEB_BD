@@ -291,7 +291,7 @@ body main form .container-textfields{
     gap: 2rem;
 }
 
-body main form .text-field{
+.text-field{
     width: 100%;
     display: flex;
     position: relative;
@@ -299,7 +299,7 @@ body main form .text-field{
     color: var(--text-color-secondary);
 }
 
-body main form .text-field input{
+.text-field input{
     position: absolute;
     top: 0;
     left: 0;
@@ -316,11 +316,11 @@ body main form .text-field input{
     font-size: 1.25rem;
 }
 
-body main form .text-field.no-space input{
+.text-field.no-space input{
     padding-left: 1rem;
 }
 
-body main form .text-field input:focus{
+.text-field input:focus{
     border-bottom: 1.5px solid var(--yellow);
 }
 
@@ -414,7 +414,6 @@ body .tab{
 }
 
 body #SectionRecherche{
-    background-color: red;
     opacity: 0;
 }
 
@@ -442,7 +441,7 @@ body .content-block > header{
     justify-content: space-between;
 }
 
-body .content-block h2{
+body .content-block h2, .results-section h2{
     display: flex;
     font-size: 3rem;
     align-items: center;
@@ -463,9 +462,10 @@ body .content-block .content{
     padding-bottom: 1.5rem;
 }
 
-body .content-block .song-card{
+.song-card{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap:0.75rem;
     height:18rem;
     min-height: 18rem;
@@ -478,7 +478,11 @@ body .content-block .song-card{
     position: relative;
 }
 
-body .content-block .song-card .background{
+.song-card.artiste{
+    gap:1.5rem;
+}
+
+.song-card .background{
     position: absolute;
     top: 0;
     left: 0;
@@ -491,7 +495,7 @@ body .content-block .song-card .background{
     filter: blur(400px);
 }
 
-body .content-block .song-card .container-image{
+.song-card .container-image{
     height: 12.5rem;
     width: 12.5rem;
     display: flex;
@@ -503,44 +507,49 @@ body .content-block .song-card .container-image{
     position: relative;
 }
 
-body .content-block .song-card .container-image .cover{
+.song-card.artiste .container-image{
+    height: 10rem;
+    width: 10rem;
+}
+
+.song-card .container-image .cover{
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-body .content-block .song-card .container-image .play{
+.song-card .container-image .play{
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
     transform: translateY(5rem);
 }
 
-body .content-block .song-card .bottom-content{
+.song-card .bottom-content{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 12.5rem;
 }
 
-body .content-block .song-card .bottom-content .texts{
+.song-card .bottom-content .texts{
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     gap:0.1rem;
 }
 
-body .content-block .song-card .bottom-content h4{
+.song-card .bottom-content h4{
     font-size: 1.25rem;
 }
 
-body .content-block .song-card .bottom-content h5{
+.song-card .bottom-content h5{
     filter: opacity(0.7);
     font-size: 0.9rem;
     font-weight: 100;
 }
 
-body .content-block .song-card .bottom-content .heart{
+.song-card .bottom-content .heart{
     height: 1.2rem;
 }
 
@@ -674,46 +683,52 @@ body .content-player .file-attente .content{
     overflow-y: scroll;
 }
 
-body .content-player .file-attente .content .artiste-row{
+.artiste-row{
     display: flex;
     position: relative;
     justify-content: space-between;
     padding: 0.5rem 1.5rem 0.5rem 0.5rem;
     border-radius: 1rem;
     min-height: 4rem;
+    width: 100%;
 }
 
-body .content-player .file-attente .content .artiste-row .infos{
+.artiste-row.with-dots{
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+.artiste-row .infos{
     display: flex;
     align-items: center;
     gap:1rem;
 }
 
-body .content-player .file-attente .content .artiste-row .infos .texts{
+.artiste-row .infos .texts{
     display: flex;
     gap:0.3rem;
     flex-direction: column;
+    color:var(--text-color)
 }
 
-body .content-player .file-attente .content .artiste-row .infos .texts h4{
+.artiste-row .infos .texts h4{
     font-size: 1rem;
     font-weight: 300;
 }
 
-body .content-player .file-attente .content .artiste-row .infos .texts h5{
+.artiste-row .infos .texts h5{
     filter: opacity(0.7);
     font-size: 0.875rem;
     font-weight: 200;
 }
 
-body .content-player .file-attente .content .artiste-row .infos .container-cover{
+.artiste-row .infos .container-cover{
     height: 3.5rem;
     width: 3.5rem;
     overflow: hidden;
     border-radius: 0.8rem;
 }
 
-body .content-player .file-attente .content .artiste-row .infos .container-cover img{
+.container-cover img{
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -728,4 +743,103 @@ body .content-player .file-attente .content .artiste-row .actions{
 body .content-player .file-attente .content .artiste-row .actions .edit-list{
     display: flex;
     gap:1.25rem;
+}
+
+/* recherche */
+
+#SectionRecherche{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#SectionRecherche .resultat h2 img{
+    align-self: flex-start;
+}
+
+#SectionRecherche .resultat {
+    padding-right: 2rem;
+    max-height: 100%;
+    overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+    gap:3.75rem
+}
+
+#SectionRecherche .resultat .results-section{
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+}
+
+#SectionRecherche .resultat .results-section.scrollable .content{
+   overflow-x: auto;
+   padding-bottom: 1rem;
+}
+
+#SectionRecherche .resultat .results-section .content{
+    display: flex;
+    gap: 1.5rem;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+    padding: 1.5rem;
+    min-width: 40%;
+    max-width: 40%;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result::before{
+    filter: blur(300px) opacity(0.5);
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .container-cover{
+    width: 8rem;
+    height: 8rem;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .container-cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos{
+    display: flex;
+    justify-content: space-between;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts{
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+    color: var(--text-color);
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts h4 {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts h5{
+    filter: opacity(0.7);
+    font-size: 0.875rem;
+    font-weight: 200;
+}
+
+#SectionRecherche .resultat .results-section .content .other-results{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#SectionRecherche .resultat .results-section .content .other-results .artiste-row{
+    cursor: pointer;
 }

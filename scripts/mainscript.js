@@ -48,8 +48,8 @@ function changeCurrentMenu(e,index) {
             gsap.to(goToRechercheBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             gsap.to(goToPlaylists, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             
-            gsap.fromTo(sectionAccueil, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, duration:0.6, ease:"power4.out"})
-            gsap.to(curSection, {opacity:0, x: index >= curIndex ? "100vw" : "-100vw", duration:0.6, ease: "power4.out"})
+            gsap.fromTo(sectionAccueil, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, duration:0.6, zIndex: 1, ease:"power4.out"})
+            gsap.to(curSection, {opacity:0, x: index >= curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"})
             clearActiveSections()
             sectionAccueil.classList.add("active-section")
             break;
@@ -58,8 +58,8 @@ function changeCurrentMenu(e,index) {
             gsap.to(goToRechercheBtn, { color: "#0E100F", duration: 0.6,ease: "power4.out" });
             gsap.to(goToPlaylists, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
 
-            gsap.fromTo(sectionRechercher, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw"}, {opacity:1, x:0, duration:0.6, ease:"power4.out"})
-            gsap.to(curSection, {opacity:0, x: index >= curIndex ? "100vw" : "-100vw", duration:0.6, ease: "power4.out"})
+            gsap.fromTo(sectionRechercher, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
+            gsap.to(curSection, {opacity:0, x: index >= curIndex ? "100vw" : "-100vw", zIndex: -1, duration:0.6, ease: "power4.out"})
 
             clearActiveSections()
             sectionRechercher.classList.add("active-section")
@@ -69,8 +69,8 @@ function changeCurrentMenu(e,index) {
             gsap.to(goToRechercheBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             gsap.to(goToPlaylists, { color: "#0E100F", duration: 0.6,ease: "power4.out" });
             
-            gsap.fromTo(sectionPlaylists, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw"}, {opacity:1, x:0, duration:0.6, ease:"power4.out"})
-            gsap.to(curSection, {opacity:0, x:index>=curIndex ? "100vw" : "-100vw", duration:0.6, ease: "power4.out"})
+            gsap.fromTo(sectionPlaylists, {opacity: 0, x: index >= curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
+            gsap.to(curSection, {opacity:0, x:index>=curIndex ? "100vw" : "-100vw", zIndex: -1, duration:0.6, ease: "power4.out"})
 
             clearActiveSections()
             sectionPlaylists.classList.add("active-section")

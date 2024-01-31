@@ -300,7 +300,235 @@
                     </div>
                 </section>
             </main>
-            <main id="SectionRecherche" class="tab"></main>
+            <main id="SectionRecherche" class="tab">
+                <div class="text-field">
+                    <img src="./assets/icons/search.svg" alt="user"/>
+                    <input type="text" placeholder="Ma recherche" value="">
+                </div>
+                <section class="resultat">
+                    <!-- l'idée là c'est de montrer à gauche le résultat le plus
+                        pertinent.
+                        Exemple: si on tape ga: on s'attend à avoir gazo en truc le plus pertinent
+                        puis du coup si on à un artiste à gauche: on met ses 3 titres les plus connus à droite.
+
+                        Si le résultat le plus pertinent à gauche c'est un titre, on l'affiche à gauche
+                        et à droite on va mettre d'autres résultats qui peuvent être intéressants 
+                        en fonction de la recherche
+
+                        si le résultat le plus pertinent à gauche c'est un album, on l'affiche à gauche
+                        à droite on met les 3 titres de l'album les plus connus
+                    -->
+                    <!--
+                        et en dessous on va faire un listing à l'horizontal de 5 albums/titres max qui peuvent correspondre à la recherche
+
+                        En dessous on va faire un listing à l'horizontal de 5 artistes max qui peuvent correspondre à la recherche
+                    -->
+                    <section id="MainResults" class="results-section">
+                        <h2>Meilleurs résultats <img src="/assets/icons/shape_1.svg"/></h2>
+                        <div class="content">
+                            <div class="best-result glass">
+                                <div class="container-cover">
+                                    <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                </div>
+                                <div class="infos">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                    <img src="/assets/icons/expand.svg"/>
+                                </div>
+                            </div>
+                            <div class="other-results">
+                                <div class="artiste-row glass with-dots">
+                                    <div class="infos">
+                                        <div class="container-cover">
+                                            <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                        </div>
+                                        <div class="texts">
+                                            <h4>L'enfant de la pluie</h4>
+                                            <h5>So la lune</h5>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                       <img src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                    </div>
+                                </div>
+                                <div class="artiste-row glass with-dots">
+                                    <div class="infos">
+                                        <div class="container-cover">
+                                            <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                        </div>
+                                        <div class="texts">
+                                            <h4>L'enfant de la pluie</h4>
+                                            <h5>So la lune</h5>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <img src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                    </div>
+                                </div>
+                                <div class="artiste-row glass with-dots">
+                                    <div class="infos">
+                                        <div class="container-cover">
+                                            <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                        </div>
+                                        <div class="texts">
+                                            <h4>L'enfant de la pluie</h4>
+                                            <h5>So la lune</h5>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <img src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="OtherAlbums" class="results-section scrollable">
+                        <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
+                        <div class="content">
+                            <div class="song-card">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                    <img src="/assets/icons/play.svg" alt="play" class="play"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>Remontada</h4>
+                                        <h5>So la lune</h5>
+                                    </div>
+                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                    <img src="/assets/icons/play.svg" alt="play" class="play"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>Remontada</h4>
+                                        <h5>So la lune</h5>
+                                    </div>
+                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                    <img src="/assets/icons/play.svg" alt="play" class="play"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>Remontada</h4>
+                                        <h5>So la lune</h5>
+                                    </div>
+                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                    <img src="/assets/icons/play.svg" alt="play" class="play"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>Remontada</h4>
+                                        <h5>So la lune</h5>
+                                    </div>
+                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                    <img src="/assets/icons/play.svg" alt="play" class="play"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>Remontada</h4>
+                                        <h5>So la lune</h5>
+                                    </div>
+                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="OtherArtists" class="results-section scrollable">
+                        <h2>Autres Artistes <img src="/assets/icons/shape_3.svg"/></h2>
+                        <div class="content">
+                            <div class="song-card artiste">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="song-card artiste">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="song-card artiste">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="song-card artiste">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="song-card artiste">
+                                <div class="background" aria-hidden></div>
+                                <div class="container-image">
+                                    <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                                </div>
+                                <div class="bottom-content">
+                                    <div class="texts">
+                                        <h4>So la lune</h4>
+                                        <h5>Artiste</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </section>
+            </main>
             <main id="SectionPlaylists" class="tab"></main>
         </div>
     </div>
