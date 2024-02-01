@@ -25,3 +25,5 @@ foreach ($sons as $son) : ?>
     <a href="index.php?action=playlist">Playlist</a>
 
 </div>
+
+<a href="index.php?action=deconnexion">Déconnexion</a>
