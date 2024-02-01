@@ -9,10 +9,10 @@ require 'Classes/autoloader.php';
 Autoloader::register(); 
 
 
-$action = $_REQUEST['action'] ?? "home";
+$action = $_REQUEST['action'] ?? "connexion";
 $layout = "main";
 session_start();
-$_SESSION['user'] = 1;
+$_SESSION['user'] = $_SESSION['user_id'] ?? null;
 
 
 
@@ -39,6 +39,9 @@ switch ($action) {
     case "inscription":
         include 'Action/inscription.php';
         $layout = 'inscription';
+        break;
+    case "deconnexion":
+        include 'Action/deconnexion.php';
         break;
     default:
         include 'Action/connexion.php';
