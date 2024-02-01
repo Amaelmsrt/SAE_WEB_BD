@@ -3,6 +3,8 @@
 
 use DB\DataBaseManager as Manager;
 
+ini_set('memory_limit', '1024M');
+
 require_once 'Configuration/config.php';
 
 // SPL autoloader
@@ -41,6 +43,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $response = ['like' => $isLike];
             break;
+
+        case 'jouerSon':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $son = $manager->getSonDB()->find($id);
+
+            $manager->getSonDB()->addStream($id);
+            session_start();
+            $manager->getSonDB()->addEcouter($id, $_SESSION['user']);
+
+            header('Content-Type: audio/mpeg');
+            echo $son->getMp3();
+
+            exit();
+
+        case 'jouerArtiste':
+            $idArtist = array_shift($path);
+            $manager = new Manager();
+            $sons = $manager->getSonDB()->findArtist($idArtist);
+            
+            $response = array();
+            foreach ($sons as $son) {
+                $response[] = array(
+                    'id' => $son->getId()
+                );
+            }
+            error_log(json_encode($response));
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($response);
+            exit();
+
+        case 'jouerAlbum':
+            $idAlbum = array_shift($path);
+            $manager = new Manager();
+            $sons = $manager->getSonDB()->findAlbum($idAlbum);
+            
+            $response = array();
+            foreach ($sons as $son) {
+                $response[] = array(
+                    'id' => $son->getId()
+                );
+            }
+            error_log(json_encode($response));
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($response);
+            exit();
+
+        case 'infosSon' :
+            $id = array_shift($path);
+            $manager = new Manager();
+            $son = $manager->getSonDB()->find($id);
+            $album = $manager->getAlbumDB()->findAlbum($son->getIdAlbum());
+            $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+            
+            $response = array(
+                'id' => $son->getId(),
+                'titre' => $son->getTitre(),
+                'artiste' => $artist->getName(),
+                'cover' => $album->getCover(),
+                'duree' => $son->getDuree()
+            );
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($response);
+            exit();
 
         default:
             // Ne définissez pas de code de réponse HTTP ici

@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     likeBtn.addEventListener('click', function () {
         const artisteId = likeBtn.getAttribute('data-id-artiste');
         const idUtilisateur = likeBtn.getAttribute('data-id');
-        console.log(artisteId);
-        console.log(idUtilisateur);
 
         fetch('/controlleurApi.php/likeArtiste/' + artisteId + '/' + idUtilisateur, {
             method: 'POST',
@@ -35,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     likeBtn2.addEventListener('click', function () {
         const albumId = likeBtn2.getAttribute('data-id-album');
         const idUtilisateur = likeBtn2.getAttribute('data-id');
-        console.log(albumId);
-        console.log(idUtilisateur);
 
         fetch('/controlleurApi.php/likeAlbum/' + albumId + '/' + idUtilisateur, {
             method: 'POST',

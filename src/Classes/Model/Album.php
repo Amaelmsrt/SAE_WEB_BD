@@ -14,6 +14,8 @@ class Album
     private $cover;
     private $idArtiste;
 
+    private $artiste;
+
     public function __construct($id, $titre, $description, $date, $cover, $idArtiste)
     {
         $this->id = $id;
@@ -52,5 +54,23 @@ class Album
     function getIdArtiste()
     {
         return $this->idArtiste;
+    }
+
+    function setArtiste($artiste)
+    {
+        $this->artiste = $artiste;
+    }
+
+    function toJson()
+    {
+        return json_encode([
+            'id' => $this->id,
+            'titre' => $this->titre,
+            'description' => $this->description,
+            'date' => $this->date,
+            'cover' => $this->cover,
+            'idArtiste' => $this->idArtiste,
+            'artiste' => $this->artiste->toJson()
+        ]);
     }
 }

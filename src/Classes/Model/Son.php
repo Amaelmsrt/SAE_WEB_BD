@@ -11,14 +11,17 @@ class Son
     private $duree;
     private $mp3;
     private $idAlbum;
+    private $nbStream;
+    private $album;
 
-    public function __construct($id, $titre, $duree, $mp3, $idAlbum)
+    public function __construct($id, $titre, $duree, $mp3, $idAlbum, $nbStream)
     {
         $this->id = $id;
         $this->titre = $titre;
         $this->duree = $duree;
         $this->mp3 = $mp3;
         $this->idAlbum = $idAlbum;
+        $this->nbStream = $nbStream;
     }
 
     function getId()
@@ -45,4 +48,32 @@ class Son
     {
         return $this->idAlbum;
     }
+
+    function getNbStream()
+    {
+        return $this->nbStream;
+    }
+
+    function setAlbum($album)
+    {
+        $this->album = $album;
+    }
+
+    function toJson()
+    {
+    error_log('SON TO JSON');
+    $json = json_encode([
+        'id' => $this->id,
+        'titre' => $this->titre,
+        'duree' => $this->duree,
+        'idAlbum' => $this->idAlbum,
+        'nbStream' => $this->nbStream,
+        'album' => $this->album->toJson()
+    ]);
+
+    error_log($json);
+
+    return $json;
+}
+
 }
