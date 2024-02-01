@@ -124,7 +124,8 @@ define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
     CREATE TABLE IF NOT EXISTS ECOUTERRECEMENT (
         idUtilisateur INTEGER NOT NULL,
         idSon INTEGER NOT NULL,
-        PRIMARY KEY (idUtilisateur, idSon),
+        dataHH DATETIME NOT NULL,
+        PRIMARY KEY (idUtilisateur, idSon, dataHH),
         FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
         FOREIGN KEY (idSon) REFERENCES SON(idSon)
     );
@@ -188,6 +189,7 @@ switch ($argv[2]) {
                 ':titreGenre' => $genre['titre']
             ]);
         }
+        echo 'Insertion des genres terminée' . PHP_EOL;
 
         // Insertion des artistes
         $file = file_get_contents(__DIR__ . '/../Data/artiste.yml');
@@ -201,6 +203,8 @@ switch ($argv[2]) {
                 ':imageArtiste' => $img
             ]);
         }
+
+        echo 'Insertion des artistes terminée' . PHP_EOL;
 
         // Insertion des albums
         $file = file_get_contents(__DIR__ . '/../Data/album.yml');
@@ -217,6 +221,7 @@ switch ($argv[2]) {
                 ':coverAlbum' => $img,
                 ':idArtiste' => $album['by']
             ]);
+            echo 'Insertion de l\'album ' . $album['title'] . PHP_EOL;
             foreach ($album['genre'] as $genre) {
                 $stmt = $pdo->prepare('INSERT INTO APPARTENIR (idGenre, idAlbum) VALUES (:idGenre, :idAlbum)');
                 $stmt->execute([
@@ -225,6 +230,7 @@ switch ($argv[2]) {
                 ]);
             }
             foreach ($album['songs'] as $song) {
+                echo 'Insertion du son ' . $song['title'] . PHP_EOL;
                 $stmt = $pdo->prepare('INSERT INTO SON (titreSon, dureeSon, fichierMp3, idAlbum) VALUES (:titreSon, :dureeSon, :fichierMp3, :idAlbum)');
                 $mp3 = file_get_contents(__DIR__ . '/../Data/Son/' . $album['title'] . "/" . $song['mp3']);
                 $stmt->execute([
@@ -233,8 +239,10 @@ switch ($argv[2]) {
                     ':fichierMp3' => $mp3,
                     ':idAlbum' => $album['entryId']
                 ]);
+                echo 'Insertion du son ' . $song['title'] . ' terminée' . PHP_EOL;
             }
         }
+        echo 'Insertion des albums terminée' . PHP_EOL;
         break;
 
     case 'u':

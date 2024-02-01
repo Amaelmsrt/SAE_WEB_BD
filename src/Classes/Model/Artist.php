@@ -32,4 +32,12 @@ class Artist
         return $this->picture;
     }
 
+    function toJson()
+    {
+        return json_encode([
+            'id' => $this->id,
+            'name' => $this->name,
+            'picture' => $this->picture
+        ]);
+    }
 }

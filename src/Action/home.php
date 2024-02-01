@@ -2,6 +2,17 @@
 
 <h2>Ecouté récemment :</h2>
 
+<?php   
+
+use DB\DataBaseManager;
+
+$manager = new DataBaseManager();
+$son = $manager->getSonDB();
+$sons = $son->findEcouter($_SESSION['user']);
+
+foreach ($sons as $son) : ?>
+    <p><?= $son->getTitre() ?></p>
+<?php endforeach; ?>
 
 <h2>Découvrir :</h2>
 

@@ -6,6 +6,7 @@
     <title>SPOTIUT'O</title>
     <link rel="stylesheet" href="/Assets/Css/artist.css">
     <script src="/Assets/Js/btnLike.js"></script>
+    <script src="/Assets/Js/jouerSon.js"></script>
 </head>
 <body>  
 
