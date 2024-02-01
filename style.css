@@ -1231,6 +1231,12 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     max-width: 40%;
     border-radius: 1rem;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result:hover{
+    filter: brightness(0.7);
+    transition: all 0.2s ease-in-out;
 }
 
 #SectionRecherche .resultat .results-section .content .best-result::before{
