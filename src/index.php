@@ -9,7 +9,7 @@ require 'Classes/autoloader.php';
 Autoloader::register(); 
 
 
-$action = $_REQUEST['action'] ?? "home";
+$action = $_REQUEST['action'] ?? "connexion";
 $layout = "main";
 session_start();
 $_SESSION['user'] = 1;
@@ -18,20 +18,25 @@ $_SESSION['user'] = 1;
 
 ob_start();
 switch ($action) {
-    case 'artist':
-        include 'Action/artist.php';
-        $layout = "artist";
+        // case 'artist':
+        //     include 'Action/artist.php';
+        //     $layout = "artist";
+        //     break;
+        // case 'home':
+        //     include 'Action/home.php';
+        //     break;
+        // case "search":
+        //     include 'Action/search.php';
+        //     $layout = "search";
+        //     break;
+        // case "playlist":
+        //     include 'Action/playlist.php';
+        //     break;
+    case "home":
+        include 'Action/accueil.php';
+        $layout = "accueil";
         break;
-    case 'home':
-        include 'Action/home.php';
-        break;
-    case "search":
-        include 'Action/search.php';
-        $layout = "search";
-        break;
-    case "playlist":
-        include 'Action/playlist.php';
-        break;
+
     case "connexion":
         include 'Action/connexion.php';
         $layout = "connexion";

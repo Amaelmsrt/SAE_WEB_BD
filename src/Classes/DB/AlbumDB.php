@@ -53,4 +53,34 @@ class AlbumDB
         }
         return $albumsArray;
     }
+
+    function getAleaAlbums(): array
+    {
+        $sql = "SELECT * FROM album ORDER BY RANDOM() LIMIT 5";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        $albumsArray = [];
+        foreach ($albums as $album) {
+            $imageData = $album['coverAlbum'];
+            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
+        }
+        return $albumsArray;
+    }
+
+    function getLastAlbums(): array
+    {
+        $sql = "SELECT * FROM album ORDER BY dateAlbum DESC LIMIT 15";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        $albumsArray = [];
+        foreach ($albums as $album) {
+            $imageData = $album['coverAlbum'];
+            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
+        }
+        return $albumsArray;
+    }
 }

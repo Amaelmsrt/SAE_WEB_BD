@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/Assets/Css/artist.css">
     <script src="/Assets/Js/btnLike.js"></script>
     <script src="/Assets/Js/jouerSon.js"></script>
+    <script src="/Assets/Js/listeDattente.js"></script>
 </head>
 <body>  
 

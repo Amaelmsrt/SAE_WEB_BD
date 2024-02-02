@@ -1,0 +1,1420 @@
+@font-face {
+    font-family: 'Kicker';
+    src: url('/Assets/fonts/kicker-black/KickerTrial-Black.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kicker';
+    src: url('/Assets/fonts/kicker-black/KickerTrial-BlackItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Kicker';
+    src: url('/Assets/fonts/kicker-bold/KickerTrial-BlackSlanted.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* 
+PPMori-Extralight
+PPMori-ExtraLightItalic
+PPMori-Regular
+PPMori-RegularItalic
+PPMori-SemiBold
+PPMori-SemiBoldItalic
+*/
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-ExtraLight.otf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-ExtraLightItalic.otf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-Regular.otf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-RegularItalic.otf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-SemiBold.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/Assets/fonts/pp-mori/PPMori-SemiBoldItalic.otf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --yellow: #E2FF08;
+    --text-color: #FEFCE1;
+    --text-color-secondary: #7F7E70;
+    --text-color-tertiary: #56574E;
+    --background-color: #000000;
+    --background-secondary: #0E100F;
+    --background-tertiary:#070808;
+    --red: #ED1C24;
+}
+
+body{
+    background-color: var(--background-color);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PP Mori', sans-serif;
+    min-height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow-x:hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Largeur pour les barres de défilement horizontales */
+    height: 4px; /* Hauteur pour les barres de défilement verticales */
+}
+
+/* Style pour le fond des barres de défilement */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 1rem;
+}
+
+/* Style pour les poignées de défilement */
+::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 1rem;
+}
+
+/* Style pour les poignées de défilement au survol */
+::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.2);
+}
+
+.glass{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.glass::before{
+    content:"";
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    filter: blur(200px) opacity(0.5);
+    z-index: -1;
+}
+
+body aside{
+    z-index: 10;
+    min-width: 40vw;
+    width: 40%;
+    max-width: 40vw;
+    background-color: var(--yellow);
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+
+body aside h2{
+    white-space: nowrap;
+    font-size: 9.375rem;
+    position: relative;
+    top: -2rem;
+    text-wrap: nowrap;
+    writing-mode: vertical-rl;
+    font-family: 'Kicker';
+    font-weight: 100;
+}
+
+body main{
+    padding: 6rem 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:6rem;
+}
+
+body main .connection{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+body main #inscription{
+    opacity:0;
+}
+
+body main .container-connexion{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+body main .logo{
+    align-self: flex-start;
+    height: 6rem;
+}
+
+body main form{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between;
+    min-height: 100%;
+    max-height: 100%;
+    gap:2rem;
+}
+
+body main form legend{
+    font-size: 3.125rem;
+    font-family: "Kicker";
+    font-weight: 100;
+    color: var(--text-color);
+}
+
+body main form .top-content{
+    display: flex;
+    flex-direction: column;
+    gap:3rem;
+}
+
+body main form .top-content .inputs{
+    display: flex;
+    flex-direction: column;
+    gap:4rem;
+}
+
+body main form .bottom-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+body main form .bottom-content button{
+    border:none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+body main form .bottom-content .buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+body main #connexion .bottom-content{
+    flex-direction: row-reverse;
+}
+
+body main form .bottom-content .buttons button{
+    cursor: pointer;
+    display: flex;
+    gap:1rem;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 400;
+    min-width: 14rem;
+    font-size: 1.1875rem;
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+}
+
+body main form .bottom-content .buttons button.secondary{
+    color: var(--text-color);
+    filter: brightness(0.8);
+}
+
+body main form .bottom-content .buttons button:hover{
+    filter: brightness(0.8);
+}
+
+
+body main form .bottom-content .buttons button.secondary:hover{
+    filter: brightness(0.6);
+}
+
+body main form .bottom-content .buttons img{
+    height: 1rem;
+    position: relative;
+    bottom: 3%;
+}
+
+body main form .bottom-content .buttons button.secondary img{
+    height: 1.5rem;
+}
+
+body main form .container-textfields{
+    display: flex;
+    gap: 2rem;
+}
+
+.text-field{
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding: 1.625rem 1.875rem;
+    color: var(--text-color-secondary);
+}
+
+.text-field input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 6rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--text-color-secondary);
+    outline: none;
+    color: var(--text-color-secondary);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.text-field.no-space input{
+    padding-left: 1rem;
+}
+
+.text-field input:focus{
+    border-bottom: 1.5px solid var(--yellow);
+    transition: all 0.2s ease-in-out;
+}
+
+nav{
+    position: relative;
+    display: flex;
+    background-color: var(--background-secondary);
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 5.1875rem;
+    min-height: 5.1875rem;
+    display: flex;
+    align-self: flex-start;
+}
+
+nav ul{
+    display: flex;
+    gap: 0.85rem;
+    height: 100%;
+    list-style: none;
+    z-index: 2;
+}
+
+nav ul li{
+    list-style-type: none;
+}
+
+nav .active-square{
+    position: absolute;
+    width: 11.25rem;
+    top:0.8rem;
+    height: 3.5rem;
+    z-index: 0;
+    left: 1rem;
+    background-color: var(--yellow);
+    border-radius: 0.8rem;
+}
+
+nav ul li a {
+    width: 11.25rem;
+    text-decoration: none;
+    color: var(--text-color);
+    gap:0.7rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
+
+nav ul li a svg{
+    position: relative;
+    bottom: 3%;
+    height: 1.3rem;
+}
+
+body .left{
+    padding: 3rem;
+    width: 70vw;
+    display: flex;
+    gap:2rem;
+    flex-direction: column;
+}
+
+
+body .left header{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 4.7rem;
+}
+
+body .left header img{
+    align-self: flex-start;
+}
+
+body .left .container-tabs{
+    position: relative;
+}
+
+body .tab{
+    position: absolute;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    gap:1.8rem;
+    width: 65vw;
+    height: 67vh;
+    max-height: 67vh;
+    overflow: auto;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+}
+
+#PageArtiste{
+    position: absolute;
+    opacity: 0;
+    padding-right: 2rem;
+    width: 100%;
+    display: flex;
+    gap: 1.15rem;
+    height: 100%;
+}
+
+#PageArtiste .back-btn{
+    align-self: flex-start;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom:2rem;
+    left:0;
+    z-index: 100;
+    cursor:pointer;
+    transition: all 0.2s ease;
+}
+
+#PageArtiste .back-btn:hover{
+    filter: opacity(0.4);
+    transition: all 0.2s ease;
+}
+
+#PageArtiste .infos-artiste{
+    display: flex;
+    flex-direction: column;
+    gap:1.375rem;
+    width: 80%;
+    position: sticky;
+    bottom: 0;
+}
+
+#PageArtiste .infos-artiste .buttons{
+    display: flex;
+    gap:1rem;
+}
+
+#PageArtiste .infos-artiste .card-artiste{
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background-color: var(--background-tertiary);
+}
+
+#PageArtiste .infos-artiste .card-artiste .infos{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+}
+
+#PageArtiste .infos-artiste .card-artiste .infos .texts {
+    color: var(--text-color);
+    gap:0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#PageArtiste .infos-artiste .card-artiste .infos .texts h2{
+    font-size: 2.5rem;
+}
+
+#PageArtiste .infos-artiste .card-artiste .infos .texts h4{
+    filter: opacity(0.3);
+    font-size: 0.9rem;
+}
+
+#PageArtiste .infos-artiste .card-artiste .container-cover{
+    width: 10rem;
+    min-width: 10rem;
+    height: 10rem;
+    min-height: 10rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+#PageArtiste .infos-artiste .card-artiste .play-btn{
+    align-self: flex-end;
+}
+
+#PageArtiste .main-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap:1.25rem;
+    padding-bottom: 1.5rem;
+}
+
+#PageArtiste .main-content .content-block{
+    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#PageArtiste .main-content .content-block > section{
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+#PageArtiste .main-content .content-block #TopTitres{
+    flex-direction: column;
+    opacity: 0;
+}
+
+#PageArtiste .main-content .content-block #Albums{
+    opacity: 0;
+    flex-wrap: wrap;
+    max-height: 100%;
+    overflow-y:auto;
+    padding-right: 1rem;
+}
+
+#PageArtiste .main-content .content-block #Albums .song-card{
+    min-width: 0;
+    max-width: 32%;
+    padding: 1rem;
+    min-height: 0;
+    height: auto;
+}
+
+#PageArtiste .main-content .content-block #Albums .song-card .container-image{
+    width: 100%;
+    height: auto;
+}
+
+#PageArtiste .main-content .content-block #Albums .song-card .bottom-content{
+    width: 100%;
+}
+
+body #SectionRecherche{
+    gap:0;
+    opacity: 0;
+    overflow-x: hidden;
+}
+
+body #SectionRecherche .wrapper-recherche{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    max-width: 100%;
+    position: absolute;
+    padding-right: 2rem;
+}
+
+/*
+pour rendre le header de la recherche sticky
+body #SectionRecherche .wrapper-recherche .text-field{
+    position: sticky;
+    top:0;
+    background-color: var(--background-color);
+    z-index: 100;
+} */
+
+body #SectionPlaylists{
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    padding-bottom: 2rem;
+}
+
+body #SectionPlaylists .left-content{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    max-width: 40%;
+    width: 40%;
+    position: sticky;
+    top:0;
+    z-index: 10;
+}
+
+body #SectionPlaylists .left-content .actions{
+    display: flex;
+    flex-direction: column;
+    gap:1.5625rem;
+}
+
+body #SectionPlaylists .buttons{
+    display: flex;
+    gap:0.5rem;
+}
+
+.btn{
+    cursor: pointer;
+    display: flex;
+    gap:1rem;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    color:var(--text-color);
+    font-family: 'PP Mori';
+    font-weight: 400;
+    font-size: 1rem;
+    display: flex;
+    min-width: 13rem;
+    gap: 0.7rem;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover{
+    filter: opacity(0.8);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn.like svg{
+    color: var(--red);
+    fill: var(--red);
+    width: 1.5rem;
+}
+
+.btn.playlist svg{
+    color: var(--yellow);
+    height: 1rem;
+}
+
+.btn.share svg{
+    height: 1rem;
+}
+
+.btn.important{
+    color: var(--yellow);
+    padding: 1.2rem 1rem;
+}
+
+body .content-block{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-secondary);
+    border-radius: 1rem;
+    padding: 1.9rem 2.4rem;
+    width: 100%;
+    gap:2rem;
+}
+
+body .content-block > header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+}
+
+body .content-block h2, .results-section h2, .pop-up-container h2{
+    display: flex;
+    font-size: 3rem;
+    align-items: center;
+    gap:1.5rem;
+    color: var(--text-color);
+}
+
+body .content-block > header a{
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    font-size: 1.25rem;
+}
+
+body .content-block .content{
+    display: flex;
+    gap:1rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+}
+
+#SectionPlaylists .current-display{
+    width: 100%;
+    position: relative;
+}
+
+#SectionPlaylists .play{
+    height: 3rem;
+}
+
+#SectionPlaylists .content-block{
+    background-color: var(--background-tertiary);
+    width: 100%;
+    position: absolute;
+    gap:3rem;
+    z-index: 1;
+}
+
+#SectionPlaylists .content-block.favoris{
+    padding-top: 6rem;
+    opacity: 0;
+    z-index: -1;
+}
+
+#SectionPlaylists .current-display::after{
+    content: "";
+    height: 2rem;
+    width: 1px;
+    position: block;
+    z-index: 100;
+}
+
+#SectionPlaylists .content-block .top-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2.375rem;
+    width: 100%;
+    position: relative;
+}
+
+#SectionPlaylists .content-block.favoris .top-content{
+    padding-bottom: 1rem;
+}
+
+#SectionPlaylists .content-block .top-content .border{
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    border-radius: 1rem;
+}
+
+#SectionPlaylists .content-block .top-content .border::before{
+    filter: blur(10px) opacity(1);
+}
+
+#SectionPlaylists .content-block .top-content .album-infos{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .container-album{
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .container-album .heart{
+    color: var(--red);
+    fill: var(--red);
+    width: 4rem;
+    height: 3rem;
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .container-cover{
+    overflow: hidden;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 1rem;
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .texts{
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    gap: 0.3rem;
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .texts h3{
+    font-size: 3rem;
+}
+
+#SectionPlaylists .content-block .top-content .album-infos .texts h4{
+    filter: opacity(0.7);
+    font-weight: 200;
+}
+
+#SectionPlaylists .content-block > .menu-dots{
+    position: absolute;
+    right: 1.5rem;
+    top:1.5rem;
+}
+
+#SectionPlaylists .content-block .buttons{
+    gap:1rem;
+}
+
+#SectionPlaylists .content-block .buttons button{
+    padding: 1.3rem 1.5rem;
+    color: var(--text-color-secondary);
+}
+
+#SectionPlaylists .content-block .songs{
+    display: flex;
+    flex-direction: column;
+    gap:0.7rem;
+}
+
+.song-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:0.75rem;
+    height:18rem;
+    min-height: 18rem;
+    border-radius: 0.625rem;
+    min-width: 15rem;
+    padding:1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+}
+
+.song-card.artiste{
+    gap:1.5rem;
+}
+
+.song-card .background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    border-radius: 50%;
+    filter: blur(400px);
+}
+
+.song-card .container-image{
+    height: 12.5rem;
+    width: 12.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.song-card.artiste .container-image{
+    height: 10rem;
+    width: 10rem;
+}
+
+.song-card .container-image .cover{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.song-card .container-image .play{
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    transform: translateY(5rem);
+}
+
+.song-card .bottom-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 12.5rem;
+}
+
+.song-card .bottom-content .texts{
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap:0.1rem;
+}
+
+.song-card .bottom-content h4{
+    font-size: 1.25rem;
+}
+
+.song-card .bottom-content h5{
+    filter: opacity(0.7);
+    font-size: 0.9rem;
+    font-weight: 100;
+}
+
+.song-card .bottom-content .heart{
+    height: 1.2rem;
+}
+
+body .content-player{
+    background-color: var(--background-secondary);
+    min-width: 0vw;
+    width: 30vw;
+    max-width: 30vw;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+body .content-player .inner-content{
+    min-height: 100%;
+    overflow-y: auto;
+    gap:2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+}
+
+body .content-player .cover-container{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+body .content-player .cover-container .cover{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+body .content-player .top-content{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+body .content-player .media-infos{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+body .content-player .media-infos .current-media{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+body .content-player .media-infos .current-media .texts{
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+}
+
+body .content-player .media-infos .current-media .texts h3{
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+body .content-player .media-infos .current-media .texts h4{
+    font-weight: 100;
+    filter: opacity(0.7);
+    font-size: 1.5rem;
+}
+
+body .content-player .media-infos .actions{
+    display: flex;
+    flex-direction: column;
+    gap:1.6875rem;
+}
+
+body .content-player .media-infos .actions .buttons{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+body .content-player .media-infos .actions .buttons button{
+    background-color: transparent;
+    border: none;
+}
+
+body .content-player .media-infos .actions .buttons .main-buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+body .content-player .media-infos .actions .progress{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+    color: var(--text-color-secondary);
+    align-items: center;
+}
+
+body .content-player .media-infos .actions .progress .bar{
+    border-radius: 0.7rem;
+    width: 100%;
+    height: 5px;
+    background-color: var(--text-color-tertiary);
+}
+
+body .content-player .media-infos .actions .progress .bar .inner{
+    border-radius: inherit;
+    width: 60%;
+    height: 5px;
+    background-color: var(--text-color);
+}
+
+body .content-player .file-attente{
+    background-color: var(--background-tertiary);
+    width: 100%;
+    max-height: 50vh;
+    border-radius: 1rem;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+body .content-player .file-attente .content{
+    display: flex;
+    flex-direction: column;
+    gap:0.625rem;
+    padding-right: 0.6rem;
+}
+
+.artiste-row{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    border-radius: 1rem;
+    min-height: 4rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.artiste-row:hover{
+    filter: brightness(0.6);
+    transition: all 0.2s ease-in-out;
+}
+
+.artiste-row.with-dots{
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.artiste-row .menu-dots{
+    padding: 0.5rem;
+}
+
+.artiste-row .infos{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+
+.artiste-row .infos .texts{
+    display: flex;
+    gap:0.3rem;
+    flex-direction: column;
+    color:var(--text-color)
+}
+
+.artiste-row .infos .texts h4{
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.artiste-row .infos .texts h5{
+    filter: opacity(0.7);
+    font-size: 0.875rem;
+    font-weight: 200;
+}
+
+.artiste-row.playlist .texts{
+    gap: 0.6rem
+}
+
+.artiste-row.playlist .texts h5{
+    font-size: 0.8rem;
+    max-width: 15vw;
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.artiste-row .infos .container-cover{
+    height: 3.5rem;
+    width: 3.5rem;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+.artiste-row.playlist .infos .container-cover{
+    height: 5rem;
+    width: 5rem;
+}
+
+.container-cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+body .content-player .file-attente .content .artiste-row .actions, .pop-up-container .artiste-row .actions{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+}
+
+.artiste-wrapper{
+    position: relative;
+}
+
+.artiste-wrapper .menu{
+    position: absolute;
+    top:2rem;
+    right: 1rem;
+    background-color: #212121;
+    filter: opacity(1);
+    z-index: 10;
+    padding: 1rem;
+    display: none;
+    border-radius: 1rem;
+}
+
+.artiste-wrapper .menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap:0.2rem;
+}
+
+.artiste-wrapper .menu ul li{
+    width: 100%;
+}
+
+.artiste-wrapper .menu ul li button{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: 'PP Mori';
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 1rem;
+    gap:1rem;
+    padding: 1rem 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.artiste-wrapper .menu ul li button:hover{
+    background-color: #353535;
+    transition: all 0.2s ease-in-out;
+}
+
+.artiste-wrapper .menu ul li button svg{
+    width: 1rem;
+    height: 1rem;
+}
+
+body .content-player .file-attente .content .artiste-row .actions .edit-list{
+    display: flex;
+    gap:1.25rem;
+}
+
+/* recherche */
+
+#SectionRecherche{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#SectionRecherche .resultat h2 img{
+    align-self: flex-start;
+}
+
+#SectionRecherche .resultat {
+    padding-bottom: 2rem;
+    max-height: 100%;
+    overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+    gap:3.75rem
+}
+
+#SectionRecherche .resultat .results-section{
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+}
+
+#SectionRecherche .resultat .results-section.scrollable .content{
+   overflow-x: auto;
+   padding-bottom: 1rem;
+}
+
+#SectionRecherche .resultat .results-section .content{
+    display: flex;
+    gap: 1.5rem;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+    padding: 1.5rem;
+    min-width: 40%;
+    max-width: 40%;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result:hover{
+    filter: brightness(0.7);
+    transition: all 0.2s ease-in-out;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result::before{
+    filter: blur(300px) opacity(0.5);
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .container-cover{
+    width: 8rem;
+    height: 8rem;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .container-cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos{
+    display: flex;
+    justify-content: space-between;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts{
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+    color: var(--text-color);
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts h4 {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .infos .texts h5{
+    filter: opacity(0.7);
+    font-size: 0.875rem;
+    font-weight: 200;
+}
+
+#SectionRecherche .resultat .results-section .content .other-results{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#SectionRecherche .resultat .results-section .content .other-results .artiste-row{
+    cursor: pointer;
+}
+
+/* pop up */
+
+.pop-up-container{
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    display: none;
+}
+
+.pop-up-container .new-playlist{
+    background-color: var(--background-tertiary);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    min-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    gap:1.75rem;
+}
+
+.pop-up-container .new-playlist header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pop-up-container .new-playlist header #btnClosePopUp{
+    background:transparent;
+    border:none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.pop-up-container .new-playlist header #btnClosePopUp img{
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.pop-up-container .new-playlist form{
+    display: flex;
+    flex-direction: column;
+    gap:2.625rem;
+}
+
+.pop-up-container .new-playlist form .top-content{
+    display: flex;
+    align-items: flex-end;
+    gap:1.75rem;
+}
+
+.pop-up-container .new-playlist form .top-content > .container-cover{
+    width: 9rem;
+    min-width: 9rem;
+    height: 9rem;
+    min-height: 9rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.pop-up-container .new-playlist form .bottom-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem
+}
+
+.pop-up-container .new-playlist form .bottom-content .left-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.pop-up-container .new-playlist form .bottom-content h3{
+    font-size: 1.25rem;
+    color: var(--text-color-secondary);
+}
+
+.pop-up-container .new-playlist form .suggestions{
+    display: flex;
+    gap:0.8rem;
+    max-height: 30vh;
+    overflow-y: auto;
+    flex-direction: column;
+    padding-right: 1rem;
+}
+
+/* Point de rupture pour les écrans LG */
+@media (max-width: 1199px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  /* Point de rupture pour les écrans MD */
+  @media (max-width: 991px) {
+    html {
+      font-size: 12px;
+    }
+  
+  }
+  
+  /* Point de rupture pour les écrans SM */
+  @media (max-width: 767px) {
+    html {
+      font-size: 10px;
+    }
+  }
+  
+  /* Point de rupture pour les écrans XS */
+  @media (max-width: 576px) {
+    html {
+      font-size: 8px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    html {
+      font-size: 8px;
+    }
+  }
