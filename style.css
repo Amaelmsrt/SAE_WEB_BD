@@ -189,7 +189,7 @@ body main .container-connexion{
     width: 100%;
 }
 
-body main .logo{
+.logo{
     align-self: flex-start;
     height: 6rem;
 }
@@ -300,6 +300,10 @@ body main form .container-textfields{
     color: var(--text-color-secondary);
 }
 
+.text-field img{
+    height: 1.5rem;
+}
+
 .text-field input{
     position: absolute;
     top: 0;
@@ -384,7 +388,7 @@ nav ul li a svg{
 
 body .left{
     padding: 3rem;
-    width: 70vw;
+    width: 100%;
     display: flex;
     gap:2rem;
     flex-direction: column;
@@ -412,7 +416,7 @@ body .tab{
     display: flex;
     flex-direction: column;
     gap:1.8rem;
-    width: 65vw;
+    min-width: 65vw;
     height: 67vh;
     max-height: 67vh;
     overflow: auto;
@@ -684,12 +688,20 @@ body .content-block h2, .results-section h2, .pop-up-container h2{
     align-items: center;
     gap:1.5rem;
     color: var(--text-color);
+    white-space: nowrap;
+    text-wrap: nowrap;
+}
+
+h2 img{
+    height: 2.5rem;
 }
 
 body .content-block > header a{
     text-decoration: none;
     color: var(--text-color-secondary);
     font-size: 1.25rem;
+    white-space: nowrap;
+    text-wrap: nowrap;
 }
 
 body .content-block .content{
@@ -880,6 +892,7 @@ body .content-block .content{
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
+    height: 4rem;
     transform: translateY(5rem);
 }
 
@@ -913,7 +926,7 @@ body .content-block .content{
 
 body .content-player{
     background-color: var(--background-secondary);
-    min-width: 0vw;
+    min-width: 30vw;
     width: 30vw;
     max-width: 30vw;
     border-top-left-radius: 1rem;
@@ -958,8 +971,13 @@ body .content-player .media-infos{
 
 body .content-player .media-infos .current-media{
     display: flex;
+    align-items: center;
     width: 100%;
     justify-content: space-between;
+}
+
+body .content-player .media-infos .current-media .heart{
+    height: 2rem;
 }
 
 body .content-player .media-infos .current-media .texts{
@@ -994,6 +1012,23 @@ body .content-player .media-infos .actions .buttons{
 body .content-player .media-infos .actions .buttons button{
     background-color: transparent;
     border: none;
+}
+
+body .content-player .media-infos .actions .buttons #random img{
+    height: 1rem;
+}
+
+body .content-player .media-infos .actions .buttons #repeat img
+{
+    height: 0.7rem;
+}
+
+body .content-player .media-infos .actions .buttons .main-button img {
+    height: 1.5rem;
+}
+
+body .content-player .media-infos .actions .buttons #playPause img{
+    height: 4rem;
 }
 
 body .content-player .media-infos .actions .buttons .main-buttons{
@@ -1066,6 +1101,7 @@ body .content-player .file-attente .content{
 
 .artiste-row .menu-dots{
     padding: 0.5rem;
+    height: 1.5rem;
 }
 
 .artiste-row .infos{
@@ -1108,6 +1144,7 @@ body .content-player .file-attente .content{
 .artiste-row .infos .container-cover{
     height: 3.5rem;
     width: 3.5rem;
+    min-width: 3.5rem;
     overflow: hidden;
     border-radius: 0.8rem;
 }
@@ -1127,6 +1164,10 @@ body .content-player .file-attente .content .artiste-row .actions, .pop-up-conta
     display: flex;
     align-items: center;
     gap:2rem;
+}
+
+body .content-player .file-attente .content .artiste-row .actions .btn-file-attente{
+    height: 1rem;
 }
 
 .artiste-wrapper{
@@ -1235,6 +1276,10 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     border-radius: 1rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+#SectionRecherche .resultat .results-section .content .best-result .expand{
+    height: 2rem;
 }
 
 #SectionRecherche .resultat .results-section .content .best-result:hover{
@@ -1384,10 +1429,29 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     padding-right: 1rem;
 }
 
+@media (max-width: 1600px) {
+    html {
+      font-size: 14px;
+    }
+
+    .artiste-row .actions .edit-list{
+        display: none !important;
+    }
+
+  }
+
 /* Point de rupture pour les écrans LG */
 @media (max-width: 1199px) {
     html {
       font-size: 14px;
+    }
+
+    .content-player{
+        display: none;
+    }
+
+    body aside{
+        display: none;
     }
   }
   
@@ -1396,7 +1460,6 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     html {
       font-size: 12px;
     }
-  
   }
   
   /* Point de rupture pour les écrans SM */
