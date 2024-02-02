@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (password_verify($mdp, $user->getMdp())) {
-        $_SESSION[$id] = $user->getId();
+        $_SESSION["user_id"] = $user->getId();
         header("Location: index.php?action=home");
     } else {
         $messageErreur = "Mot de passe ou nom d'utilisateur incorrect";
