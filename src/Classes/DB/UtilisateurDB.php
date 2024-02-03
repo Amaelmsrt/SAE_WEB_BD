@@ -13,6 +13,18 @@ class UtilisateurDB {
         $this->pdo = $pdo;
     }
 
+    public function findAll(): array {
+        $sql = "SELECT * FROM utilisateur";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $utilisateurs = $stmt->fetchAll();
+        $utilisateursArray = [];
+        foreach ($utilisateurs as $utilisateur) {
+            $utilisateursArray[] = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+        }
+        return $utilisateursArray;
+    }
+
     public function find($pseudo): ?Utilisateur {
         $sql = "SELECT * FROM utilisateur WHERE pseudoUtil = :pseudo";
         $stmt = $this->pdo->prepare($sql);

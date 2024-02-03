@@ -14,6 +14,18 @@ class SonDB
         $this->pdo = $pdo;
     }
 
+    function findAll(): array {
+        $sql = "SELECT * FROM son";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
+
     function find($id): Son
     {
         $sql = "SELECT * FROM son WHERE idSon = :id";

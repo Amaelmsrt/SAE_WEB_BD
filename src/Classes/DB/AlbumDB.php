@@ -14,6 +14,21 @@ class AlbumDB
         $this->pdo = $pdo;
     }
 
+    function findAll(): array
+    {
+        $sql = "SELECT * FROM album";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        $albumsArray = [];
+        foreach ($albums as $album) {
+            $imageData = $album['coverAlbum'];
+            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
+        }
+        return $albumsArray;
+    }
+
     function find(int $idSon): Album
     {
         $sql = "SELECT * FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";

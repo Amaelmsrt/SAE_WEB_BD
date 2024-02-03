@@ -48,6 +48,10 @@ switch ($action) {
     case "deconnexion":
         include 'Action/deconnexion.php';
         break;
+    case "admin":
+        include 'Action/admin.php';
+        $layout = "admin";
+        break;
     default:
         include 'Action/connexion.php';
         $layout = "connexion";
