@@ -9,9 +9,11 @@ $sonDB = $manager->getSonDB();
 $sons = $sonDB->findEcouter($_SESSION['user']);
 $likeSonDB = $manager->getLikeSonDB();
 $likeAlbumDB = $manager->getLikeAlbumDB();
+$likeArtisteDB = $manager->getLikeArtisteDB();
 
 $albumAlea = $albumDB->getAleaAlbums();
 $lastAlbum = $albumDB->getLastAlbums();
+$artisteAlea = $artistDB->getAleaArtists();
 
 
 ?>
@@ -916,6 +918,7 @@ $lastAlbum = $albumDB->getLastAlbums();
                             <div class="content">
                                 <?php foreach ($albumAlea as $album) : 
                                     $artist = $artistDB->find($album->getIdArtiste());
+                                    $isLike = $likeAlbumDB->isLiked($album->getId(), $_SESSION["user_id"]);
                                 ?>
                                     <div class="song-card playAlbum" data-id-album="<?= $album->getId() ?>">
                                         <div class="background" aria-hidden="true"></div>
@@ -928,7 +931,15 @@ $lastAlbum = $albumDB->getLastAlbums();
                                                 <h4><?= $album->getTitre() ?></h4>
                                                 <h5><?= $artist->getName() ?></h5>
                                             </div>
-                                            <img class="heart" src="/assets/icons/heart.svg" alt="heart"/>
+                                            <?php if ($isLike) : ?>
+                                                <svg class="svg-heart like likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            <?php else : ?>
+                                                <svg class="svg-heart likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -939,66 +950,34 @@ $lastAlbum = $albumDB->getLastAlbums();
                         <section id="OtherArtists" class="results-section scrollable">
                             <h2>Autres Artistes <img src="/assets/icons/shape_3.svg"/></h2>
                             <div class="content">
-                                <div class="song-card artiste">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
+                                
+                                <?php foreach ($artisteAlea as $artist) : 
+                                    $isLike = $likeArtisteDB->isLiked($artist->getId(), $_SESSION["user_id"]);
+                                ?>
+
+                                    <div class="song-card artiste">
+                                        <div class="background" aria-hidden></div>
+                                        <div class="container-image">
+                                            <img class="cover" src="data:image/jpeg;base64, <?= $artist->getPicture() ?>" alt="cover"/>
+                                        </div>
+                                        <div class="bottom-content">
+                                            <div class="texts">
+                                                <h4><?= $artist->getName() ?></h4>
+                                                <h5>Artiste</h5>
+                                            </div>
+                                            <?php if ($isLike) : ?>
+                                                <svg class="svg-heart like likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            <?php else : ?>
+                                                <svg class="svg-heart likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="song-card artiste">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="song-card artiste">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="song-card artiste">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="song-card artiste">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
+
                             </div>
                         </section>
                     </section>

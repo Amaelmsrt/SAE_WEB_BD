@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'likeArtiste':
             $id = array_shift($path);
             $userId = array_shift($path);
+            error_log($id);
+            error_log($userId);
             
             $manager = new Manager();
             

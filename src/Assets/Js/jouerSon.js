@@ -1,6 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Like 
 
+    const btnLikeArtiste = document.querySelectorAll('.likeArtist');
+
+    btnLikeArtiste.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const artisteId = btn.getAttribute('data-id-artiste');
+            const idUtilisateur = btn.getAttribute('data-id');
+
+            fetch('/controlleurApi.php/likeArtiste/' + artisteId + '/' + idUtilisateur, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.like == true) {
+                    btn.classList.add('like');
+                } else {
+                    btn.classList.remove('like');
+                }
+                btnLikeArtiste.forEach(function (btn) {
+                    if (btn.getAttribute('data-id-artiste') === artisteId) {
+                        if (data.like == true) {
+                            btn.classList.add('like');
+                        } else {
+                            btn.classList.remove('like');
+                        }
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.error('Fetch error:', error);
+            });
+        });
+    });
+
+
     const btnLikeSon = document.querySelectorAll('.likeSong');
 
     btnLikeSon.forEach(function (btn) {

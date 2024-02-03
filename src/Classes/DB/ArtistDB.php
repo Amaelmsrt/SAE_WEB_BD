@@ -40,4 +40,19 @@ class ArtistDB
         $decodedImage = base64_encode($imageData); // Convertir le blob en base64
         return new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
     }
+
+    public function getAleaArtists(): array
+    {
+        $sql = "SELECT * FROM artiste ORDER BY RANDOM() LIMIT 15";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $artists = $stmt->fetchAll();
+        $artistList = [];
+        foreach ($artists as $artist) {
+            $imageData = $artist['imageArtiste'];
+            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $artistList[] = new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
+        }
+        return $artistList;
+    }
 }
