@@ -33,7 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     
     <!-- Mon script -->
-    <script src="/Assets/JS/mainscript.js"></script>
+    <script src="/Assets/Js/mainscript.js"></script>
 
 </body>
 </html>

@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Met le son courrant en pause
-    var btnPause = document.getElementById('pause');
+    var btnPause = document.getElementById('playPause');
     btnPause.addEventListener('click', function () {
         if (listeDattenteObj.sonEnCours) {
             if (listeDattenteObj.sonEnCours.paused) {
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    var btnNextR = document.getElementById('nextR');
+    var btnNextR = document.getElementById('next');
     btnNextR.addEventListener('click', function () {
         if (listeDattenteObj.liste.length > 0) {
             listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours + 1) % listeDattenteObj.liste.length);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    var btnNextL = document.getElementById('nextL');
+    var btnNextL = document.getElementById('back');
     btnNextL.addEventListener('click', function () {
         if (listeDattenteObj.liste.length > 0) {
             listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours - 1));

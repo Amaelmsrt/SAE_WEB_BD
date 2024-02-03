@@ -76,7 +76,11 @@ $lastAlbum = $albumDB->getLastAlbums();
                                         <h4><?= $son->getTitre() ?></h4>
                                         <h5><?= $artist->getName() ?></h5>
                                     </div>
-                                    <img class="heart" src="/assets/icons/heart.svg"/>
+                                    <svg class="svg-heart" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg> 
+
+                                    <!-- <img class="heart like" src="/assets/icons/heart.svg"/> -->
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -109,7 +113,6 @@ $lastAlbum = $albumDB->getLastAlbums();
                         <?php endforeach; ?>
                         
                         </div>
-                    </div>
                 </section>
             </main>
             <main id="SectionRecherche" class="tab">
@@ -675,7 +678,7 @@ $lastAlbum = $albumDB->getLastAlbums();
                                             <h4>So la lune</h4>
                                             <h5>Artiste</h5>
                                         </div>
-                                        <img src="/assets/icons/expand.svg"/>
+                                        <img class="expand" src="/assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">
@@ -1429,106 +1432,88 @@ $lastAlbum = $albumDB->getLastAlbums();
     <aside class="content-player">
         <div class="inner-content">
             <section class="top-content">
-                 <div class="cover-container">
-                     <img id="cover" class="cover" src="/assets/images/cover_so_la_lune.png"/>
-                 </div>
-                 <div class="media-infos">
-                     <div class="current-media">
-                         <div class="texts">
-                             <h3 id="nom-song">Remontada</h3>
-                             <h4 id="nom-artist">So la lune</h4>
-                         </div>
-                         <img src="/assets/icons/heart.svg"/>
-                     </div>
-                     <div class="actions">
-                         <div class="buttons">
-                             <button type="button">
-                                 <img src="/assets/icons/random.svg" alt="random"/>
-                             </button>
-                             <div class="main-buttons">
-                                 <button type="button" id="nextL">
-                                     <img src="/assets/icons/previous.svg" alt="previous"/>
-                                 </button>
-                                 <button id="pause" type="button">
-                                     <img src="/assets/icons/play-lg.svg" alt="play"/>
-                                 </button>
-                                 <button type="button" id="nextR">
-                                     <img src="/assets/icons/next.svg" alt="next">
-                                 </button>
-                             </div>
-                             <button type="button">
-                                 <img src="/assets/icons/repeat.svg" alt="repeat"/>
-                             </button>
-                         </div>
-                         <div class="progress">
-                             <p id="time0"></p>
-                             <input type="range" class="bar" id="slider">
-                                 <div class="inner"></div>
-                             </input>
-                             <p id="time1"></p>
-                         </div>
-                     </div>
-                 </div>
-             </section>
-             <section class="file-attente">
-                 <h4>A suivre</h4>
-                 <div class="content">
-                     <div class="artiste-row glass">
-                         <div class="infos">
-                             <div class="container-cover">
-                                 <img src="/assets/images/cover_so_la_lune.png" alt="cover">
-                             </div>
-                             <div class="texts">
-                                 <h4>L'enfant de la pluie</h4>
-                                 <h5>So la lune</h5>
-                             </div>
-                         </div>
-                         <div class="actions">
-                             <div class="edit-list">
-                                 <img src="/assets/icons/down-arrow.svg" alt="down"/>
-                                 <img src="/assets/icons/up-arrow.svg" alt="up"/>
-                             </div>
-                             <img src="/assets/icons/close.svg"/>
-                         </div>
-                     </div>
-                     <div class="artiste-row glass">
-                         <div class="infos">
-                             <div class="container-cover">
-                                 <img src="/assets/images/cover_so_la_lune.png" alt="cover">
-                             </div>
-                             <div class="texts">
-                                 <h4>L'enfant de la pluie</h4>
-                                 <h5>So la lune</h5>
-                             </div>
-                         </div>
-                         <div class="actions">
-                             <div class="edit-list">
-                                 <img src="/assets/icons/down-arrow.svg" alt="down"/>
-                                 <img src="/assets/icons/up-arrow.svg" alt="up"/>
-                             </div>
-                             <img src="/assets/icons/close.svg"/>
-                         </div>
-                     </div>
-                     <div class="artiste-row glass">
-                         <div class="infos">
-                             <div class="container-cover">
-                                 <img src="/assets/images/cover_so_la_lune.png" alt="cover">
-                             </div>
-                             <div class="texts">
-                                 <h4>L'enfant de la pluie</h4>
-                                 <h5>So la lune</h5>
-                             </div>
-                         </div>
-                         <div class="actions">
-                             <div class="edit-list">
-                                 <img src="/assets/icons/down-arrow.svg" alt="down"/>
-                                 <img src="/assets/icons/up-arrow.svg" alt="up"/>
-                             </div>
-                             <img src="/assets/icons/close.svg"/>
-                         </div>
-                     </div>
-                 </div>
-             </section>
+                <div class="cover-container">
+                    <img id="cover" class="cover" src="/assets/images/cover_so_la_lune.png"/>
+                </div>
+                <div class="media-infos">
+                    <div class="current-media">
+                        <div class="texts">
+                            <h3 id="nom-song">Remontada</h3>
+                            <h4 id="nom-artist">So la lune</h4>
+                        </div>
+                        <img class="heart" src="/assets/icons/heart.svg"/>
+                    </div>
+                    <div class="actions">
+                        <div class="buttons">
+                            <button type="button">
+                                <img id="random" class="side-button" src="/assets/icons/random.svg" alt="random"/>
+                            </button>
+                            <div class="main-buttons">
+                                <button class="main-button" id="back" type="button">
+                                    <img src="/assets/icons/previous.svg" alt="previous"/>
+                                </button>
+                                <button id="playPause" type="button">
+                                    <img src="/assets/icons/play-lg.svg" alt="play"/>
+                                </button>
+                                <button class="main-button" id="next" type="button">
+                                    <img src="/assets/icons/next.svg" alt="next">
+                                </button>
+                            </div>
+                            <button id="repeat" class="side-button" type="button">
+                                <img src="/assets/icons/repeat.svg" alt="repeat"/>
+                            </button>
+                        </div>
+                        <div class="progress">
+                            <p id="time0"></p>
+                            <input type="range" class="bar" id="slider">
+                                <div class="inner"></div>
+                            </input>
+                            <p id="time1"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="file-attente">
+                <h4>A suivre</h4>
+                <div class="content">
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="/assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="/assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img class="btn-file-attente" src="/assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="/assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="/assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="/assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </aside>
 
