@@ -24,4 +24,28 @@ class LikeSonDB
         $nbLike = $stmt->fetch();
         return $nbLike[0];
     }
+
+    function isLiked(int $idSon, int $idUtil): bool
+    {
+        $sql = "SELECT * FROM likerson WHERE idSon = :idSon AND idUtilisateur = :idUtil";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->bindValue(':idUtil', $idUtil, \PDO::PARAM_INT);
+        $stmt->execute();
+        $like = $stmt->fetch();
+        return $like !== false;
+    }
+
+    function like(int $idSon, int $idUtil): void
+    {
+        if ($this->isLiked($idSon, $idUtil)) {
+            $sql = "DELETE FROM likerson WHERE idSon = :idSon AND idUtilisateur = :idUtil";
+        } else {
+            $sql = "INSERT INTO likerson (idSon, idUtilisateur) VALUES (:idSon, :idUtil)";
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->bindValue(':idUtil', $idUtil, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

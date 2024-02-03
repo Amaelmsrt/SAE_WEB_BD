@@ -39,7 +39,4 @@ class UtilisateurDB {
         $stmt->bindValue(':mdp', $mdpHash, \PDO::PARAM_STR);
         $stmt->execute();
     }
-     
 }
-
-?>

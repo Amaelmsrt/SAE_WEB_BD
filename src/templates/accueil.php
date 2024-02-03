@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPOTIUT'O</title>
-    <script src="/Assets/Js/btnLike.js"></script>
     <script src="/Assets/Js/jouerSon.js"></script>
     <script src="/Assets/Js/listeDattente.js"></script>
     <link type="text/css" rel="stylesheet" href="/Assets/Css/style.css">

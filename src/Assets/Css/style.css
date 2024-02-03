@@ -1494,3 +1494,15 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     fill: var(--red);
     width: 1.5rem;
 }
+
+.svg-heart-main{
+    color: var(--text-color);
+    width: 2.2rem;
+    cursor: pointer;
+}
+
+.svg-heart-main.like{
+    color: var(--red);
+    fill: var(--red);
+    width: 2.2rem;
+}
