@@ -1462,9 +1462,7 @@ $artisteAlea = $artistDB->getAleaArtists();
                         </div>
                         <div class="progress">
                             <p id="time0"></p>
-                            <input type="range" class="bar" id="slider">
-                                <div class="inner"></div>
-                            </input>
+                            <input type="range" class="bar" id="slider"/>
                             <p id="time1"></p>
                         </div>
                     </div>
