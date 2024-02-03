@@ -14,17 +14,23 @@ class SonDB
         $this->pdo = $pdo;
     }
 
-    function findAll(): array {
-        $sql = "SELECT * FROM son";
+    function findAll(int $offset = 0, int $limit = 10): array {
+        $sql = "SELECT * FROM son LIMIT :limit OFFSET :offset";
         $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $stmt->execute();
-        $sons = $stmt->fetchAll();
+        
         $sonList = [];
-        foreach ($sons as $son) {
+        
+        while ($son = $stmt->fetch()) {
             $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
         }
+        
         return $sonList;
     }
+    
+    
 
     function find($id): Son
     {
