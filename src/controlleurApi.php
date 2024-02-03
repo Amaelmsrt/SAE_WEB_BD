@@ -11,6 +11,8 @@ require_once 'Configuration/config.php';
 require 'Classes/autoloader.php'; 
 Autoloader::register(); 
 
+session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $path = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
@@ -23,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'likeArtiste':
             $id = array_shift($path);
             $userId = array_shift($path);
+            error_log($id);
+            error_log($userId);
             
             $manager = new Manager();
             
@@ -44,6 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response = ['like' => $isLike];
             break;
 
+        case 'likeSon':
+            $id = array_shift($path);
+            $userId = array_shift($path);
+            
+            $manager = new Manager();
+            
+            $manager->getLikeSonDB()->like($id, $userId);
+            $isLike = $manager->getLikeSonDB()->isLiked($id, $userId);
+
+            $response = ['like' => $isLike];
+            break;
+
         case 'jouerSon':
             $id = array_shift($path);
             $manager = new Manager();
@@ -51,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $manager->getSonDB()->addStream($id);
             session_start();
-            $manager->getSonDB()->addEcouter($id, $_SESSION['user']);
+            $manager->getSonDB()->addEcouter($id, $_SESSION['user_id']);
 
             header('Content-Type: audio/mpeg');
             echo $son->getMp3();
@@ -96,13 +112,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $son = $manager->getSonDB()->find($id);
             $album = $manager->getAlbumDB()->findAlbum($son->getIdAlbum());
             $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+            $likeSonDB = $manager->getLikeSonDB();
             
             $response = array(
                 'id' => $son->getId(),
                 'titre' => $son->getTitre(),
                 'artiste' => $artist->getName(),
                 'cover' => $album->getCover(),
-                'duree' => $son->getDuree()
+                'duree' => $son->getDuree(),
+                'isLiked' => $likeSonDB->isLiked($id, $_SESSION['user_id']),
             );
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
