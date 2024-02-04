@@ -252,6 +252,7 @@ switch ($argv[2]) {
                 ':coverAlbum' => $img,
                 ':idArtiste' => $album['by']
             ]);
+
             foreach ($album['genre'] as $genre) {
                 $stmt = $pdo->prepare('INSERT INTO APPARTENIR (idGenre, idAlbum) VALUES (:idGenre, :idAlbum)');
                 $stmt->execute([

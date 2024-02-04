@@ -6,10 +6,19 @@
   img: freeze.jpg
 - idArtiste: 3
   nom: Luther
-  img: luther.jpg
+  img: luther.jpeg
 - idArtiste: 4
   nom: H Jeunecrack
   img: h.jpg
 - idArtiste: 5
   nom: Green Montana
   img: green.jpeg
+- idArtiste: 6
+  nom: PNL
+  img: pnl.jpg
+- idArtiste: 7
+  nom: Jazzy Bazz
+  img: jazzy.jpg
+- idArtiste: 8
+  nom: Gambi
+  img: gambi.jpg
