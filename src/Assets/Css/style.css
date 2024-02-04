@@ -1506,3 +1506,7 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     fill: var(--red);
     width: 2.2rem;
 }
+
+.no-result{
+    display: none;
+}

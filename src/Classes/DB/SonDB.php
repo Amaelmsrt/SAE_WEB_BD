@@ -125,4 +125,18 @@ class SonDB
         $cover = $stmt->fetch();
         return base64_encode($cover['coverAlbum']);
     }
+
+    function findTopSonAlbum(int $idAlbum): array
+    {
+        $sql = "SELECT * FROM son WHERE idAlbum = :idAlbum ORDER BY nbStream DESC LIMIT 3";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
 }

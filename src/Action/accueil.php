@@ -688,14 +688,14 @@ $rechercheDB = $manager->getRechercheDB();
                             <div class="content">
                                 <div id="bestResult" class="best-result glass">
                                     <div class="container-cover">
-                                        <img id="cover-best-recherche" src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                        <img class="no-result" id="cover-best-recherche" src="" alt="cover">
                                     </div>
                                     <div class="infos">
                                         <div class="texts">
-                                            <h4 id="nom-best-recherche">So la lune</h4>
-                                            <h5 id="type-best-recherche">Artiste</h5>
+                                            <h4 class="no-result" id="nom-best-recherche"></h4>
+                                            <h5 class="no-result" id="type-best-recherche"></h5>
                                         </div>
-                                        <img class="expand" src="/assets/icons/expand.svg"/>
+                                        <img id="img-best-recherche" class="no-result expand" src="/assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">
@@ -703,15 +703,15 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img id="cover-best-recherche-2-1" src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img class="no-result" id="cover-best-recherche-2-1" src="" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4 id="nom-best-recherche-2-1">L'enfant de la pluie</h4>
-                                                    <h5 id="type-best-recherche-2-1">So la lune</h5>
+                                                    <h4 class="no-result" id="nom-best-recherche-2-1"></h4>
+                                                    <h5 class="no-result" id="type-best-recherche-2-1"></h5>
                                                 </div>
                                             </div>
                                             <div class="actions">
-                                            <img class="menu-dots" src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                            <img id="img-best-recherche-2-1" class="menu-dots no-result" src="/assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -773,15 +773,15 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img id="cover-best-recherche-2-2" src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img class="no-result" id="cover-best-recherche-2-2" src="" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4 id="nom-best-recherche-2-2">L'enfant de la pluie</h4>
-                                                    <h5 id="type-best-recherche-2-2">So la lune</h5>
+                                                    <h4 class="no-result" id="nom-best-recherche-2-2"></h4>
+                                                    <h5 class="no-result" id="type-best-recherche-2-2"></h5>
                                                 </div>
                                             </div>
                                             <div class="actions">
-                                            <img class="menu-dots" src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                            <img id="img-best-recherche-2-2" class="menu-dots no-result" src="/assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -843,15 +843,15 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img id="cover-best-recherche-2-3" src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img class="no-result" id="cover-best-recherche-2-3" src="" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4 id="nom-best-recherche-2-3">L'enfant de la pluie</h4>
-                                                    <h5 id="type-best-recherche-2-3">So la lune</h5>
+                                                    <h4 class="no-result" id="nom-best-recherche-2-3"></h4>
+                                                    <h5 class="no-result" id="type-best-recherche-2-3"></h5>
                                                 </div>
                                             </div>
                                             <div class="actions">
-                                            <img class="menu-dots" src="/assets/icons/menu-dots.svg" alt="open menu"/>
+                                            <img id="img-best-recherche-2-3" class="menu-dots no-result" src="/assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -908,76 +908,19 @@ $rechercheDB = $manager->getRechercheDB();
                                             </ul>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </section>
 
                         <section id="OtherAlbums" class="results-section scrollable">
                             <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
-                            <div class="content">
-                                <?php foreach ($albumAlea as $album) : 
-                                    $artist = $artistDB->find($album->getIdArtiste());
-                                    $isLike = $likeAlbumDB->isLiked($album->getId(), $_SESSION["user_id"]);
-                                ?>
-                                    <div class="song-card playAlbum" data-id-album="<?= $album->getId() ?>">
-                                        <div class="background" aria-hidden="true"></div>
-                                        <div class="container-image">
-                                            <img class="cover" src="data:image/jpeg;base64, <?= $album->getCover() ?>" alt="cover"/>
-                                            <img src="/Assets/icons/play.svg" alt="play" class="play"/>
-                                        </div>
-                                        <div class="bottom-content">
-                                            <div class="texts">
-                                                <h4><?= $album->getTitre() ?></h4>
-                                                <h5><?= $artist->getName() ?></h5>
-                                            </div>
-                                            <?php if ($isLike) : ?>
-                                                <svg class="svg-heart like likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            <?php else : ?>
-                                                <svg class="svg-heart likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div id="contentOtherAlbums" class="content">
                             </div>
-
                         </section>
 
                         <section id="OtherArtists" class="results-section scrollable">
                             <h2>Autres Artistes <img src="/assets/icons/shape_3.svg"/></h2>
                             <div class="content">
-                                
-                                <?php foreach ($artisteAlea as $artist) : 
-                                    $isLike = $likeArtisteDB->isLiked($artist->getId(), $_SESSION["user_id"]);
-                                ?>
-
-                                    <div class="song-card artiste">
-                                        <div class="background" aria-hidden></div>
-                                        <div class="container-image">
-                                            <img class="cover" src="data:image/jpeg;base64, <?= $artist->getPicture() ?>" alt="cover"/>
-                                        </div>
-                                        <div class="bottom-content">
-                                            <div class="texts">
-                                                <h4><?= $artist->getName() ?></h4>
-                                                <h5>Artiste</h5>
-                                            </div>
-                                            <?php if ($isLike) : ?>
-                                                <svg class="svg-heart like likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            <?php else : ?>
-                                                <svg class="svg-heart likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-
                             </div>
                         </section>
                     </section>

@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'id' => $son->getId()
                 );
             }
-            error_log(json_encode($response));
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
             exit();
@@ -99,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'id' => $son->getId()
                 );
             }
-            error_log(json_encode($response));
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
             exit();
@@ -127,8 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'recherche':
             $recherche = array_shift($path);
             $recherche = str_replace('_', ' ', $recherche);
+            $searchValue = urldecode($recherche);
             $manager = new Manager();
-            $result = $manager->getRechercheDB()->search($recherche);
+            $result = $manager->getRechercheDB()->search($searchValue);
             error_log(json_encode($result));
             $response = array();
             foreach ($result as $value) {
@@ -161,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
 
         case 'artiste' :
-            error_log('artiste');
             $id = array_shift($path);
             $manager = new Manager();
             $artist = $manager->getArtistDB()->find($id);
@@ -179,6 +177,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'nom' => $artist->getName(),
                 'cover' => $artist->getPicture(),
                 'topSon' => $topSonJson
+            );
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($result);
+            exit();
+
+        case 'album' :
+            $id = array_shift($path);
+            $manager = new Manager();
+            $album = $manager->getAlbumDB()->findAlbum($id);
+            $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+            $topSon = $manager->getSonDB()->findTopSonAlbum($id);
+            $topSonJson = array();
+            foreach ($topSon as $son) {
+                $topSonJson[] = array(
+                    'id' => $son->getId(),
+                    'titre' => $son->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($son->getId())
+                );
+            }
+            $result = array(
+                'id' => $album->getId(),
+                'titre' => $album->getTitre(),
+                'cover' => $album->getCover(),
+                'artiste' => $artist->getName(),
+                'topSon' => $topSonJson
+            );
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($result);
+            exit();
+
+        case 'son' :
+            $id = array_shift($path);
+            $manager = new Manager();
+            $son = $manager->getSonDB()->find($id);
+            $album = $manager->getAlbumDB()->findAlbum($son->getIdAlbum());
+            $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+            $result = array(
+                'id' => $son->getId(),
+                'titre' => $son->getTitre(),
+                'artiste' => $artist->getName(),
+                'cover' => $album->getCover(),
             );
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($result);
