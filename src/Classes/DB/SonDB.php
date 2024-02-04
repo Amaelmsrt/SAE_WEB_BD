@@ -100,4 +100,29 @@ class SonDB
         }
         return $sonList;
     }
+
+    function findTopArtist(int $idArtiste): array
+    {
+        $sql = "SELECT * FROM son JOIN album ON son.idAlbum = album.idAlbum WHERE album.idArtiste = :idArtiste ORDER BY nbStream DESC LIMIT 3";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idArtiste', $idArtiste, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
+
+    function getCover(int $idSon): string
+    {
+
+        $sql = "SELECT coverAlbum FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $cover = $stmt->fetch();
+        return base64_encode($cover['coverAlbum']);
+    }
 }

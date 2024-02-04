@@ -6,6 +6,7 @@
     <title>SPOTIUT'O</title>
     <script src="/Assets/Js/jouerSon.js"></script>
     <script src="/Assets/Js/listeDattente.js"></script>
+    <script src="/Assets/Js/recherche.js"></script>
     <link type="text/css" rel="stylesheet" href="/Assets/Css/style.css">
 </head>
 <body id="Accueil"> 

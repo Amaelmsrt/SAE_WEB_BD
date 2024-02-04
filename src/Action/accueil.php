@@ -14,7 +14,7 @@ $likeArtisteDB = $manager->getLikeArtisteDB();
 $albumAlea = $albumDB->getAleaAlbums();
 $lastAlbum = $albumDB->getLastAlbums();
 $artisteAlea = $artistDB->getAleaArtists();
-
+$rechercheDB = $manager->getRechercheDB();
 
 ?>
 
@@ -663,7 +663,7 @@ $artisteAlea = $artistDB->getAleaArtists();
                 <div id="recherche" class="wrapper-recherche">
                     <div class="text-field">
                         <img src="/Assets/icons/search.svg" alt="user"/>
-                        <input type="text" placeholder="Ma recherche" value="">
+                        <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
                     <section class="resultat">
                         <!-- l'idée là c'est de montrer à gauche le résultat le plus
@@ -688,12 +688,12 @@ $artisteAlea = $artistDB->getAleaArtists();
                             <div class="content">
                                 <div id="bestResult" class="best-result glass">
                                     <div class="container-cover">
-                                        <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                        <img id="cover-best-recherche" src="/assets/images/cover_so_la_lune.png" alt="cover">
                                     </div>
                                     <div class="infos">
                                         <div class="texts">
-                                            <h4>So la lune</h4>
-                                            <h5>Artiste</h5>
+                                            <h4 id="nom-best-recherche">So la lune</h4>
+                                            <h5 id="type-best-recherche">Artiste</h5>
                                         </div>
                                         <img class="expand" src="/assets/icons/expand.svg"/>
                                     </div>
@@ -703,11 +703,11 @@ $artisteAlea = $artistDB->getAleaArtists();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img id="cover-best-recherche-2-1" src="/assets/images/cover_so_la_lune.png" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4>L'enfant de la pluie</h4>
-                                                    <h5>So la lune</h5>
+                                                    <h4 id="nom-best-recherche-2-1">L'enfant de la pluie</h4>
+                                                    <h5 id="type-best-recherche-2-1">So la lune</h5>
                                                 </div>
                                             </div>
                                             <div class="actions">
@@ -773,11 +773,11 @@ $artisteAlea = $artistDB->getAleaArtists();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img id="cover-best-recherche-2-2" src="/assets/images/cover_so_la_lune.png" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4>L'enfant de la pluie</h4>
-                                                    <h5>So la lune</h5>
+                                                    <h4 id="nom-best-recherche-2-2">L'enfant de la pluie</h4>
+                                                    <h5 id="type-best-recherche-2-2">So la lune</h5>
                                                 </div>
                                             </div>
                                             <div class="actions">
@@ -843,11 +843,11 @@ $artisteAlea = $artistDB->getAleaArtists();
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
-                                                    <img src="/assets/images/cover_so_la_lune.png" alt="cover">
+                                                    <img id="cover-best-recherche-2-3" src="/assets/images/cover_so_la_lune.png" alt="cover">
                                                 </div>
                                                 <div class="texts">
-                                                    <h4>L'enfant de la pluie</h4>
-                                                    <h5>So la lune</h5>
+                                                    <h4 id="nom-best-recherche-2-3">L'enfant de la pluie</h4>
+                                                    <h5 id="type-best-recherche-2-3">So la lune</h5>
                                                 </div>
                                             </div>
                                             <div class="actions">

@@ -11,58 +11,76 @@
   releaseYear: 2023
   title: L'enfant de la pluie
   songs:
-    - title: Opening
+    - entryId: 1
+      title: Opening
       duration: 3:08
       mp3: opening.mp3
-    - title: Remontada
+    - entryId: 2
+      title: Remontada
       duration: 2:56
       mp3: remontada.mp3
-    - title: 99 Avenue
+    - entryId: 3
+      title: 99 Avenue
       duration: 3:03
       mp3: 99avenue.mp3
-    - title: Bloqué
+    - entryId : 4
+      title: Bloqué
       duration: 3:12
       mp3: bloque.mp3
-    - title: Un jour d'été
+    - entryId : 5
+      title: Un jour d'été
       duration: 2:42
       mp3: unjour.mp3
-    - title: Perte de temps
+    - entryId : 6
+      title: Perte de temps
       duration: 3:09
       mp3: perte.mp3
-    - title: L'Allemande
+    - entryId : 7
+      title: L'Allemande
       duration: 2:24
       mp3: allemande.mp3
-    - title: 10 Hummers
+    - entryId : 8
+      title: 10 Hummers
       duration: 3:03
       mp3: 10hummers.mp3
-    - title: Bip bip
+    - entryId : 9
+      title: Bip bip
       duration: 2:41
       mp3: bipbip.mp3
-    - title: Sali
+    - entryId : 10
+      title: Sali
       duration: 3:04
       mp3: sali.mp3
-    - title: Interlude Froide Averse
+    - entryId : 11
+      title: Interlude Froide Averse
       duration: 3:06
       mp3: interlude.mp3
-    - title: Suspects
+    - entryId : 12
+      title: Suspects
       duration: 3:29
       mp3: suspects.mp3
-    - title: OP
+    - entryId : 13
+      title: OP
       duration: 2:27
       mp3: op.mp3
-    - title: Le dernier maître de l'eau
+    - entryId : 14
+      title: Le dernier maître de l'eau
       duration: 1:48
       mp3: maitre.mp3
-    - title: Les toits de la ville
+    - entryId : 15
+      title: Les toits de la ville
       duration: 2:48
       mp3: toits.mp3
-    - title: Triste temps
+    - entryId : 16
+      title: Triste temps
       duration: 2:40
       mp3: triste.mp3
-    - title: Au BPM
+    - entryId : 17
+      title: Au BPM
       duration: 3:05
       mp3: bpm.mp3
-    - title: Sales images
+    - entryId : 18
+      title: Sales images
       duration: 2:20
       mp3: sales.mp3
 
@@ -75,43 +93,56 @@
   description: >
     ADC, acronyme de L'attaque des clones, est le troisième album du rappeur français Freeze Corleone commercialisé à partir du 11 septembre 2023. Comme pour son précédent album intitulé LMF, le titre fait référence à un film de la saga Star Wars.
   songs:
-    - title: MW2
+    - entryId : 19
+      title: MW2
       duration: 4:47
       mp3: mw2.mp3
-    - title: Isshin Ashina
+    - entryId : 20
+      title: Isshin Ashina
       duration: 4:53
       mp3: isshin.mp3
-    - title: Shavkat
+    - entryId : 21
+      title: Shavkat
       duration: 3:40
       mp3: shavkat.mp3
-    - title: Amérique du Sud
+    - entryId : 22
+      title: Amérique du Sud
       duration: 3:31
       mp3: amerique.mp3
-    - title: Ancelotti
+    - entryId : 23
+      title: Ancelotti
       duration: 3:41
       mp3: ancelotti.mp3
-    - title: Tse Chi Lop
+    - entryId : 24
+      title: Tse Chi Lop
       duration: 3:18
       mp3: tse.mp3
-    - title: Kpop
+    - entryId : 25
+      title: Kpop
       duration: 3:01
       mp3: kpop.mp3
-    - title: L’homme méthode
+    - entryId : 26
+      title: L’homme méthode
       duration: 3:10
       mp3: homme.mp3
-    - title: Bill Clinton
+    - entryId : 27
+      title: Bill Clinton
       duration: 3:29
       mp3: bill.mp3
-    - title: Voldemort
+    - entryId : 28
+      title: Voldemort
       duration: 3:48
       mp3: voldemort.mp3
-    - title: Argent noir part.3
+    - entryId : 29
+      title: Argent noir part.3
       duration: 2:57
       mp3: argent.mp3
-    - title: Jour de plus
+    - entryId : 30
+      title: Jour de plus
       duration: 3:29
       mp3: jour.mp3
-    - title: Lamborghini bénie
+    - entryId : 31
+      title: Lamborghini bénie
       duration: 3:53
       mp3: lambo.mp3
 
@@ -124,28 +155,36 @@
   description: >
     GARÇON est le premier album studio de Luther, sorti le 3 juin 2022.
   songs:
-    - title: PK TU M'APL ?
+    - entryId : 32
+      title: PK TU M'APL ?
       duration: 3:01
       mp3: pk.mp3
-    - title: ALAKAZAM
+    - entryId : 33
+      title: ALAKAZAM
       duration: 3:05
       mp3: alakazam.m4a
-    - title: BLAKE & MORTIMER
+    - entryId : 34
+      title: BLAKE & MORTIMER
       duration: 1:39
       mp3: blake.mp3
-    - title: MA VIE D'AVANT
+    - entryId : 35
+      title: MA VIE D'AVANT
       duration: 3:08
       mp3: vie.mp3
-    - title: LESSGUI
+    - entryId : 36
+      title: LESSGUI
       duration: 2:35
       mp3: lessgui.mp3
-    - title: LE SANG
+    - entryId : 37
+      title: LE SANG
       duration: 2:49
       mp3: sang.mp3
-    - title: TORIEL - VENI VIDI VIDE
+    - entryId : 38
+      title: TORIEL - VENI VIDI VIDE
       duration: 2:20
       mp3: toriel.mp3
-    - title: GARÇON
+    - entryId : 39
+      title: GARÇON
       duration: 2:24
       mp3: garcon.m4a
 
@@ -158,37 +197,48 @@
   description: >
     "Matière Première" est le dernier projet de H JeuneCrack, un album qui a été publié le 26 mai 2023. C'est un projet qui met en avant le talent de H JeuneCrack non seulement en tant que rappeur, mais aussi en tant que producteur.
   songs:
-    - title: Comment ça s’passe ?
+    - entryId : 40
+      title: Comment ça s’passe ?
       duration: 2:11
       mp3: comment.m4a
-    - title: Aquarelle
+    - entryId : 41
+      title: Aquarelle
       duration: 2:53
       mp3: aquarelle.m4a
-    - title: Présidentiel flow
+    - entryId : 42
+      title: Présidentiel flow
       duration: 2:36
       mp3: presidentiel.m4a
-    - title: Gamberge FM
+    - entryId : 43
+      title: Gamberge FM
       duration: 2:57
       mp3: gamberge.mp3
-    - title: Au max
+    - entryId : 44
+      title: Au max
       duration: 2:30
       mp3: au.m4a
-    - title: Dièses
+    - entryId : 45
+      title: Dièses
       duration: 2:45
       mp3: dieses.m4a
-    - title: Wazinc
+    - entryId : 46
+      title: Wazinc
       duration: 2:33
       mp3: wazinc.mp3
-    - title: Les Cristaux
+    - entryId : 47
+      title: Les Cristaux
       duration: 1:22
       mp3: cristaux.m4a
-    - title: Pshiitt…
+    - entryId : 48
+      title: Pshiitt…
       duration: 3:08
       mp3: pshiitt.m4a
-    - title: Opale Système
+    - entryId : 49
+      title: Opale Système
       duration: 3:06
       mp3: opale.m4a
-    - title: Google Maps
+    - entryId : 50
+      title: Google Maps
       duration: 2:31
       mp3: google.m4a
 
@@ -201,30 +251,39 @@
   description: >
     Dix titres qui s’enchaînent avec cohérence/élégance dont la moitié se révèle addictive après 3 écoutes. 
   songs:
-    - title: PJP NMR
+    - entryId : 51
+      title: PJP NMR
       duration: 2:46
       mp3: pjp.mp3
-    - title: Evidemment
+    - entryId : 52
+      title: Evidemment
       duration: 2:53
       mp3: evidemment.mp3
-    - title: FUM22 NOVICE
+    - entryId : 53
+      title: FUM22 NOVICE
       duration: 2:11
       mp3: fumee.mp3
-    - title: Eyeliner
+    - entryId : 54
+      title: Eyeliner
       duration: 2:07
       mp3: eyeliner.mp3
-    - title: Nouveau monde
+    - entryId : 55
+      title: Nouveau monde
       duration: 2:02
       mp3: nouveau.mp3
-    - title: BB Part.3
+    - entryId : 56
+      title: BB Part.3
       duration: 2:07
       mp3: bb.mp3
-    - title: Comme un aimant
+    - entryId : 57
+      title: Comme un aimant
       duration: 2:25
       mp3: aimant.mp3
-    - title: California
+    - entryId : 58
+      title: California
       duration: 2:43
       mp3: california.mp3
-    - title: Magic City 999
+    - entryId : 59
+      title: Magic City 999
       duration: 2:58
       mp3: magic.mp3
