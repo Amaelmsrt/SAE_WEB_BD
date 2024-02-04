@@ -28,53 +28,85 @@ $liste_albums = $albumDB->findAll();
 ?>
 
 <aside>
-    <div class="container-aside">
-        <a href="index.php?action=accueil" class="btn-retour">Retour application</a>
+    <div class="left">
+        
+        <a href="index.php?action=accueil" class="btn-retour">
+            <svg width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.22816 1.73682L2.00009 7.96489M2.00009 7.96489L8.22816 14.193M2.00009 7.96489H24.4211" stroke="currentColor" stroke-width="2.49123" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Retour application
+        </a>
         <nav>
             <ul>
                 <li>
                     <a href="" id="goToMenuPrincipal">
                         <svg width="27" height="17" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.83325 1.2085H25.1666M1.83325 8.50016H25.1666M1.83325 15.7918H25.1666" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1.83325 1.2085H25.1666M1.83325 8.50016H25.1666M1.83325 15.7918H25.1666" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         Menu principal
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToArtistes">
+                        <svg width="30" height="23" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.9866 21.7082H26.1667C27.7775 21.7082 29.1809 20.3606 28.6692 18.8332C27.8893 16.5055 25.9706 15.0979 22.5977 14.6103M18.146 9.84388C18.5703 9.97801 19.0564 10.0415 19.6042 10.0415C22.0347 10.0415 23.25 8.7915 23.25 5.6665C23.25 2.5415 22.0347 1.2915 19.6042 1.2915C19.0564 1.2915 18.5703 1.355 18.146 1.48913M10.8542 14.4165C16.6277 14.4165 19.4474 16.1838 20.1527 19.7183C20.3689 20.8015 19.4379 21.7082 18.3333 21.7082H3.375C2.27043 21.7082 1.33943 20.8015 1.5556 19.7183C2.26098 16.1838 5.08064 14.4165 10.8542 14.4165ZM10.8542 10.0415C13.2847 10.0415 14.5 8.7915 14.5 5.6665C14.5 2.5415 13.2847 1.2915 10.8542 1.2915C8.42361 1.2915 7.20833 2.5415 7.20833 5.6665C7.20833 8.7915 8.42361 10.0415 10.8542 10.0415Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Artistes
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToSons">
+                        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.75 14.5C5.75 11.2613 7.50962 8.43351 10.125 6.92059M23.25 14.2123C23.25 17.451 21.4904 20.2788 18.875 21.7917M27.625 14.5C27.625 21.7487 21.7487 27.625 14.5 27.625C7.25126 27.625 1.375 21.7487 1.375 14.5C1.375 7.25126 7.25126 1.375 14.5 1.375C21.7487 1.375 27.625 7.25126 27.625 14.5ZM17.4167 14.5C17.4167 16.1108 16.1108 17.4167 14.5 17.4167C12.8892 17.4167 11.5833 16.1108 11.5833 14.5C11.5833 12.8892 12.8892 11.5833 14.5 11.5833C16.1108 11.5833 17.4167 12.8892 17.4167 14.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Sons
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToGenres">
+                        <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.29175 7.04183H15.8751M1.29175 1.2085H15.8751M1.29175 12.8752H10.0417M15.8751 12.8752V18.7085L21.7084 15.7918L15.8751 12.8752Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Genres
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToUtilisateurs">
+                        <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Utilisateurs
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToPlaylists">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 3C1 1.89543 1.89543 1 3 1H4C5.10457 1 6 1.89543 6 3V4C6 5.10457 5.10457 6 4 6H3C1.89543 6 1 5.10457 1 4V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 3C10 1.89543 10.8954 1 12 1H13C14.1046 1 15 1.89543 15 3V4C15 5.10457 14.1046 6 13 6H12C10.8954 6 10 5.10457 10 4V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1 12C1 10.8954 1.89543 10 3 10H4C5.10457 10 6 10.8954 6 12V13C6 14.1046 5.10457 15 4 15H3C1.89543 15 1 14.1046 1 13V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 12C10 10.8954 10.8954 10 12 10H13C14.1046 10 15 10.8954 15 12V13C15 14.1046 14.1046 15 13 15H12C10.8954 15 10 14.1046 10 13V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Playlists
                     </a>
                 </li>
                 <li>
                     <a href="" id="goToAlbums">
+                        <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.8125 21.8333C8.8125 24.1345 7.06361 26 4.90625 26C2.74889 26 1 24.1345 1 21.8333C1 19.5321 2.74889 17.6667 4.90625 17.6667C7.06361 17.6667 8.8125 19.5321 8.8125 21.8333ZM8.8125 21.8333V3.57439C8.8125 3.05949 9.20349 2.62875 9.71598 2.57906L24.9035 1.10633C25.4912 1.04934 26 1.51124 26 2.10166V20.1667M26 20.1667C26 22.4679 24.2511 24.3333 22.0938 24.3333C19.9364 24.3333 18.1875 22.4679 18.1875 20.1667C18.1875 17.8655 19.9364 16 22.0938 16C24.2511 16 26 17.8655 26 20.1667Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         Albums
                     </a>
                 </li>
             </ul>
+            <div class="active-square" id="activeSquare"></div>
         </nav>
 
         <div class="actions">
-            <img src="/assets/icons/add-circle.svg"/>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6V14M14 10H6M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#E2FF08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
     </div>
 </aside>
+
