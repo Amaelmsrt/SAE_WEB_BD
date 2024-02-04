@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPOTIUT'O</title>
-    <link rel="stylesheet" href="/Assets/Css/inscription_connexion.css">
+    <link rel="stylesheet" href="./Assets/Css/inscription_connexion.css">
 </head>
 <body>
 

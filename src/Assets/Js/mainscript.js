@@ -38,6 +38,9 @@ const btnClosePopUp = document.querySelector("#btnClosePopUp")
 const popUpContainer = document.querySelector("#popUpContainer")
 const popUpPlaylist = document.querySelector("#popUpPlaylist")
 
+const btnsToggleVolumeBar = document.querySelectorAll(".btn-toggle-volume-bar")
+const volumeBars = document.querySelectorAll(".volume-bar")
+
 // Fonction pour changer de formulaire
 function changeCurrentMenu(e,index) {
     e?.preventDefault();
@@ -73,7 +76,7 @@ function changeCurrentMenu(e,index) {
 
     switch(index){
         case 0:
-            gsap.to(goToAccueilBtn, { color: "#0E100F", duration: 0.6,ease: "power4.out" });
+            gsap.to(goToAccueilBtn, { color: window.innerWidth < 576 ? "#E2FF08" : "#0E100F", duration: 0.6,ease: "power4.out" });
             gsap.to(goToRechercheBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             gsap.to(goToPlaylists, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             
@@ -84,7 +87,7 @@ function changeCurrentMenu(e,index) {
             break;
         case 1:
             gsap.to(goToAccueilBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
-            gsap.to(goToRechercheBtn, { color: "#0E100F", duration: 0.6,ease: "power4.out" });
+            gsap.to(goToRechercheBtn, { color: window.innerWidth < 576 ? "#E2FF08" : "#0E100F", duration: 0.6,ease: "power4.out" });
             gsap.to(goToPlaylists, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
 
             gsap.fromTo(sectionRechercher, {opacity: 0, x: index < curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
@@ -96,7 +99,7 @@ function changeCurrentMenu(e,index) {
         case 2:
             gsap.to(goToAccueilBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
             gsap.to(goToRechercheBtn, { color: "#FEFCE1", duration: 0.6,ease: "power4.out" });
-            gsap.to(goToPlaylists, { color: "#0E100F", duration: 0.6,ease: "power4.out" });
+            gsap.to(goToPlaylists, { color: window.innerWidth < 576 ? "#E2FF08" : "#0E100F", duration: 0.6,ease: "power4.out" });
             
             gsap.fromTo(sectionPlaylists, {opacity: 0, x: index < curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
             gsap.to(curSection, {opacity:0, x:index<curIndex ? "100vw" : "-100vw", zIndex: -1, duration:0.6, ease: "power4.out"})
@@ -196,6 +199,15 @@ function handleUnfocusEverything(e) {
     if (e.target.id == "popUpContainer"){
         closePlaylistPopUp()
         return;
+    }
+    console.log(e.target)
+    if (!e.target.classList.contains("isVolume")){
+        volumeBars.forEach(volumeBar => {
+            if (volumeBar.style.display == "flex"){
+                toggleVolumeBar()
+            }
+        })
+
     }
     if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu") || e.target.classList.contains("menu-item")) {
         return;
@@ -304,3 +316,45 @@ btnFavoris.addEventListener('click', afficheMesFavoris)
 
 btnNouvellePlaylist.addEventListener('click', openPlaylistPopUp)
 btnClosePopUp.addEventListener('click', closePlaylistPopUp)
+
+let isToggling = false;
+
+function toggleVolumeBar(){
+    if (isToggling){
+        return;
+    }
+    isToggling = true;
+    volumeBars.forEach(volumeBar => {
+        if (volumeBar.style.display == "none" || volumeBar.style.display == ""){
+            gsap.fromTo(volumeBar, {opacity: 0, y: "-3vh"}, {opacity:1, y:0, duration:0.6, ease:"power4.out"})
+            volumeBar.style.display = "flex";
+            setTimeout(() => {
+                isToggling = false;
+            }, 600);
+        }
+        else {
+            gsap.to(volumeBar, {opacity:0, y:"-3vh", duration:0.6, ease:"power4.out"})
+            setTimeout(() => {
+                volumeBar.style.display = "none";
+                isToggling = false;
+            }, 600);
+        }
+    }) 
+}
+
+function updateAllVolumeBars(){
+    volumeBars.forEach(volumeBar => {
+        const volume = volumeBar.querySelector(".bar")
+        // c'est un input type range
+        volume.value = this.value
+    })
+}
+
+volumeBars.forEach(volumeBar => {
+    const volume = volumeBar.querySelector(".bar")
+    volume.addEventListener('input', updateAllVolumeBars)
+})
+
+btnsToggleVolumeBar.forEach(btn => {
+    btn.addEventListener('click', toggleVolumeBar)
+})
