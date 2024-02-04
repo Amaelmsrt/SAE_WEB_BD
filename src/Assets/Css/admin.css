@@ -144,7 +144,7 @@ body .left{
     width: 17.8125rem;
     height: 100%;
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
     flex-direction: column;
     background-color: var(--background-secondary); 
 }
@@ -191,4 +191,61 @@ body .left img{
 
 .btn-retour a:hover{
     filter: brightness(0.8);
+}
+
+.right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#recherche {
+    background-color: #070808;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0.7rem;
+}
+
+.text-field{
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding: 1.625rem 1.875rem;
+    background-color: #070808;
+    color: var(--text-color-secondary);
+    
+}
+
+.text-field img{
+    height: 1.5rem;
+}
+
+.text-field input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 6rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--text-color-secondary);
+    outline: none;
+    color: var(--text-color-secondary);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.text-field.no-space input{
+    padding-left: 1rem;
+}
+
+.text-field input:focus{
+    border-bottom: 1.5px solid var(--yellow);
+    transition: all 0.2s ease-in-out;
 }

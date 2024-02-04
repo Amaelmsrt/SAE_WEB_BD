@@ -110,3 +110,12 @@ $liste_albums = $albumDB->findAll();
     </div>
 </aside>
 
+<div class="right">
+    <!-- barre de recherche -->
+    <div id="recherche" class="wrapper-recherche">
+        <div class="text-field">
+            <img src="/Assets/icons/search.svg" alt="user"/>
+            <input type="text" placeholder="Ma recherche" value="">
+        </div>
+    </div>
+</div>
