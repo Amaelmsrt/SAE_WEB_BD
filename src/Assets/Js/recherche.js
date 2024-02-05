@@ -112,6 +112,7 @@ function miseEnPlaceInfos(data){
             albumContent.appendChild(div);
             div.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
             div.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
+            div.addEventListener('click', function () {handleJouerAlbum(this);});
         }
     }
     else{
@@ -144,6 +145,7 @@ function miseEnPlaceInfos(data){
             artisteContent.appendChild(div);
             div.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
             div.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
+            div.addEventListener('click', function () {handleJouerSonArtiste(this);});
         }
     }
     else{
@@ -188,31 +190,3 @@ function noresult(){
 // <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
 // </svg>
 // <?php endif; ?> -->
-
-
-// <?php foreach ($artisteAlea as $artist) : 
-// $isLike = $likeArtisteDB->isLiked($artist->getId(), $_SESSION["user_id"]);
-// ?>
-
-// <!-- <div class="song-card artiste">
-//     <div class="background" aria-hidden></div>
-//     <div class="container-image">
-//         <img class="cover" src="data:image/jpeg;base64, <?= $artist->getPicture() ?>" alt="cover"/>
-//     </div>
-//     <div class="bottom-content">
-//         <div class="texts">
-//             <h4><?= $artist->getName() ?></h4>
-//             <h5>Artiste</h5>
-//         </div>
-//         <?php if ($isLike) : ?>
-//             <svg class="svg-heart like likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-//                 <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-//             </svg>
-//         <?php else : ?>
-//             <svg class="svg-heart likeArtist" data-id-artiste="<?= $artist->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-//                 <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-//             </svg>
-//         <?php endif; ?>
-//     </div>
-// </div>
-// <?php endforeach; ?> -->

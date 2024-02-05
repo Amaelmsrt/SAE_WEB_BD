@@ -161,7 +161,7 @@
     - entryId: 33
       title: ALAKAZAM
       duration: 3:05
-      mp3: alakazam.m4a
+      mp3: alakazam.mp3
     - entryId: 34
       title: BLAKE & MORTIMER
       duration: 1:39
@@ -185,7 +185,7 @@
     - entryId: 39
       title: GARÇON
       duration: 2:24
-      mp3: garcon.m4a
+      mp3: garcon.mp3
 
 - by: 4
   entryId: 4
@@ -199,15 +199,15 @@
     - entryId: 40
       title: Comment ça s’passe ?
       duration: 2:11
-      mp3: comment.m4a
+      mp3: comment.mp3
     - entryId: 41
       title: Aquarelle
       duration: 2:53
-      mp3: aquarelle.m4a
+      mp3: aquarelle.mp3
     - entryId: 42
       title: Présidentiel flow
       duration: 2:36
-      mp3: presidentiel.m4a
+      mp3: presidentiel.mp3
     - entryId: 43
       title: Gamberge FM
       duration: 2:57
@@ -215,11 +215,11 @@
     - entryId: 44
       title: Au max
       duration: 2:30
-      mp3: au.m4a
+      mp3: au.mp3
     - entryId: 45
       title: Dièses
       duration: 2:45
-      mp3: dieses.m4a
+      mp3: dieses.mp3
     - entryId: 46
       title: Wazinc
       duration: 2:33
@@ -227,19 +227,19 @@
     - entryId: 47
       title: Les Cristaux
       duration: 1:22
-      mp3: cristaux.m4a
+      mp3: cristaux.mp3
     - entryId: 48
       title: Pshiitt…
       duration: 3:08
-      mp3: pshiitt.m4a
+      mp3: pshiitt.mp3
     - entryId: 49
       title: Opale Système
       duration: 3:06
-      mp3: opale.m4a
+      mp3: opale.mp3
     - entryId: 50
       title: Google Maps
       duration: 2:31
-      mp3: google.m4a
+      mp3: google.mp3
 
 - by: 5
   entryId: 5
