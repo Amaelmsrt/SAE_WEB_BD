@@ -695,7 +695,7 @@ $rechercheDB = $manager->getRechercheDB();
                                             <h4 class="no-result" id="nom-best-recherche"></h4>
                                             <h5 class="no-result" id="type-best-recherche"></h5>
                                         </div>
-                                        <img id="img-best-recherche" class="no-result expand" src="/.assets/icons/expand.svg"/>
+                                        <img id="img-best-recherche" class="no-result expand" src="./assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">

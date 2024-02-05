@@ -200,7 +200,6 @@ function handleUnfocusEverything(e) {
         closePlaylistPopUp()
         return;
     }
-    console.log(e.target)
     if (!e.target.classList.contains("isVolume")){
         volumeBars.forEach(volumeBar => {
             if (volumeBar.style.display == "flex"){

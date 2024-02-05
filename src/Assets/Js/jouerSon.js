@@ -5,6 +5,20 @@ if (listeDattenteObj.numSonEnCours) {
 }
 
 
+
+
+const sliderSons = document.querySelectorAll('.bar.vertical');
+console.log(sliderSons);
+sliderSons.forEach(function (slider) {
+    slider.addEventListener('change', function () {
+        console.log('change');
+        const pourcentage = slider.value;
+        listeDattenteObj.sonEnCours.volume = pourcentage / 100;
+    });
+});
+
+
+
 const btnLikeArtiste = document.querySelectorAll('.likeArtist');
 
 btnLikeArtiste.forEach(function (btn) {
@@ -376,6 +390,7 @@ function miseEnPlaceSon(idSon){
                 slider.value = pourcentage;
 
                 slider.addEventListener('change', function () {
+                    console.log('change');
                     const pourcentage = slider.value;
                     const time = pourcentage / 100 * listeDattenteObj.sonEnCours.duration;
                     listeDattenteObj.sonEnCours.currentTime = time;
