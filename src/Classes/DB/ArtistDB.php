@@ -55,4 +55,16 @@ class ArtistDB
         }
         return $artistList;
     }
+
+    public function getPicture(int $id): string
+    {
+        $sql = "SELECT imageArtiste FROM artiste WHERE idArtiste = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        $imageData = $artist['imageArtiste'];
+        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        return $decodedImage;
+    }
 }

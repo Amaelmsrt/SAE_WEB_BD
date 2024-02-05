@@ -26,6 +26,7 @@ class Album
         $this->idArtiste = $idArtiste;
     }
 
+
     function getId()
     {
         return $this->id;

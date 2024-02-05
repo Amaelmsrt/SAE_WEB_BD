@@ -1839,3 +1839,7 @@ html {
     fill: var(--red);
     width: 2.2rem;
 }
+
+.no-result{
+    display: none;
+}
