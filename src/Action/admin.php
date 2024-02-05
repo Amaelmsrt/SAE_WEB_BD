@@ -118,4 +118,77 @@ $liste_albums = $albumDB->findAll();
             <input type="text" placeholder="Ma recherche" value="">
         </div>
     </div>
+
+    <div class="container-tabs">
+        <main>
+            <section class="content-block">
+                <header>
+                    <h2>Menu principal</h2>
+                    <svg width="29" height="29" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
+                    </svg>
+                </header>
+                <div class="menu">
+                    <button class="admin-content">
+                        <svg width="29" height="29" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.9866 21.7082H26.1667C27.7775 21.7082 29.1809 20.3606 28.6692 18.8332C27.8893 16.5055 25.9706 15.0979 22.5977 14.6103M18.146 9.84388C18.5703 9.97801 19.0564 10.0415 19.6042 10.0415C22.0347 10.0415 23.25 8.7915 23.25 5.6665C23.25 2.5415 22.0347 1.2915 19.6042 1.2915C19.0564 1.2915 18.5703 1.355 18.146 1.48913M10.8542 14.4165C16.6277 14.4165 19.4474 16.1838 20.1527 19.7183C20.3689 20.8015 19.4379 21.7082 18.3333 21.7082H3.375C2.27043 21.7082 1.33943 20.8015 1.5556 19.7183C2.26098 16.1838 5.08064 14.4165 10.8542 14.4165ZM10.8542 10.0415C13.2847 10.0415 14.5 8.7915 14.5 5.6665C14.5 2.5415 13.2847 1.2915 10.8542 1.2915C8.42361 1.2915 7.20833 2.5415 7.20833 5.6665C7.20833 8.7915 8.42361 10.0415 10.8542 10.0415Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Artistes</h3>
+                            <p>Les artistes de l'application</p>
+                        </div>
+                    </button>
+                    <button class="admin-content">
+                        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.75 14.5C5.75 11.2613 7.50962 8.43351 10.125 6.92059M23.25 14.2123C23.25 17.451 21.4904 20.2788 18.875 21.7917M27.625 14.5C27.625 21.7487 21.7487 27.625 14.5 27.625C7.25126 27.625 1.375 21.7487 1.375 14.5C1.375 7.25126 7.25126 1.375 14.5 1.375C21.7487 1.375 27.625 7.25126 27.625 14.5ZM17.4167 14.5C17.4167 16.1108 16.1108 17.4167 14.5 17.4167C12.8892 17.4167 11.5833 16.1108 11.5833 14.5C11.5833 12.8892 12.8892 11.5833 14.5 11.5833C16.1108 11.5833 17.4167 12.8892 17.4167 14.5Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Sons</h3>
+                            <p>Les sons de l'application</p>
+                        </div>
+                    </butt>
+                    <button class="admin-content">
+                        <svg width="29" height="29" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.29175 7.04183H15.8751M1.29175 1.2085H15.8751M1.29175 12.8752H10.0417M15.8751 12.8752V18.7085L21.7084 15.7918L15.8751 12.8752Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Genres</h3>
+                            <p>Les genres de l'application</p>
+                        </div>
+                    </button>
+                    <button class="admin-content">
+                        <svg width="29" height="29" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="#FEFCE1" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="#FEFCE1" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Utilisateurs</h3>
+                            <p>Les utilisateurs de l'application</p>
+                        </div>
+                    </button>
+                    <button class="admin-content">
+                        <svg width="29" height="29" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 3C1 1.89543 1.89543 1 3 1H4C5.10457 1 6 1.89543 6 3V4C6 5.10457 5.10457 6 4 6H3C1.89543 6 1 5.10457 1 4V3Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 3C10 1.89543 10.8954 1 12 1H13C14.1046 1 15 1.89543 15 3V4C15 5.10457 14.1046 6 13 6H12C10.8954 6 10 5.10457 10 4V3Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1 12C1 10.8954 1.89543 10 3 10H4C5.10457 10 6 10.8954 6 12V13C6 14.1046 5.10457 15 4 15H3C1.89543 15 1 14.1046 1 13V12Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 12C10 10.8954 10.8954 10 12 10H13C14.1046 10 15 10.8954 15 12V13C15 14.1046 14.1046 15 13 15H12C10.8954 15 10 14.1046 10 13V12Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Playlists</h3>
+                            <p>Les playlists de l'application</p>
+                        </div>
+                    </button>
+                    <button class="admin-content">
+                        <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="textes">
+                            <h3>Albums</h3>
+                            <p>Les albums de l'application</p>
+                        </div>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
 </div>

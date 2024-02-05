@@ -84,6 +84,8 @@ body{
     min-height: 100vh;
     max-width: 100vw;
     overflow-x:hidden;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
@@ -113,7 +115,7 @@ nav ul li {
 
 nav .active-square {
     position: absolute;
-    width: 15.5rem;
+    width: 85%;
     height: 3.5rem;
     z-index: 0;
     background-color: var(--yellow);
@@ -131,7 +133,7 @@ nav ul li a {
     width: 15.5rem;
     align-items: center;
     white-space: nowrap;
-    font-size: 1.625rem;
+    font-size: 1rem;
     padding: 1rem;
 }
 
@@ -141,7 +143,7 @@ nav ul li a svg {
 
 body .left{
     position: relative;
-    width: 17.8125rem;
+    width: 15rem;
     height: 100%;
     display: flex;
     gap: 5rem;
@@ -177,10 +179,10 @@ body .left img{
     border-radius: 1rem;
     color:var(--yellow);
     font-family: 'PP Mori';
-    font-weight: 400;
-    width: 14.9475rem;
+    font-weight: 300;
+    width: 13rem;
     height: 4.4375rem;
-    font-size: 1.1875rem;
+    font-size: 0.95rem;
     display: flex;
     gap: 0.7rem;
     align-items: center;
@@ -248,4 +250,69 @@ body .left img{
 .text-field input:focus{
     border-bottom: 1.5px solid var(--yellow);
     transition: all 0.2s ease-in-out;
+}
+
+h2 {
+    font-family: 'PP Mori', sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin: 3rem 1rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding-left: 1.5rem
+}
+
+.menu {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.admin-content {
+    margin-top: 1rem;
+    background-color: #070808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24vw;
+    height: 25vh;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.textes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4.5rem;
+}
+
+.textes h3 {
+    margin-top: 1rem;
+    font-family: "PP Mori";
+    font-weight: 300;
+    color: #FEFCE1;
+    font-size: 2.5rem;
+    opacity: 50%;
+}
+
+.textes p {
+    font-family: "PP Mori";
+    font-size: 0.875rem;
+    color: #FEFCE1;
+    opacity: 30%;
+    margin-top: 0.5rem;
+}
+
+.admin-content svg {
+    width: 5rem;
+    height: 4.5rem;
 }
