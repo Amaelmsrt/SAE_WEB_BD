@@ -6,63 +6,80 @@
   title: L'enfant de la pluie
   description: >
     "L'enfant de la pluie" marque le premier opus de So La Lune, présenté au public le 8 décembre 2023.
-  genre: [Rap Français, New Wave]
   img: edlp.jpeg
   releaseYear: 2023
   title: L'enfant de la pluie
   songs:
-    - title: Opening
+    - entryId: 1
+      title: Opening
       duration: 3:08
       mp3: opening.mp3
-    - title: Remontada
+    - entryId: 2
+      title: Remontada
       duration: 2:56
       mp3: remontada.mp3
-    - title: 99 Avenue
+    - entryId: 3
+      title: 99 Avenue
       duration: 3:03
       mp3: 99avenue.mp3
-    - title: Bloqué
+    - entryId: 4
+      title: Bloqué
       duration: 3:12
       mp3: bloque.mp3
-    - title: Un jour d'été
+    - entryId: 5
+      title: Un jour d'été
       duration: 2:42
       mp3: unjour.mp3
-    - title: Perte de temps
+    - entryId: 6
+      title: Perte de temps
       duration: 3:09
       mp3: perte.mp3
-    - title: L'Allemande
+    - entryId: 7
+      title: L'Allemande
       duration: 2:24
       mp3: allemande.mp3
-    - title: 10 Hummers
+    - entryId: 8
+      title: 10 Hummers
       duration: 3:03
       mp3: 10hummers.mp3
-    - title: Bip bip
+    - entryId: 9
+      title: Bip bip
       duration: 2:41
       mp3: bipbip.mp3
-    - title: Sali
+    - entryId: 10
+      title: Sali
       duration: 3:04
       mp3: sali.mp3
-    - title: Interlude Froide Averse
+    - entryId: 11
+      title: Interlude Froide Averse
       duration: 3:06
       mp3: interlude.mp3
-    - title: Suspects
+    - entryId: 12
+      title: Suspects
       duration: 3:29
       mp3: suspects.mp3
-    - title: OP
+    - entryId: 13
+      title: OP
       duration: 2:27
       mp3: op.mp3
-    - title: Le dernier maître de l'eau
+    - entryId: 14
+      title: Le dernier maître de l'eau
       duration: 1:48
       mp3: maitre.mp3
-    - title: Les toits de la ville
+    - entryId: 15
+      title: Les toits de la ville
       duration: 2:48
       mp3: toits.mp3
-    - title: Triste temps
+    - entryId: 16
+      title: Triste temps
       duration: 2:40
       mp3: triste.mp3
-    - title: Au BPM
+    - entryId: 17
+      title: Au BPM
       duration: 3:05
       mp3: bpm.mp3
-    - title: Sales images
+    - entryId: 18
+      title: Sales images
       duration: 2:20
       mp3: sales.mp3
 
@@ -75,43 +92,56 @@
   description: >
     ADC, acronyme de L'attaque des clones, est le troisième album du rappeur français Freeze Corleone commercialisé à partir du 11 septembre 2023. Comme pour son précédent album intitulé LMF, le titre fait référence à un film de la saga Star Wars.
   songs:
-    - title: MW2
+    - entryId: 19
+      title: MW2
       duration: 4:47
       mp3: mw2.mp3
-    - title: Isshin Ashina
+    - entryId: 20
+      title: Isshin Ashina
       duration: 4:53
       mp3: isshin.mp3
-    - title: Shavkat
+    - entryId: 21
+      title: Shavkat
       duration: 3:40
       mp3: shavkat.mp3
-    - title: Amérique du Sud
+    - entryId: 22
+      title: Amérique du Sud
       duration: 3:31
       mp3: amerique.mp3
-    - title: Ancelotti
+    - entryId: 23
+      title: Ancelotti
       duration: 3:41
       mp3: ancelotti.mp3
-    - title: Tse Chi Lop
+    - entryId: 24
+      title: Tse Chi Lop
       duration: 3:18
       mp3: tse.mp3
-    - title: Kpop
+    - entryId: 25
+      title: Kpop
       duration: 3:01
       mp3: kpop.mp3
-    - title: L’homme méthode
+    - entryId: 26
+      title: L’homme méthode
       duration: 3:10
       mp3: homme.mp3
-    - title: Bill Clinton
+    - entryId: 27
+      title: Bill Clinton
       duration: 3:29
       mp3: bill.mp3
-    - title: Voldemort
+    - entryId: 28
+      title: Voldemort
       duration: 3:48
       mp3: voldemort.mp3
-    - title: Argent noir part.3
+    - entryId: 29
+      title: Argent noir part.3
       duration: 2:57
       mp3: argent.mp3
-    - title: Jour de plus
+    - entryId: 30
+      title: Jour de plus
       duration: 3:29
       mp3: jour.mp3
-    - title: Lamborghini bénie
+    - entryId: 31
+      title: Lamborghini bénie
       duration: 3:53
       mp3: lambo.mp3
 
@@ -124,28 +154,36 @@
   description: >
     GARÇON est le premier album studio de Luther, sorti le 3 juin 2022.
   songs:
-    - title: PK TU M'APL ?
+    - entryId: 32
+      title: PK TU M'APL ?
       duration: 3:01
       mp3: pk.mp3
-    - title: ALAKAZAM
+    - entryId: 33
+      title: ALAKAZAM
       duration: 3:05
       mp3: alakazam.m4a
-    - title: BLAKE & MORTIMER
+    - entryId: 34
+      title: BLAKE & MORTIMER
       duration: 1:39
       mp3: blake.mp3
-    - title: MA VIE D'AVANT
+    - entryId: 35
+      title: MA VIE D'AVANT
       duration: 3:08
       mp3: vie.mp3
-    - title: LESSGUI
+    - entryId: 36
+      title: LESSGUI
       duration: 2:35
       mp3: lessgui.mp3
-    - title: LE SANG
+    - entryId: 37
+      title: LE SANG
       duration: 2:49
       mp3: sang.mp3
-    - title: TORIEL - VENI VIDI VIDE
+    - entryId: 38
+      title: TORIEL - VENI VIDI VIDE
       duration: 2:20
       mp3: toriel.mp3
-    - title: GARÇON
+    - entryId: 39
+      title: GARÇON
       duration: 2:24
       mp3: garcon.m4a
 
@@ -158,37 +196,48 @@
   description: >
     "Matière Première" est le dernier projet de H JeuneCrack, un album qui a été publié le 26 mai 2023. C'est un projet qui met en avant le talent de H JeuneCrack non seulement en tant que rappeur, mais aussi en tant que producteur.
   songs:
-    - title: Comment ça s’passe ?
+    - entryId: 40
+      title: Comment ça s’passe ?
       duration: 2:11
       mp3: comment.m4a
-    - title: Aquarelle
+    - entryId: 41
+      title: Aquarelle
       duration: 2:53
       mp3: aquarelle.m4a
-    - title: Présidentiel flow
+    - entryId: 42
+      title: Présidentiel flow
       duration: 2:36
       mp3: presidentiel.m4a
-    - title: Gamberge FM
+    - entryId: 43
+      title: Gamberge FM
       duration: 2:57
       mp3: gamberge.mp3
-    - title: Au max
+    - entryId: 44
+      title: Au max
       duration: 2:30
       mp3: au.m4a
-    - title: Dièses
+    - entryId: 45
+      title: Dièses
       duration: 2:45
       mp3: dieses.m4a
-    - title: Wazinc
+    - entryId: 46
+      title: Wazinc
       duration: 2:33
       mp3: wazinc.mp3
-    - title: Les Cristaux
+    - entryId: 47
+      title: Les Cristaux
       duration: 1:22
       mp3: cristaux.m4a
-    - title: Pshiitt…
+    - entryId: 48
+      title: Pshiitt…
       duration: 3:08
       mp3: pshiitt.m4a
-    - title: Opale Système
+    - entryId: 49
+      title: Opale Système
       duration: 3:06
       mp3: opale.m4a
-    - title: Google Maps
+    - entryId: 50
+      title: Google Maps
       duration: 2:31
       mp3: google.m4a
 
@@ -201,30 +250,636 @@
   description: >
     Dix titres qui s’enchaînent avec cohérence/élégance dont la moitié se révèle addictive après 3 écoutes. 
   songs:
-    - title: PJP NMR
+    - entryId: 51
+      title: PJP NMR
       duration: 2:46
       mp3: pjp.mp3
-    - title: Evidemment
+    - entryId: 52
+      title: Evidemment
       duration: 2:53
       mp3: evidemment.mp3
-    - title: FUM22 NOVICE
+    - entryId: 53
+      title: FUM22 NOVICE
       duration: 2:11
       mp3: fumee.mp3
-    - title: Eyeliner
+    - entryId: 54
+      title: Eyeliner
       duration: 2:07
       mp3: eyeliner.mp3
-    - title: Nouveau monde
+    - entryId: 55
+      title: Nouveau monde
       duration: 2:02
       mp3: nouveau.mp3
-    - title: BB Part.3
+    - entryId: 56
+      title: BB Part.3
       duration: 2:07
       mp3: bb.mp3
-    - title: Comme un aimant
+    - entryId: 57
+      title: Comme un aimant
       duration: 2:25
       mp3: aimant.mp3
-    - title: California
+    - entryId: 58
+      title: California
       duration: 2:43
       mp3: california.mp3
-    - title: Magic City 999
+    - entryId: 59
+      title: Magic City 999
       duration: 2:58
       mp3: magic.mp3
+
+- by: 1
+  entryId: 6
+  genre: [1, 2]
+  img: fissure.jpeg
+  releaseYear: 2022
+  title: Fissure de vie
+  description: >
+    Dévoilée le 27 mai 2022, Fissure de vie est la deuxième mixtape de So La Lune, faisant suite à l'EP trois titres 27.05.22 sorti le 20 avril 2022, qui annonçait officiellement la sortie de ce projet. L'artiste la présente comme son premier véritable projet.
+  songs:
+    - entryId: 60
+      title: Soleil mourant
+      duration: 3:26
+      mp3: soleil.mp3
+    - entryId: 61
+      title: Fin heureuse
+      duration: 2:43
+      mp3: fin.mp3
+    - entryId: 62
+      title: Medellín
+      duration: 3:13
+      mp3: medellin.mp3
+    - entryId: 63
+      title: Range Ro
+      duration: 2:21
+      mp3: range.mp3
+    - entryId: 64
+      title: Guérison
+      duration: 3:14
+      mp3: guerison.mp3
+    - entryId: 65
+      title: En bas
+      duration: 3:13
+      mp3: enbas.mp3
+    - entryId: 66
+      title: Vide
+      duration: 3:07
+      mp3: vide.mp3
+    - entryId: 67
+      title: Dona
+      duration: 2:43
+      mp3: dona.mp3
+    - entryId: 68
+      title: Eternelle 2
+      duration: 2:10
+      mp3: eternelle.mp3
+    - entryId: 69
+      title: Déconnecté
+      duration: 3:03
+      mp3: deconnecte.mp3
+    - entryId: 70
+      title: 2 i
+      duration: 3:06
+      mp3: 2i.mp3
+    - entryId: 71
+      title: Nouveaux pirates
+      duration: 3:00
+      mp3: pirates.mp3
+    - entryId: 72
+      title: Nicki
+      duration: 2:56
+      mp3: nicki.mp3
+    - entryId: 73
+      title: Péché
+      duration: 2:45
+      mp3: peche.mp3
+    - entryId: 74
+      title: Interlune
+      duration: 3:08
+      mp3: interlune.mp3
+    - entryId: 75
+      title: Outrône
+      duration: 3:18
+      mp3: outrone.mp3
+
+- by: 6
+  entryId: 7
+  genre: [1, 4]
+  img: deuxfreres.jpeg
+  releaseYear: 2019
+  title: Deux frères
+  description: >
+    Deux frères est le troisième album studio du groupe de rap français PNL, sorti le 3 avril 2019 sous le label QLF Records.
+  songs:
+    - entryId: 76
+      title: Au DD
+      duration: 4:07
+      mp3: au.mp3
+    - entryId: 77
+      title: Autre Monde
+      duration: 4:41
+      mp3: autre.mp3
+    - entryId: 78
+      title: Chang
+      duration: 5:14
+      mp3: chang.mp3
+    - entryId: 79
+      title: Blanka
+      duration: 4:14
+      mp3: blanka.mp3
+    - entryId: 80
+      title: 91's
+      duration: 3:53
+      mp3: 91s.mp3
+    - entryId: 81
+      title: À L'ammoniaque
+      duration: 5:16
+      mp3: ammoniac.mp3
+    - entryId: 82
+      title: Celsius
+      duration: 4:02
+      mp3: celsius.mp3
+    - entryId: 83
+      title: Deux Frères
+      duration: 4:07
+      mp3: deuxfreres.mp3
+    - entryId: 84
+      title: Hasta La Vista
+      duration: 3:36
+      mp3: hasta.mp3
+    - entryId: 85
+      title: Cœurs
+      duration: 5:57
+      mp3: coeurs.mp3
+    - entryId: 86
+      title: Shenmue
+      duration: 4:09
+      mp3: shenmue.mp3
+    - entryId: 87
+      title: Kuta Ubud
+      duration: 5:04
+      mp3: kuta.mp3
+    - entryId: 88
+      title: Menace
+      duration: 3:08
+      mp3: menace.mp3
+    - entryId: 89
+      title: Zoulou Tchaing
+      duration: 5:25
+      mp3: zoulou.mp3
+    - entryId: 90
+      title: Déconnecté
+      duration: 5:17
+      mp3: deconnecte.mp3
+    - entryId: 91
+      title: La misère est si belle
+      duration: 5:04
+      mp3: misere.mp3
+    - entryId: 181
+      title: Ryuk
+      duration: 3:56
+      mp3: ryuk.mp3
+    - entryId: 182
+      title: Comme pas deux
+      duration: 3:41
+      mp3: comme.mp3
+    - entryId: 183
+      title: Sibérie
+      duration: 4:01
+      mp3: siberie.mp3
+    - entryId: 184
+      title: Bang
+      duration: 4:23
+      mp3: bang.mp3
+    - entryId: 185
+      title: Capuche
+      duration: 4:23
+      mp3: capuche.mp3
+    - entryId: 186
+      title: Frontières
+      duration: 4:52
+      mp3: frontieres.mp3
+
+
+- by: 6
+  entryId: 8
+  genre: [1, 4]
+  img: dll.jpeg
+  releaseYear: 2016
+  title: Dans la légende
+  description: >
+    Dans la légende est le deuxième album studio du groupe de rap français PNL, sorti le 16 septembre 2016 sous le label QLF Records.
+  songs:
+    - entryId: 92
+      title: DA
+      duration: 3:50
+      mp3: da.mp3
+    - entryId: 93
+      title: Naha
+      duration: 4:45
+      mp3: naha.mp3
+    - entryId: 94
+      title: Dans la légende
+      duration: 3:54
+      mp3: dans.mp3
+    - entryId: 95
+      title: Mira
+      duration: 3:35
+      mp3: mira.mp3
+    - entryId: 96
+      title: J'Suis QLF
+      duration: 4:28
+      mp3: jsuis.mp3
+    - entryId: 97
+      title: La vie est belle
+      duration: 3:53
+      mp3: vie.mp3
+    - entryId: 98
+      title: Kratos
+      duration: 3:36
+      mp3: kratos.mp3
+    - entryId: 99
+      title: Luz de Luna
+      duration: 4:04
+      mp3: luz.mp3
+    - entryId: 100
+      title: Tu sais pas
+      duration: 3:31
+      mp3: tu.mp3
+    - entryId: 101
+      title: Sheita
+      duration: 4:16
+      mp3: sheita.mp3
+    - entryId: 102
+      title: Humain
+      duration: 4:38
+      mp3: humain.mp3
+    - entryId: 103
+      title: Bambina
+      duration: 4:46
+      mp3: bambina.mp3
+    - entryId: 104
+      title: Bené
+      duration: 3:10
+      mp3: bene.mp3
+    - entryId: 105
+      title: Uranus
+      duration: 4:00
+      mp3: uranus.mp3
+    - entryId: 106
+      title: Onizuka
+      duration: 4:12
+      mp3: onizuka.mp3
+    - entryId: 107
+      title: Jusqu'au dernier gramme
+      duration: 5:52
+      mp3: jusquau.mp3
+    - entryId: 187
+      title: Cramés
+      duration: 4:02
+      mp3: crames.mp3
+    - entryId: 188
+      title: Je t'haine
+      duration: 5:14
+      mp3: je.mp3
+
+- by: 6
+  entryId: 9
+  genre: [1, 4]
+  img: lemonde.png
+  releaseYear: 2015
+  title: Le monde Chico
+  description: >
+    Le monde Chico est le premier album studio du groupe de rap français PNL, sorti le 30 octobre 2015 sous le label QLF Records.
+  songs:
+    - entryId: 108
+      title: Le monde ou rien
+      duration: 4:16
+      mp3: monde.mp3
+    - entryId: 109
+      title: Sur Paname
+      duration: 4:07
+      mp3: paname.mp3
+    - entryId: 110
+      title: Oh Lala
+      duration: 4:07
+      mp3: oh.mp3
+    - entryId: 111
+      title: J'vends
+      duration: 3:50
+      mp3: jvends.mp3
+    - entryId: 112
+      title: Abonné
+      duration: 3:37
+      mp3: abonne.mp3
+    - entryId: 113
+      title: J'suis PNL
+      duration: 4:31
+      mp3: jsuispnl.mp3
+    - entryId: 114
+      title: Mexico
+      duration: 4:04
+      mp3: mexico.mp3
+    - entryId: 115 
+      title: Porte de Mesrine
+      duration: 4:51
+      mp3: porte.mp3
+    - entryId: 116
+      title: Dans ta rue
+      duration: 5:29
+      mp3: rue.mp3
+    - entryId: 117
+      title: Laisse
+      duration: 3:42
+      mp3: laisse.mp3
+    - entryId: 118
+      title: Loin des hommes
+      duration: 2:47
+      mp3: loin.mp3
+    - entryId: 119
+      title: Le M
+      duration: 4:09
+      mp3: lem.mp3
+    - entryId: 120
+      title: Rebenga
+      duration: 4:19
+      mp3: rebenga.mp3
+    - entryId: 121
+      title: Plus Tony Que Sosa
+      duration: 4:18
+      mp3: plus.mp3
+    - entryId: 122
+      title: Que la mif
+      duration: 4:23
+      mp3: mif.mp3
+    - entryId: 123
+      title: Tempête
+      duration: 3:58
+      mp3: tempete.mp3
+    - entryId: 124
+      title: Dans la soucoupe
+      duration: 3:46
+      mp3: soucoupe.mp3
+
+- by: 7
+  entryId: 10
+  genre: [1]
+  img: memoria.jpeg
+  releaseYear: 2022
+  title: Memoria
+  description: >
+    Memoria est le troisième album studio de Jazzy Bazz, sorti le 21 janvier 2022. Il fait suite à l'album Nuit paru en septembre 2018, et au projet collaboratif Private Club, conçu avec EDGE et Esso Luxueux et sorti en avril 2021.
+  songs:
+    - entryId: 125
+      title: Memoria
+      duration: 2:31
+      mp3: memoria.mp3
+    - entryId: 126
+      title: Coeur, Conscience
+      duration: 3:01
+      mp3: coeur.mp3
+    - entryId: 127
+      title: Panorama
+      duration: 2:41
+      mp3: panorama.mp3
+    - entryId: 128
+      title: Albiceleste
+      duration: 3:48
+      mp3: albiceleste.mp3
+    - entryId: 129
+      title: Nouvelle 3.14
+      duration: 3:07
+      mp3: nouvelle.mp3
+    - entryId: 130
+      title: Zone 19
+      duration: 2:55
+      mp3: zone.mp3
+    - entryId: 131
+      title: Élément 115
+      duration: 3:38
+      mp3: element.mp3
+    - entryId: 132
+      title: D.ieu
+      duration: 1:39
+      mp3: dieu.mp3
+    - entryId: 133
+      title: P-Town Blues
+      duration: 2:38
+      mp3: ptown.mp3
+    - entryId: 134
+      title: Interlude
+      duration: 1:14
+      mp3: interlude.mp3
+    - entryId: 135
+      title: Sablier
+      duration: 3:03
+      mp3: sablier.mp3
+    - entryId: 136
+      title: Arkham Anthem
+      duration: 3:22
+      mp3: arkham.mp3
+    - entryId: 137
+      title: Dark City
+      duration: 3:23
+      mp3: dark.mp3
+    - entryId: 138
+      title: Mental
+      duration: 2:17
+      mp3: mental.mp3
+    - entryId: 139
+      title: Memento Mori
+      duration: 2:03
+      mp3: memento.mp3
+    - entryId: 140
+      title: .RAW Spleen
+      duration: 3:25
+      mp3: raw.mp3
+    - entryId: 141
+      title: Destinée
+      duration: 3:01
+      mp3: destinee.mp3
+
+- by: 8
+  entryId: 11
+  genre: [1, 4]
+  img: nastragia.jpeg
+  releaseYear: 2023
+  title: N'a Stragia
+  description: >
+    N'a Stragia est le deuxième album studio du rappeur français Gambi, sorti le 9 juin 2023.
+  songs:
+    - entryId: 142
+      title: Start N Go
+      duration: 2:06
+      mp3: start.mp3
+    - entryId: 143
+      title: 1234
+      duration: 2:19
+      mp3: 1234.mp3
+    - entryId: 144
+      title: J'en veux plus
+      duration: 2:24
+      mp3: jen.mp3
+    - entryId: 145
+      title: Nuit éternelle
+      duration: 3:19
+      mp3: nuit.mp3
+    - entryId: 146
+      title: BBM
+      duration: 2:15
+      mp3: bbm.mp3
+    - entryId: 147
+      title: À L’ADRESSE
+      duration: 2:30
+      mp3: adresse.mp3
+    - entryId: 148
+      title: GUETTE
+      duration: 2:18
+      mp3: guette.mp3
+    - entryId: 149
+      title: Arrivederci
+      duration: 3:04
+      mp3: arrivederci.mp3
+    - entryId: 150
+      title: Sales idées (Interlude)
+      duration: 1:35
+      mp3: sales.mp3
+    - entryId: 151
+      title: C’EST PAS POSSIBLE
+      duration: 2:13
+      mp3: cest.mp3
+    - entryId: 152
+      title: J’AI NIQUÉ MA VIE
+      duration: 2:28
+      mp3: jai.mp3
+    - entryId: 153
+      title: Vida
+      duration: 2:10
+      mp3: vida.mp3
+    - entryId: 154
+      title: Mañana
+      duration: 2:24
+      mp3: manana.mp3
+    - entryId: 155
+      title: Debiel
+      duration: 2:15
+      mp3: debiel.mp3
+    - entryId: 156
+      title: PPP
+      duration: 2:28
+      mp3: ppp.mp3
+    - entryId: 157
+      title: Un dos tres
+      duration: 2:43
+      mp3: un.mp3
+    - entryId: 158
+      title: PETETE
+      duration: 2:03
+      mp3: petete.mp3
+    - entryId: 159
+      title: Weekend
+      duration: 2:17
+      mp3: weekend.mp3
+    - entryId: 160
+      title: À PERTE
+      duration: 2:55
+      mp3: a.mp3
+
+- by: 3
+  entryId: 12
+  genre: [1, 2]
+  img: ami.jpeg
+  releaseYear: 2023
+  title: AMI
+  description: >
+    Seul projet de l'année 2023 pour luther, AMI est un album de 3 titres.
+  songs:
+    - entryId: 161
+      title: inaudible
+      duration: 2:50
+      mp3: inaudible.mp3
+    - entryId: 162
+      title: uet
+      duration: 2:30
+      mp3: uet.mp3
+    - entryId: 163
+      title: virage
+      duration: 2:24
+      mp3: virage.mp3
+
+- by: 2
+  entryId: 13
+  genre: [1, 3]
+  img: lmf.jpeg
+  releaseYear: 2020
+  title: LMF
+  description: >
+    LMF est le deuxième album studio du rappeur français Freeze Corleone, sorti le 19 juin 2020.
+  songs:
+    - entryId: 164
+      title: Freeze Raël
+      duration: 4:30
+      mp3: freeze.mp3
+    - entryId: 165
+      title: Hors ligne
+      duration: 4:40
+      mp3: hors.mp3
+    - entryId: 166
+      title: Scellé part.2
+      duration: 2:50
+      mp3: scelle.mp3
+    - entryId: 167
+      title: Tarkov
+      duration: 3:52
+      mp3: tarkov.mp3
+    - entryId: 168
+      title: Rap catéchisme
+      duration: 3:00
+      mp3: rap.mp3
+    - entryId: 169
+      title: Stretch 4
+      duration: 2:56
+      mp3: stretch.mp3
+    - entryId: 170
+      title: Pas de refrain
+      duration: 2:55
+      mp3: pas.mp3
+    - entryId: 171
+      title: Big Pharma
+      duration: 3:41
+      mp3: big.mp3
+    - entryId: 172
+      title: Logo Audi
+      duration: 3:45
+      mp3: logo.mp3
+    - entryId: 173
+      title: Moncler
+      duration: 4:02
+      mp3: moncler.mp3
+    - entryId: 174
+      title: R.I.P. Pop Smoke
+      duration: 4:20
+      mp3: rip.mp3
+    - entryId: 175
+      title: L'art de la guerre
+      duration: 3:41
+      mp3: lart.mp3
+    - entryId: 176
+      title: Numérologie
+      duration: 3:50
+      mp3: numerologie.mp3
+    - entryId: 177
+      title: Dans les buissons
+      duration: 4:46
+      mp3: dans.mp3
+    - entryId: 178
+      title: Desiigner
+      duration: 3:07
+      mp3: desiigner.mp3
+    - entryId: 179
+      title: PDM
+      duration: 6:07
+      mp3: pdm.mp3
+    - entryId: 180
+      title: Chen Laden
+      duration: 3:52
+      mp3: chen.mp3
