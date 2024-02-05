@@ -920,7 +920,7 @@ $rechercheDB = $manager->getRechercheDB();
 
                         <section id="OtherArtists" class="results-section scrollable">
                             <h2>Autres Artistes <img src="/assets/icons/shape_3.svg"/></h2>
-                            <div class="content">
+                            <div id="contentOtherArtiste" class="content">
                             </div>
                         </section>
                     </section>

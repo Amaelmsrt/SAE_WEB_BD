@@ -127,34 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $recherche = str_replace('_', ' ', $recherche);
             $searchValue = urldecode($recherche);
             $manager = new Manager();
-            $result = $manager->getRechercheDB()->search($searchValue);
-            error_log(json_encode($result));
-            $response = array();
-            foreach ($result as $value) {
-                switch ($value['type']) {
-                    case 'artiste':
-                        $response[] = array(
-                            'type' => 'artiste',
-                            'id' => $value['id'],
-                            'nom' => $value['nom']
-                        );
-                        break;
-                    case 'album':
-                        $response[] = array(
-                            'type' => 'album',
-                            'id' => $value['id'],
-                            'nom' => $value['nom']
-                        );
-                        break;
-                    case 'son':
-                        $response[] = array(
-                            'type' => 'son',
-                            'id' => $value['id'],
-                            'nom' => $value['nom']
-                        );
-                        break;
-                }
-            }
+
+            $response = $manager->getRechercheDB()->getInfosSearch($searchValue);
+
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
             exit();

@@ -139,4 +139,14 @@ class SonDB
         }
         return $sonList;
     }
+
+    function getArtist(int $idSon): string
+    {
+        $sql = "SELECT nomArtiste FROM artiste JOIN album ON artiste.idArtiste = album.idArtiste JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        return $artist['nomArtiste'];
+    }
 }
