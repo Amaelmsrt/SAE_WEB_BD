@@ -209,6 +209,7 @@ body .left img{
     display: flex;
     align-items: center;
     margin-left: 0.7rem;
+    z-index: 2;
 }
 
 .text-field{
