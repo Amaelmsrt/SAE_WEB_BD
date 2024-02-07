@@ -70,8 +70,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuPrincipal, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuPrincipal, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
             clearActiveSections();
             sectionMenuPrincipal.classList.add("active-section");
             break;
@@ -85,8 +85,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuArtistes, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuArtistes, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuArtistes.classList.add("active-section");
@@ -101,8 +101,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuSons, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuSons, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuSons.classList.add("active-section");
@@ -117,8 +117,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuGenres, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuGenres, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuGenres.classList.add("active-section");
@@ -133,8 +133,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuUtilisateurs, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuUtilisateurs, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuUtilisateurs.classList.add("active-section");
@@ -148,8 +148,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuPlaylists, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuPlaylists, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuPlaylists.classList.add("active-section");
@@ -163,8 +163,8 @@ function changeCurrentMenu(e, index) {
             gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
             gsap.to(goToAlbums, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
 
-            gsap.fromTo(sectionMenuAlbums, {opacity: 0, y: index < curIndex ? "100vw" : "-100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "-100vw" : "100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
+            gsap.fromTo(sectionMenuAlbums, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
+            gsap.to(curSection, {opacity:0, y: index < curIndex ? "c100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
 
             clearActiveSections();
             sectionMenuAlbums.classList.add("active-section");
