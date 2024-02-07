@@ -336,7 +336,7 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $playlist->getNom() ?></td>
                                 <td>
                                     <button class="consultation">
-
+                                        Consulter
                                     </button>
                                 </td>
                                 <td>
@@ -372,12 +372,16 @@ $liste_albums = $albumDB->findAll();
                             <tr>
                                 <td><?= $album->getId() ?></td>
                                 <td><?= $album->getTitre() ?></td>
-                                <td><?= $album->getDescription() ?></td>
+                                <td>
+                                    <button class="consultation">
+                                        Consulter
+                                    </button>
+                                </td>
                                 <td><?= $album->getDate() ?></td>
                                 <td> </td>
                                 <td>
                                     <button class="consultation">
-
+                                        Consulter
                                     </button>
                                 </td>
                                 <td>
