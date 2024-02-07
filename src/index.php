@@ -8,6 +8,7 @@ require_once 'Configuration/config.php';
 require 'Classes/autoloader.php'; 
 Autoloader::register(); 
 
+ini_set('memory_limit', '2048M');
 
 $action = $_REQUEST['action'] ?? "connexion";
 $layout = "main";
