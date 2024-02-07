@@ -87,19 +87,21 @@ class SonDB
 
     function findAlbum(int $idAlbum): array
     {
-        $sql = "SELECT * FROM son WHERE idAlbum = :idAlbum";
+        $sql = "SELECT idSon FROM son WHERE idAlbum = :idAlbum";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
         $stmt->execute();
-        $sons = $stmt->fetchAll();
         $sonList = [];
-        foreach ($sons as $son) {
-            // fichir mp3 est un blob
-            $mp3 = base64_encode($son['fichierMp3']);
-            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $mp3, $son['idAlbum'], $son['nbStream']);
+        $start = microtime(true);
+        while ($son = $stmt->fetch()) {
+            $sonList[] = $son['idSon'];
         }
+        $end = microtime(true);
+        $time = $end - $start;
+        error_log("findAlbum: " . $time);
         return $sonList;
     }
+
 
     function findTopArtist(int $idArtiste): array
     {

@@ -1468,43 +1468,9 @@ $rechercheDB = $manager->getRechercheDB();
             </section>
             <section class="file-attente">
                 <h4>A suivre</h4>
-                <div class="content">
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img class="btn-file-attente" src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
+                <div class="content" id="content-file">
+
+
                 </div>
             </section>
         </div>

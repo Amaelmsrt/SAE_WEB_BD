@@ -2,16 +2,135 @@ var listeDattenteObj = ListeDattente.getInstance() ;
 
 if (listeDattenteObj.numSonEnCours) {
     recupSon(listeDattenteObj.numSonEnCours);
+    handleFileDattente();
 }
 
 
+function majIndex(){
+    
+}
+
+function handleFileDattente(){
+    const attentContainer = document.getElementById('content-file');
+    attentContainer.innerHTML = '';
+    for (let i = listeDattenteObj.indexSonEnCours + 1; i < listeDattenteObj.liste.length + listeDattenteObj.indexSonEnCours; i++) {
+        const idSon = listeDattenteObj.liste[i % listeDattenteObj.liste.length];
+        fetch('/controlleurApi.php/infosSon/' + idSon, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            const div = document.createElement('div');
+            div.classList.add('artiste-row', 'glass');
+            div.innerHTML = `
+                <div class="infos">
+                    <div class="container-cover">
+                        <img src="data:image/png;base64,${data.cover}" alt="cover">
+                    </div>
+                    <div class="texts">
+                        <h4>${data.titre}</h4>
+                        <h5>${data.artiste}</h5>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="edit-list">
+                        <img class="btn-file-attente dow-file" src="./Assets/icons/down-arrow.svg" alt="down" index="${i}"/>
+                        <img class="btn-file-attente up-file" src="./Assets/icons/up-arrow.svg" alt="up" index="${i}"/>
+                    </div>
+                    <img class="btn-file-attente close-file" src="./Assets/icons/close.svg" alt="close" index="${i}"/>
+                </div>
+            `;
+            attentContainer.appendChild(div);
+            const btnDown = div.querySelector('.actions .dow-file');
+            btnDown.addEventListener('click', function () {
+                // On change dans la liste d'attente
+                listeDattenteObj.moveSon(parseInt(this.getAttribute('index')), 1);
+
+                // On change dans le DOM sans utiliser handleFileDattente
+                const div = this.parentElement.parentElement.parentElement
+                const nextDiv = div.nextElementSibling;
+                if (nextDiv) {
+                    attentContainer.insertBefore(nextDiv, div);
+                    // On change les index des boutons du div cliqué
+                    const index = parseInt(this.getAttribute('index'));
+                    this.setAttribute('index', index + 1);
+                    const upBtn = div.querySelector('.actions .up-file');
+                    upBtn.setAttribute('index', index + 1);
+                    const close = div.querySelector('.actions .close-file');
+                    close.setAttribute('index', index + 1);
+
+                    // On change les index des boutons du div suivant
+                    const nextUpBtn = nextDiv.querySelector('.actions .up-file');
+                    nextUpBtn.setAttribute('index', index);
+                    const nextDownBtn = nextDiv.querySelector('.actions .dow-file');
+                    nextDownBtn.setAttribute('index', index);
+                    const nextClose = nextDiv.querySelector('.actions .close-file');
+                    nextClose.setAttribute('index', index);
+                }
+            });
+
+            const btnUp = div.querySelector('.actions .up-file');
+            btnUp.addEventListener('click', function () {
+                listeDattenteObj.moveSon(parseInt(this.getAttribute('index')), -1);
+
+                const div = this.parentElement.parentElement.parentElement
+                const prevDiv = div.previousElementSibling;
+
+                if (prevDiv) {
+                    attentContainer.insertBefore(div, prevDiv);
+                    // On change les index des boutons du div cliqué
+                    const index = parseInt(this.getAttribute('index'));
+                    this.setAttribute('index', index - 1);
+                    const downBtn = div.querySelector('.actions .dow-file');
+                    downBtn.setAttribute('index', index - 1);
+                    const close = div.querySelector('.actions .close-file');
+                    close.setAttribute('index', index - 1);
+
+                    // On change les index des boutons du div précédent
+                    const prevUpBtn = prevDiv.querySelector('.actions .up-file');
+                    prevUpBtn.setAttribute('index', index);
+                    const prevDownBtn = prevDiv.querySelector('.actions .dow-file');
+                    prevDownBtn.setAttribute('index', index);
+                    const prevClose = prevDiv.querySelector('.actions .close-file');
+                    prevClose.setAttribute('index', index);
+                }
+            });
+
+            const btnClose = div.querySelector('.actions .close-file');
+            btnClose.addEventListener('click', function () {
+                listeDattenteObj.removeSon(parseInt(this.getAttribute('index')));
+                const index = parseInt(this.getAttribute('index'));
+                div.remove();
+                // on change les index des boutons des div qui étaient après celui supprimé car ils ont été décalés
+                const divs = attentContainer.querySelectorAll('.artiste-row');
+                for (let i = 0; i < divs.length; i++) {
+                    if (parseInt(divs[i].querySelector('.actions .dow-file').getAttribute('index')) > index) {
+                        const downBtn = divs[i].querySelector('.actions .dow-file');
+                        downBtn.setAttribute('index', parseInt(downBtn.getAttribute('index')) - 1);
+                        const upBtn = divs[i].querySelector('.actions .up-file');
+                        upBtn.setAttribute('index', parseInt(upBtn.getAttribute('index')) - 1);
+                        const close = divs[i].querySelector('.actions .close-file');
+                        close.setAttribute('index', parseInt(close.getAttribute('index')) - 1);
+                    }
+                }
+            });
+        })
+    }
+}
 
 
+// Slider pour le volume
 const sliderSons = document.querySelectorAll('.bar.vertical');
-console.log(sliderSons);
 sliderSons.forEach(function (slider) {
     slider.addEventListener('change', function () {
-        console.log('change');
         const pourcentage = slider.value;
         listeDattenteObj.sonEnCours.volume = pourcentage / 100;
     });
@@ -217,7 +336,6 @@ btnNextR.addEventListener('click', function () {
         listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours + 1) % listeDattenteObj.liste.length);
         var idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
         jouerSon(idSon);
-
     }
 });
 
@@ -260,16 +378,17 @@ function handleJouerAlbum(button){
         }
         listeDattenteObj.setSonEnCours(null, null);
         listeDattenteObj.setListe([]);
-        lesAudios.forEach(function (audio) {
+        lesAudios.forEach(function (audioId) {
             if (cpt === 0) {
-                jouerSon(audio.id);
-                listeDattenteObj.addSon(audio.id);
+                jouerSon(audioId);
+                listeDattenteObj.addSon(audioId);
             }
             else{
-                listeDattenteObj.addSon(audio.id);
+                listeDattenteObj.addSon(audioId);
             }
             cpt = cpt + 1;
         });
+        // handleFileDattente();
     })
 }
 
@@ -293,6 +412,7 @@ function handleJouerSonArtiste(button){
         let cpt = 0;
         listeDattenteObj.setIndexSonEnCours(0);
         listeDattenteObj.setListe([]);
+        // handleFileDattente();
         lesAudios.forEach(function (audio) {
             if (cpt === 0) {
                 jouerSon(audio.id);
@@ -303,6 +423,7 @@ function handleJouerSonArtiste(button){
             }
             cpt = cpt + 1;
         });
+        // handleFileDattente();
     })
 }
 
@@ -332,10 +453,16 @@ function jouerSon(idSon){
         }
         audio.src = audioBlobURL;
         audio.load();
+        const sliders = document.querySelectorAll('.bar');
+        sliders.forEach(function (slider) {
+            const pourcentage = slider.value;
+            audio.volume = pourcentage / 100;
+        });
         listeDattenteObj.setSonEnCours(audio, idSon);
         const img = document.getElementById('imgPlayPause');
         img.src = "/assets/icons/play-lg.svg";
         audio.play();
+        handleFileDattente();
     })
 }
 
@@ -390,7 +517,6 @@ function miseEnPlaceSon(idSon){
                 slider.value = pourcentage;
 
                 slider.addEventListener('change', function () {
-                    console.log('change');
                     const pourcentage = slider.value;
                     const time = pourcentage / 100 * listeDattenteObj.sonEnCours.duration;
                     listeDattenteObj.sonEnCours.currentTime = time;

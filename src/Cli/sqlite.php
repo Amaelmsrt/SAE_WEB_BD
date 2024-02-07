@@ -47,6 +47,7 @@ define('CREATE_SON_TABLE', <<<SQL
         idAlbum INTEGER NOT NULL,
         FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
     );
+    CREATE INDEX idx_idAlbum ON son (idAlbum);
 SQL);
 
 define('CREATE_SORTIR_TABLE', <<<SQL
