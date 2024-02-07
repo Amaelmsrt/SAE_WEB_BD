@@ -231,14 +231,6 @@ $rechercheDB = $manager->getRechercheDB();
                                             </li>
                                             <li>
                                                 <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
                                                     <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>                                                        
@@ -666,23 +658,6 @@ $rechercheDB = $manager->getRechercheDB();
                         <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
                     <section class="resultat">
-                        <!-- l'idée là c'est de montrer à gauche le résultat le plus
-                            pertinent.
-                            Exemple: si on tape ga: on s'attend à avoir gazo en truc le plus pertinent
-                            puis du coup si on à un artiste à gauche: on met ses 3 titres les plus connus à droite.
-
-                            Si le résultat le plus pertinent à gauche c'est un titre, on l'affiche à gauche
-                            et à droite on va mettre d'autres résultats qui peuvent être intéressants 
-                            en fonction de la recherche
-
-                            si le résultat le plus pertinent à gauche c'est un album, on l'affiche à gauche
-                            à droite on met les 3 titres de l'album les plus connus
-                        -->
-                        <!--
-                            et en dessous on va faire un listing à l'horizontal de 5 albums/titres max qui peuvent correspondre à la recherche
-
-                            En dessous on va faire un listing à l'horizontal de 5 artistes max qui peuvent correspondre à la recherche
-                        -->
                         <section id="MainResults" class="results-section">
                             <h2>Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
                             <div class="content">
@@ -699,7 +674,7 @@ $rechercheDB = $manager->getRechercheDB();
                                     </div>
                                 </div>
                                 <div class="other-results">
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-1">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -769,7 +744,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
                                 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-2">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -839,7 +814,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-3">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -914,7 +889,7 @@ $rechercheDB = $manager->getRechercheDB();
 
                         <section id="OtherAlbums" class="results-section scrollable">
                             <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
-                            <div id="contentOtherAlbums" class="content">
+                            <div id="contentOtherAlbums" class="content" style="width: 1000px;">
                             </div>
                         </section>
 
@@ -964,7 +939,7 @@ $rechercheDB = $manager->getRechercheDB();
                                     </div>
                                 </div>
                                 <div class="actions">
-                                   <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
+                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                 </div>
                             </div>
                             <div class="menu">
@@ -1019,7 +994,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </button>
                                     </li>
                                 </ul>
-                               </div>
+                            </div>
                         </div>
 
                     </div>

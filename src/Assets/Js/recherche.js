@@ -52,6 +52,9 @@ function miseEnPlaceInfos(data){
         // Droite
         for (let i = 0; i < 3; i++) {
             if (principal.topSon[i]){
+                const div = document.getElementById('otherResults-' + (i + 1));
+                div.setAttribute('data-id-song', principal.topSon[i].id);
+                div.addEventListener('click', function () {handleJouerSon(this);});
                 const cover = document.getElementById('cover-best-recherche-2-' + (i + 1));
                 cover.classList.remove('no-result');
                 cover.setAttribute('src', "data:image/png;base64," + principal.topSon[i].cover);
@@ -70,6 +73,9 @@ function miseEnPlaceInfos(data){
                 img.classList.remove('no-result');
             }
             else{
+                const div = document.getElementById('otherResults-' + (i + 1));
+                div.setAttribute('data-id-song', '');
+                div.removeEventListener('click', function () {handleJouerSon(this);});
                 const cover = document.getElementById('cover-best-recherche-2-' + (i + 1));
                 cover.setAttribute('src', '');
                 const type = document.getElementById('type-best-recherche-2-' + (i + 1));
@@ -166,6 +172,8 @@ function noresult(){
     img.classList.add('no-result');
 
     for (let i = 1; i <= 3; i++) {
+        const div = document.getElementById('otherResults-' + (i));
+        div.setAttribute('data-id-song', '');
         const cover = document.getElementById('cover-best-recherche-2-' + i);
         cover.setAttribute('src', '');
         const type = document.getElementById('type-best-recherche-2-' + i);

@@ -327,15 +327,10 @@ boutons.forEach(function (bouton) {
 
 
 // Lancement son top d'un artiste
-
 var boutons = document.querySelectorAll('.topSon');
 boutons.forEach(function (bouton) {
     bouton.addEventListener('click', function () {
-        var idSon = this.getAttribute('data-id-song');
-        listeDattenteObj.setIndexSonEnCours(0);
-        listeDattenteObj.setListe([]);
-        jouerSon(idSon);
-        listeDattenteObj.addSon(idSon);
+        handleJouerSon(this);
     });
 });
 
@@ -450,6 +445,16 @@ function handleJouerSonArtiste(button){
         });
         // handleFileDattente();
     })
+}
+
+function handleJouerSon(button){
+    var idSon = button.getAttribute('data-id-song');
+    if (idSon != "" && idSon != null){
+        listeDattenteObj.setIndexSonEnCours(0);
+        listeDattenteObj.setListe([]);
+        jouerSon(idSon);
+        listeDattenteObj.addSon(idSon);
+    }
 }
 
 

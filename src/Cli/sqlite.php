@@ -123,10 +123,10 @@ SQL);
 
 define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
     CREATE TABLE IF NOT EXISTS ECOUTERRECEMENT (
+        idEcout INTEGER PRIMARY KEY AUTOINCREMENT,
         idUtilisateur INTEGER NOT NULL,
         idSon INTEGER NOT NULL,
         dataHH DATETIME NOT NULL,
-        PRIMARY KEY (idUtilisateur, idSon, dataHH),
         FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
         FOREIGN KEY (idSon) REFERENCES SON(idSon)
     );

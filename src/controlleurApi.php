@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $son = $manager->getSonDB()->find($id);
 
             $manager->getSonDB()->addStream($id);
-            session_start();
             $manager->getSonDB()->addEcouter($id, $_SESSION['user_id']);
 
             header('Content-Type: audio/mpeg');
