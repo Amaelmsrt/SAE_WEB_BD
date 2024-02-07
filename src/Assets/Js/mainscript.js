@@ -41,6 +41,9 @@ const popUpPlaylist = document.querySelector("#popUpPlaylist")
 const btnsToggleVolumeBar = document.querySelectorAll(".btn-toggle-volume-bar")
 const volumeBars = document.querySelectorAll(".volume-bar")
 
+const contentPlayer = document.querySelector("#contentPlayer")
+const contentPlayerExitBtn = document.querySelector("#contentPlayerExitBtn")
+
 // Fonction pour changer de formulaire
 function changeCurrentMenu(e,index) {
     e?.preventDefault();
@@ -200,7 +203,6 @@ function handleUnfocusEverything(e) {
         closePlaylistPopUp()
         return;
     }
-    console.log(e.target)
     if (!e.target.classList.contains("isVolume")){
         volumeBars.forEach(volumeBar => {
             if (volumeBar.style.display == "flex"){
@@ -356,5 +358,410 @@ volumeBars.forEach(volumeBar => {
 })
 
 btnsToggleVolumeBar.forEach(btn => {
-    btn.addEventListener('click', toggleVolumeBar)
+    btn.addEventListener('click', toggleVolumeBar);
 })
+
+function handleContentPlayerClick(e){
+    e.stopPropagation();
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 576){
+
+        // en dessous de 756px c'est 8
+        const remToPx = 8
+        const vwToPx = window.innerWidth / 100
+        const defaultBorderRadiusCover = 10;
+
+        // on doit calculer la taille de la cover pour qu'elle passe de 8rem à 70vw
+        // sachant qu'on connait remToPx et vwToPx
+        console.log(vwToPx, remToPx)
+        console.log(70*vwToPx)
+        console.log(8*remToPx)
+        const scaleValueForCover = (70*vwToPx) / (8*remToPx)
+        console.log(scaleValueForCover)
+        // duplique le content player et le met en position absolute
+
+        console.log("duplication")
+        const newSizes = "70vw"
+        const newContentPlayer = contentPlayer.cloneNode(true);
+        newContentPlayer.style.position = "absolute";
+        newContentPlayer.style.zIndex = -1;
+        // je veux lui appliquer tous les styles que j'applique après avec gsap
+        newContentPlayer.style.bottom = "0vh";
+        newContentPlayer.style.left = "0";
+        newContentPlayer.style.height = "100vh";
+        newContentPlayer.style.maxHeight = "100vh";
+        newContentPlayer.style.width = "100%";
+        newContentPlayer.style.maxWidth = "100%";
+        newContentPlayer.style.transform = "translateY(0vh)";
+        newContentPlayer.style.zIndex = 1000;
+        newContentPlayer.style.opacity = 0;
+        
+        const duplicatedBackground = newContentPlayer.querySelector(".background")
+        const duplicatedTopContent = newContentPlayer.querySelector(".top-content")
+        const duplicatedCoverContainer = newContentPlayer.querySelector(".cover-container")
+        const duplicatedPlayPause = newContentPlayer.querySelector(".play-pause")
+        const duplicatedInnerContent = newContentPlayer.querySelector(".inner-content")
+        const duplicatedTopSm = newContentPlayer.querySelector(".top-sm")
+        const duplicatedLikeSong = newContentPlayer.querySelector(".likeSong")
+        const duplicatedMediaInfos = newContentPlayer.querySelector(".media-infos")
+        const duplicatedActions = newContentPlayer.querySelector(".actions")
+        const duplicatedFileAttente = newContentPlayer.querySelector(".file-attente")
+        const duplicatedProgresssm = newContentPlayer.querySelector(".progress.sm")
+
+        const duplicatedCurSong = newContentPlayer.querySelector("#nom-song")
+        const duplicatedCurArtiste = newContentPlayer.querySelector("#nom-artist")
+        const duplicatedMainHeart = newContentPlayer.querySelector("#main-heart")
+
+        newContentPlayer.classList.add("duplicatedContentPlayer")
+        newContentPlayer.classList.remove("realContentPlayer")
+        const duplicatedContentPlayerCloseBtn = newContentPlayer.querySelector("#contentPlayerExitBtn")
+        duplicatedContentPlayerCloseBtn.addEventListener('click', closeContentPlayer)
+
+        duplicatedBackground.style.height = "20%";
+
+        duplicatedTopContent.style.flexDirection = "column";
+        
+        duplicatedCoverContainer.style.width = newSizes;
+        duplicatedCoverContainer.style.opacity = 1;
+        duplicatedCoverContainer.style.height = newSizes;
+        duplicatedCoverContainer.style.maxWidth = newSizes;
+        duplicatedCoverContainer.style.maxHeight = newSizes;
+        duplicatedCoverContainer.style.borderRadius = (defaultBorderRadiusCover * scaleValueForCover)+"px";
+
+        duplicatedPlayPause.style.opacity = 0;
+        
+        duplicatedInnerContent.style.justifyContent = "unset";
+        duplicatedInnerContent.style.padding = "4rem";
+
+        duplicatedMediaInfos.style.width = newSizes;
+        duplicatedMediaInfos.style.flexDirection = "column";
+
+        duplicatedActions.style.display = "flex";
+        duplicatedActions.style.opacity = 1;
+        duplicatedActions.style.width = "100%";
+        duplicatedActions.style.gap = "5rem";
+        duplicatedActions.style.marginTop = "5rem";
+
+        duplicatedTopSm.style.display = "flex";
+        
+        duplicatedFileAttente.style.display = "flex";
+
+        duplicatedFileAttente.style.opacity = 1;
+
+        duplicatedLikeSong.style.transform = "translateX(9rem)";
+
+        duplicatedProgresssm.style.display = "none";
+
+        contentPlayer.parentElement.appendChild(newContentPlayer);
+
+        const mainNav = document.querySelector(".main-nav")
+        const background = contentPlayer.querySelector(".background")
+        const topContent = contentPlayer.querySelector(".top-content")
+        const coverContainer = contentPlayer.querySelector(".cover-container")
+        const playPause = contentPlayer.querySelector(".play-pause")
+        const innerContent = contentPlayer.querySelector(".inner-content")
+        const topSm = contentPlayer.querySelector(".top-sm")
+        const likeSong = contentPlayer.querySelector(".likeSong")
+        const mediaInfos = contentPlayer.querySelector(".media-infos")
+        const actions = contentPlayer.querySelector(".actions")
+        const fileAttente = contentPlayer.querySelector(".file-attente")
+        const progresssm = contentPlayer.querySelector(".progress.sm")
+        
+        const curSong = contentPlayer.querySelector("#nom-song")
+        const curArtiste = contentPlayer.querySelector("#nom-artist")
+        const mainHeart = contentPlayer.querySelector("#main-heart")
+
+        const xCurSong = curSong.getBoundingClientRect().x
+        const yCurSong = curSong.getBoundingClientRect().y
+        const heightCurSong = curSong.getBoundingClientRect().height
+        const widthCurSong = curSong.getBoundingClientRect().width
+
+        const xCurSongDefault = duplicatedCurSong.getBoundingClientRect().x
+        const yCurSongDefault = duplicatedCurSong.getBoundingClientRect().y
+
+        const newCurSongX = -widthCurSong + xCurSongDefault - 7
+        
+        const addedY = 8 // ce qu'on ajoute en gap
+        
+        gsap.to(curSong, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+        gsap.to(curArtiste, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+
+        const xMainHeart = mainHeart.getBoundingClientRect().x
+        const yMainHeart = mainHeart.getBoundingClientRect().y
+        const widthMainHeart = mainHeart.getBoundingClientRect().width
+
+        const xMainHeartDefault = duplicatedMainHeart.getBoundingClientRect().x
+        const yMainHeartDefault = duplicatedMainHeart.getBoundingClientRect().y
+
+        const newHeartX = -xMainHeart + xMainHeartDefault - (widthMainHeart/2) +3
+
+        gsap.to(mainHeart, {x:newHeartX,y:addedY, duration:0.4, ease:"custom"})
+
+        gsap.registerPlugin(CustomEase);
+
+        contentPlayer.style.overflowX = "hidden";
+
+        CustomEase.create("custom", "M0,0 C0.5,0 0.5,1 1,1");
+
+        // je veux que le mainnav perde en opacité et descende en bas
+
+        gsap.to(mainNav, {opacity:0, y:"10vh", duration:0.4, ease:"custom"})
+
+        gsap.to(contentPlayer, {
+            bottom:"0vh", 
+            left:0,
+            y: 0,
+            height:"100vh",
+            maxHeight:"100vh",
+            width:"100%",
+            maxWidth:"100%", 
+            duration:0.4,
+            ease:"custom"
+        })
+
+        gsap.to(background, {height:"20%", opacity:1, duration:0.4, ease:"custom"})
+
+        const xDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().x
+        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().y
+
+        const duplicatedCoverBorderSize = 70 * vwToPx
+
+        console.log("objectifs")
+        console.log(xDuplicatedCover, yDuplicatedCover)
+
+        console.log("resultats")
+        const xCoverDefault = coverContainer.getBoundingClientRect().x
+        // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
+        //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
+        const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault - 1
+        const resY = yDuplicatedCover - (duplicatedCoverBorderSize) + yDuplicatedCover - 6
+
+        gsap.to(coverContainer, {
+            scale:scaleValueForCover,
+            duration:0.4,
+            x: resX,
+            y: resY,
+            // je veux le mettre en haut à gauche
+            ease:"custom"
+        })
+        
+        gsap.to(playPause, {opacity:0, duration:0.2, ease:"custom"})
+        gsap.to(progresssm, {display:"none", opacity:0, duration:0.4, ease:"custom"})
+
+        console.log(coverContainer.getBoundingClientRect())
+
+        gsap.to(newContentPlayer, {opacity:1, zIndex:1000, duration:0.6, delay:0.2, ease:"custom"})
+
+        setTimeout(() => {
+            contentPlayer.style.opacity = 0;
+            contentPlayer.style.display = "block";
+            contentPlayer.style.zIndex = 2000;
+
+            // on remet le contentplayer avec tous ses styles par défaut
+
+            // on va reset les transform sur les textes et les heart
+
+            gsap.to(curSong, {x:0, y:0, duration:0, ease:"custom"})
+            gsap.to(curArtiste, {x:0, y:0, duration:0, ease:"custom"})
+            gsap.to(mainHeart, {x:0, y:0, duration:0, ease:"custom"})
+
+            mainNav.style.opacity = 1;
+            mainNav.style.y = 0;
+
+
+            contentPlayer.style.bottom = "10vh";
+            contentPlayer.style.left = "2%";
+            contentPlayer.style.transform = "translateY(10%)";
+            contentPlayer.style.height = "10vh";
+            contentPlayer.style.maxHeight = "10vh";
+            contentPlayer.style.width = "96%";
+            contentPlayer.style.maxWidth = "96%";
+            contentPlayer.style.overflowX = "hidden";
+
+            background.style.height = "100%";
+            background.style.opacity = 1;
+
+            topContent.style.flexDirection = "row";
+
+            const finalSizes = "8rem"
+            // on va reset le scale et les translate de la cover
+            gsap.to(coverContainer, {scale:1, x:0, y:0, duration:0, ease:"custom"})
+            coverContainer.style.width = finalSizes;
+            coverContainer.style.height = finalSizes;
+            coverContainer.style.maxWidth = finalSizes;
+            coverContainer.style.maxHeight = finalSizes;
+
+            playPause.style.opacity = 1;
+
+            innerContent.style.justifyContent = "center";
+            innerContent.style.padding = "1rem 2rem";
+
+            actions.style.display = "none";
+
+            fileAttente.style.display = "none";
+
+            mediaInfos.style.width = "100%";
+
+            topSm.style.display = "none";
+
+            likeSong.style.transform = "translateX(0)";
+
+            progresssm.style.display = "flex";
+            gsap.to(progresssm, {opacity:1, duration:0, ease:"custom"})
+        }, 800);
+    }
+}
+
+function closeContentPlayer(e){
+    e.stopPropagation();
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 576){
+
+        // en dessous de 756px c'est 8
+        const remToPx = 8
+        const vwToPx = window.innerWidth / 100
+        // on doit calculer la taille de la cover pour qu'elle passe de 8rem à 70vw
+        // sachant qu'on connait remToPx et vwToPx
+        console.log(vwToPx, remToPx)
+        console.log(70*vwToPx)
+        console.log(8*remToPx)
+        const scaleValueForCover = (8*remToPx) / (70*vwToPx) 
+        console.log(scaleValueForCover)
+        // duplique le content player et le met en position absolute
+
+        const newSizes = "8rem"
+        const newContentPlayer = contentPlayer;
+        
+        const newBackground = newContentPlayer.querySelector(".background")
+        const newTopContent = newContentPlayer.querySelector(".top-content")
+        const newCoverContainer = newContentPlayer.querySelector(".cover-container")
+        const newPlayPause = newContentPlayer.querySelector(".play-pause")
+        const newInnerContent = newContentPlayer.querySelector(".inner-content")
+        const newTopSm = newContentPlayer.querySelector(".top-sm")
+        const newLikeSong = newContentPlayer.querySelector(".likeSong")
+        const newMediaInfos = newContentPlayer.querySelector(".media-infos")
+        const newActions = newContentPlayer.querySelector(".actions")
+        const newProgresssm = newContentPlayer.querySelector(".progress.sm")
+
+        const newCurSong = newContentPlayer.querySelector("#nom-song")
+        const newCurArtiste = newContentPlayer.querySelector("#nom-artist")
+        const newMainHeart = newContentPlayer.querySelector("#main-heart")
+
+        // le reste du code
+
+
+        const mainNav = document.querySelector(".main-nav")
+        const oldContentPlayer = document.querySelector(".duplicatedContentPlayer")
+        
+        const background = oldContentPlayer.querySelector(".background")
+        const topContent = oldContentPlayer.querySelector(".top-content")
+        const coverContainer = oldContentPlayer.querySelector(".cover-container")
+        const playPause = oldContentPlayer.querySelector(".play-pause")
+        const innerContent = oldContentPlayer.querySelector(".inner-content")
+        const topSm = oldContentPlayer.querySelector(".top-sm")
+        const likeSong = oldContentPlayer.querySelector(".likeSong")
+        const mediaInfos = oldContentPlayer.querySelector(".media-infos")
+        const actions = oldContentPlayer.querySelector(".actions")
+        const fileAttente = oldContentPlayer.querySelector(".file-attente")
+        const progresssm = oldContentPlayer.querySelector(".progress.sm")
+        
+        const curSong = oldContentPlayer.querySelector("#nom-song")
+        const curArtiste = oldContentPlayer.querySelector("#nom-artist")
+        const mainHeart = oldContentPlayer.querySelector("#main-heart")
+
+        const xCurSong = curSong.getBoundingClientRect().x
+        const yCurSong = curSong.getBoundingClientRect().y
+        const heightCurSong = curSong.getBoundingClientRect().height
+        const widthCurSong = curSong.getBoundingClientRect().width
+
+        const xCurSongDefault = newCurSong.getBoundingClientRect().x
+        const yCurSongDefault = newCurSong.getBoundingClientRect().y
+
+        const newCurSongX = -widthCurSong + xCurSongDefault - 7
+        
+        const addedY = 8 // ce qu'on ajoute en gap
+        
+        gsap.to(curSong, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+        gsap.to(curArtiste, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+
+        const xMainHeart = mainHeart.getBoundingClientRect().x
+        const yMainHeart = mainHeart.getBoundingClientRect().y
+        const widthMainHeart = mainHeart.getBoundingClientRect().width
+
+        const xMainHeartDefault = newMainHeart.getBoundingClientRect().x
+        const yMainHeartDefault = newMainHeart.getBoundingClientRect().y
+
+        const newHeartX = -xMainHeart + xMainHeartDefault - (widthMainHeart/2) +3
+
+        gsap.to(mainHeart, {x:newHeartX,y:addedY, duration:0.4, ease:"custom"})
+
+        gsap.registerPlugin(CustomEase);
+
+        oldContentPlayer.style.overflowX = "hidden";
+        innerContent.style.overflowY = "hidden";
+
+        CustomEase.create("custom", "M0,0 C0.5,0 0.5,1 1,1");
+
+        // je veux que le mainnav perde en opacité et descende en bas
+
+        gsap.to(mainNav, {opacity:1, y:"0vh", duration:0.4, ease:"custom"})
+
+        gsap.to(oldContentPlayer, {
+            bottom:"10vh", 
+            left:"2%",
+            y: "10%",
+            height:"10vh",
+            maxHeight:"10vh",
+            width:"96%",
+            maxWidth:"96%", 
+            duration:0.4,
+            ease:"custom",
+            zIndex: 999
+        })
+
+        gsap.to(background, {height:"100%", opacity:1, duration:0.4, ease:"custom"})
+
+        const xNewCover = 0
+        const yNewCover = 0
+
+        const newCoverBorderSize = 8 * remToPx
+
+        console.log("objectifs")
+        console.log(xNewCover, yNewCover)
+
+        console.log("resultats")
+        const xCoverDuplicated = coverContainer.getBoundingClientRect().x
+        // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
+        //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
+        const resX = -xNewCover + (newCoverBorderSize/2) + xNewCover + xCoverDuplicated - 1
+        const resY = yNewCover - (newCoverBorderSize) + yNewCover - 6
+
+        gsap.to(coverContainer, {
+            scale:scaleValueForCover,
+            duration:0.5,
+            x: -2*resX,
+            y: resY,
+            // je veux le mettre en haut à gauche
+            ease:"custom"
+        })
+        
+        gsap.to(playPause, {opacity:1, duration:0.2, ease:"custom"})
+        gsap.to(progresssm, {display:"flex", opacity:1, duration:0.4, ease:"custom"})
+
+  
+        gsap.to(newContentPlayer, {opacity:1, zIndex:1000, duration:0.6, delay:0.2, ease:"custom"})
+        
+        setTimeout(() => {
+            // on va suppr le oldContentPlayer
+            
+            oldContentPlayer.remove();
+            
+        }, 800);
+    }
+}
+
+console.log(contentPlayer)
+
+contentPlayer.addEventListener('click', handleContentPlayerClick)
+
+contentPlayerExitBtn.addEventListener('click', closeContentPlayer)
