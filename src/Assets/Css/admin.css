@@ -331,6 +331,101 @@ header {
     display: flex;
     gap: 1.15rem;
     height: 100%;
+    flex-direction: column;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem;
+}
 
+thead {
+    background: var(--background-secondary);
+}
+
+th, td {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-color-secondary);
+    text-align: left;
+    color: var(--yellow);
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.btn-modifier {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-modifier:hover {
+    filter: brightness(0.8);
+}
+
+.btn-supprimer {
+    background-color: var(--background-color);
+    color: var(--yellow);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-supprimer:hover {
+    filter: brightness(0.8);
+}
+
+#tableArtistes td {
+    width: 25%;
+}
+
+#tableSons td {
+    width: 25%;
+}
+
+#tableGenres td {
+    width: 33%;
+}
+
+#tableUtilisateurs td {
+    width: 12.5%;
+}
+
+#tablePlaylists td {
+    width: 25%;
+}
+
+#tableAlbums td {
+    width: 12.5%;
+}
+
+.consultation {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.consultation:hover {
+    filter: brightness(0.8);
+}

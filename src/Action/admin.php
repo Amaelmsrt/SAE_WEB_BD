@@ -146,7 +146,7 @@ $liste_albums = $albumDB->findAll();
                             <h3>Sons</h3>
                             <p>Les sons de l'application</p>
                         </div>
-                    </butt>
+                    </button>
                     <button class="admin-content">
                         <svg width="29" height="29" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.29175 7.04183H15.8751M1.29175 1.2085H15.8751M1.29175 12.8752H10.0417M15.8751 12.8752V18.7085L21.7084 15.7918L15.8751 12.8752Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -197,6 +197,29 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tableArtistes">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Nom</td>
+                            <td>Image</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_artistes as $artiste) : ?>
+                            <tr>
+                                <td><?= $artiste->getId() ?></td>
+                                <td><?= $artiste->getName() ?></td>
+                                <td><?= "" ?></td>
+                                <td>
+                                    <button class="btn-modifier">Modifier</button>
+                                    <button class="btn-supprimer">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
             <section id="pageSons" class="page">
                 <header>
@@ -205,6 +228,22 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tableSons">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Titre</td>
+                            <td>Duree</td>
+                            <td>MP3</td>
+                            <td>Album</td>
+                            <td>NbStream</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
             </section>
             <section id="pageGenres" class="page">
                 <header>
@@ -213,6 +252,27 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tableGenres">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Titre</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_genres as $genre) : ?>
+                            <tr>
+                                <td><?= $genre->getId() ?></td>
+                                <td><?= $genre->getTitre() ?></td>
+                                <td>
+                                    <button class="btn-modifier">Modifier</button>
+                                    <button class="btn-supprimer">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
             <section id="pageUtilisateurs" class="page">
                 <header>
@@ -221,6 +281,37 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tableUtilisateurs">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Nom</td>
+                            <td>Prenom</td>
+                            <td>Pseudo</td>
+                            <td>Email</td>
+                            <td>Mot de passe</td>
+                            <td>Statut</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
+                            <tr>
+                                <td><?= $utilisateur->getId() ?></td>
+                                <td><?= $utilisateur->getNom() ?></td>
+                                <td><?= $utilisateur->getPrenom() ?></td>
+                                <td><?= $utilisateur->getPseudo() ?></td>
+                                <td><?= $utilisateur->getEmail() ?></td>
+                                <td><?= $utilisateur->getMdp() ?></td>
+                                <td><?= $utilisateur->getStatut() ?></td>
+                                <td>
+                                    <button class="btn-modifier">Modifier</button>
+                                    <button class="btn-supprimer">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
             <section id="pagePlaylists" class="page">
                 <header>
@@ -229,6 +320,33 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tablePlaylists">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Nom</td>
+                            <td>Utilisateur</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_playlists as $playlist) : ?>
+                            <tr>
+                                <td><?= $playlist->getId() ?></td>
+                                <td><?= $playlist->getNom() ?></td>
+                                <td>
+                                    <button class="consultation">
+
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn-modifier">Modifier</button>
+                                    <button class="btn-supprimer">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
             <section id="pageAlbums" class="page">
                 <header>
@@ -237,6 +355,39 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
+                <table id="tableAlbums">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Titre</td>
+                            <td>Description</td>
+                            <td>Date</td>
+                            <td>Cover</td>
+                            <td>Artiste</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_albums as $album) : ?>
+                            <tr>
+                                <td><?= $album->getId() ?></td>
+                                <td><?= $album->getTitre() ?></td>
+                                <td><?= $album->getDescription() ?></td>
+                                <td><?= $album->getDate() ?></td>
+                                <td> </td>
+                                <td>
+                                    <button class="consultation">
+
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn-modifier">Modifier</button>
+                                    <button class="btn-supprimer">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
         </main>
     </div>
