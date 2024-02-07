@@ -1,3 +1,13 @@
+// Ajout event sur les boutons du menu d'un son
+for (let i = 1; i <= 3; i++) {
+    const buttonAddFile = document.getElementById('fileAttente-' + (i));
+    buttonAddFile.addEventListener('click', function (e) {
+        e.stopPropagation();
+        handleAjouterSonFile(this);
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const search = document.getElementById('search');
@@ -37,6 +47,8 @@ function miseEnPlaceInfos(data){
 
     if (principal.id) {
         // Gauche
+
+        const div = document.getElementById('bestResult');
         const cover = document.getElementById('cover-best-recherche');
         cover.classList.remove('no-result');
         cover.setAttribute('src', "data:image/png;base64," + principal.cover);
@@ -48,6 +60,22 @@ function miseEnPlaceInfos(data){
         name.innerHTML = principal.nom;
         const img = document.getElementById('img-best-recherche');
         img.classList.remove('no-result');
+        if (principal.type === 'Artiste') {
+            img.setAttribute('src', '/Assets/icons/expand.svg');
+            div.addEventListener('click', showArtiste);
+            div.removeEventListener('click', function () {handleJouerSon(this);});
+        }
+        else if (principal.type === 'Album') {
+            img.setAttribute('src', '/Assets/icons/expand.svg');
+            div.addEventListener('click', showArtiste);
+            div.removeEventListener('click', function () {handleJouerSon(this);});
+        }
+        else{
+            div.setAttribute('data-id-song', principal.id);
+            div.addEventListener('click', function () {handleJouerSon(this);});
+            div.removeEventListener('click', showArtiste);
+            img.setAttribute('src', "./assets/icons/play.svg");
+        }
 
         // Droite
         for (let i = 0; i < 3; i++) {
@@ -71,6 +99,10 @@ function miseEnPlaceInfos(data){
                 name.innerHTML = principal.topSon[i].titre;
                 const img = document.getElementById('img-best-recherche-2-' + (i + 1));
                 img.classList.remove('no-result');
+
+                // Button du menu
+                const buttonAddFile = document.getElementById('fileAttente-' + (i + 1));
+                buttonAddFile.setAttribute('data-id', principal.topSon[i].id);
             }
             else{
                 const div = document.getElementById('otherResults-' + (i + 1));

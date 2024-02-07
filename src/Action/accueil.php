@@ -709,15 +709,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-1">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -779,15 +771,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-2">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -849,15 +833,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-3">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -966,7 +942,7 @@ $rechercheDB = $manager->getRechercheDB();
                                             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>    
-                                            Consulter la file d'attente
+                                            Consulter la file d'attenteeeeeeeeee
                                         </button>
                                     </li>
                                     <li>

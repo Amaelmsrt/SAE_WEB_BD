@@ -7,7 +7,6 @@ if (listeDattenteObj.numSonEnCours) {
 
 
 function handleJouerSonFile(button){
-    console.log(listeDattenteObj.liste);
     var idSon = button.getAttribute('data-id-song');
     var index = button.getAttribute('index');
     listeDattenteObj.setIndexSonEnCours(parseInt(index));
@@ -126,7 +125,6 @@ function handleFileDattente(){
                 listeDattenteObj.removeSon(parseInt(this.getAttribute('index')));
                 const index = parseInt(this.getAttribute('index'));
                 div.remove();
-                console.log(listeDattenteObj.liste);
                 // on change les index des boutons des div qui étaient après celui supprimé car ils ont été décalés
                 const divs = attentContainer.querySelectorAll('.artiste-row');
                 for (let i = 0; i < divs.length; i++) {
@@ -506,7 +504,6 @@ function miseEnPlaceSon(idSon){
     const slider = document.getElementById('slider');
     const heart = document.getElementById('main-heart');
     // slider.style.display = 'flex' ;
-
     fetch('/controlleurApi.php/infosSon/' + idSon, {
         method: 'POST',
         headers: {
@@ -585,4 +582,10 @@ function recupSon(idSon){
         audio.load();
         listeDattenteObj.setSonEnCours(audio, idSon);
     })
+}
+
+function handleAjouterSonFile(button){
+    var idSon = button.getAttribute('data-id');
+    listeDattenteObj.addSon(idSon);
+    handleFileDattente();
 }

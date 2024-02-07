@@ -71,6 +71,7 @@ class RechercheDB
             $principalJson = array(
                 'id' => $principal['id'],
                 'nom' => $principal['nom'],
+                'type' => 'Artiste', // 'type' => 'album' ou 'artiste' ou 'son
                 'cover' => $artistDB->getPicture($principal['id']),
                 'artiste' => $principal['nom'],
                 'topSon' => $topSonJson
@@ -94,6 +95,7 @@ class RechercheDB
             $principalJson = array(
                 'id' => $principal['id'],
                 'nom' => $principal['nom'],
+                'type' => 'Album', // 'type' => 'album' ou 'artiste' ou 'son'
                 'cover' => $albumDB->getCover($principal['id']),
                 'artiste' => $albumDB->getArtist($principal['id']),
                 'topSon' => $topSonJson
