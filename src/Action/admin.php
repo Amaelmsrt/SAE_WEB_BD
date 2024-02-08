@@ -239,27 +239,27 @@ $liste_albums = $albumDB->findAll();
                 </div>
 
                 <div id="modal-supprimerArtiste" class="modal">
-                <div class="modal-content">
-                    <span class="close-button">x</span>
-                    <form action="index.php?action=supprimer_artiste" method="post">
-                    <input type="hidden" name="id_artiste" id="id_artiste_supprimer">
-                    <p>Êtes-vous sûr de vouloir supprimer cet artiste ?</p>
-                    <button id="supprimerArtiste" type="submit">Supprimer</button>
-            </form>
-        </div>
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_artiste" method="post">
+                            <input type="hidden" name="id_artiste" id="id_artiste_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer cet artiste ?</p>
+                            <button id="supprimerArtiste" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="modal-modifierArtiste" class="modal">
-                <div class="modal-content">
-            <span class="close-button">x</span>
-            <form action="/modifier_user" method="POST">
-                <input type="hidden" name="id_artiste" id="id_modif_artiste">
-                <input type="text" name="nom_modif_artiste" placeholder="Nom de l'artiste" required>
-                <input type="file" name="image_modif_artiste" accept="image/*">
-                <button type="submit" id="modifierArtiste">Modifier</button>
-        </div>
+                <div id="modal-consulterArtiste" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_artiste" method="POST">
+                            <input type="hidden" name="id_artiste" id="id_modif_artiste">
+                            <input type="text" name="nom_artiste" id="nom_modif_artiste" placeholder="Nom de l'artiste" required>
+                            <input type="file" name="image_artiste" id="image_modif_artiste" accept="image/*">
+                            <button type="submit" id="modifierArtiste">Modifier</button>
+                        </form>
+                    </div>
                 </div>
-
 
             </section>
             <section id="pageSons" class="page">

@@ -32,6 +32,16 @@ class Artist
         return $this->picture;
     }
 
+    function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
     function toJson()
     {
         return json_encode([

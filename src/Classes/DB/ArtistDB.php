@@ -37,7 +37,7 @@ class ArtistDB
         $stmt->execute();
         $artist = $stmt->fetch();
         $imageData = $artist['imageArtiste'];
-        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
         return new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
     }
 

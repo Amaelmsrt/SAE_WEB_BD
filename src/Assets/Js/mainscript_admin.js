@@ -346,7 +346,7 @@ window.onclick = function(event) {
 // Artistes
 
 let modalAjouterArtiste = document.querySelector("#modal-ajouterArtiste");
-let modalModifierArtiste = document.querySelector("#modal-modifierArtiste");
+let modalConsulterArtiste = document.querySelector("#modal-consulterArtiste");
 let modalSupprimerArtiste = document.querySelector("#modal-supprimerArtiste");
 
 document.querySelector("#btn-ajouterArtiste").onclick = function() {
@@ -357,5 +357,13 @@ document.querySelectorAll(".btn-supprimerArtiste").forEach(function(btn) {
     btn.onclick = function() {
         document.querySelector("#id_artiste_supprimer").value = btn.getAttribute("data-idArtiste");
         modalSupprimerArtiste.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterArtiste").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_modif_artiste").value = btn.getAttribute("data-idArtiste");
+        document.querySelector("#nom_modif_artiste").value = btn.getAttribute("data-nomArtiste");
+        modalConsulterArtiste.style.display = "block";
     };
 });
