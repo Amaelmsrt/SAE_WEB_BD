@@ -326,3 +326,30 @@ btnMenuGenres.addEventListener('click', showPageGenres);
 btnMenuUtilisateurs.addEventListener('click', showPageUtilisateurs);
 btnMenuPlaylists.addEventListener('click', showPagePlaylists);
 btnMenuAlbums.addEventListener('click', showPageAlbums);
+
+// Partie pour les modales
+
+let btnClose = document.querySelectorAll(".close-button");
+
+btnClose.forEach(function(btn) {
+    btn.onclick = function() {
+        btn.closest(".modal").style.display = "none";
+    };
+});
+
+window.onclick = function(event) {
+    if (event.target.classList.contains("modal")) {
+        event.target.style.display = "none";
+    }
+};
+
+// Artistes
+
+let modalAjouterArtiste = document.querySelector("#modal-ajouterArtiste");
+let modalModifierArtiste = document.querySelector("#modal-modifierArtiste");
+let modalSupprimerArtiste = document.querySelector("#modal-supprimerArtiste");
+
+document.querySelector("#btn-ajouterArtiste").onclick = function() {
+    modalAjouterArtiste.style.display = "block";
+}
+

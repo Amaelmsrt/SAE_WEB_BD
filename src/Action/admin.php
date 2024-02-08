@@ -213,17 +213,40 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $artiste->getName() ?></td>
                                 <td><?= "" ?></td>
                                 <td>
-                                    <button class="btn-modifier"
+                                    <button class="btn-consulter" id="btn-consulterArtiste"
                                     data-id="<?= $artiste->getId() ?>"
                                     data-nom="<?= $artiste->getName() ?>"
                                     data-image=""
-                                    >Modifier</button>
-                                    <button class="btn-supprimer" data-id="<?= $artiste->getId() ?>">Supprimer</button>
+                                    >Consulter</button>
+                                    <button class="btn-supprimer" id="btn-supprimerArtiste" data-id="<?= $artiste->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <button class="btn-ajouter" id="btn-ajouterArtiste" >Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterArtiste" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_artiste" enctype="multipart/form-data" method="post">
+                            <input type="text" name="nom_nv_artiste" placeholder="Nom de l'artiste" required>
+                            <input type="file" name="image_nv_artiste" accept="image/*">
+                            <button type="submit" id="ajouterArtiste">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="modal-supprimerArtiste" class="modal">
+
+                </div>
+
+                <div id="modal-modifierArtiste" class="modal">
+
+                </div>
+
+
             </section>
             <section id="pageSons" class="page">
                 <header>
@@ -248,6 +271,20 @@ $liste_albums = $albumDB->findAll();
                         
                     </tbody>
                 </table>
+                <button class="btn-ajouterSons">Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterSon" class="modal">
+
+                </div>
+
+                <div id="modal-supprimerSon" class="modal">
+
+                </div>
+
+                <div id="modal-modifierSon" class="modal">
+                    
+                </div>
             </section>
             <section id="pageGenres" class="page">
                 <header>
@@ -270,15 +307,29 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $genre->getId() ?></td>
                                 <td><?= $genre->getTitre() ?></td>
                                 <td>
-                                    <button class="btn-modifier"
+                                    <button class="btn-consulterGenres"
                                     data-id="<?= $genre->getId() ?>"
-                                    data-titre="<?= $genre->getTitre() ?>">Modifier</button>
-                                    <button class="btn-supprimer" data-id="<? $genre->getId() ?>">Supprimer</button>
+                                    data-titre="<?= $genre->getTitre() ?>">consulter</button>
+                                    <button class="btn-supprimerGenres" data-id="<? $genre->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <button class="btn-ajouterGenre">Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterGenre" class="modal">
+
+                </div>
+
+                <div id="modal-supprimerGenre" class="modal">
+
+                </div>
+
+                <div id="modal-modifierGenre" class="modal">
+                    
+                </div>
             </section>
             <section id="pageUtilisateurs" class="page">
                 <header>
@@ -311,7 +362,7 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $utilisateur->getMdp() ?></td>
                                 <td><?= $utilisateur->getStatut() ?></td>
                                 <td>
-                                    <button class="btn-modifier"
+                                    <button class="btn-consulterUtilisateur"
                                     data-id="<? $utilisateur->getId() ?>"
                                     data-nom="<?= $utilisateur->getNom() ?>"
                                     data-prenom="<?= $utilisateur->getPrenom() ?>"
@@ -319,13 +370,27 @@ $liste_albums = $albumDB->findAll();
                                     data-email="<?= $utilisateur->getEmail() ?>"
                                     data-mdp="<?= $utilisateur->getMdp() ?>"
                                     data-statut="<?= $utilisateur->getStatut() ?>"
-                                    >Modifier</button>
-                                    <button class="btn-supprimer" data-id="<? $utilisateur->getId() ?>">Supprimer</button>
+                                    >consulter</button>
+                                    <button class="btn-supprimerUtilisateur" data-id="<? $utilisateur->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <button class="btn-ajouterUtilisateur">Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterUtilisateur" class="modal">
+
+                </div>
+
+                <div id="modal-supprimerUtilisateur" class="modal">
+
+                </div>
+
+                <div id="modal-modifierUtilisateur" class="modal">
+                    
+                </div>
             </section>
             <section id="pagePlaylists" class="page">
                 <header>
@@ -354,18 +419,34 @@ $liste_albums = $albumDB->findAll();
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="btn-modifier"
+                                    <button class="btn-consulterPlaylist"
                                     data-id="<?= $playlist->getId() ?>"
                                     data-nom="<?= $playlist->getNom() ?>"
                                     data-utilisateur="<?= $playlist->getUtilisateur() ?>"
-                                    >Modifier</button>
-                                    <button class="btn-supprimer" data-id="<? $playlist->getId() ?>">Supprimer</button>
+                                    >consulter</button>
+                                    <button class="btn-supprimerPlaylist" data-id="<? $playlist->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <button class="btn-ajouterPlaylist">Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterPlaylist" class="modal">
+
+                </div>
+
+                <div id="modal-supprimerPlaylist" class="modal">
+
+                </div>
+
+                <div id="modal-modifierPlaylist" class="modal">
+                    
+                </div>
             </section>
+                
+
             <section id="pageAlbums" class="page">
                 <header>
                     <h2>Albums</h2>
@@ -403,13 +484,27 @@ $liste_albums = $albumDB->findAll();
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="btn-modifier">Modifier</button>
-                                    <button class="btn-supprimer">Supprimer</button>
+                                    <button class="btn-consulterAlbum">consulter</button>
+                                    <button class="btn-supprimerAlbum">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <button class="btn-ajouterAlbum">Ajouter</button>
+
+                <!-- Modales -->
+                <div id="modal-ajouterAlbum" class="modal">
+
+                </div>
+
+                <div id="modal-supprimerAlbum" class="modal">
+
+                </div>
+
+                <div id="modal-modifierAlbum" class="modal">
+                    
+                </div>
             </section>
         </main>
     </div>

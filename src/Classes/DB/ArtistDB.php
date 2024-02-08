@@ -23,7 +23,7 @@ class ArtistDB
         $artistList = [];
         foreach ($artists as $artist) {
             $imageData = $artist['imageArtiste'];
-            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
             $artistList[] = new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
         }
         return $artistList;
@@ -54,5 +54,32 @@ class ArtistDB
             $artistList[] = new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
         }
         return $artistList;
+    }
+
+    public function insert(Artist $artiste): void
+    {
+        $sql = "INSERT INTO artiste (nomArtiste, imageArtiste) VALUES (:name, :image)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':name', $artiste->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(':image', $artiste->getPicture(), \PDO::PARAM_LOB);
+        $stmt->execute();
+    }
+
+    public function update(Artist $artiste): void
+    {
+        $sql = "UPDATE artiste SET nomArtiste = :name, imageArtiste = :image WHERE idArtiste = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':name', $artiste->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(':image', $artiste->getPicture(), \PDO::PARAM_LOB);
+        $stmt->bindValue(':id', $artiste->getId(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function delete(int $id): void
+    {
+        $sql = "DELETE FROM artiste WHERE idArtiste = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

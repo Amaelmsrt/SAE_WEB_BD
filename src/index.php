@@ -52,6 +52,9 @@ switch ($action) {
         include 'Action/admin.php';
         $layout = "admin";
         break;
+    case "ajouter_artiste":
+        include 'Action/ajouter_artiste.php';
+        break;
     default:
         include 'Action/connexion.php';
         $layout = "connexion";

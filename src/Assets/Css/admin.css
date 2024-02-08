@@ -355,7 +355,7 @@ tr:nth-child(even) {
     background-color: var(--background-color);
 }
 
-.btn-modifier {
+.btn-consulter {
     background-color: var(--yellow);
     color: var(--background-color);
     border: none;
@@ -368,7 +368,7 @@ tr:nth-child(even) {
     text-decoration: none;
 }
 
-.btn-modifier:hover {
+.btn-consulter:hover {
     filter: brightness(0.8);
 }
 
@@ -428,4 +428,73 @@ tr:nth-child(even) {
 
 .consultation:hover {
     filter: brightness(0.8);
+}
+
+.btn-ajouter {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+    width: 6rem;
+    align-self: center;
+}
+
+.btn-ajouter:hover {
+    filter: brightness(0.8);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -25%);
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
