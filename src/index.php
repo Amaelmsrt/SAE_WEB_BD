@@ -36,7 +36,6 @@ switch ($action) {
         include 'Action/accueil.php';
         $layout = "accueil";
         break;
-
     case "connexion":
         include 'Action/connexion.php';
         $layout = "connexion";
@@ -54,6 +53,12 @@ switch ($action) {
         break;
     case "ajouter_artiste":
         include 'Action/ajouter_artiste.php';
+        break;
+    case "supprimer_artiste":
+        include 'Action/supprimer_artiste.php';
+        break;
+    case "modifier_artiste":
+        include 'Action/modifier_artiste.php';
         break;
     default:
         include 'Action/connexion.php';

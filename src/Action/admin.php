@@ -213,12 +213,12 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $artiste->getName() ?></td>
                                 <td><?= "" ?></td>
                                 <td>
-                                    <button class="btn-consulter" id="btn-consulterArtiste"
-                                    data-id="<?= $artiste->getId() ?>"
-                                    data-nom="<?= $artiste->getName() ?>"
-                                    data-image=""
+                                    <button class="btn-consulterArtiste" id="btn-consulterArtiste"
+                                    data-idArtiste="<?= $artiste->getId() ?>"
+                                    data-nomArtiste="<?= $artiste->getName() ?>"
+                                    data-imageArtiste=""
                                     >Consulter</button>
-                                    <button class="btn-supprimer" id="btn-supprimerArtiste" data-id="<?= $artiste->getId() ?>">Supprimer</button>
+                                    <button class="btn-supprimerArtiste" id="btn-supprimerArtiste" data-idArtiste="<?= $artiste->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -239,11 +239,25 @@ $liste_albums = $albumDB->findAll();
                 </div>
 
                 <div id="modal-supprimerArtiste" class="modal">
-
+                <div class="modal-content">
+                    <span class="close-button">x</span>
+                    <form action="index.php?action=supprimer_artiste" method="post">
+                    <input type="hidden" name="id_artiste" id="id_artiste_supprimer">
+                    <p>Êtes-vous sûr de vouloir supprimer cet artiste ?</p>
+                    <button id="supprimerArtiste" type="submit">Supprimer</button>
+            </form>
+        </div>
                 </div>
 
                 <div id="modal-modifierArtiste" class="modal">
-
+                <div class="modal-content">
+            <span class="close-button">x</span>
+            <form action="/modifier_user" method="POST">
+                <input type="hidden" name="id_artiste" id="id_modif_artiste">
+                <input type="text" name="nom_modif_artiste" placeholder="Nom de l'artiste" required>
+                <input type="file" name="image_modif_artiste" accept="image/*">
+                <button type="submit" id="modifierArtiste">Modifier</button>
+        </div>
                 </div>
 
 

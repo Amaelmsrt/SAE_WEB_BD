@@ -353,3 +353,9 @@ document.querySelector("#btn-ajouterArtiste").onclick = function() {
     modalAjouterArtiste.style.display = "block";
 }
 
+document.querySelectorAll(".btn-supprimerArtiste").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_artiste_supprimer").value = btn.getAttribute("data-idArtiste");
+        modalSupprimerArtiste.style.display = "block";
+    };
+});
