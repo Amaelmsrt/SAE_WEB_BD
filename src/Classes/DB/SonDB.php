@@ -102,6 +102,20 @@ class SonDB
         return $sonList;
     }
 
+    function findSonOfAlbum(int $idAlbum): array
+    {
+        $sql = "SELECT * FROM son WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
+
 
     function findTopArtist(int $idArtiste): array
     {
