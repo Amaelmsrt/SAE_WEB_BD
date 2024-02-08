@@ -434,21 +434,43 @@ body .tab{
     display: flex;
     gap: 1.15rem;
     height: 100%;
+    flex-direction: row;
 }
 
-#PageArtiste .back-btn{
+#PageArtiste .play-btn{
+    height: 4rem;
+}
+
+.back-btn{
     align-self: flex-start;
     background-color: transparent;
     border: none;
-    position: absolute;
-    bottom:2rem;
-    left:0;
     z-index: 100;
     cursor:pointer;
     transition: all 0.2s ease;
 }
 
-#PageArtiste .back-btn:hover{
+body .left header .back-btn{
+    position: absolute;
+    left:3.5rem;
+    top:5rem;
+}
+
+#PageArtiste .back-btn{
+    position: absolute;
+    bottom:2rem;
+    left:0;
+}
+
+.back-btn img{
+    height: 3rem;
+}
+
+#back-sm{
+    display: none;
+}
+
+.back-btn:hover{
     filter: opacity(0.4);
     transition: all 0.2s ease;
 }
@@ -1500,6 +1522,7 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10rem;
 }
 
 .pop-up-container .new-playlist header #btnClosePopUp{
@@ -1558,9 +1581,14 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     display: flex;
     gap:0.8rem;
     max-height: 30vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     flex-direction: column;
     padding-right: 1rem;
+}
+
+.pop-up-container .new-playlist form .suggestions .actions img{
+    height: 1.5rem;
+    max-height: 1.5rem;
 }
 
 @media (max-width: 1600px) {
@@ -1714,6 +1742,57 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     html {
         font-size: 8px;
     }
+
+    .pop-up-container .new-playlist form .suggestions .actions img{
+        height: 2rem;
+        max-height: 2rem;
+    }    
+
+    .pop-up-container .new-playlist form .suggestions .artiste-row{
+        min-height: 6rem;
+    }
+
+    #SectionPlaylists .current-display{
+        position: absolute;
+        opacity: 0;
+    }
+
+    body #SectionPlaylists .left-content{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body .left{
+        height: 80vh;
+        max-height: 80vh;
+    }
+
+    #PageArtiste{
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #PageArtiste .back-btn{
+        display: none;
+    }
+
+    #PageArtiste .infos-artiste{
+        width: 100%;
+    }
+    
+    .btn{
+        padding: 2rem 1.5rem !important;
+        align-items: center;
+        font-size: 1.5rem;
+        min-width: 18rem;
+    }
+
+    .btn svg{
+        height: 1.5rem !important;
+        position: relative;
+        bottom: 10%;
+    }
+
 
     h5{
         font-size: 1.1rem !important;
@@ -1941,6 +2020,15 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     .artiste-row .infos .container-cover{
         height: 6rem;
         width: 6rem;
+        min-width: 6rem;
+        min-height: 6rem;
+    }
+
+    .pop-up-container .new-playlist form .suggestions .artiste-row .infos .container-cover{
+        height: 5rem;
+        width: 5rem;
+        min-width: 5rem;
+        min-height: 5rem;
     }
 
     .artiste-row .infos .texts{
