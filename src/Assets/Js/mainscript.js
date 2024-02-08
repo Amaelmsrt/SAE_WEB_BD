@@ -652,7 +652,7 @@ function handleContentPlayerClick(e){
         console.log(midY)
         const resY = -midY + yDuplicatedCover // on fait -midY pour que la cover soit tout en haut de l'écran puis on n'a qu'à ajouter le y de la cover dupliquéeé (qui est invisible) pour qu'elle aille à sa position
 
-        console.log(coverContainer.getBoundingClientRect())
+        //console.log(coverContainer.getBoundingClientRect())
 
         gsap.to(coverContainer, {
             scale:scaleValueForCover,
@@ -663,11 +663,11 @@ function handleContentPlayerClick(e){
             ease:"custom"
         })
 
-        setTimeout(() => {
-            console.log("window height" + window.innerHeight)
-            console.log("scalevalue" + scaleValueForCover)
-            console.log(coverContainer.getBoundingClientRect())
-        }, 400);
+        // setTimeout(() => {
+        //     console.log("window height" + window.innerHeight)
+        //     console.log("scalevalue" + scaleValueForCover)
+        //     console.log(coverContainer.getBoundingClientRect())
+        // }, 400);
         
         gsap.to(playPause, {opacity:0, duration:0.2, ease:"custom"})
         gsap.to(progresssm, {display:"none", opacity:0, duration:0.4, ease:"custom"})
@@ -907,3 +907,41 @@ addToPlaylist.forEach(add => {
     add.addEventListener('mouseenter', (e) => handleHoverAddToPlaylist(e, false))
     parent.addEventListener('mouseleave', (e) => handleHoverAddToPlaylist(e, true))
 })
+
+const detailsAccueil = document.querySelector(".details");
+const defaultAccueil = document.querySelector(".default");
+
+const voirmoins = document.querySelector("#voirmoins");
+const voirtout = document.querySelector("#voirtout");
+
+// il faut faire la même anim que j'ai fait pour la recherche/artiste
+function afficherDefaultAccueil(e){
+    e?.preventDefault();
+    defaultAccueil.parentElement.style.overflowY = "auto";
+    defaultAccueil.style.display = "flex";
+    
+    gsap.to(detailsAccueil, {display:"none", scale:0.9, opacity:0, duration:0.6, ease:"power4.out"})
+    gsap.to(defaultAccueil, {display:"flex", scale:1, opacity:1, duration:0.6, delay:0.4, ease:"power4.out"})
+
+    setTimeout(() => {
+        detailsAccueil.style.display = "none";
+    }, 600);
+}
+
+function afficherDetailsAccueil(e){
+    e?.preventDefault();
+    defaultAccueil.parentElement.style.overflowY = "hidden";
+    detailsAccueil.style.display = "flex";
+
+    gsap.to(defaultAccueil, {display:"none", scale:0.9, opacity:0, duration:0.6, ease:"power4.out"})
+    gsap.to(detailsAccueil, {display:"flex", scale:1, opacity:1, duration:0.6, delay:0.4, ease:"power4.out"})
+
+    setTimeout(() => {
+        defaultAccueil.style.display = "none";
+    }, 600);
+}
+
+afficherDefaultAccueil();
+
+voirmoins.addEventListener('click', afficherDefaultAccueil)
+voirtout.addEventListener('click', afficherDetailsAccueil)
