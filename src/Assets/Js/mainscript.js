@@ -599,13 +599,11 @@ function handleContentPlayerClick(e){
 
         const newCurSongX = -widthCurSong + xCurSongDefault - 7
         
-        const addedY = 8 // ce qu'on ajoute en gap
-        
-        gsap.to(curSong, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
-        gsap.to(curArtiste, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+
+        gsap.to(curSong, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
+        gsap.to(curArtiste, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
 
         const xMainHeart = mainHeart.getBoundingClientRect().x
-        const yMainHeart = mainHeart.getBoundingClientRect().y
         const widthMainHeart = mainHeart.getBoundingClientRect().width
 
         const xMainHeartDefault = duplicatedMainHeart.getBoundingClientRect().x
@@ -613,7 +611,7 @@ function handleContentPlayerClick(e){
 
         const newHeartX = -xMainHeart + xMainHeartDefault - (widthMainHeart/2) +3
 
-        gsap.to(mainHeart, {x:newHeartX,y:addedY, duration:0.4, ease:"custom"})
+        gsap.to(mainHeart, {x:newHeartX,y:yMainHeartDefault, duration:0.4, ease:"custom"})
 
         gsap.registerPlugin(CustomEase);
 
@@ -640,7 +638,7 @@ function handleContentPlayerClick(e){
         gsap.to(background, {height:"20%", opacity:1, duration:0.4, ease:"custom"})
 
         const xDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().x
-        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().y
+        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().top
 
         const duplicatedCoverBorderSize = 70 * vwToPx
 
@@ -648,7 +646,13 @@ function handleContentPlayerClick(e){
         // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
         const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
-        const resY = yDuplicatedCover - (duplicatedCoverBorderSize) + yDuplicatedCover -1
+
+        // y au milieu
+        const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2)
+        console.log(midY)
+        const resY = -midY + yDuplicatedCover
+
+        console.log(coverContainer.getBoundingClientRect())
 
         gsap.to(coverContainer, {
             scale:scaleValueForCover,
@@ -658,6 +662,12 @@ function handleContentPlayerClick(e){
             // je veux le mettre en haut à gauche
             ease:"custom"
         })
+
+        setTimeout(() => {
+            console.log("window height" + window.innerHeight)
+            console.log("scalevalue" + scaleValueForCover)
+            console.log(coverContainer.getBoundingClientRect())
+        }, 400);
         
         gsap.to(playPause, {opacity:0, duration:0.2, ease:"custom"})
         gsap.to(progresssm, {display:"none", opacity:0, duration:0.4, ease:"custom"})

@@ -256,6 +256,10 @@ $rechercheDB = $manager->getRechercheDB();
                                                         <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>                                                        
                                                     Ajouter à la playlist
+                                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+
                                                 </button>
                                             </li>
                                             <li>
@@ -1376,7 +1380,7 @@ $rechercheDB = $manager->getRechercheDB();
         <div class="inner-content">
             <section class="top-content">
                 <div class="top-sm">
-                    <img id="contentPlayerExitBtn" src="./Assets/icons/arrow-up-circle.svg" alt="arrow up">
+                    <img id="contentPlayerExitBtn" style="transform:rotate(180deg)" src="./Assets/icons/arrow-up-circle.svg" alt="arrow up">
                     <img class="menu-dots sm" src="./Assets/icons/menu-dots.svg" alt="open menu"/>                                            
                 </div>
                 <div class="cover-container">
