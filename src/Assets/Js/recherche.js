@@ -2,6 +2,8 @@
 for (let i = 1; i <= 3; i++) {
     const buttonAddFile = document.getElementById('fileAttente-' + (i));
     const like = document.getElementById('like-' + (i));
+    const consulterAlbum = document.getElementById('consulteAlbum-' + (i));
+    const consulterArtiste = document.getElementById('consulteArtiste-' + (i));
     buttonAddFile.addEventListener('click', function (e) {
         e.stopPropagation();
         handleAjouterSonFile(this);
@@ -9,6 +11,16 @@ for (let i = 1; i <= 3; i++) {
     like.addEventListener('click', function (e) {
         e.stopPropagation();
         handleLike(this);
+    });
+    consulterAlbum.addEventListener('click', function (e) {
+        e.stopPropagation();
+        majAlbum(this.getAttribute('data-id'));
+        showArtiste();
+    });
+    consulterArtiste.addEventListener('click', function (e) {
+        e.stopPropagation();
+        majArtiste(this.getAttribute('data-id'));
+        showArtiste();
     });
 }
 
@@ -150,6 +162,12 @@ function miseEnPlaceInfos(data){
                 buttonAddFile.setAttribute('data-id', principal.topSon[i].id);
                 const buttonAddFav = document.getElementById('like-' + (i + 1));
                 buttonAddFav.setAttribute('data-id-song', principal.topSon[i].id);
+                const consulterAlbum = document.getElementById('consulteAlbum-' + (i + 1));
+                console.log(principal.topSon[i].idAlbum);
+                consulterAlbum.setAttribute('data-id', principal.topSon[i].idAlbum);
+                const consulterArtiste = document.getElementById('consulteArtiste-' + (i + 1));
+                console.log(principal.topSon[i].idArtiste);
+                consulterArtiste.setAttribute('data-id', principal.topSon[i].idArtiste);
             }
             else{
                 const div = document.getElementById('otherResults-' + (i + 1));
@@ -166,6 +184,7 @@ function miseEnPlaceInfos(data){
                 name.classList.add('no-result');
                 const img = document.getElementById('img-best-recherche-2-' + (i + 1));
                 img.classList.add('no-result');
+
             }
         }
     }
@@ -204,7 +223,7 @@ function miseEnPlaceInfos(data){
         const albumContent = document.getElementById('contentOtherAlbums');
         albumContent.innerHTML = '';
     }
-    
+
     if (artistes.length > 0) {
         const artisteContent = document.getElementById('contentOtherArtiste');
         artisteContent.innerHTML = '';
@@ -331,20 +350,12 @@ function majAlbum(id){
                 <div class="menu">
                     <ul>
                         <li>
-                            <button>
+                            <button class="consulterAlbum">
                                 <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 Consulter l'artiste
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Consulter l'album
                             </button>
                         </li>
                         <li>
@@ -381,12 +392,15 @@ function majAlbum(id){
                 e.stopPropagation();
                 handleAjouterSonFile(this);
             });
-            const idUser = document.getElementById('TopTitres').getAttribute('id-user');
             div.querySelector('.like').addEventListener('click', function (e) {
                 this.setAttribute('data-id-song', data.sons[i].id);
                 this.setAttribute('data-id', document.getElementById('TopTitres').getAttribute('id-user'));
                 e.stopPropagation();
                 handleLike(this);
+            });
+            div.querySelector('.consulterAlbum').addEventListener('click', function (e) {
+                e.stopPropagation();
+                majArtiste(data.idArtiste);
             });
             div.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
             div.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
@@ -462,16 +476,7 @@ function majArtiste(id){
                 <div class="menu">
                     <ul>
                         <li>
-                            <button>
-                                <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Consulter l'artiste
-                            </button>
-                        </li>
-                        <li>
-                            <button>
+                            <button class="consulterAlbum">
                                 <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -517,6 +522,10 @@ function majArtiste(id){
                     this.setAttribute('data-id', document.getElementById('TopTitres').getAttribute('id-user'));
                     e.stopPropagation();
                     handleLike(this);
+                });
+                div.querySelector('.consulterAlbum').addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    majAlbum(data.topSon[i].idAlbum);
                 });
                 div.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
                 div.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))

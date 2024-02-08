@@ -203,7 +203,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $topSonJson[] = array(
                     'id' => $son->getId(),
                     'titre' => $son->getTitre(),
-                    'cover' => $manager->getSonDB()->getCover($son->getId())
+                    'cover' => $manager->getSonDB()->getCover($son->getId()),
+                    'idAlbum' => $son->getIdAlbum()
                 );
             }
             $albumJson = array();
@@ -248,7 +249,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'cover' => $album->getCover(),
                 'artiste' => $artist->getName(),
                 'nbLikes' => $nbLike,
-                'sons' => $sonJson
+                'sons' => $sonJson,
+                'idArtiste' => $artist->getId()
             );
             header('Content-Type: application/json');
             echo json_encode($result);

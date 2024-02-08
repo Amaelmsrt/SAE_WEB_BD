@@ -116,7 +116,6 @@ class SonDB
         return $sonList;
     }
 
-
     function findTopArtist(int $idArtiste): array
     {
         $sql = "SELECT * FROM son JOIN album ON son.idAlbum = album.idAlbum WHERE album.idArtiste = :idArtiste ORDER BY nbStream DESC LIMIT 3";
@@ -178,5 +177,25 @@ class SonDB
         $stmt->execute();
         $artist = $stmt->fetch();
         return $artist['nomArtiste'];
+    }
+
+    function getIdAlbum(int $idSon): int
+    {
+        $sql = "SELECT idAlbum FROM son WHERE idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $album = $stmt->fetch();
+        return $album['idAlbum'];
+    }
+
+    function getIdArtist(int $idSon): int
+    {
+        $sql = "SELECT idArtiste FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artiste = $stmt->fetch();
+        return $artiste['idArtiste'];
     }
 }

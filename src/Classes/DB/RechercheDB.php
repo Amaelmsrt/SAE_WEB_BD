@@ -65,7 +65,9 @@ class RechercheDB
                 $topSonJson[] = array(
                     'id' => $son->getId(),
                     'titre' => $son->getTitre(),
-                    'cover' => $sonDB->getCover($son->getId())
+                    'cover' => $sonDB->getCover($son->getId()),
+                    'idAlbum' => $son->getIdAlbum(),
+                    'idArtiste' => $principal['id']
                 );
             }
             $principalJson = array(
@@ -87,7 +89,9 @@ class RechercheDB
                 $topSonJson[] = array(
                     'id' => $son->getId(),
                     'titre' => $son->getTitre(),
-                    'cover' => $sonDB->getCover($son->getId())
+                    'cover' => $sonDB->getCover($son->getId()),
+                    'idAlbum' => $principal['id'],
+                    'idArtiste' => $albumDB->getIdArtist($principal['id'])
                 );
             }
             $artists = [];
@@ -116,7 +120,9 @@ class RechercheDB
                     'id' => $result[$i]['id'],
                     'titre' => $result[$i]['nom'],
                     'artiste' => $sonDB->getArtist($result[$i]['id']),
-                    'cover' => $sonDB->getCover($result[$i]['id'])
+                    'cover' => $sonDB->getCover($result[$i]['id']),
+                    'idAlbum' => $sonDB->getIdAlbum($result[$i]['id']),
+                    'idArtiste' => $sonDB->getIdArtist($result[$i]['id'])
                 );
             }
             $principalJson = array(
