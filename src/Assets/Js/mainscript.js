@@ -21,6 +21,7 @@ const sectionAlbums = document.querySelector("#Albums");
 const songcards = document.querySelectorAll(".song-card");
 
 const menuDots = document.querySelectorAll(".menu-dots")
+const addToPlaylist = document.querySelectorAll(".addToPlaylist")
 
 const bestResult = document.querySelector("#bestResult")
 const goBackToRecherche = document.querySelector("#goBackToRecherche")
@@ -647,10 +648,9 @@ function handleContentPlayerClick(e){
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
         const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
 
-        // y au milieu
-        const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2)
+        const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2) // ça correspond à la valeur de y qu'on aura après avoir fait le scale + l'aggrandissement à 100vh du menu
         console.log(midY)
-        const resY = -midY + yDuplicatedCover
+        const resY = -midY + yDuplicatedCover // on fait -midY pour que la cover soit tout en haut de l'écran puis on n'a qu'à ajouter le y de la cover dupliquéeé (qui est invisible) pour qu'elle aille à sa position
 
         console.log(coverContainer.getBoundingClientRect())
 
@@ -890,3 +890,20 @@ function closeContentPlayer(e){
 contentPlayer.addEventListener('click', handleContentPlayerClick)
 
 contentPlayerExitBtn.addEventListener('click', closeContentPlayer)
+
+
+function handleHoverAddToPlaylist(e, isLeaving){
+    const parent = e.currentTarget.parentElement;
+    const submenu = parent.querySelector(".sub");
+
+    // anime le y très légérement et l'opacité de la sub
+
+    gsap.to(submenu, {display: isLeaving ? "none" : "flex", y: isLeaving ? "1rem" : 0, opacity: isLeaving ? 0 : 1, duration: 0.6,ease: "power4.out" });
+
+}
+
+addToPlaylist.forEach(add => {
+    const parent = add.parentElement;
+    add.addEventListener('mouseenter', (e) => handleHoverAddToPlaylist(e, false))
+    parent.addEventListener('mouseleave', (e) => handleHoverAddToPlaylist(e, true))
+})
