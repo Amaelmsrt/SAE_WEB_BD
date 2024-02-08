@@ -231,14 +231,6 @@ $rechercheDB = $manager->getRechercheDB();
                                             </li>
                                             <li>
                                                 <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
                                                     <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>                                                        
@@ -666,23 +658,6 @@ $rechercheDB = $manager->getRechercheDB();
                         <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
                     <section class="resultat">
-                        <!-- l'idée là c'est de montrer à gauche le résultat le plus
-                            pertinent.
-                            Exemple: si on tape ga: on s'attend à avoir gazo en truc le plus pertinent
-                            puis du coup si on à un artiste à gauche: on met ses 3 titres les plus connus à droite.
-
-                            Si le résultat le plus pertinent à gauche c'est un titre, on l'affiche à gauche
-                            et à droite on va mettre d'autres résultats qui peuvent être intéressants 
-                            en fonction de la recherche
-
-                            si le résultat le plus pertinent à gauche c'est un album, on l'affiche à gauche
-                            à droite on met les 3 titres de l'album les plus connus
-                        -->
-                        <!--
-                            et en dessous on va faire un listing à l'horizontal de 5 albums/titres max qui peuvent correspondre à la recherche
-
-                            En dessous on va faire un listing à l'horizontal de 5 artistes max qui peuvent correspondre à la recherche
-                        -->
                         <section id="MainResults" class="results-section">
                             <h2>Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
                             <div class="content">
@@ -695,11 +670,11 @@ $rechercheDB = $manager->getRechercheDB();
                                             <h4 class="no-result" id="nom-best-recherche"></h4>
                                             <h5 class="no-result" id="type-best-recherche"></h5>
                                         </div>
-                                        <img id="img-best-recherche" class="no-result expand" src="/.assets/icons/expand.svg"/>
+                                        <img id="img-best-recherche" class="no-result expand" src="./assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-1">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -734,15 +709,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-1">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -758,7 +725,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-1" data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -769,7 +736,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
                                 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-2">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -804,15 +771,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-2">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -828,7 +787,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-2" data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -839,7 +798,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-3">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -874,15 +833,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-3">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -898,7 +849,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-3"  data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -914,7 +865,7 @@ $rechercheDB = $manager->getRechercheDB();
 
                         <section id="OtherAlbums" class="results-section scrollable">
                             <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
-                            <div id="contentOtherAlbums" class="content">
+                            <div id="contentOtherAlbums" class="content" style="width: 1000px;">
                             </div>
                         </section>
 
@@ -964,7 +915,7 @@ $rechercheDB = $manager->getRechercheDB();
                                     </div>
                                 </div>
                                 <div class="actions">
-                                   <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
+                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                 </div>
                             </div>
                             <div class="menu">
@@ -991,7 +942,7 @@ $rechercheDB = $manager->getRechercheDB();
                                             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>    
-                                            Consulter la file d'attente
+                                            Consulter la file d'attenteeeeeeeeee
                                         </button>
                                     </li>
                                     <li>
@@ -1019,7 +970,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </button>
                                     </li>
                                 </ul>
-                               </div>
+                            </div>
                         </div>
 
                     </div>
@@ -1484,103 +1435,7 @@ $rechercheDB = $manager->getRechercheDB();
             </section>
             <section class="file-attente">
                 <h4>A suivre</h4>
-                <div class="content">
-        
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
+                <div class="content" id="content-file">
                 </div>
             </section>
         </div>

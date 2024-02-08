@@ -3,7 +3,7 @@
 
 use DB\DataBaseManager as Manager;
 
-ini_set('memory_limit', '1024M');
+ini_set('memory_limit', '2048M');
 
 require_once 'Configuration/config.php';
 
@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $son = $manager->getSonDB()->find($id);
 
             $manager->getSonDB()->addStream($id);
-            session_start();
             $manager->getSonDB()->addEcouter($id, $_SESSION['user_id']);
 
             header('Content-Type: audio/mpeg');
@@ -90,14 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'jouerAlbum':
             $idAlbum = array_shift($path);
             $manager = new Manager();
-            $sons = $manager->getSonDB()->findAlbum($idAlbum);
-            
-            $response = array();
-            foreach ($sons as $son) {
-                $response[] = array(
-                    'id' => $son->getId()
-                );
-            }
+            $response = $manager->getSonDB()->findAlbum($idAlbum);
+            error_log(json_encode($response));
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
             exit();

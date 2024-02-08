@@ -8,6 +8,8 @@ require_once 'Configuration/config.php';
 require 'Classes/autoloader.php'; 
 Autoloader::register(); 
 
+ini_set('memory_limit', '2048M');
+ini_set('max_execution_time', 60); // Set maximum execution time to 60 seconds
 
 $action = $_REQUEST['action'] ?? "connexion";
 $layout = "main";

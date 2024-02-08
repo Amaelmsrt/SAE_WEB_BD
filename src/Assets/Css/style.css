@@ -1302,6 +1302,7 @@ body .content-player .file-attente .content .artiste-row .actions, .pop-up-conta
 
 body .content-player .file-attente .content .artiste-row .actions .btn-file-attente{
     height: 1rem;
+    cursor: pointer;
 }
 
 .artiste-wrapper{
