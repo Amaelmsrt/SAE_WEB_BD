@@ -191,6 +191,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($result);
             exit();
 
+        case 'artistInfo':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $artist = $manager->getArtistDB()->find($id);
+            $album = $manager->getAlbumDB()->findAlbumsArtist($id);
+            $topSonArtist = $manager->getSonDB()->findTopArtist5($id);
+            $topSonJson = array();
+            foreach ($topSonArtist as $son) {
+                $topSonJson[] = array(
+                    'id' => $son->getId(),
+                    'titre' => $son->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($son->getId())
+                );
+            }
+            $albumJson = array();
+            foreach ($album as $alb) {
+                $albumJson[] = array(
+                    'id' => $alb->getId(),
+                    'titre' => $alb->getTitre(),
+                    'cover' => $alb->getCover()
+                );
+            }
+            $result = array(
+                'id' => $artist->getId(),
+                'nom' => $artist->getName(),
+                'cover' => $artist->getPicture(),
+                'albums' => $albumJson,
+                'topSon' => $topSonJson
+            );
+            header('Content-Type: application/json');
+            echo json_encode($result);
+            exit();
+
         default:
             // Ne définissez pas de code de réponse HTTP ici
             $response = ['error' => 'Not Found'];

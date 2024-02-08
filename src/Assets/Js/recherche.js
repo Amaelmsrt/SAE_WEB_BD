@@ -13,6 +13,17 @@ for (let i = 1; i <= 3; i++) {
 }
 
 
+const div = document.getElementById('bestResult');
+div.addEventListener('click', function () {
+    const type = this.getAttribute('data-type');
+    if (type === 'Artiste') {
+        majArtiste(this.getAttribute('data-id'));
+    }
+});
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const search = document.getElementById('search');
@@ -69,17 +80,21 @@ function miseEnPlaceInfos(data){
             img.setAttribute('src', '/Assets/icons/expand.svg');
             div.addEventListener('click', showArtiste);
             div.removeEventListener('click', function () {handleJouerSon(this);});
+            div.setAttribute('data-id', principal.id);
+            div.setAttribute('data-type', principal.type);
         }
         else if (principal.type === 'Album') {
             img.setAttribute('src', '/Assets/icons/expand.svg');
             div.addEventListener('click', showArtiste);
             div.removeEventListener('click', function () {handleJouerSon(this);});
+            div.removeEventListener('click', majArtiste);
         }
         else{
             div.setAttribute('data-id-song', principal.id);
             div.addEventListener('click', function () {handleJouerSon(this);});
             div.removeEventListener('click', showArtiste);
             img.setAttribute('src', "./assets/icons/play.svg");
+            div.removeEventListener('click', majArtiste);
         }
 
         // Droite
@@ -225,6 +240,59 @@ function noresult(){
         const img = document.getElementById('img-best-recherche-2-' + i);
         img.classList.add('no-result');
     }
+}
+
+function majArtiste(id){
+    fetch('/controlleurApi.php/artistInfo/' + id, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        const cover = document.getElementById('coverArtisteDetail');
+        const name = document.getElementById('nomArtisteDetail');
+        name.innerHTML = data.nom;
+        cover.setAttribute('src', "data:image/png;base64," + data.cover);
+
+
+        for (let i = 0; i < 5; i++) {
+            const div = document.getElementById('div-top-titres-' + (i + 1));
+
+            const cover = document.getElementById('top-titres-cover-' + (i + 1));
+            cover.setAttribute('src', "data:image/png;base64," + data.topSon[i].cover);
+            const album = document.getElementById('top-titres-album-' + (i + 1));
+            album.innerHTML = data.topSon[i].titre;
+            const artiste = document.getElementById('top-titres-artiste-' + (i + 1));
+            artiste.innerHTML = data.nom;
+        }
+
+        const albumContent = document.getElementById('Albums');
+        albumContent.innerHTML = '';
+        for (let i = 0; i < data.albums.length; i++) {
+            const album = data.albums[i];
+            const div = document.createElement('div');
+            div.classList.add('song-card');
+            div.classList.add('playAlbum');
+            div.setAttribute('data-id-album', album.id);
+            div.innerHTML = `
+                <div class="background" aria-hidden="true"></div>
+                <div class="container-image">
+                    <img class="cover" src="data:image/png;base64, ${album.cover}" alt="cover"/>
+                    <img src="/Assets/icons/play.svg" alt="play" class="play"/>
+                </div>
+                <div class="bottom-content">
+                    <div class="texts">
+                        <h4>${album.titre}</h4>
+                        <h5>${data.nom}</h5>
+                    </div>
+                </div>
+            `;
+            albumContent.appendChild(div);
+        }
+    });
 }
 
 
