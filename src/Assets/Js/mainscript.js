@@ -265,7 +265,7 @@ function handleUnfocusEverything(e) {
         })
 
     }
-    if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu") || e.target.classList.contains("menu-item")) {
+    if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu")) {
         return;
     }
     menuDots.forEach(menuDot => {
