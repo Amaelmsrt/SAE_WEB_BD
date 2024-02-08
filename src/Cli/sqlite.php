@@ -48,6 +48,8 @@ define('CREATE_SON_TABLE', <<<SQL
         FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
     );
     CREATE INDEX idx_idAlbum ON son (idAlbum);
+    CREATE INDEX idx_idSon ON son (idSon);
+
 SQL);
 
 define('CREATE_SORTIR_TABLE', <<<SQL
@@ -130,6 +132,9 @@ define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
         FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
         FOREIGN KEY (idSon) REFERENCES SON(idSon)
     );
+    CREATE INDEX idx_idUtilisateur ON EcouterRecement (idUtilisateur);
+    CREATE INDEX idx_idSon_e ON EcouterRecement (idSon);
+
 SQL);
 
 
