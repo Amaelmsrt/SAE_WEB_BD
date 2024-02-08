@@ -298,12 +298,15 @@ document.addEventListener('click', handleUnfocusEverything)
 function showArtiste(){
     // on fait juste une transition sur l'opacité et on scale out /in
 
-    gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+    if (window.innerWidth < 576){
+        gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+    
+        backSm.addEventListener('click', () => {
+            showRecherche();
+            gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        })
+    }
 
-    backSm.addEventListener('click', () => {
-        showRecherche();
-        gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
-    })
 
     pageArtiste.style.display = "flex";
 
