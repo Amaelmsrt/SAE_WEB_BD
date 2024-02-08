@@ -936,6 +936,14 @@ body .content-player{
     border-bottom-left-radius: 1rem;
 }
 
+body .content-player > .progress{
+    display: none;
+}
+
+body .content-player .top-sm{
+    display: none;
+}
+
 body .content-player .inner-content{
     min-height: 100%;
     overflow-y: auto;
@@ -980,6 +988,17 @@ body .content-player .media-infos .current-media{
     width: 100%;
     justify-content: space-between;
 }
+
+body .content-player .media-infos .current-media .container-heart{
+    display: flex;
+    flex-direction: row-reverse;
+    gap:1rem;
+}
+
+body .content-player .media-infos .current-media .container-heart .play-pause{
+    display: none;
+}
+
 
 body .content-player .media-infos .current-media .heart{
     height: 2rem;
@@ -1054,6 +1073,10 @@ body .content-player .media-infos .actions .progress{
     gap:1rem;
     color: var(--text-color-secondary);
     align-items: center;
+}
+
+body .content-player .media-infos .actions .progress .time-container.sm{
+    display: none;
 }
 
 body .content-player .media-infos .actions .progress .bar{
@@ -1726,8 +1749,32 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
         font-size: 1.5rem;
     }
 
+    body .content-player .media-infos .current-media .container-heart .play-pause{
+        display: block;
+    }
+
+    body .content-player .media-infos .current-media .container-heart svg{
+        height: 5rem;
+    }
+
+    body .content-player .media-infos .current-media .container-heart .likeSong{
+        width: 3rem;
+    }
+
     .container-sm-display{
         display: none;
+    }
+
+    .menu-dots.sm{
+        display: block;
+    }
+
+    .top-sm{
+        display: flex;
+        display: none;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
     }
 
     body .content-player .top-content .cover-container{
@@ -1740,11 +1787,11 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
 
     body .content-player{
         position: relative;
-        top:-10vh;
+        bottom:10vh;
         height: 10vh;
         max-height: 10vh;
         width: 96%;
-        position: relative;
+        position: fixed;
         left: 2%;
         transform: translateY(10%);
         max-width: 96%;
@@ -1753,9 +1800,25 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
         overflow: hidden;
         z-index: 100;
         background-color: #000000;
+        flex-direction: column;
+        gap:0;
     }
 
-    body .content-player::before{
+    body .content-player > .progress{
+        width: 100%;
+        position: relative;
+        bottom: 1.25rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    body .content-player > .progress .bar{
+        width: 93%;
+        height: 3px;
+        border-radius: 1rem;
+    }
+
+    body .content-player .background{
         content: "";
         z-index: -1;
         position: absolute;
@@ -1764,7 +1827,7 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
         width: 100%;
         height: 100%;
         background: url(../images/cover_so_la_lune.png) no-repeat center center;
-        filter: blur(100px);
+        filter: blur(150px);
     }
 
     body .content-player .media-infos .actions{
@@ -1807,6 +1870,98 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
 
     body .left header img {
         align-self: center;
+    }
+
+    body .content-player .media-infos .actions .buttons {
+        gap: 3.5rem;
+    }
+
+    body .content-player .media-infos .actions .buttons #random img{
+        height: 2rem;
+    }
+
+    body .content-player .media-infos .actions .buttons #repeat img
+    {
+        height: 1.2rem;
+    }
+
+    body .content-player .media-infos .actions .buttons .main-button img {
+        height: 3rem;
+    }
+
+    body .content-player .media-infos .actions .buttons #playPause img{
+        height: 7rem;
+    }
+
+    body .content-player .media-infos .actions .buttons .main-buttons{
+        display: flex;
+        gap: 2.5rem;
+    }
+
+    body .content-player .media-infos .actions .progress .time-container.sm{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    body .content-player .media-infos .actions .progress{
+        flex-direction: column;
+        gap:1rem
+    }
+
+    body .content-player .media-infos .actions .progress p{
+        font-size: 1.5rem;
+    }
+
+    body .content-player .media-infos .actions .progress .time.lg{
+        display: none;
+    }
+
+    body .content-player .file-attente{
+        height: 50vh;
+    }
+
+    body .content-player .file-attente h4{
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    body .content-player .file-attente .content .artiste-row .actions .edit-list{
+        display: flex !important;
+        gap: 2.5rem;
+    }
+
+    body .content-player .inner-content{
+        overflow-y: auto;
+    }
+
+    body .content-player .file-attente .content{
+        gap: 1rem;
+    }
+
+    .artiste-row .infos .container-cover{
+        height: 6rem;
+        width: 6rem;
+    }
+
+    .artiste-row .infos .texts{
+        gap: 0.5rem;
+    }
+
+    .artiste-row .infos .texts h4{
+        font-size: 1.75rem;
+    }
+
+    .artiste-row .infos .texts h5{
+        font-size: 1.3rem !important;
+    }
+
+    body .content-player .file-attente .content .artiste-row .actions{
+        gap: 4rem;
+    }
+
+    body .content-player .file-attente .content .artiste-row .actions .btn-file-attente{
+        height: 1.5rem;
     }
 }
   

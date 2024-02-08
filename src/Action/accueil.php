@@ -1317,9 +1317,14 @@ $rechercheDB = $manager->getRechercheDB();
         </div>
     </div>
 
-    <aside class="content-player">
+    <aside class="content-player realContentPlayer" id="contentPlayer">
+        <div class="background"></div>
         <div class="inner-content">
             <section class="top-content">
+                <div class="top-sm">
+                    <img id="contentPlayerExitBtn" src="./Assets/icons/arrow-up-circle.svg" alt="arrow up">
+                    <img class="menu-dots sm" src="./Assets/icons/menu-dots.svg" alt="open menu"/>                                            
+                </div>
                 <div class="cover-container">
                     <img id="cover" class="cover" src="./Assets/images/cover_so_la_lune.png"/>
                 </div>
@@ -1330,9 +1335,16 @@ $rechercheDB = $manager->getRechercheDB();
                             <h4 id="nom-artist">So la lune</h4>
                         </div>
                         <!-- <img class="heart" src="./Assets/icons/heart.svg"/> -->
-                        <svg id="main-heart" class="svg-heart-main likeSong" data-id-song="-1" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <div class="container-heart">
+                            <svg class="play-pause" width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="33.5" cy="33.5" r="33.5" fill="#FEFCE1"/>
+                                <path d="M25 20H26.8V48H25V20ZM41.2 20H43V48H41.2V20Z" stroke="#0E100F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <svg id="main-heart" class="svg-heart-main likeSong" data-id-song="-1" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="actions">
                         <div class="buttons">
@@ -1356,9 +1368,13 @@ $rechercheDB = $manager->getRechercheDB();
                         </div>
                         <div class="time-vol">
                             <div class="progress">
-                                <p id="time0"></p>
+                                <div class="time-container sm">
+                                    <p id="time0" class="time">1:31</p>
+                                    <p id="time1" class="time">4:32</p>
+                                </div>
+                                <p id="time0" class="time lg"></p>
                                 <input type="range" class="bar" id="slider"/>
-                                <p id="time1"></p>
+                                <p id="time1" class="time lg"></p>
                             </div>
                             <div class="volume isVolume lg">
                                 <button class="isVolume btn-toggle-volume-bar">
@@ -1420,11 +1436,14 @@ $rechercheDB = $manager->getRechercheDB();
             <section class="file-attente">
                 <h4>A suivre</h4>
                 <div class="content" id="content-file">
-
-
                 </div>
             </section>
         </div>
+
+        <div class="progress sm">
+            <input type="range" class="bar"/>
+        </div>
+
     </aside>
 
     <div class="pop-up-container" id="popUpContainer">
