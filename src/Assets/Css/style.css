@@ -1389,13 +1389,14 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
     width: 100%;
     display: none;
     opacity: 0;
-    transform: translateY("1rem");
+    transform: translateY(1rem);
 }
 
 .artiste-wrapper .sub ul{
     max-height: 20vh;
     overflow: auto;
     padding-right: 0.5rem;
+    width: 100%;
 }
 
 .artiste-wrapper .sub .new-playlist{
