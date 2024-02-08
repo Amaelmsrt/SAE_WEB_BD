@@ -1456,7 +1456,7 @@ $rechercheDB = $manager->getRechercheDB();
                         </div>
                     </div>
                     <div class="container-sm-display">
-                        <button id="btnAfficheFileAttente">
+                        <button class="btnOuvrirFileAttente" id="btnAfficheFileAttente">
                             <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 9.42857H20.5714M2 2H20.5714M2 16.8571H13.1429M20.5714 16.8571V24.2857L28 20.5714L20.5714 16.8571Z" stroke="#FEFCE1" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -1488,7 +1488,10 @@ $rechercheDB = $manager->getRechercheDB();
                 </div>
             </section>
             <section class="file-attente">
-                <h4>A suivre</h4>
+                <div class="top-content">
+                    <h4>A suivre</h4>
+                    <a href="" class="btnOuvrirFileAttente">Voir tout</a>
+                </div>
                 <div class="content">
         
                     <div class="artiste-row glass">
@@ -1597,6 +1600,7 @@ $rechercheDB = $manager->getRechercheDB();
     </aside>
 
     <div class="pop-up-container" id="popUpContainer">
+
         <div class="new-playlist" id="popUpPlaylist">
             <header>
                 <h2>Nouvelle playlist <img src="./Assets/icons/shape_1.svg"/></h2>
@@ -1716,4 +1720,106 @@ $rechercheDB = $manager->getRechercheDB();
 
             </form>
         </div>
+
+        <div class="new-playlist file-attente" id="popUpFileAttente">
+            <header>
+                <h2>File d'attente <img src="./Assets/icons/shape_1.svg"/></h2>
+                <button id="btnClosePopUp" type="button">
+                    <img src="./Assets/icons/close.svg" alt="close"/>
+                </button>
+            </header>
+           <section class="suggestions">
+           <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+           </section>
+        </div>
+
     </div>

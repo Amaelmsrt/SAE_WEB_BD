@@ -697,7 +697,7 @@ body .content-block{
     gap:2rem;
 }
 
-body .content-block > header{
+body .content-block > header, body .content-player .file-attente .top-content{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -720,12 +720,16 @@ h2 img{
     height: 2.5rem;
 }
 
-body .content-block > header a{
+body .content-block > header a, body .content-player .file-attente .top-content a{
     text-decoration: none;
     color: var(--text-color-secondary);
     font-size: 1.25rem;
     white-space: nowrap;
     text-wrap: nowrap;
+}
+
+body .content-player .file-attente .top-content a{
+    font-size: 1rem;
 }
 
 body .content-block .content{
@@ -1380,7 +1384,7 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
     height: 1rem;
 }
 
-body .content-player .file-attente .content .artiste-row .actions .edit-list{
+.artiste-row .actions .edit-list{
     display: flex;
     gap:1.25rem;
 }
@@ -1516,13 +1520,17 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     display: flex;
     flex-direction: column;
     gap:1.75rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .pop-up-container .new-playlist header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10rem;
+    gap: 15rem;
 }
 
 .pop-up-container .new-playlist header #btnClosePopUp{
@@ -1577,7 +1585,7 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
     color: var(--text-color-secondary);
 }
 
-.pop-up-container .new-playlist form .suggestions{
+.pop-up-container .new-playlist .suggestions{
     display: flex;
     gap:0.8rem;
     max-height: 30vh;
@@ -1598,6 +1606,11 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
 
     .artiste-row .actions .edit-list{
         display: none !important;
+    }
+
+    .pop-up-container .artiste-row .actions .edit-list{
+        display: flex !important;
+        gap:1.25rem;
     }
 
   }
@@ -2049,6 +2062,10 @@ body .content-player .file-attente .content .artiste-row .actions .edit-list{
 
     body .content-player .file-attente .content .artiste-row .actions .btn-file-attente{
         height: 1.5rem;
+    }
+
+    body .content-player .file-attente .top-content a{
+        font-size: 1.5rem;
     }
 }
   
