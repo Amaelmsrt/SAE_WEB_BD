@@ -48,6 +48,19 @@ class SonDB
 
     function addEcouter(int $idSon, int $idUtil)
     {
+        $sql = "SELECT * FROM EcouterRecement WHERE idSon = :idSon AND idUtilisateur = :idUtilisateur";
+        $stmt = $this->pdo->prepare($sql);
+        if ($stmt->execute([':idSon' => $idSon, ':idUtilisateur' => $idUtil])) {
+            $result = $stmt->fetch();
+            if ($result) {
+                $sql = "UPDATE EcouterRecement SET dataHH = datetime('now') WHERE idSon = :idSon AND idUtilisateur = :idUtilisateur";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+                $stmt->bindValue(':idUtilisateur', $idUtil, \PDO::PARAM_INT);
+                $stmt->execute();
+                return;
+            }
+        }
         $sql = "INSERT INTO EcouterRecement (idSon, idUtilisateur, dataHH) VALUES (:idSon, :idUtilisateur, datetime('now'))";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
