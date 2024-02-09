@@ -30,8 +30,10 @@ const pageRecherche = document.querySelector("#recherche")
 
 const btnFavoris = document.querySelector("#MesFavoris")
 const btnPlaylist = document.querySelector("#btnPlaylist")
+const currentDisplay = document.querySelector(".current-display")
 const sectionFavoris= document.querySelector("#favoris")
-const sectionPlaylist = document.querySelector("#playlist")
+const sousSectionPlaylist = document.querySelector("#playlist")
+let backSm = document.querySelector("#back-sm")
 
 const btnNouvellePlaylist = document.querySelector("#NouvellePlaylist")
 const btnClosePopUp = document.querySelector("#btnClosePopUp")
@@ -63,6 +65,18 @@ function changeCurrentMenu(e,index) {
         const curSectionName = curSection.id.split("Section")[1]
         
         curIndex = curSectionName == "Accueil" ? 1 : curSectionName == "Recherche" ? 2 : curSectionName == "Playlists" ? 3 : -1
+        console.log(e.target.id.split("goTo")[1], curSectionName)
+        if (e.target.id.split("goTo")[1] == undefined){
+            console.log(e.target.parentElement)
+            if (e.target.parentElement.id.split("goTo")[1] == curSectionName){
+                return;
+            }
+            else {
+                if (e.target.parentElement.parentElement.id.split("goTo")[1] == curSectionName){
+                    return;
+                }
+            }
+        }
         if (e.target.id.split("goTo")[1] == curSectionName){
             return;
         }
@@ -85,6 +99,9 @@ function changeCurrentMenu(e,index) {
             
             gsap.fromTo(sectionAccueil, {opacity: 0, x: index < curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, duration:0.6, zIndex: 1, ease:"power4.out"})
             gsap.to(curSection, {opacity:0, x: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"})
+
+            gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+
             clearActiveSections()
             sectionAccueil.classList.add("active-section")
             break;
@@ -96,6 +113,24 @@ function changeCurrentMenu(e,index) {
             gsap.fromTo(sectionRechercher, {opacity: 0, x: index < curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
             gsap.to(curSection, {opacity:0, x: index < curIndex ? "100vw" : "-100vw", zIndex: -1, duration:0.6, ease: "power4.out"})
 
+            if (window.innerWidth < 576){
+                // si la section recherche est active on doit afficher le backSm
+                if (pageRecherche.style.opacity == 0 && pageRecherche.style.display == "none"){
+                    const backSmParent = backSm.parentElement
+                    const backSmClone = backSm.cloneNode(true)
+                    backSmParent.replaceChild(backSmClone, backSm)
+                    backSm = backSmClone
+                    gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+                    backSm.addEventListener('click', () => {
+                        showRecherche();
+                        gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+                    })
+                }
+                else{
+                    gsap.to(backSm, {display:"none", opacity:0, scale:1, duration:0.6, ease:"power4.out"})
+                }
+            }
+
             clearActiveSections()
             sectionRechercher.classList.add("active-section")
             break;
@@ -106,6 +141,25 @@ function changeCurrentMenu(e,index) {
             
             gsap.fromTo(sectionPlaylists, {opacity: 0, x: index < curIndex ? "-100vw" : "100vw", zIndex: 1}, {opacity:1, x:0, zIndex: 1, duration:0.6, ease:"power4.out"})
             gsap.to(curSection, {opacity:0, x:index<curIndex ? "100vw" : "-100vw", zIndex: -1, duration:0.6, ease: "power4.out"})
+
+            if (window.innerWidth < 576){
+                // si la section recherche est active on doit afficher le backSm
+                const leftPlaylist = sectionPlaylists.querySelector(".left-content")
+                if (leftPlaylist.style.display == "none" && leftPlaylist.style.opacity == 0){
+                    const backSmParent = backSm.parentElement
+                    const backSmClone = backSm.cloneNode(true)
+                    backSmParent.replaceChild(backSmClone, backSm)
+                    backSm = backSmClone
+                    gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+                    backSm.addEventListener('click', () => {
+                        afficheAccueilPlaylist();
+                        gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+                    })
+                }
+                else{
+                    gsap.to(backSm, {display:"none", opacity:0, scale:1, duration:0.6, ease:"power4.out"})
+                }
+            }
 
             clearActiveSections()
             sectionPlaylists.classList.add("active-section")
@@ -244,6 +298,13 @@ document.addEventListener('click', handleUnfocusEverything)
 function showArtiste(){
     // on fait juste une transition sur l'opacité et on scale out /in
 
+    gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+
+    backSm.addEventListener('click', () => {
+        showRecherche();
+        gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+    })
+
     pageArtiste.style.display = "flex";
 
     changeCurrentMenuArtiste(null,0)
@@ -277,10 +338,37 @@ goBackToRecherche.addEventListener('click', showRecherche)
 goToTopTitres.addEventListener('click', (e) => changeCurrentMenuArtiste(e,0))
 goToAlbums.addEventListener('click', (e) => changeCurrentMenuArtiste(e,1))
 
-function afficheMaPlaylist(){
-    sectionPlaylist.style.display = "flex";
+function afficheAccueilPlaylist(){
+    if (window.innerWidth < 576){
+        const leftPlaylist = sectionPlaylists.querySelector(".left-content")
+        leftPlaylist.style.display = "flex";
+    
+        gsap.fromTo(leftPlaylist, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"})
+        gsap.to(currentDisplay, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+    
+        setTimeout(() => {
+            currentDisplay.style.display = "none";
+        }, 500);
+    }
+}
 
-    gsap.fromTo(sectionPlaylist, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"})
+function afficheMaPlaylist(){
+    if (window.innerWidth < 576){
+        gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+        backSm.addEventListener('click', () => {
+            afficheAccueilPlaylist();
+            gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        })
+        const leftPlaylist = sectionPlaylists.querySelector(".left-content")
+        gsap.to(leftPlaylist, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        gsap.to(currentDisplay, {display:"flex", opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"});
+        setTimeout(() => {
+            leftPlaylist.style.display = "none";
+        }, 600);
+    }
+    sousSectionPlaylist.style.display = "flex";
+
+    gsap.fromTo(sousSectionPlaylist, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"})
     gsap.to(sectionFavoris, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
 
     setTimeout(() => {
@@ -291,11 +379,25 @@ function afficheMaPlaylist(){
 function afficheMesFavoris(){
     sectionFavoris.style.display = "flex";
 
+    if (window.innerWidth < 576){
+        gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+        backSm.addEventListener('click', () => {
+            afficheAccueilPlaylist();
+            gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        })
+        const leftPlaylist = sectionPlaylists.querySelector(".left-content")
+        gsap.to(leftPlaylist, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        gsap.to(currentDisplay, {display:"flex", opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"});
+        setTimeout(() => {
+            leftPlaylist.style.display = "none";
+        }, 600);
+    }
+
     gsap.fromTo(sectionFavoris, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4, ease:"power4.out"})
-    gsap.to(sectionPlaylist, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+    gsap.to(sousSectionPlaylist, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
 
     setTimeout(() => {
-        sectionPlaylist.style.display = "none";
+        sousSectionPlaylist.style.display = "none";
     }, 500);
 }
 
@@ -533,8 +635,8 @@ function handleContentPlayerClick(e){
         const xCoverDefault = coverContainer.getBoundingClientRect().x
         // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
-        const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault - 1
-        const resY = yDuplicatedCover - (duplicatedCoverBorderSize) + yDuplicatedCover - 6
+        const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
+        const resY = yDuplicatedCover - (duplicatedCoverBorderSize) + yDuplicatedCover -1
 
         gsap.to(coverContainer, {
             scale:scaleValueForCover,

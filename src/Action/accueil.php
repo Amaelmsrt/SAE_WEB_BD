@@ -20,7 +20,12 @@ $rechercheDB = $manager->getRechercheDB();
 
     <div class="left">
         <header>
-            <img class="logo" src="./Assets/images/logo.svg" alt="logo"/>
+            <div class="top-content">
+                <div id="back-sm" class="back-btn">
+                    <img src="./Assets/icons/back-arrow.svg" alt="back-arrow">
+                </div>
+                <img class="logo" src="./Assets/images/logo.svg" alt="logo"/>
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li>
