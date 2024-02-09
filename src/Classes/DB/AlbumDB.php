@@ -108,4 +108,14 @@ class AlbumDB
         $artist = $stmt->fetch();
         return $artist['nomArtiste'];
     }
+
+    function getIdArtist(int $idAlbum): int
+    {
+        $sql = "SELECT idArtiste FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        return $artist['idArtiste'];
+    }
 }

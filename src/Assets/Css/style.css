@@ -509,6 +509,7 @@ body .tab{
 
 #PageArtiste .infos-artiste .card-artiste .play-btn{
     align-self: flex-end;
+    cursor: pointer;
 }
 
 #PageArtiste .main-content{
