@@ -367,3 +367,28 @@ document.querySelectorAll(".btn-consulterArtiste").forEach(function(btn) {
         modalConsulterArtiste.style.display = "block";
     };
 });
+
+// Genres
+
+let modalAjouterGenre = document.querySelector("#modal-ajouterGenre");
+let modalConsulterGenre = document.querySelector("#modal-consulterGenre");
+let modalSupprimerGenre = document.querySelector("#modal-supprimerGenre");
+
+document.querySelector("#btn-ajouterGenre").onclick = function() {
+    modalAjouterGenre.style.display = "block";
+}
+
+document.querySelectorAll(".btn-supprimerGenre").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_genre_supprimer").value = btn.getAttribute("data-idGenre");
+        modalSupprimerGenre.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterGenre").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_modif_genre").value = btn.getAttribute("data-idGenre");
+        document.querySelector("#titre_modif_genre").value = btn.getAttribute("data-titreGenre");
+        modalConsulterGenre.style.display = "block";
+    };
+});

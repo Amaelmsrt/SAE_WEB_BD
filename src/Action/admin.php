@@ -321,28 +321,48 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $genre->getId() ?></td>
                                 <td><?= $genre->getTitre() ?></td>
                                 <td>
-                                    <button class="btn-consulterGenres"
-                                    data-id="<?= $genre->getId() ?>"
-                                    data-titre="<?= $genre->getTitre() ?>">consulter</button>
-                                    <button class="btn-supprimerGenres" data-id="<? $genre->getId() ?>">Supprimer</button>
+                                    <button class="btn-consulterGenre" id="btn-consulterGenre"
+                                    data-idGenre="<?= $genre->getId() ?>" 
+                                    data-titreGenre="<?= $genre->getTitre() ?>">Consulter</button>
+                                    <button class="btn-supprimerGenre" id="btn-supprimerGenre" data-idGenre="<?= $genre->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button class="btn-ajouterGenre">Ajouter</button>
+                <button class="btn-ajouter" id="btn-ajouterGenre">Ajouter</button>
 
                 <!-- Modales -->
                 <div id="modal-ajouterGenre" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_genre" method="post">
+                            <input type="text" name="nom_nv_genre" placeholder="Nom du genre" required>
+                            <button type="submit" id="ajouterGenre">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-supprimerGenre" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_genre" method="post">
+                            <input type="hidden" name="id_genre" id="id_genre_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer ce genre ?</p>
+                            <button id="supprimerGenre" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="modal-modifierGenre" class="modal">
-                    
+                <div id="modal-consulterGenre" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_genre" method="post">
+                            <input type="hidden" name="id_genre" id="id_modif_genre">
+                            <input type="text" name="titre_genre" id="titre_modif_genre" placeholder="Nom du genre" required>
+                            <button type="submit" id="modifierGenre">Modifier</button>
+                        </form>
+                    </div>
                 </div>
             </section>
             <section id="pageUtilisateurs" class="page">

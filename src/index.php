@@ -52,13 +52,22 @@ switch ($action) {
         $layout = "admin";
         break;
     case "ajouter_artiste":
-        include 'Action/ajouter_artiste.php';
+        include 'Action/admin/ajouter_artiste.php';
         break;
     case "supprimer_artiste":
-        include 'Action/supprimer_artiste.php';
+        include 'Action/admin/supprimer_artiste.php';
         break;
     case "modifier_artiste":
-        include 'Action/modifier_artiste.php';
+        include 'Action/admin/modifier_artiste.php';
+        break;
+    case "ajouter_genre":
+        include 'Action/admin/ajouter_genre.php';
+        break;
+    case "supprimer_genre":
+        include 'Action/admin/supprimer_genre.php';
+        break;
+    case "modifier_genre":
+        include 'Action/admin/modifier_genre.php';
         break;
     default:
         include 'Action/connexion.php';
