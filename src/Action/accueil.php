@@ -61,12 +61,14 @@ $rechercheDB = $manager->getRechercheDB();
         </header>
         <div class="container-tabs">
             <main id="SectionAccueil" class="tab">
-                <section class="content-block">
+                <section id="detail" class="content-block details">
                     <header>
                         <h2>Écoutés récemment <img src="./Assets/icons/star_1.svg"/></h2>
-                        <a href="">Voir tout</a>
+                        <button id="voirmoins" class="voirmoins">
+                            <img src="./Assets/icons/close.svg"/>
+                        </button>
                     </header>
-                    <section class="content">
+                    <section class="content details">
 
                         <?php foreach ($sons as $son) : 
                             $album = $albumDB->findAlbum($son->getIdAlbum());
@@ -99,43 +101,84 @@ $rechercheDB = $manager->getRechercheDB();
                         <?php endforeach; ?>
                     </section>
                 </section>
-                <section class="content-block">
-                    <header>
-                        <h2>Sorties récentes <img src="./Assets/icons/star_2.svg"/></h2>
-                        <a href="">Voir tout</a>
-                    </header>
-                    <div class="content">
+                <div class="default">
+                    <section class="content-block">
+                        <header>
+                            <h2>Écoutés récemment <img src="./Assets/icons/star_1.svg"/></h2>
+                            <a href="" id="voirtout">Voir tout</a>
+                        </header>
+                        <section class="content">
 
-                        <?php foreach ($lastAlbum as $album) :
-                            $artist = $artistDB->find($album->getIdArtiste());
-                            $isLike = $likeAlbumDB->isLiked($album->getId(), $_SESSION['user_id']);
-                            ?>
-                            <div class="song-card playAlbum" data-id-album="<?= $album->getId() ?>">
-                                <div class="background" aria-hidden></div>
-                                <div class="container-image">
-                                    <img class="cover" src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="cover du son">
-                                    <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="texts">
-                                        <h4><?= $album->getTitre() ?></h4>
-                                        <h5><?= $artist->getName() ?>
+                            <?php foreach ($sons as $son) : 
+                                $album = $albumDB->findAlbum($son->getIdAlbum());
+                                $artist = $artistDB->find($album->getIdArtiste());
+                                $isLike = $likeSonDB->isLiked($son->getId(), $_SESSION['user_id']);
+                                ?>
+
+                                <div class="song-card topSon" data-id-song="<?= $son->getId() ?>">
+                                    <div class="background" aria-hidden></div>
+                                    <div class="container-image">
+                                        <img class="cover" src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="cover du son">
+                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
                                     </div>
-                                    <?php if ($isLike) : ?>
-                                        <svg class="svg-heart like likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    <?php else : ?>
-                                        <svg class="svg-heart likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    <?php endif; ?>
+                                    <div class="bottom-content">
+                                        <div class="texts">
+                                            <h4><?= $son->getTitre() ?></h4>
+                                            <h5><?= $artist->getName() ?></h5>
+                                        </div>
+                                        <?php if ($isLike) : ?>
+                                            <svg class="svg-heart like likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        <?php else : ?>
+                                            <svg class="svg-heart likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
+                            <?php endforeach; ?>
+                        </section>
+                    </section>
+                    <section class="content-block">
+                        <header>
+                            <h2>Sorties récentes <img src="./Assets/icons/star_2.svg"/></h2>
+                            <a href="">Voir tout</a>
+                        </header>
+                        <div class="content">
+
+                            <?php foreach ($lastAlbum as $album) :
+                                $artist = $artistDB->find($album->getIdArtiste());
+                                $isLike = $likeAlbumDB->isLiked($album->getId(), $_SESSION['user_id']);
+                                ?>
+                                <div class="song-card playAlbum" data-id-album="<?= $album->getId() ?>">
+                                    <div class="background" aria-hidden></div>
+                                    <div class="container-image">
+                                        <img class="cover" src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="cover du son">
+                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
+                                    </div>
+                                    <div class="bottom-content">
+                                        <div class="texts">
+                                            <h4><?= $album->getTitre() ?></h4>
+                                            <h5><?= $artist->getName() ?>
+                                        </div>
+                                        <?php if ($isLike) : ?>
+                                            <svg class="svg-heart like likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        <?php else : ?>
+                                            <svg class="svg-heart likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            
                             </div>
-                        <?php endforeach; ?>
-                        
-                        </div>
-                </section>
+                    </section>
+                </div>
+                
             </main>
             <main id="SectionRecherche" class="tab">
 
@@ -199,7 +242,6 @@ $rechercheDB = $manager->getRechercheDB();
                         </nav>
                         <div class="content-block">
                             <section id="TopTitres" id-user="<?= $_SESSION['user'] ?>">
-
                             </section>
                             <section id="Albums">
                             </section>
@@ -500,14 +542,87 @@ $rechercheDB = $manager->getRechercheDB();
                                             Ajouter à la file d'attente
                                         </button>
                                     </li>
-                                    <li>
-                                        <button>
+
+                                    <li class="has-sub-menu">
+                                        <div class="cursor-container"></div>
+                                        
+                                        <button class="addToPlaylist">
                                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>                                                        
                                             Ajouter à la playlist
+                                            <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
                                         </button>
+                                    
+                                        <!-- un sous menu avec pleins de boutons sans icones "playlist 1", "playlist 2"... -->
+                                        <div class="sub">
+                                            <div class="cursor-container right"></div>
+                                                <ul>
+                                                    <li class="new-playlist">
+                                                        <button>
+                                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg> 
+                                                            Nouvelle playlist  
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 1
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 2
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 3
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 4
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 5
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 1
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 2
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 3
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 4
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button>
+                                                            playlist 5
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
                                     </li>
+
                                     <li>
                                         <button>
                                             <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -869,7 +984,7 @@ $rechercheDB = $manager->getRechercheDB();
         <div class="inner-content">
             <section class="top-content">
                 <div class="top-sm">
-                    <img id="contentPlayerExitBtn" src="./Assets/icons/arrow-up-circle.svg" alt="arrow up">
+                    <img id="contentPlayerExitBtn" style="transform:rotate(180deg)" src="./Assets/icons/arrow-up-circle.svg" alt="arrow up">
                     <img class="menu-dots sm" src="./Assets/icons/menu-dots.svg" alt="open menu"/>                                            
                 </div>
                 <div class="cover-container">
@@ -949,7 +1064,7 @@ $rechercheDB = $manager->getRechercheDB();
                         </div>
                     </div>
                     <div class="container-sm-display">
-                        <button id="btnAfficheFileAttente">
+                        <button class="btnOuvrirFileAttente" id="btnAfficheFileAttente">
                             <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 9.42857H20.5714M2 2H20.5714M2 16.8571H13.1429M20.5714 16.8571V24.2857L28 20.5714L20.5714 16.8571Z" stroke="#FEFCE1" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -981,7 +1096,10 @@ $rechercheDB = $manager->getRechercheDB();
                 </div>
             </section>
             <section class="file-attente">
-                <h4>A suivre</h4>
+                <div class="top-content">
+                    <h4>A suivre</h4>
+                    <a href="" class="btnOuvrirFileAttente">Voir tout</a>
+                </div>
                 <div class="content" id="content-file">
                 </div>
             </section>
@@ -994,6 +1112,7 @@ $rechercheDB = $manager->getRechercheDB();
     </aside>
 
     <div class="pop-up-container" id="popUpContainer">
+
         <div class="new-playlist" id="popUpPlaylist">
             <header>
                 <h2>Nouvelle playlist <img src="./Assets/icons/shape_1.svg"/></h2>
@@ -1113,4 +1232,106 @@ $rechercheDB = $manager->getRechercheDB();
 
             </form>
         </div>
+
+        <div class="new-playlist file-attente" id="popUpFileAttente">
+            <header>
+                <h2>File d'attente <img src="./Assets/icons/shape_1.svg"/></h2>
+                <button id="btnClosePopUp" type="button">
+                    <img src="./Assets/icons/close.svg" alt="close"/>
+                </button>
+            </header>
+           <section class="suggestions">
+           <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+                    <div class="artiste-row glass">
+                        <div class="infos">
+                            <div class="container-cover">
+                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                            </div>
+                            <div class="texts">
+                                <h4>L'enfant de la pluie</h4>
+                                <h5>So la lune</h5>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="edit-list">
+                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
+                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
+                            </div>
+                            <img src="./Assets/icons/close.svg"/>
+                        </div>
+                    </div>
+           </section>
+        </div>
+
     </div>

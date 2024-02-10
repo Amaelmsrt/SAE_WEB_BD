@@ -21,6 +21,7 @@ const sectionAlbums = document.querySelector("#Albums");
 const songcards = document.querySelectorAll(".song-card");
 
 const menuDots = document.querySelectorAll(".menu-dots")
+const addToPlaylist = document.querySelectorAll(".addToPlaylist")
 
 const bestResult = document.querySelector("#bestResult")
 const goBackToRecherche = document.querySelector("#goBackToRecherche")
@@ -36,9 +37,11 @@ const sousSectionPlaylist = document.querySelector("#playlist")
 let backSm = document.querySelector("#back-sm")
 
 const btnNouvellePlaylist = document.querySelector("#NouvellePlaylist")
-const btnClosePopUp = document.querySelector("#btnClosePopUp")
+const btnClosePopUp = document.querySelectorAll("#btnClosePopUp")
 const popUpContainer = document.querySelector("#popUpContainer")
 const popUpPlaylist = document.querySelector("#popUpPlaylist")
+const popUpFileAttente = document.querySelector("#popUpFileAttente")
+const btnsOuvrirFileAttente = document.querySelectorAll(".btnOuvrirFileAttente")
 
 const btnsToggleVolumeBar = document.querySelectorAll(".btn-toggle-volume-bar")
 const volumeBars = document.querySelectorAll(".volume-bar")
@@ -65,9 +68,7 @@ function changeCurrentMenu(e,index) {
         const curSectionName = curSection.id.split("Section")[1]
         
         curIndex = curSectionName == "Accueil" ? 1 : curSectionName == "Recherche" ? 2 : curSectionName == "Playlists" ? 3 : -1
-        console.log(e.target.id.split("goTo")[1], curSectionName)
         if (e.target.id.split("goTo")[1] == undefined){
-            console.log(e.target.parentElement)
             if (e.target.parentElement.id.split("goTo")[1] == curSectionName){
                 return;
             }
@@ -265,7 +266,7 @@ function handleUnfocusEverything(e) {
         })
 
     }
-    if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu") || e.target.classList.contains("menu-item")) {
+    if (e.target.classList.contains("menu-dots") || e.target.classList.contains("menu")) {
         return;
     }
     menuDots.forEach(menuDot => {
@@ -298,12 +299,15 @@ document.addEventListener('click', handleUnfocusEverything)
 function showArtiste(){
     // on fait juste une transition sur l'opacité et on scale out /in
 
-    gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+    if (window.innerWidth < 576){
+        gsap.to(backSm, {display:"block", opacity:1, scale:1, duration:0.6, ease:"power4.out"})
+    
+        backSm.addEventListener('click', () => {
+            showRecherche();
+            gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
+        })
+    }
 
-    backSm.addEventListener('click', () => {
-        showRecherche();
-        gsap.to(backSm, {display:"none", opacity:0, scale:0.9, duration:0.6, ease:"power4.out"})
-    })
 
     pageArtiste.style.display = "flex";
 
@@ -401,8 +405,20 @@ function afficheMesFavoris(){
     }, 500);
 }
 
+const openFileAttentePopUp = () => {
+    popUpContainer.style.display = "flex";
+
+    popUpFileAttente.style.display = "flex";
+    popUpPlaylist.style.display = "none";
+
+    gsap.fromTo(popUpContainer, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.5, ease:"power4.out"})
+}
+
 const openPlaylistPopUp = () => {
     popUpContainer.style.display = "flex";
+
+    popUpPlaylist.style.display = "flex";
+    popUpFileAttente.style.display = "none";
 
     gsap.fromTo(popUpContainer, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.5, ease:"power4.out"})
 }
@@ -419,7 +435,13 @@ btnPlaylist.addEventListener('click', afficheMaPlaylist)
 btnFavoris.addEventListener('click', afficheMesFavoris)
 
 btnNouvellePlaylist.addEventListener('click', openPlaylistPopUp)
-btnClosePopUp.addEventListener('click', closePlaylistPopUp)
+btnClosePopUp.forEach(btn => btn.addEventListener('click', closePlaylistPopUp))
+btnsOuvrirFileAttente.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();    
+        openFileAttentePopUp()
+    })
+})
 
 let isToggling = false;
 
@@ -475,14 +497,9 @@ function handleContentPlayerClick(e){
 
         // on doit calculer la taille de la cover pour qu'elle passe de 8rem à 70vw
         // sachant qu'on connait remToPx et vwToPx
-        console.log(vwToPx, remToPx)
-        console.log(70*vwToPx)
-        console.log(8*remToPx)
         const scaleValueForCover = (70*vwToPx) / (8*remToPx)
-        console.log(scaleValueForCover)
         // duplique le content player et le met en position absolute
 
-        console.log("duplication")
         const newSizes = "70vw"
         const newContentPlayer = contentPlayer.cloneNode(true);
         newContentPlayer.style.position = "absolute";
@@ -583,13 +600,11 @@ function handleContentPlayerClick(e){
 
         const newCurSongX = -widthCurSong + xCurSongDefault - 7
         
-        const addedY = 8 // ce qu'on ajoute en gap
-        
-        gsap.to(curSong, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
-        gsap.to(curArtiste, {x:newCurSongX, y:addedY, duration:0.4, ease:"custom"})
+
+        gsap.to(curSong, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
+        gsap.to(curArtiste, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
 
         const xMainHeart = mainHeart.getBoundingClientRect().x
-        const yMainHeart = mainHeart.getBoundingClientRect().y
         const widthMainHeart = mainHeart.getBoundingClientRect().width
 
         const xMainHeartDefault = duplicatedMainHeart.getBoundingClientRect().x
@@ -597,7 +612,7 @@ function handleContentPlayerClick(e){
 
         const newHeartX = -xMainHeart + xMainHeartDefault - (widthMainHeart/2) +3
 
-        gsap.to(mainHeart, {x:newHeartX,y:addedY, duration:0.4, ease:"custom"})
+        gsap.to(mainHeart, {x:newHeartX,y:yMainHeartDefault, duration:0.4, ease:"custom"})
 
         gsap.registerPlugin(CustomEase);
 
@@ -624,19 +639,20 @@ function handleContentPlayerClick(e){
         gsap.to(background, {height:"20%", opacity:1, duration:0.4, ease:"custom"})
 
         const xDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().x
-        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().y
+        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().top
 
         const duplicatedCoverBorderSize = 70 * vwToPx
 
-        console.log("objectifs")
-        console.log(xDuplicatedCover, yDuplicatedCover)
-
-        console.log("resultats")
         const xCoverDefault = coverContainer.getBoundingClientRect().x
         // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
         const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
-        const resY = yDuplicatedCover - (duplicatedCoverBorderSize) + yDuplicatedCover -1
+
+        const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2) // ça correspond à la valeur de y qu'on aura après avoir fait le scale + l'aggrandissement à 100vh du menu
+        console.log(midY)
+        const resY = -midY + yDuplicatedCover // on fait -midY pour que la cover soit tout en haut de l'écran puis on n'a qu'à ajouter le y de la cover dupliquéeé (qui est invisible) pour qu'elle aille à sa position
+
+        //console.log(coverContainer.getBoundingClientRect())
 
         gsap.to(coverContainer, {
             scale:scaleValueForCover,
@@ -646,18 +662,22 @@ function handleContentPlayerClick(e){
             // je veux le mettre en haut à gauche
             ease:"custom"
         })
+
+        // setTimeout(() => {
+        //     console.log("window height" + window.innerHeight)
+        //     console.log("scalevalue" + scaleValueForCover)
+        //     console.log(coverContainer.getBoundingClientRect())
+        // }, 400);
         
         gsap.to(playPause, {opacity:0, duration:0.2, ease:"custom"})
         gsap.to(progresssm, {display:"none", opacity:0, duration:0.4, ease:"custom"})
-
-        console.log(coverContainer.getBoundingClientRect())
 
         gsap.to(newContentPlayer, {opacity:1, zIndex:1000, duration:0.6, delay:0.2, ease:"custom"})
 
         setTimeout(() => {
             contentPlayer.style.opacity = 0;
             contentPlayer.style.display = "block";
-            contentPlayer.style.zIndex = 2000;
+            contentPlayer.style.zIndex = -1;
 
             // on remet le contentplayer avec tous ses styles par défaut
 
@@ -712,6 +732,15 @@ function handleContentPlayerClick(e){
             gsap.to(progresssm, {opacity:1, duration:0, ease:"custom"})
         }, 800);
     }
+
+
+    // on met à jour les btnsOuvrirFileAttente
+    document.querySelectorAll(".btnOuvrirFileAttente").forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openFileAttentePopUp()
+        })
+    })
 }
 
 function closeContentPlayer(e){
@@ -719,20 +748,19 @@ function closeContentPlayer(e){
     const windowWidth = window.innerWidth;
     if (windowWidth < 576){
 
+        contentPlayer.style.zIndex = 2000;
+
         // en dessous de 756px c'est 8
         const remToPx = 8
         const vwToPx = window.innerWidth / 100
         // on doit calculer la taille de la cover pour qu'elle passe de 8rem à 70vw
         // sachant qu'on connait remToPx et vwToPx
-        console.log(vwToPx, remToPx)
-        console.log(70*vwToPx)
-        console.log(8*remToPx)
         const scaleValueForCover = (8*remToPx) / (70*vwToPx) 
-        console.log(scaleValueForCover)
         // duplique le content player et le met en position absolute
 
         const newSizes = "8rem"
         const newContentPlayer = contentPlayer;
+
         
         const newBackground = newContentPlayer.querySelector(".background")
         const newTopContent = newContentPlayer.querySelector(".top-content")
@@ -828,10 +856,6 @@ function closeContentPlayer(e){
 
         const newCoverBorderSize = 8 * remToPx
 
-        console.log("objectifs")
-        console.log(xNewCover, yNewCover)
-
-        console.log("resultats")
         const xCoverDuplicated = coverContainer.getBoundingClientRect().x
         // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
@@ -862,8 +886,62 @@ function closeContentPlayer(e){
     }
 }
 
-console.log(contentPlayer)
 
 contentPlayer.addEventListener('click', handleContentPlayerClick)
 
 contentPlayerExitBtn.addEventListener('click', closeContentPlayer)
+
+
+function handleHoverAddToPlaylist(e, isLeaving){
+    const parent = e.currentTarget.parentElement;
+    const submenu = parent.querySelector(".sub");
+
+    // anime le y très légérement et l'opacité de la sub
+
+    gsap.to(submenu, {display: isLeaving ? "none" : "flex", y: isLeaving ? "1rem" : 0, opacity: isLeaving ? 0 : 1, duration: 0.6,ease: "power4.out" });
+
+}
+
+addToPlaylist.forEach(add => {
+    const parent = add.parentElement;
+    add.addEventListener('mouseenter', (e) => handleHoverAddToPlaylist(e, false))
+    parent.addEventListener('mouseleave', (e) => handleHoverAddToPlaylist(e, true))
+})
+
+const detailsAccueil = document.querySelector(".details");
+const defaultAccueil = document.querySelector(".default");
+
+const voirmoins = document.querySelector("#voirmoins");
+const voirtout = document.querySelector("#voirtout");
+
+// il faut faire la même anim que j'ai fait pour la recherche/artiste
+function afficherDefaultAccueil(e){
+    e?.preventDefault();
+    defaultAccueil.parentElement.style.overflowY = "auto";
+    defaultAccueil.style.display = "flex";
+    
+    gsap.to(detailsAccueil, {display:"none", scale:0.9, opacity:0, duration:0.6, ease:"power4.out"})
+    gsap.to(defaultAccueil, {display:"flex", scale:1, opacity:1, duration:0.6, delay:0.4, ease:"power4.out"})
+
+    setTimeout(() => {
+        detailsAccueil.style.display = "none";
+    }, 600);
+}
+
+function afficherDetailsAccueil(e){
+    e?.preventDefault();
+    defaultAccueil.parentElement.style.overflowY = "hidden";
+    detailsAccueil.style.display = "flex";
+
+    gsap.to(defaultAccueil, {display:"none", scale:0.9, opacity:0, duration:0.6, ease:"power4.out"})
+    gsap.to(detailsAccueil, {display:"flex", scale:1, opacity:1, duration:0.6, delay:0.4, ease:"power4.out"})
+
+    setTimeout(() => {
+        defaultAccueil.style.display = "none";
+    }, 600);
+}
+
+afficherDefaultAccueil();
+
+voirmoins.addEventListener('click', afficherDefaultAccueil)
+voirtout.addEventListener('click', afficherDetailsAccueil)
