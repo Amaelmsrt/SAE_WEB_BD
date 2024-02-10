@@ -40,13 +40,9 @@ class UtilisateurDB {
         $stmt->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
         $stmt->execute();
         $utilisateur = $stmt->fetch();
-    
-        // Vérifier si $utilisateur est faux (false) ou vide
         if (!$utilisateur) {
-            return null; // Retourner null si aucun utilisateur trouvé
+            return null;
         }
-    
-        // Si $utilisateur est un tableau valide, créer une instance de Utilisateur
         return new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
     }
     
