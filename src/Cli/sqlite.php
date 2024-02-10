@@ -47,6 +47,9 @@ define('CREATE_SON_TABLE', <<<SQL
         idAlbum INTEGER NOT NULL,
         FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
     );
+    CREATE INDEX idx_idAlbum ON son (idAlbum);
+    CREATE INDEX idx_idSon ON son (idSon);
+
 SQL);
 
 define('CREATE_SORTIR_TABLE', <<<SQL
@@ -122,13 +125,16 @@ SQL);
 
 define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
     CREATE TABLE IF NOT EXISTS ECOUTERRECEMENT (
+        idEcout INTEGER PRIMARY KEY AUTOINCREMENT,
         idUtilisateur INTEGER NOT NULL,
         idSon INTEGER NOT NULL,
         dataHH DATETIME NOT NULL,
-        PRIMARY KEY (idUtilisateur, idSon, dataHH),
         FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
         FOREIGN KEY (idSon) REFERENCES SON(idSon)
     );
+    CREATE INDEX idx_idUtilisateur ON EcouterRecement (idUtilisateur);
+    CREATE INDEX idx_idSon_e ON EcouterRecement (idSon);
+
 SQL);
 
 

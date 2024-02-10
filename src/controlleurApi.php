@@ -3,7 +3,7 @@
 
 use DB\DataBaseManager as Manager;
 
-ini_set('memory_limit', '1024M');
+ini_set('memory_limit', '2048M');
 
 require_once 'Configuration/config.php';
 
@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $son = $manager->getSonDB()->find($id);
 
             $manager->getSonDB()->addStream($id);
-            session_start();
             $manager->getSonDB()->addEcouter($id, $_SESSION['user_id']);
 
             header('Content-Type: audio/mpeg');
@@ -90,14 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'jouerAlbum':
             $idAlbum = array_shift($path);
             $manager = new Manager();
-            $sons = $manager->getSonDB()->findAlbum($idAlbum);
-            
-            $response = array();
-            foreach ($sons as $son) {
-                $response[] = array(
-                    'id' => $son->getId()
-                );
-            }
+            $response = $manager->getSonDB()->findAlbum($idAlbum);
+            error_log(json_encode($response));
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
             echo json_encode($response);
             exit();
@@ -195,6 +188,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'cover' => $album->getCover(),
             );
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($result);
+            exit();
+
+        case 'artistInfo':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $artist = $manager->getArtistDB()->find($id);
+            $album = $manager->getAlbumDB()->findAlbumsArtist($id);
+            $nbLike = $manager->getLikeSonDB()->countLikes($id, $_SESSION['user_id']);
+            $topSonArtist = $manager->getSonDB()->findTopArtist5($id);
+            $topSonJson = array();
+            foreach ($topSonArtist as $son) {
+                $topSonJson[] = array(
+                    'id' => $son->getId(),
+                    'titre' => $son->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($son->getId()),
+                    'idAlbum' => $son->getIdAlbum()
+                );
+            }
+            $albumJson = array();
+            foreach ($album as $alb) {
+                $albumJson[] = array(
+                    'id' => $alb->getId(),
+                    'titre' => $alb->getTitre(),
+                    'cover' => $alb->getCover()
+                );
+            }
+            $result = array(
+                'id' => $artist->getId(),
+                'nom' => $artist->getName(),
+                'cover' => $artist->getPicture(),
+                'albums' => $albumJson,
+                'topSon' => $topSonJson,
+                'nbLikes' => $nbLike
+            );
+            header('Content-Type: application/json');
+            echo json_encode($result);
+            exit();
+
+        case 'albumInfo':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $album = $manager->getAlbumDB()->findAlbum($id);
+            $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+            $son = $manager->getSonDB()->findSonOfAlbum($id);
+            $sonJson = array();
+            foreach ($son as $s) {
+                $sonJson[] = array(
+                    'id' => $s->getId(),
+                    'titre' => $s->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($s->getId())
+                );
+            }
+            $nbLike = $manager->getLikeSonDB()->countLikes($artist->getId(), $_SESSION['user_id']);
+
+            $result = array(
+                'id' => $album->getId(),
+                'titre' => $album->getTitre(),
+                'cover' => $album->getCover(),
+                'artiste' => $artist->getName(),
+                'nbLikes' => $nbLike,
+                'sons' => $sonJson,
+                'idArtiste' => $artist->getId()
+            );
+            header('Content-Type: application/json');
             echo json_encode($result);
             exit();
 

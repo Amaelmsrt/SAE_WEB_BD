@@ -190,18 +190,18 @@ $rechercheDB = $manager->getRechercheDB();
                         <div class="card-artiste">
                             <div class="infos">
                                 <div class="container-cover">
-                                    <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                                    <img src="" alt="cover" id="coverArtisteDetail">
                                 </div>
                                 <div class="texts">
-                                    <h2>So la lune</h2>
-                                    <h4>7 800 000 auditeurs par mois</h4>
+                                    <h2 id="nomArtisteDetail"></h2>
+                                    <h3 id="nbAlbumsArtiste"></h3>
                                 </div>
                             </div>
-                            <img class="play-btn" src="./Assets/icons/play.svg" alt="play">
+                            <img id="playArtiste" class="play-btn" src="./Assets/icons/play.svg" alt="play">
                         </div>
                         <div class="buttons">
                             <!-- bouton x titres likés et partager -->
-                            <button class="btn like">
+                            <button id="nbLikesA" class="btn like">
                                 <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>                                    
@@ -216,8 +216,7 @@ $rechercheDB = $manager->getRechercheDB();
                         </div>
                     </div>
                     <div class="main-content">
-                        <!-- onglets avec le même nav qu'avant sauf que cette fois ci on a que le choix entre Top titres et Albums-->
-                        <nav>
+                        <nav id="navArtiste">
                             <ul>
                                 <li>
                                     <a href="" id="goToTopTitres">
@@ -242,471 +241,9 @@ $rechercheDB = $manager->getRechercheDB();
                             <div class="active-square" id="activeSquareArtiste"></div>
                         </nav>
                         <div class="content-block">
-                            <section  id="TopTitres">
-                                <div class="artiste-wrapper">
-                                    <div class="artiste-row glass with-dots">
-                                        <div class="infos">
-                                            <div class="container-cover">
-                                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                            </div>
-                                            <div class="texts">
-                                                <h4>L'enfant de la pluie</h4>
-                                                <h5>So la lune</h5>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                        </div>
-                                    </div>
-                                    <div class="menu">
-                                        <ul>
-                                            <li>
-                                                <button>
-                                                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Consulter l'artiste
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter l'album
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la playlist
-                                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Liker ce titre
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="artiste-wrapper">
-                                    <div class="artiste-row glass with-dots">
-                                        <div class="infos">
-                                            <div class="container-cover">
-                                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                            </div>
-                                            <div class="texts">
-                                                <h4>L'enfant de la pluie</h4>
-                                                <h5>So la lune</h5>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                        </div>
-                                    </div>
-                                    <div class="menu">
-                                        <ul>
-                                            <li>
-                                                <button>
-                                                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Consulter l'artiste
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter l'album
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la playlist
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Liker ce titre
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="artiste-wrapper">
-                                    <div class="artiste-row glass with-dots">
-                                        <div class="infos">
-                                            <div class="container-cover">
-                                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                            </div>
-                                            <div class="texts">
-                                                <h4>L'enfant de la pluie</h4>
-                                                <h5>So la lune</h5>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                        </div>
-                                    </div>
-                                    <div class="menu">
-                                        <ul>
-                                            <li>
-                                                <button>
-                                                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Consulter l'artiste
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter l'album
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la playlist
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Liker ce titre
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="artiste-wrapper">
-                                    <div class="artiste-row glass with-dots">
-                                        <div class="infos">
-                                            <div class="container-cover">
-                                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                            </div>
-                                            <div class="texts">
-                                                <h4>L'enfant de la pluie</h4>
-                                                <h5>So la lune</h5>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                        </div>
-                                    </div>
-                                    <div class="menu">
-                                        <ul>
-                                            <li>
-                                                <button>
-                                                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Consulter l'artiste
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter l'album
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la playlist
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Liker ce titre
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="artiste-wrapper">
-                                    <div class="artiste-row glass with-dots">
-                                        <div class="infos">
-                                            <div class="container-cover">
-                                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                            </div>
-                                            <div class="texts">
-                                                <h4>L'enfant de la pluie</h4>
-                                                <h5>So la lune</h5>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                        </div>
-                                    </div>
-                                    <div class="menu">
-                                        <ul>
-                                            <li>
-                                                <button>
-                                                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Consulter l'artiste
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter l'album
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>    
-                                                    Consulter la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la file d'attente
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Ajouter à la playlist
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                        
-                                                    Liker ce titre
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <section id="TopTitres" id-user="<?= $_SESSION['user'] ?>">
                             </section>
                             <section id="Albums">
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="background" aria-hidden></div>
-                                    <div class="container-image">
-                                        <img class="cover" src="./Assets/images/cover_so_la_lune.png"/>
-                                        <img src="./Assets/icons/play.svg" alt="play" class="play"/>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div class="texts">
-                                            <h4>Remontada</h4>
-                                            <h5>So la lune</h5>
-                                        </div>
-                                        <img class="heart" src="./Assets/icons/heart.svg"/>
-                                    </div>
-                                </div>
-
                             </section>
                         </div>
                     </div>
@@ -718,23 +255,6 @@ $rechercheDB = $manager->getRechercheDB();
                         <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
                     <section class="resultat">
-                        <!-- l'idée là c'est de montrer à gauche le résultat le plus
-                            pertinent.
-                            Exemple: si on tape ga: on s'attend à avoir gazo en truc le plus pertinent
-                            puis du coup si on à un artiste à gauche: on met ses 3 titres les plus connus à droite.
-
-                            Si le résultat le plus pertinent à gauche c'est un titre, on l'affiche à gauche
-                            et à droite on va mettre d'autres résultats qui peuvent être intéressants 
-                            en fonction de la recherche
-
-                            si le résultat le plus pertinent à gauche c'est un album, on l'affiche à gauche
-                            à droite on met les 3 titres de l'album les plus connus
-                        -->
-                        <!--
-                            et en dessous on va faire un listing à l'horizontal de 5 albums/titres max qui peuvent correspondre à la recherche
-
-                            En dessous on va faire un listing à l'horizontal de 5 artistes max qui peuvent correspondre à la recherche
-                        -->
                         <section id="MainResults" class="results-section">
                             <h2>Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
                             <div class="content">
@@ -747,11 +267,11 @@ $rechercheDB = $manager->getRechercheDB();
                                             <h4 class="no-result" id="nom-best-recherche"></h4>
                                             <h5 class="no-result" id="type-best-recherche"></h5>
                                         </div>
-                                        <img id="img-best-recherche" class="no-result expand" src="/.assets/icons/expand.svg"/>
+                                        <img id="img-best-recherche" class="no-result expand" src="./assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-1">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -769,7 +289,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="menu">
                                             <ul>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteArtiste-1">
                                                         <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
@@ -778,7 +298,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteAlbum-1">
                                                         <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>    
@@ -786,15 +306,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-1">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -810,7 +322,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-1" data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -821,7 +333,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
                                 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-2">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -839,7 +351,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="menu">
                                             <ul>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteArtiste-2">
                                                         <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
@@ -848,7 +360,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteAlbum-2">
                                                         <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>    
@@ -856,15 +368,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-2">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -880,7 +384,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-2" data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -891,7 +395,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </div>
                                     </div>
 
-                                    <div class="artiste-wrapper">
+                                    <div class="artiste-wrapper" id="otherResults-3">
                                         <div class="artiste-row glass with-dots">
                                             <div class="infos">
                                                 <div class="container-cover">
@@ -909,7 +413,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         <div class="menu">
                                             <ul>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteArtiste-3">
                                                         <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.2405 24.7722C19.8065 24.7722 21.1404 23.4819 20.7854 21.9567C19.9025 18.1628 16.9499 16.2658 11.1519 16.2658C5.35387 16.2658 2.40129 18.1628 1.51836 21.9567C1.16341 23.4819 2.49732 24.7722 4.06329 24.7722H18.2405Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1519 12.0127C13.9873 12.0127 15.4051 10.5949 15.4051 7.05063C15.4051 3.50633 13.9873 2.08861 11.1519 2.08861C8.31645 2.08861 6.89873 3.50633 6.89873 7.05063C6.89873 10.5949 8.31645 12.0127 11.1519 12.0127Z" stroke="currentColor" stroke-width="2.83544" stroke-linecap="round" stroke-linejoin="round"/>
@@ -918,7 +422,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="consulteAlbum-3">
                                                         <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>    
@@ -926,15 +430,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
-                                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>    
-                                                        Consulter la file d'attente
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button>
+                                                    <button id="fileAttente-3">
                                                         <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 4H9M13 4H19M16 7V1M4 9H13M8 14H10" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -950,7 +446,7 @@ $rechercheDB = $manager->getRechercheDB();
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button>
+                                                    <button id="like-3"  data-id="<?= $_SESSION["user_id"] ?>">
                                                         <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="#FEFCE1" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
@@ -966,7 +462,7 @@ $rechercheDB = $manager->getRechercheDB();
 
                         <section id="OtherAlbums" class="results-section scrollable">
                             <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
-                            <div id="contentOtherAlbums" class="content">
+                            <div id="contentOtherAlbums" class="content" style="width: 1000px;">
                             </div>
                         </section>
 
@@ -1016,7 +512,7 @@ $rechercheDB = $manager->getRechercheDB();
                                     </div>
                                 </div>
                                 <div class="actions">
-                                   <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
+                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                 </div>
                             </div>
                             <div class="menu">
@@ -1036,14 +532,6 @@ $rechercheDB = $manager->getRechercheDB();
                                                 <path d="M6 13.5C6 14.8807 4.88071 16 3.5 16C2.11929 16 1 14.8807 1 13.5C1 12.1193 2.11929 11 3.5 11C4.88071 11 6 12.1193 6 13.5ZM6 13.5V2.91321C6 2.39601 6.39439 1.96415 6.90946 1.91732L15.9095 1.09914C16.4951 1.0459 17 1.507 17 2.09503V12.5M17 12.5C17 13.8807 15.8807 15 14.5 15C13.1193 15 12 13.8807 12 12.5C12 11.1193 13.1193 10 14.5 10C15.8807 10 17 11.1193 17 12.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>    
                                             Consulter l'album
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 1H17M3.99994 6H13.9999M7.99994 11H9.99994" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>    
-                                            Consulter la file d'attente
                                         </button>
                                     </li>
                                     <li>
@@ -1144,7 +632,7 @@ $rechercheDB = $manager->getRechercheDB();
                                         </button>
                                     </li>
                                 </ul>
-                               </div>
+                            </div>
                         </div>
 
                     </div>
@@ -1612,103 +1100,7 @@ $rechercheDB = $manager->getRechercheDB();
                     <h4>A suivre</h4>
                     <a href="" class="btnOuvrirFileAttente">Voir tout</a>
                 </div>
-                <div class="content">
-        
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
-                    <div class="artiste-row glass">
-                        <div class="infos">
-                            <div class="container-cover">
-                                <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                            </div>
-                            <div class="texts">
-                                <h4>L'enfant de la pluie</h4>
-                                <h5>So la lune</h5>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="edit-list">
-                                <img class="btn-file-attente" src="./Assets/icons/down-arrow.svg" alt="down"/>
-                                <img class="btn-file-attente" src="./Assets/icons/up-arrow.svg" alt="up"/>
-                            </div>
-                            <img src="./Assets/icons/close.svg"/>
-                        </div>
-                    </div>
-
+                <div class="content" id="content-file">
                 </div>
             </section>
         </div>

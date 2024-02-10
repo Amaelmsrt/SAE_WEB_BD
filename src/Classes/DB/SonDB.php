@@ -48,6 +48,19 @@ class SonDB
 
     function addEcouter(int $idSon, int $idUtil)
     {
+        $sql = "SELECT * FROM EcouterRecement WHERE idSon = :idSon AND idUtilisateur = :idUtilisateur";
+        $stmt = $this->pdo->prepare($sql);
+        if ($stmt->execute([':idSon' => $idSon, ':idUtilisateur' => $idUtil])) {
+            $result = $stmt->fetch();
+            if ($result) {
+                $sql = "UPDATE EcouterRecement SET dataHH = datetime('now') WHERE idSon = :idSon AND idUtilisateur = :idUtilisateur";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+                $stmt->bindValue(':idUtilisateur', $idUtil, \PDO::PARAM_INT);
+                $stmt->execute();
+                return;
+            }
+        }
         $sql = "INSERT INTO EcouterRecement (idSon, idUtilisateur, dataHH) VALUES (:idSon, :idUtilisateur, datetime('now'))";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
@@ -87,6 +100,23 @@ class SonDB
 
     function findAlbum(int $idAlbum): array
     {
+        $sql = "SELECT idSon FROM son WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sonList = [];
+        $start = microtime(true);
+        while ($son = $stmt->fetch()) {
+            $sonList[] = $son['idSon'];
+        }
+        $end = microtime(true);
+        $time = $end - $start;
+        error_log("findAlbum: " . $time);
+        return $sonList;
+    }
+
+    function findSonOfAlbum(int $idAlbum): array
+    {
         $sql = "SELECT * FROM son WHERE idAlbum = :idAlbum";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
@@ -94,9 +124,7 @@ class SonDB
         $sons = $stmt->fetchAll();
         $sonList = [];
         foreach ($sons as $son) {
-            // fichir mp3 est un blob
-            $mp3 = base64_encode($son['fichierMp3']);
-            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $mp3, $son['idAlbum'], $son['nbStream']);
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
         }
         return $sonList;
     }
@@ -104,6 +132,20 @@ class SonDB
     function findTopArtist(int $idArtiste): array
     {
         $sql = "SELECT * FROM son JOIN album ON son.idAlbum = album.idAlbum WHERE album.idArtiste = :idArtiste ORDER BY nbStream DESC LIMIT 3";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idArtiste', $idArtiste, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
+
+    function findTopArtist5(int $idArtiste): array
+    {
+        $sql = "SELECT * FROM son JOIN album ON son.idAlbum = album.idAlbum WHERE album.idArtiste = :idArtiste ORDER BY nbStream DESC LIMIT 5";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idArtiste', $idArtiste, \PDO::PARAM_INT);
         $stmt->execute();
@@ -148,5 +190,25 @@ class SonDB
         $stmt->execute();
         $artist = $stmt->fetch();
         return $artist['nomArtiste'];
+    }
+
+    function getIdAlbum(int $idSon): int
+    {
+        $sql = "SELECT idAlbum FROM son WHERE idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $album = $stmt->fetch();
+        return $album['idAlbum'];
+    }
+
+    function getIdArtist(int $idSon): int
+    {
+        $sql = "SELECT idArtiste FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artiste = $stmt->fetch();
+        return $artiste['idArtiste'];
     }
 }

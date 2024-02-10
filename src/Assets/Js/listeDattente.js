@@ -81,4 +81,19 @@ class ListeDattente {
         this.liste.push(id);
         this.updateLocalStorage();
     }
+
+    removeSon(index) {
+        this.liste.splice(index, 1);
+        this.updateLocalStorage();
+    }
+
+    moveSon(index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < this.liste.length) {
+            const temp = this.liste[index];
+            this.liste[index] = this.liste[newIndex];
+            this.liste[newIndex] = temp;
+            this.updateLocalStorage();
+        }
+    }
 }
