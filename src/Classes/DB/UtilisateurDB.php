@@ -20,7 +20,13 @@ class UtilisateurDB {
         $utilisateurs = $stmt->fetchAll();
         $utilisateursArray = [];
         foreach ($utilisateurs as $utilisateur) {
-            $utilisateursArray[] = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+            if ($utilisateur['statutUser'] == "Admin") {
+                $user = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+                $user->setStatut("Admin");
+                $utilisateursArray[] = $user;
+            } else {
+                $utilisateursArray[] = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+            }
         }
         return $utilisateursArray;
     }
