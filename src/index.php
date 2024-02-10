@@ -69,6 +69,15 @@ switch ($action) {
     case "modifier_genre":
         include 'Action/admin/modifier_genre.php';
         break;
+    case "ajouter_utilisateur":
+        include 'Action/admin/ajouter_utilisateur.php';
+        break;
+    case "supprimer_utilisateur":
+        include 'Action/admin/supprimer_utilisateur.php';
+        break;
+    case "modifier_utilisateur":
+        include 'Action/admin/modifier_utilisateur.php';
+        break;
     default:
         include 'Action/connexion.php';
         $layout = "connexion";

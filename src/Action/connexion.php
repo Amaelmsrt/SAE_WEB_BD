@@ -2,7 +2,6 @@
 
 use DB\DataBaseManager;
 
-$id = $_GET['id'] ?? null;
 
 $manager = new DataBaseManager();
 $utilisateurDB = $manager->getUtilisateurDB();
@@ -11,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo = $_POST['pseudo'];
     $mdp = $_POST['mdp'];
 
-    $user = $utilisateurDB->find($pseudo);
+    $user = $utilisateurDB->findWithPseudo($pseudo);
 
     if ($user === null) {
         header("Location: index.php?action=connexion");

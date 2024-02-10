@@ -396,34 +396,70 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $utilisateur->getMdp() ?></td>
                                 <td><?= $utilisateur->getStatut() ?></td>
                                 <td>
-                                    <button class="btn-consulterUtilisateur"
-                                    data-id="<? $utilisateur->getId() ?>"
-                                    data-nom="<?= $utilisateur->getNom() ?>"
-                                    data-prenom="<?= $utilisateur->getPrenom() ?>"
-                                    data-pseudo="<?= $utilisateur->getPseudo() ?>"
-                                    data-email="<?= $utilisateur->getEmail() ?>"
-                                    data-mdp="<?= $utilisateur->getMdp() ?>"
-                                    data-statut="<?= $utilisateur->getStatut() ?>"
-                                    >consulter</button>
-                                    <button class="btn-supprimerUtilisateur" data-id="<? $utilisateur->getId() ?>">Supprimer</button>
+                                    <button class="btn-consulterUtilisateur" id="btn-consulterUtilisateur"
+                                    data-idUtilisateur="<?= $utilisateur->getId() ?>"
+                                    data-nomUtilisateur="<?= $utilisateur->getNom() ?>"
+                                    data-prenomUtilisateur="<?= $utilisateur->getPrenom() ?>"
+                                    data-pseudoUtilisateur="<?= $utilisateur->getPseudo() ?>"
+                                    data-emailUtilisateur="<?= $utilisateur->getEmail() ?>"
+                                    data-mdpUtilisateur="<?= $utilisateur->getMdp() ?>"
+                                    data-statutUtilisateur="<?= $utilisateur->getStatut() ?>"
+                                    >Consulter</button>
+                                    <button class="btn-supprimerUtilisateur" id="btn-supprimerUtilisateur" data-idUtilisateur="<?= $utilisateur->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button class="btn-ajouterUtilisateur">Ajouter</button>
+                <button class="btn-ajouter" id="btn-ajouterUtilisateur">Ajouter</button>
 
                 <!-- Modales -->
                 <div id="modal-ajouterUtilisateur" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_utilisateur" method="post">
+                            <input type="text" name="nom_utilisateur" placeholder="Nom de l'utilisateur" required>
+                            <input type="text" name="prenom_utilisateur" placeholder="Prenom de l'utilisateur" required>
+                            <input type="text" name="pseudo_utilisateur" placeholder="Pseudo de l'utilisateur" required>
+                            <input type="email" name="email_utilisateur" placeholder="Email de l'utilisateur" required>
+                            <input type="password" name="mdp_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            <select name="statut_utilisateur" id="statut_utilisateur">
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                            <button type="submit" id="ajouterUtilisateur">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-supprimerUtilisateur" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_utilisateur" method="post">
+                            <input type="hidden" name="id_utilisateur" id="id_utilisateur_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+                            <button id="supprimerUtilisateur" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="modal-modifierUtilisateur" class="modal">
-                    
+                <div id="modal-consulterUtilisateur" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_utilisateur" method="post">
+                            <input type="hidden" name="id_utilisateur" id="id_modif_utilisateur">
+                            <input type="text" name="nom_utilisateur" id="nom_modif_utilisateur" placeholder="Nom de l'utilisateur" required>
+                            <input type="text" name="prenom_utilisateur" id="prenom_modif_utilisateur" placeholder="Prenom de l'utilisateur" required>
+                            <input type="text" name="pseudo_utilisateur" id="pseudo_modif_utilisateur" placeholder="Pseudo de l'utilisateur" required>
+                            <input type="email" name="email_utilisateur" id="email_modif_utilisateur" placeholder="Email de l'utilisateur" required>
+                            <input type="password" name="mdp_utilisateur" id="mdp_modif_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            <select name="statut_utilisateur" id="statut_modif_utilisateur">
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                            <button type="submit" id="modifierUtilisateur">Modifier</button>
+                        </form>
+                    </div>
                 </div>
             </section>
             <section id="pagePlaylists" class="page">
@@ -453,18 +489,18 @@ $liste_albums = $albumDB->findAll();
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="btn-consulterPlaylist"
-                                    data-id="<?= $playlist->getId() ?>"
-                                    data-nom="<?= $playlist->getNom() ?>"
-                                    data-utilisateur="<?= $playlist->getUtilisateur() ?>"
-                                    >consulter</button>
-                                    <button class="btn-supprimerPlaylist" data-id="<? $playlist->getId() ?>">Supprimer</button>
+                                    <button class="btn-consulterPlaylist" id="btn-consulterPlaylist"
+                                    data-idPlaylist="<?= $playlist->getId() ?>"
+                                    data-nomPlaylist="<?= $playlist->getNom() ?>"
+                                    data-idUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
+                                    >Consulter</button>
+                                    <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button class="btn-ajouterPlaylist">Ajouter</button>
+                <button class="btn-ajouter" id="btn-ajouterPlaylist">Ajouter</button>
 
                 <!-- Modales -->
                 <div id="modal-ajouterPlaylist" class="modal">

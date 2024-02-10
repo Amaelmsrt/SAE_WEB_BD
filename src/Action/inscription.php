@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mdp = $_POST['mdp'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nom = 
+        $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($messageErreur === "") {
             $manager = new DataBaseManager();
             $utilisateurBD = $manager->getUtilisateurDB();
-            $utilisateur = $utilisateurBD->find($pseudo);
+            $utilisateur = $utilisateurBD->findWithPseudo($pseudo);
             if ($utilisateur === null) {
                 $utilisateurBD->insertUser($nom, $prenom, $pseudo, $email, $mdp);
                 header('Location: index.php?action=connexion');

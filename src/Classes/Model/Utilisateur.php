@@ -9,7 +9,6 @@ class Utilisateur {
     private $pseudo;
     private $email;
     private $mdp;
-
     private $statut = "User";
 
     public function __construct($id, $nom, $prenom, $pseudo, $email, $mdp) {

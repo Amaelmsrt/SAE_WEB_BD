@@ -392,3 +392,33 @@ document.querySelectorAll(".btn-consulterGenre").forEach(function(btn) {
         modalConsulterGenre.style.display = "block";
     };
 });
+
+// Utilisateurs
+
+let modalAjouterUtilisateur = document.querySelector("#modal-ajouterUtilisateur");
+let modalConsulterUtilisateur = document.querySelector("#modal-consulterUtilisateur");
+let modalSupprimerUtilisateur = document.querySelector("#modal-supprimerUtilisateur");
+
+document.querySelector("#btn-ajouterUtilisateur").onclick = function() {
+    modalAjouterUtilisateur.style.display = "block";
+}
+
+document.querySelectorAll(".btn-supprimerUtilisateur").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_utilisateur_supprimer").value = btn.getAttribute("data-idUtilisateur");
+        modalSupprimerUtilisateur.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterUtilisateur").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_modif_utilisateur").value = btn.getAttribute("data-idUtilisateur");
+        document.querySelector("#nom_modif_utilisateur").value = btn.getAttribute("data-nomUtilisateur");
+        document.querySelector("#prenom_modif_utilisateur").value = btn.getAttribute("data-prenomUtilisateur");
+        document.querySelector("#pseudo_modif_utilisateur").value = btn.getAttribute("data-pseudoUtilisateur");
+        document.querySelector("#email_modif_utilisateur").value = btn.getAttribute("data-emailUtilisateur");
+        document.querySelector("#mdp_modif_utilisateur").value = btn.getAttribute("data-mdpUtilisateur");
+        document.querySelector("#statut_modif_utilisateur").value = btn.getAttribute("data-statutUtilisateur");
+        modalConsulterUtilisateur.style.display = "block";
+    };
+});
