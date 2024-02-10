@@ -394,11 +394,7 @@ $liste_albums = $albumDB->findAll();
                                 <td><?= $utilisateur->getPseudo() ?></td>
                                 <td><?= $utilisateur->getEmail() ?></td>
                                 <td><?= $utilisateur->getMdp() ?></td>
-                                <?php if ($utilisateur->getStatut() === 'Admin') : ?>
-                                    <td>Admin</td>
-                                <?php else : ?>
-                                    <td>User</td>
-                                <?php endif; ?>
+                                <td><?= $utilisateur->getStatut() ?></td>
                                 <td>
                                     <button class="btn-consulterUtilisateur" id="btn-consulterUtilisateur"
                                     data-idUtilisateur="<?= $utilisateur->getId() ?>"
