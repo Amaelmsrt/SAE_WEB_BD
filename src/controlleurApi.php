@@ -86,6 +86,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($response);
             exit();
 
+        case 'jouerFavorite':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $sons = $manager->getSonDB()->findLike($id);
+            
+            $response = array();
+            foreach ($sons as $son) {
+                $response[] = array(
+                    'id' => $son->getId()
+                );
+            }
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($response);
+            exit();
+
         case 'jouerAlbum':
             $idAlbum = array_shift($path);
             $manager = new Manager();

@@ -649,7 +649,6 @@ function handleContentPlayerClick(e){
         const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
 
         const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2) // ça correspond à la valeur de y qu'on aura après avoir fait le scale + l'aggrandissement à 100vh du menu
-        console.log(midY)
         const resY = -midY + yDuplicatedCover // on fait -midY pour que la cover soit tout en haut de l'écran puis on n'a qu'à ajouter le y de la cover dupliquéeé (qui est invisible) pour qu'elle aille à sa position
 
         //console.log(coverContainer.getBoundingClientRect())

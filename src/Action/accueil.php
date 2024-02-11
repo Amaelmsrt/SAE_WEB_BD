@@ -16,6 +16,10 @@ $lastAlbum = $albumDB->getLastAlbums();
 $artisteAlea = $artistDB->getAleaArtists();
 $rechercheDB = $manager->getRechercheDB();
 
+// Partie mes playlists
+
+$sonLike = $sonDB->findLike($_SESSION['user']);
+
 ?>
 
     <div class="left">
@@ -820,154 +824,36 @@ $rechercheDB = $manager->getRechercheDB();
                                     </svg>   
                                     <div class="texts">
                                         <h3>Mes favoris</h3>
-                                        <h4>187 titres likés</h4>
+                                        <?php
+                                            if (count($sonLike) <= 1) {
+                                                echo "<h4 id='countLike'>".count($sonLike)." titre</h4>";
+                                            } else {
+                                                echo "<h4 id='countLike'>".count($sonLike)." titres</h4>";
+                                            }
+                                        ?>
                                     </div>
                                 </div>
-                                <img src="./Assets/icons/play.svg" alt="play" class="play"/>
+                                <img id="playFav" src="./Assets/icons/play.svg" alt="play" class="play" data-id="<?= $_SESSION["user_id"] ?>"/>
                             </div>
                             <div class="border glass"></div>
                         </div>
-                        <div class="songs">
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
+                        <div class="songs" id="contentFavoris">
+                            <?php foreach($sonLike as $like):?>
+                                <div class="artiste-row glass with-dots topSon" data-id-song="<?= $like->getId() ?>">
+                                    <div class="infos">
+                                        <div class="container-cover">
+                                            <img src="data:image/jpeg;base64,<?= $sonDB->getCover($like->getId()) ?>" alt="cover">
+                                        </div>
+                                        <div class="texts">
+                                            <h4><?= $like->getTitre() ?></h4>
+                                            <h5><?= $sonDB->getArtist($like->getId())?></h5>
+                                        </div>
                                     </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
+                                    <div class="actions">
+                                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                     </div>
                                 </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass with-dots">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
-                            <div class="artiste-row glass">
-                                <div class="infos">
-                                    <div class="container-cover">
-                                        <img src="./Assets/images/cover_so_la_lune.png" alt="cover">
-                                    </div>
-                                    <div class="texts">
-                                        <h4>L'enfant de la pluie</h4>
-                                        <h5>So la lune</h5>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
 

@@ -792,7 +792,7 @@ body .content-block .content.details{
 #SectionPlaylists .content-block.favoris{
     padding-top: 6rem;
     opacity: 0;
-    z-index: -1;
+    z-index: 1;
 }
 
 #SectionPlaylists .current-display::after{

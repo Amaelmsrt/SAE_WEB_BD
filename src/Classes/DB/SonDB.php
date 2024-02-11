@@ -159,7 +159,6 @@ class SonDB
 
     function getCover(int $idSon): string
     {
-
         $sql = "SELECT coverAlbum FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
@@ -210,5 +209,19 @@ class SonDB
         $stmt->execute();
         $artiste = $stmt->fetch();
         return $artiste['idArtiste'];
+    }
+
+    function findLike(int $idUtil): array
+    {
+        $sql = "SELECT * FROM son JOIN LIKERSON ON son.idSon = LIKERSON.idSon WHERE LIKERSON.idUtilisateur = :idUtilisateur";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idUtilisateur', $idUtil, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = $stmt->fetchAll();
+        $sonList = [];
+        foreach ($sons as $son) {
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], $son['fichierMp3'], $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
     }
 }

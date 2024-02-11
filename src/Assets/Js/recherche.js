@@ -27,24 +27,19 @@ for (let i = 1; i <= 3; i++) {
 const div = document.getElementById('bestResult');
 div.removeEventListener('click', showArtiste);
 div.addEventListener('click', function (e) {
-    console.log(this);
     if (this.getAttribute('v') === 'v'){
-        console.log('v');
     }
     else{
         this.setAttribute('data-id-song', '');
     }
     const type = this.getAttribute('data-type');
     if (type === 'Artiste') {
-        console.log('artiste');
         majArtiste(this.getAttribute('data-id'));
     }
     else if (type === 'Album') {
-        console.log('album');
         majAlbum(this.getAttribute('data-id'));
     }
     else{
-        console.log('son');
         e.stopPropagation();
         this.removeAttribute('v');
         this.removeEventListener('click', showArtiste);
@@ -163,10 +158,8 @@ function miseEnPlaceInfos(data){
                 const buttonAddFav = document.getElementById('like-' + (i + 1));
                 buttonAddFav.setAttribute('data-id-song', principal.topSon[i].id);
                 const consulterAlbum = document.getElementById('consulteAlbum-' + (i + 1));
-                console.log(principal.topSon[i].idAlbum);
                 consulterAlbum.setAttribute('data-id', principal.topSon[i].idAlbum);
                 const consulterArtiste = document.getElementById('consulteArtiste-' + (i + 1));
-                console.log(principal.topSon[i].idArtiste);
                 consulterArtiste.setAttribute('data-id', principal.topSon[i].idArtiste);
             }
             else{

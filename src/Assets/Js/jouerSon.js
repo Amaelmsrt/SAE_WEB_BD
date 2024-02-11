@@ -1,4 +1,4 @@
-var listeDattenteObj = ListeDattente.getInstance() ;
+const listeDattenteObj = ListeDattente.getInstance() ;
 
 if (listeDattenteObj.numSonEnCours) {
     recupSon(listeDattenteObj.numSonEnCours);
@@ -17,8 +17,8 @@ btnAgrandirFile.forEach(btn => {
 
 
 function handleJouerSonFile(button){
-    var idSon = button.getAttribute('data-id-song');
-    var index = button.getAttribute('index');
+    const idSon = button.getAttribute('data-id-song');
+    const index = button.getAttribute('index');
     listeDattenteObj.setIndexSonEnCours(parseInt(index));
     jouerSon(idSon);
 }
@@ -243,8 +243,69 @@ function handleLike(button){
     })
     .then(function (data) {
         if (data.like == true) {
+            const counLike = document.getElementById('countLike');
+            // Format : "5 titres"
+            const count = counLike.innerHTML.split(' ')[0];
+            const newCount = parseInt(count) + 1;
+            if (newCount == 1) {
+                counLike.innerHTML = newCount + ' titre';
+            }
+            else {
+                counLike.innerHTML = newCount + ' titres';
+            }
             button.classList.add('like');
+            // Ajoute le son à la liste des favoris
+            const contentFav = document.getElementById('contentFavoris');
+            const div = document.createElement('div');
+            div.classList.add('artiste-row', 'glass', 'with-dots', 'topSon');
+            div.setAttribute('data-id-song', sonId);
+            fetch ('/controlleurApi.php/infosSon/' + sonId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                div.innerHTML = `
+                    <div class="infos">
+                        <div class="container-cover">
+                            <img src="data:image/jpeg;base64,${data.cover}" alt="cover">
+                        </div>
+                        <div class="texts">
+                            <h4>${data.titre}</h4>
+                            <h5>${data.artiste}</h5>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
+                    </div>
+                `;
+                contentFav.appendChild(div);
+            });
         } else {
+            const counLike = document.getElementById('countLike');
+            // Format : "5 titres"
+            const count = counLike.innerHTML.split(' ')[0];
+            const newCount = parseInt(count) - 1;
+            if (newCount == 1 || newCount == 0) {
+                counLike.innerHTML = newCount + ' titre';
+            }
+            else {
+                counLike.innerHTML = newCount + ' titres';
+            }
+            const contentFav = document.getElementById('contentFavoris');
+            for (let i = 0; i < contentFav.children.length; i++) {
+                if (contentFav.children[i].getAttribute('data-id-song') === sonId) {
+                    contentFav.removeChild(contentFav.children[i]);
+                    break;
+                }
+            }
             button.classList.remove('like');
         }
         const btnLikeSon = document.querySelectorAll('.likeSong');
@@ -313,7 +374,7 @@ setInterval(function () {
         if (listeDattenteObj.sonEnCours.ended) {
             if (listeDattenteObj.liste.length > 0) {
                 listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours + 1) % listeDattenteObj.liste.length);
-                var idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
+                const idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
                 jouerSon(idSon);
             }
         }
@@ -357,7 +418,7 @@ boutons.forEach(function (bouton) {
 
 
 // Met le son courrant en pause
-var btnPause = document.getElementById('playPause');
+const btnPause = document.getElementById('playPause');
 btnPause.addEventListener('click', function () {
     const img = document.getElementById('imgPlayPause');
     if (listeDattenteObj.sonEnCours) {
@@ -371,30 +432,67 @@ btnPause.addEventListener('click', function () {
     }
 });
 
-var btnNextR = document.getElementById('next');
+const btnNextR = document.getElementById('next');
 btnNextR.addEventListener('click', function () {
     if (listeDattenteObj.liste.length > 0) {
         listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours + 1) % listeDattenteObj.liste.length);
-        var idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
+        const idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
         jouerSon(idSon);
     }
 });
 
-var btnNextL = document.getElementById('back');
+const btnNextL = document.getElementById('back');
 btnNextL.addEventListener('click', function () {
     if (listeDattenteObj.liste.length > 0) {
         listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours - 1));
         if (listeDattenteObj.indexSonEnCours < 0) {
             listeDattenteObj.setIndexSonEnCours(listeDattenteObj.indexSonEnCours + listeDattenteObj.liste.length);
         }
-        var idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
+        const idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
         jouerSon(idSon);
     }
 });
 
+const btnPlayFav = document.getElementById('playFav');
+btnPlayFav.addEventListener('click', function () {
+    handleJouerFavorite(this);
+});
+
+function handleJouerFavorite(button){
+    const idUtilisateur = button.getAttribute('data-id');
+    fetch('/controlleurApi.php/jouerFavorite/' + idUtilisateur, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(function (lesAudios) {
+        // boucle sur les audios
+        let cpt = 0;
+        listeDattenteObj.setIndexSonEnCours(0);
+        listeDattenteObj.setListe([]);
+        lesAudios.forEach(function (audio) {
+            if (cpt === 0) {
+                jouerSon(audio.id);
+                listeDattenteObj.addSon(audio.id);
+            }
+            else{
+                listeDattenteObj.addSon(audio.id);
+            }
+            cpt = cpt + 1;
+        });
+    })
+}
+
 // Jouer un album
 function handleJouerAlbum(button){
-    var idAlbum = button.getAttribute('data-id-album');
+    const idAlbum = button.getAttribute('data-id-album');
     fetch('/controlleurApi.php/jouerAlbum/' + idAlbum, {
         method: 'POST',
         headers: {
@@ -435,7 +533,7 @@ function handleJouerAlbum(button){
 
 
 function handleJouerSonArtiste(button){
-    var idArtiste = button.getAttribute('data-id-artiste');
+    const idArtiste = button.getAttribute('data-id-artiste');
     fetch('/controlleurApi.php/jouerArtiste/' + idArtiste, {
         method: 'POST',
         headers: {
@@ -469,7 +567,7 @@ function handleJouerSonArtiste(button){
 }
 
 function handleJouerSon(button){
-    var idSon = button.getAttribute('data-id-song');
+    const idSon = button.getAttribute('data-id-song');
     if (idSon != "" && idSon != null){
         listeDattenteObj.setIndexSonEnCours(0);
         listeDattenteObj.setListe([]);
@@ -608,7 +706,7 @@ function recupSon(idSon){
 }
 
 function handleAjouterSonFile(button){
-    var idSon = button.getAttribute('data-id');
+    const idSon = button.getAttribute('data-id');
     listeDattenteObj.addSon(idSon);
     handleFileDattente(1);
 }
