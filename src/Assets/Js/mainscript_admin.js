@@ -22,164 +22,55 @@ const btnMenuUtilisateurs = document.querySelector("#btnMenuUtilisateurs");
 const btnMenuPlaylists = document.querySelector("#btnMenuPlaylists");
 const btnMenuAlbums = document.querySelector("#btnMenuAlbums");
 
+const sections = [
+    document.querySelector("#pagePrincipale"),
+    document.querySelector("#pageArtistes"),
+    document.querySelector("#pageSons"),
+    document.querySelector("#pageGenres"),
+    document.querySelector("#pageUtilisateurs"),
+    document.querySelector("#pagePlaylists"),
+    document.querySelector("#pageAlbums")
+];
+
+const menuItems = [goToMenuPrincipal, goToArtistes, goToSons, goToGenres, goToUtilisateurs, goToPlaylists, goToAlbums];
+
 
 function changeCurrentMenu(e, index) {
     e?.preventDefault();
 
-    function clearActiveSections() {
-        if (sectionMenuPrincipal.classList != null)
-            sectionMenuPrincipal.classList.remove("active-section");
-        if (sectionMenuArtistes.classList != null)
-            sectionMenuArtistes.classList.remove("active-section");
-        if (sectionMenuSons.classList != null)
-            sectionMenuSons.classList.remove("active-section");
-        if (sectionMenuGenres.classList != null)
-            sectionMenuGenres.classList.remove("active-section");
-        if (sectionMenuUtilisateurs.classList != null)
-            sectionMenuUtilisateurs.classList.remove("active-section");
-        if (sectionMenuPlaylists.classList != null)
-            sectionMenuPlaylists.classList.remove("active-section");
-        if (sectionMenuAlbums.classList != null)
-            sectionMenuAlbums.classList.remove("active-section");
-    }
-
-    const curSection = document.querySelector(".active-section");
-    let curIndex = -1;
-    if (e) {
-        const curSectionName = curSection.id.split("page")[1];
-
-        curIndex = curSectionName == "Principale" ? 0 : curSectionName == "Artistes" ? 1 : curSectionName == "Sons" ? 2 : curSectionName == "Genres" ? 3 : curSectionName == "Utilisateurs" ? 4 : curSectionName == "Playlists" ? 5 : 6;
-        if (e.target.id.split("goTo")[1] == curSectionName) return;
-    }
+    const curIndex = sections.findIndex(section => section.classList.contains('active-section'));
 
     const menuItemHeight = 3.5;
-
     const menuItemMargin = 0.85;
-
     const startPosition = 1;
-
     const position = startPosition + index * (menuItemHeight + menuItemMargin);
 
     gsap.to(activeSquare, { top: `${position}rem`, duration: 0.6, ease: "power4.out" });
 
-    const menuItems = [goToMenuPrincipal, goToArtistes, goToSons, goToGenres, goToUtilisateurs, goToPlaylists, goToAlbums];
     menuItems.forEach((menuItem, i) => {
         gsap.to(menuItem, { color: i === index ? "#0E100F" : "#FEFCE1", duration: 0.6, ease: "power4.out" });
     });
 
-    switch(index) {
-        case 0:
-            gsap.to(goToMenuPrincipal, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
+    sections.forEach((section, i) => {
+        gsap.to(section, { opacity: i === index ? 1 : 0, y: i === index ? 0 : (i < index ? "100vw" : "-100vw"), duration: 0.6, zIndex: i === index ? 1 : -1, ease: "power4.out" });
+        section.classList.toggle('active-section', i === index);
+    });
 
-            gsap.fromTo(sectionMenuPrincipal, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-            clearActiveSections();
-            sectionMenuPrincipal.classList.add("active-section");
-            break;
-
-        case 1:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuArtistes, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuArtistes.classList.add("active-section");
-            break;
-
-        case 2:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuSons, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuSons.classList.add("active-section");
-            break;
-
-        case 3:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuGenres, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuGenres.classList.add("active-section");
-            break;
-
-        case 4:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuUtilisateurs, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuUtilisateurs.classList.add("active-section");
-            break;
-        case 5:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuPlaylists, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuPlaylists.classList.add("active-section");
-            break;
-        case 6:
-            gsap.to(goToMenuPrincipal, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToArtistes, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToSons, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToGenres, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToUtilisateurs, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToPlaylists, {color: "#FEFCE1", duration: 0.6, ease:"power4.out"});
-            gsap.to(goToAlbums, {color: "#0E100F", duration: 0.6, ease:"power4.out"});
-
-            gsap.fromTo(sectionMenuAlbums, {opacity: 0, y: index < curIndex ? "-100vw" : "100vw"}, {opacity: 1, y: 0, duration: 0.6, zIndex: 1, ease:"power4.out"});
-            gsap.to(curSection, {opacity:0, y: index < curIndex ? "c100vw" : "-100vw", duration:0.6, zIndex: -1, ease: "power4.out"});
-
-            clearActiveSections();
-            sectionMenuAlbums.classList.add("active-section");
-            break;
-    }
+    localStorage.setItem('currentSectionIndex', index.toString());
 }
 
-changeCurrentMenu(null, 0);
+function loadActiveSection() {
+    const sectionIndex = localStorage.getItem('currentSectionIndex');
+    changeCurrentMenu(null, sectionIndex ? parseInt(sectionIndex) : 0);
+}
+
+window.addEventListener('DOMContentLoaded', loadActiveSection);
+
+menuItems.forEach((menuItem, index) => {
+    menuItem.addEventListener('click', (e) => changeCurrentMenu(e, index));
+});
+
+
 
 goToMenuPrincipal.addEventListener('click', (e) => changeCurrentMenu(e,0));
 goToArtistes.addEventListener('click', (e) => changeCurrentMenu(e,1));
@@ -422,3 +313,12 @@ document.querySelectorAll(".btn-consulterUtilisateur").forEach(function(btn) {
         modalConsulterUtilisateur.style.display = "block";
     };
 });
+
+
+
+
+function showActiveSectionContent(index) {
+    const sections = [sectionMenuPrincipal, sectionMenuArtistes, sectionMenuSons, sectionMenuGenres, sectionMenuUtilisateurs, sectionMenuPlaylists, sectionMenuAlbums];
+    sections.forEach(section => section.style.display = 'none');
+    sections[index].style.display = 'flex';
+}

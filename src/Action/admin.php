@@ -417,7 +417,7 @@ $liste_albums = $albumDB->findAll();
                 <div id="modal-ajouterUtilisateur" class="modal">
                     <div class="modal-content">
                         <span class="close-button">x</span>
-                        <form action="index.php?action=ajouter_utilisateur" method="post">
+                        <form id="form-ajouterUtilisateur" action="index.php?action=ajouter_utilisateur" method="post">
                             <input type="text" name="nom_utilisateur" placeholder="Nom de l'utilisateur" required>
                             <input type="text" name="prenom_utilisateur" placeholder="Prenom de l'utilisateur" required>
                             <input type="text" name="pseudo_utilisateur" placeholder="Pseudo de l'utilisateur" required>
