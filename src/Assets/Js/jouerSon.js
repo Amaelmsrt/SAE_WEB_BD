@@ -2,8 +2,18 @@ var listeDattenteObj = ListeDattente.getInstance() ;
 
 if (listeDattenteObj.numSonEnCours) {
     recupSon(listeDattenteObj.numSonEnCours);
-    handleFileDattente();
+    handleFileDattente(1);
 }
+
+
+
+const btnAgrandirFile = document.querySelectorAll('.btnOuvrirFileAttente');
+btnAgrandirFile.forEach(btn => {
+    btn.addEventListener('click', () => {
+        handleFileDattente(2);
+
+    })
+})
 
 
 function handleJouerSonFile(button){
@@ -14,8 +24,8 @@ function handleJouerSonFile(button){
 }
 
 
-function handleFileDattente(){
-    const attentContainer = document.getElementById('content-file');
+function handleFileDattente(num){
+    const attentContainer = num == 1 ? document.getElementById('content-file') : document.getElementById('fileAgr');
     attentContainer.innerHTML = '';
     for (let i = listeDattenteObj.indexSonEnCours + 1; i < listeDattenteObj.liste.length + listeDattenteObj.indexSonEnCours; i++) {
         const idSon = listeDattenteObj.liste[i % listeDattenteObj.liste.length];
@@ -87,6 +97,9 @@ function handleFileDattente(){
                     const nextClose = nextDiv.querySelector('.actions .close-file');
                     nextClose.setAttribute('index', index);
                 }
+                if (num == 2){
+                    handleFileDattente(1);
+                }
             });
 
             const btnUp = div.querySelector('.actions .up-file');
@@ -117,6 +130,9 @@ function handleFileDattente(){
                     const prevClose = prevDiv.querySelector('.actions .close-file');
                     prevClose.setAttribute('index', index);
                 }
+                if (num == 2){
+                    handleFileDattente(1);
+                }
             });
 
             const btnClose = div.querySelector('.actions .close-file');
@@ -137,6 +153,9 @@ function handleFileDattente(){
                         const close = divs[i].querySelector('.actions .close-file');
                         close.setAttribute('index', parseInt(close.getAttribute('index')) - 1);
                     }
+                }
+                if (num == 2){
+                    handleFileDattente(1);
                 }
             });
         })
@@ -494,7 +513,7 @@ function jouerSon(idSon){
         const img = document.getElementById('imgPlayPause');
         img.src = "/assets/icons/play-lg.svg";
         audio.play();
-        handleFileDattente();
+        handleFileDattente(1);
     })
 }
 
@@ -591,5 +610,5 @@ function recupSon(idSon){
 function handleAjouterSonFile(button){
     var idSon = button.getAttribute('data-id');
     listeDattenteObj.addSon(idSon);
-    handleFileDattente();
+    handleFileDattente(1);
 }

@@ -438,7 +438,7 @@ btnNouvellePlaylist.addEventListener('click', openPlaylistPopUp)
 btnClosePopUp.forEach(btn => btn.addEventListener('click', closePlaylistPopUp))
 btnsOuvrirFileAttente.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();    
+        e.preventDefault();   
         openFileAttentePopUp()
     })
 })

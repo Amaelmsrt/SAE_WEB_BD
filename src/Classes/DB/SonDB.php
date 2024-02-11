@@ -70,7 +70,7 @@ class SonDB
 
     function findEcouter(int $idUtil): array
     {
-        $sql = "SELECT * FROM EcouterRecement JOIN son ON EcouterRecement.idSon = son.idSon WHERE EcouterRecement.idUtilisateur = :idUtilisateur ORDER BY dataHH DESC LIMIT 15";
+        $sql = "SELECT * FROM EcouterRecement JOIN son ON EcouterRecement.idSon = son.idSon WHERE EcouterRecement.idUtilisateur = :idUtilisateur ORDER BY dataHH DESC LIMIT 16";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idUtilisateur', $idUtil, \PDO::PARAM_INT);
         $stmt->execute();
