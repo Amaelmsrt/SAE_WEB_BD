@@ -40,7 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="container-connexion" id="inscription" action="index.php?action=inscription" method="post">
 
             <div class="top-content">
-                <legend>INSCRIPTION</legend>
+                <legend>
+                    M'inscrire
+                    <img src="./Assets/icons/star_1.svg"/>
+                </legend>
                 
                 <section class="inputs">
                     <div class="container-textfields">
@@ -85,7 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <form id="connexion" class="container-connexion" action="index.php?action=connexion" method="post">
             <div class="top-content">
-                <legend>ME CONNECTER</legend>
+                <legend>
+                    Me connecter
+                    <img src="./Assets/icons/star_1.svg"/>
+                </legend>
                 
                 <section class="inputs">
                     <div class="text-field">
