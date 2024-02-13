@@ -203,6 +203,11 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                             </div>
                             <img id="playArtiste" class="play-btn" src="./Assets/icons/play.svg" alt="play">
                         </div>
+                        <div style="color: white;">
+                            <p id="descriptionArtiste"></p>
+                            <div id="genresArtiste"></div>
+                            <p id="dateArtiste"></p>
+                        </div>
                         <div class="buttons">
                             <!-- bouton x titres likés et partager -->
                             <button id="nbLikesA" class="btn like">

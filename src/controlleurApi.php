@@ -258,11 +258,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $nbLike = $manager->getLikeSonDB()->countLikes($artist->getId(), $_SESSION['user_id']);
 
+            $genres = $manager->getAlbumDB()->findGenres($id);
+            $genresToJson = array();
+            foreach ($genres as $genre) {
+                $genresToJson[] = $genre;
+            }
+
             $result = array(
                 'id' => $album->getId(),
                 'titre' => $album->getTitre(),
                 'cover' => $album->getCover(),
                 'artiste' => $artist->getName(),
+                'date' => $album->getDate(),
+                'genres' => $genresToJson,
+                'description' => $album->getDescription(),
                 'nbLikes' => $nbLike,
                 'sons' => $sonJson,
                 'idArtiste' => $artist->getId()

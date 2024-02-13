@@ -286,6 +286,10 @@ function handleLike(button){
                         <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                     </div>
                 `;
+                div.addEventListener('click', function () {
+                    jouerSon(sonId);
+                });
+                
                 contentFav.appendChild(div);
             });
         } else {

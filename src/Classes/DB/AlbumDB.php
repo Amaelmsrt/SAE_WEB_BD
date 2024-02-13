@@ -118,4 +118,18 @@ class AlbumDB
         $artist = $stmt->fetch();
         return $artist['idArtiste'];
     }
+
+    function findGenres(int $idAlbum): array
+    {
+        $sql = "SELECT * FROM genre JOIN APPARTENIR ON genre.idGenre = APPARTENIR.idGenre WHERE APPARTENIR.idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        $genresArray = [];
+        foreach ($genres as $genre) {
+            $genresArray[] = $genre['titreGenre'];
+        }
+        return $genresArray;
+    }
 }

@@ -300,7 +300,19 @@ function majAlbum(id){
         const cover = document.getElementById('coverArtisteDetail');
         const name = document.getElementById('nomArtisteDetail');
         const artiste = document.getElementById('nbAlbumsArtiste');
+        const description = document.getElementById('descriptionArtiste');
+        const genres = document.getElementById('genresArtiste');
+        const date = document.getElementById('dateArtiste');
         artiste.innerHTML = data.artiste;
+        description.innerHTML = data.description;
+        genres.innerHTML = '';
+        for (let i = 0; i < data.genres.length; i++) {
+            genres.innerHTML += data.genres[i];
+            if (i < data.genres.length - 1){
+                genres.innerHTML += ', ';
+            }
+        }
+        date.innerHTML = data.date;
 
         name.innerHTML = data.titre;
         cover.setAttribute('src', "data:image/png;base64," + data.cover);
@@ -426,6 +438,12 @@ function majArtiste(id){
         const cover = document.getElementById('coverArtisteDetail');
         const name = document.getElementById('nomArtisteDetail');
         const artiste = document.getElementById('nbAlbumsArtiste');
+        const description = document.getElementById('descriptionArtiste');
+        const genres = document.getElementById('genresArtiste');
+        const date = document.getElementById('dateArtiste');
+        description.innerHTML = '';
+        genres.innerHTML = '';
+        date.innerHTML = '';
         artiste.innerHTML = '';
         name.innerHTML = data.nom;
         cover.setAttribute('src', "data:image/png;base64," + data.cover);
@@ -553,32 +571,3 @@ function majArtiste(id){
         }
     });
 }
-
-// const div = document.getElementById('div-top-titres-' + (i + 1));
-// div.setAttribute('data-id-song', data.topSon[i].id);
-// div.addEventListener('click', function () {handleJouerSon(this);});
-
-// const cover = document.getElementById('top-titres-cover-' + (i + 1));
-// cover.setAttribute('src', "data:image/png;base64," + data.topSon[i].cover);
-// const album = document.getElementById('top-titres-album-' + (i + 1));
-// album.innerHTML = data.topSon[i].titre;
-// const artiste = document.getElementById('top-titres-artiste-' + (i + 1));
-// artiste.innerHTML = data.nom;
-
-// // Button du menu
-// const buttonAddFile = document.getElementById('addToQueue-' + (i + 1));
-// buttonAddFile.setAttribute('data-id', data.topSon[i].id);
-// const buttonAddFav = document.getElementById('like-' + (i + 1) + '-1');
-// buttonAddFav.setAttribute('data-id-song', data.topSon[i].id);
-
-
-
-// <!-- <?php if ($isLike) : ?>
-// <svg class="svg-heart like likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-// </svg>
-// <?php else : ?>
-// <svg class="svg-heart likeAlbum" data-id-album="<?= $album->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-// </svg>
-// <?php endif; ?> -->
