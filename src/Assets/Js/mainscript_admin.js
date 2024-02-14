@@ -312,3 +312,27 @@ document.querySelectorAll(".btn-consulterUtilisateur").forEach(function(btn) {
     };
 });
 
+// Playlists
+
+let modalAjouterPlaylist = document.querySelector("#modal-ajouterPlaylist");
+let modalConsulterPlaylist = document.querySelector("#modal-consulterPlaylist");
+let modalSupprimerPlaylist = document.querySelector("#modal-supprimerPlaylist");
+
+document.querySelector("#btn-ajouterPlaylist").onclick = function() {
+    modalAjouterPlaylist.style.display = "block";
+}
+
+document.querySelectorAll(".btn-supprimerPlaylist").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_playlist_supprimer").value = btn.getAttribute("data-idPlaylist");
+        modalSupprimerPlaylist.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterPlaylist").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_modif_playlist").value = btn.getAttribute("data-idPlaylist");
+        document.querySelector("#titre_modif_playlist").value = btn.getAttribute("data-titrePlaylist");
+        modalConsulterPlaylist.style.display = "block";
+    };
+});

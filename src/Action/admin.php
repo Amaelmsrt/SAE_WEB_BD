@@ -495,15 +495,14 @@ $nb_albums = count($liste_albums);
                             <tr>
                                 <td><?= $playlist->getNom() ?></td>
                                 <td>
-                                    <button class="consultation">
-                                        Consulter
-                                    </button>
+                                    <?php $utilisateur = $utilisateurDB->find($playlist->getIdUtilisateur()) ?>
+                                    <?= $utilisateur->getPseudo() ?>
                                 </td>
                                 <td>
                                     <button class="btn-consulterPlaylist" id="btn-consulterPlaylist"
                                     data-idPlaylist="<?= $playlist->getId() ?>"
                                     data-nomPlaylist="<?= $playlist->getNom() ?>"
-                                    data-idUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
+                                    data-nomUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
                                     >Consulter</button>
                                     <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
                                 </td>
@@ -515,15 +514,45 @@ $nb_albums = count($liste_albums);
 
                 <!-- Modales -->
                 <div id="modal-ajouterPlaylist" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_playlist" method="post">
+                            <input type="text" name="nom_nv_playlist" placeholder="Nom de la playlist" required>
+                            <select name="nom_user_playlist" id="nom_nv_user">
+                                <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
+                                    <option value="<?= $utilisateur->getId() ?>"><?= $utilisateur->getPseudo() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="ajouterPlaylist">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-supprimerPlaylist" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_playlist" method="post">
+                            <input type="hidden" name="id_playlist" id="id_playlist_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer cette playlist ?</p>
+                            <button id="supprimerPlaylist" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-modifierPlaylist" class="modal">
-                    
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_playlist" method="post">
+                            <input type="hidden" name="id_playlist" id="id_modif_playlist">
+                            <input type="text" name="nom_playlist" id="nom_modif_playlist" placeholder="Nom de la playlist" required>
+                            <select name="liste_utilisateurs" id="liste_utilisateurs_modif">
+                                <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
+                                    <option value="<?= $utilisateur->getId() ?>"><?= $utilisateur->getPseudo() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="modifierPlaylist">Modifier</button>
+                        </form>
+                    </div>
                 </div>
             </section>
                 

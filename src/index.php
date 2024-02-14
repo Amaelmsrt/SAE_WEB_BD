@@ -78,6 +78,24 @@ switch ($action) {
     case "modifier_utilisateur":
         include 'Action/admin/modifier_utilisateur.php';
         break;
+    case "ajouter_musique":
+        include 'Action/admin/ajouter_musique.php';
+        break;
+    case "supprimer_musique":
+        include 'Action/admin/supprimer_musique.php';
+        break;
+    case "modifier_musique":
+        include 'Action/admin/modifier_musique.php';
+        break;
+    case "ajouter_playlist":
+        include 'Action/admin/ajouter_playlist.php';
+        break;
+    case "supprimer_playlist":
+        include 'Action/admin/supprimer_playlist.php';
+        break;
+    case "modifier_playlist":
+        include 'Action/admin/modifier_playlist.php';
+        break;
     default:
         include 'Action/connexion.php';
         $layout = "connexion";
