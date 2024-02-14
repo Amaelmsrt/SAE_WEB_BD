@@ -259,6 +259,7 @@ function noresult(){
     type.classList.add('no-result');
     const name = document.getElementById('nom-best-recherche');
     name.classList.add('no-result');
+    name.innerHTML = '';
     const img = document.getElementById('img-best-recherche');
     img.classList.add('no-result');
     const div = document.getElementById('bestResult');

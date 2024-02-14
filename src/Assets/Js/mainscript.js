@@ -967,3 +967,87 @@ afficherDefaultAccueil();
 
 voirmoins.addEventListener('click', afficherDefaultAccueil)
 voirtout.addEventListener('click', afficherDetailsAccueil)
+
+
+const contentOtherArtiste = document.querySelector("#contentOtherArtiste");
+const contentOtherAlbums = document.querySelector("#contentOtherAlbums");
+
+// on va écouter les changements sur ces deux éléments
+// si le contenu de l'un est vide alors on va le mettre en display none
+
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        if (mutation.target.innerHTML == ""){
+            mutation.target.parentElement.style.display = "none";
+        }
+        else {
+            mutation.target.parentElement.style.display = "flex";
+        }
+    })
+})
+
+observer.observe(contentOtherArtiste, {childList: true})
+
+observer.observe(contentOtherAlbums, {childList: true})
+
+// #AllResults
+const texteRecherche = document.querySelector("#TexteResultats");
+
+// nom-best-recherche, nom-best-recherche-2-1, nom-best-recherche-2-2, nom-best-recherche-2-3
+const nomBestRecherche = document.querySelector("#nom-best-recherche");
+const nomBestRecherche2_1 = document.querySelector("#nom-best-recherche-2-1");
+const nomBestRecherche2_2 = document.querySelector("#nom-best-recherche-2-2");
+const nomBestRecherche2_3 = document.querySelector("#nom-best-recherche-2-3");
+
+// on va écouter s'ils ont du contenu, s'ils n'en ont pas on met en display none le parent du parent du parent du parent (4) pour le best result
+// et le parent du parent du parent (3) pour les autres
+
+// si ils sont tous vide on affiche 'aucun résultat' sur le texteRecherche
+
+const checkIfEmptyBR2 = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        if (mutation.target.innerHTML != ""){
+            mutation.target.parentElement.parentElement.parentElement.parentElement.style.display = "flex";
+        }
+        else {
+            mutation.target.parentElement.parentElement.parentElement.parentElement.style.display = "none";
+        }
+        isEveryoneEmpty();
+    })
+})
+
+const checkIfEmptyBR = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        if (mutation.target.innerHTML != ""){
+            mutation.target.parentElement.parentElement.parentElement.style.display = "flex";
+        }
+        else {
+            mutation.target.parentElement.parentElement.parentElement.style.display = "none";
+        }
+        isEveryoneEmpty();
+    })
+})
+
+const isEveryoneEmpty = () => {
+    console.log(nomBestRecherche.innerHTML, nomBestRecherche2_1.innerHTML, nomBestRecherche2_2.innerHTML, nomBestRecherche2_3.innerHTML)
+    if (nomBestRecherche.innerHTML == "" && nomBestRecherche2_1.innerHTML == "" && nomBestRecherche2_2.innerHTML == "" && nomBestRecherche2_3.innerHTML == ""){
+        texteRecherche.style.display = "flex";
+        texteRecherche.innerHTML = "Aucun résultat "
+    }
+    else{
+        texteRecherche.style.display = "flex";
+        texteRecherche.innerHTML = 'Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/>'
+    }
+}
+
+checkIfEmptyBR.observe(nomBestRecherche, {childList: true})
+checkIfEmptyBR2.observe(nomBestRecherche2_1, {childList: true})
+checkIfEmptyBR2.observe(nomBestRecherche2_2, {childList: true})
+checkIfEmptyBR2.observe(nomBestRecherche2_3, {childList: true})
+
+const searchbar = document.querySelector("#search");
+
+// j'ai envie d'écouter le changement de valeur de la searchbar
+// si la valeur est vide on execute isEveryoneEmpty
+
+searchbar.addEventListener('input', isEveryoneEmpty)

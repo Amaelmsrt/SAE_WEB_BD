@@ -271,9 +271,9 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                         <img src="./Assets/icons/search.svg" alt="user"/>
                         <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
-                    <section class="resultat">
+                    <section id="allResults" class="resultat">
                         <section id="MainResults" class="results-section">
-                            <h2>Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
+                            <h2 id="TexteResultats">Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
                             <div class="content">
                                 <div id="bestResult" class="best-result glass">
                                     <div class="container-cover">

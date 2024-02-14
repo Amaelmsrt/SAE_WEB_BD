@@ -301,6 +301,7 @@ body main form .container-textfields{
 }
 
 .text-field img{
+    z-index: 2;
     height: 1.5rem;
 }
 
@@ -622,6 +623,7 @@ body #SectionRecherche{
     gap:0;
     opacity: 0;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 body #SectionRecherche .wrapper-recherche{
@@ -1655,6 +1657,7 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
     border-radius: 1rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    display: none;
 }
 
 #SectionRecherche .resultat .results-section .content .best-result .expand{
@@ -1710,11 +1713,16 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap:0.8rem;
     justify-content: space-between;
 }
 
 #SectionRecherche .resultat .results-section .content .other-results .artiste-row{
     cursor: pointer;
+}
+
+#SectionRecherche .resultat .results-section .content .other-results > .artiste-wrapper{
+    display: none;
 }
 
 /* pop up */
@@ -2351,4 +2359,27 @@ html {
 
 .no-result{
     display: none;
+}
+
+#SectionRecherche .resultat .results-section#OtherArtists, #SectionRecherche .resultat .results-section#OtherAlbums{
+    display: none;
+}
+
+#TexteResultats{
+    display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: transparent;
+  -webkit-text-fill-color: var(--text-color-secondary);
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

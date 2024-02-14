@@ -752,7 +752,7 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
             x: isNext ? "-100%" : isPrev ? "100%" : "0%",
             opacity: 0,
             zIndex: 0,
-            scale: 0.9,
+            scale: 0.8,
             duration: 0.45,
             ease: "slow",
             onComplete: () => {
@@ -761,7 +761,7 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
 
         gsap.fromTo(newMedia, {
             x: isNext ? "100%" : isPrev ? "-100%" : "0%",
-            scale: 1.1,
+            scale: 0.8,
             opacity: 0,
             zIndex: 1,
         }, {
@@ -769,7 +769,7 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
             scale: 1,
             opacity: 1,
             duration: 0.45,
-            delay: 0.15,
+            delay: isNext || isPrev ? 0 : 0.15,
             ease: "slow",
         })
 
