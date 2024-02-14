@@ -223,17 +223,22 @@ btnLikeArtiste.forEach(function (btn) {
 
 const btnLikeSon = document.querySelectorAll('.likeSong');
 btnLikeSon.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        handleLike(this);
-    });
-    // envie d'ajouter un listener sur le press et la fin du press pour changer l'icone
-    btn.addEventListener('mousedown', () => {
-        gsap.to(btn, {scale: 0.9, duration: 0.1, ease: "power1.inOut"})
-    })
-    btn.addEventListener('mouseup', () => {
-        gsap.to(btn, {scale: 1, duration: 0.1, ease: "power1.inOut"})
-    })
+    // on regarde si l'id du btn est différent de main-heart
+    console.log(btn.id)
+    const isDifferent = btn.id != "main-heart";
+    if (isDifferent){
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            handleLike(this);
+        });
+        // envie d'ajouter un listener sur le press et la fin du press pour changer l'icone
+        btn.addEventListener('mousedown', () => {
+            gsap.to(btn, {scale: 0.9, duration: 0.1, ease: "power1.inOut"})
+        })
+        btn.addEventListener('mouseup', () => {
+            gsap.to(btn, {scale: 1, duration: 0.1, ease: "power1.inOut"})
+        })
+    }
 });
 
 function handleLike(button){
@@ -695,6 +700,21 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
     const time1 = document.querySelectorAll('.time1');
     const slider = document.querySelector('#slider');
     const heart = newMedia.querySelector('#main-heart');
+
+    // on remet les event listener sur le coeur
+
+    heart.addEventListener('click', function (e) {
+        e.stopPropagation();
+        handleLike(heart);
+    });
+
+    heart.addEventListener('mousedown', () => {
+        gsap.to(heart, {scale: 0.9, duration: 0.1, ease: "power1.inOut"})
+    })
+
+    heart.addEventListener('mouseup', () => {
+        gsap.to(heart, {scale: 1, duration: 0.1, ease: "power1.inOut"})
+    })
 
     // slider.style.display = 'flex' ;
     fetch('/controlleurApi.php/infosSon/' + idSon, {
