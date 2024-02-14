@@ -1,3 +1,7 @@
+gsap.registerPlugin(CustomEase);
+
+CustomEase.create("slow", "M0,0 C0.2,0 0.3,1 1,1");
+
 const listeDattenteObj = ListeDattente.getInstance() ;
 
 if (listeDattenteObj.numSonEnCours) {
@@ -251,6 +255,7 @@ function handleLike(button){
         return response.json();
     })
     .then(function (data) {
+        console.log(data)
         if (data.like == true) {
             const counLike = document.getElementById('countLike');
             // Format : "5 titres"
@@ -322,9 +327,6 @@ function handleLike(button){
             if (btn.getAttribute('data-id-song') === sonId) {
                 const heartSvg = btn.querySelector('svg');
                 const rects = btn.querySelectorAll('.rect');
-                gsap.registerPlugin(CustomEase);
-
-                CustomEase.create("slow", "M0,0 C0.2,0 0.3,1 1,1");
                 if (data.like == true) {
                     btn.classList.add('like');
                     
@@ -368,12 +370,7 @@ function handleLike(button){
 
                 } else {
                     btn.classList.remove('like');
-                    gsap.to(heartSvg, {color: "#FEFCE1", fill:"transparent", duration: 0.04, ease: "power1.inOut"})
-                
-                    // on met tous les rect en opacité 0
-                    rects.forEach((rect, index) => {
-                        gsap.to(rect, {opacity: 0, duration: 0.04, ease: "power1.inOut"})
-                    })
+                    gsap.to(heartSvg, {color: "#FEFCE1", fill:"transparent", duration: 0.15, ease: "power1.inOut"})
                 }
             }
         });
@@ -504,7 +501,7 @@ btnNextR.addEventListener('click', function () {
     if (listeDattenteObj.liste.length > 0) {
         listeDattenteObj.setIndexSonEnCours((listeDattenteObj.indexSonEnCours + 1) % listeDattenteObj.liste.length);
         const idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
-        jouerSon(idSon);
+        jouerSon(idSon, true, false);
     }
 });
 
@@ -516,7 +513,7 @@ btnNextL.addEventListener('click', function () {
             listeDattenteObj.setIndexSonEnCours(listeDattenteObj.indexSonEnCours + listeDattenteObj.liste.length);
         }
         const idSon = listeDattenteObj.liste[listeDattenteObj.indexSonEnCours];
-        jouerSon(idSon);
+        jouerSon(idSon, false, true);
     }
 });
 
@@ -645,8 +642,8 @@ function handleJouerSon(button){
 
 
 // Joue le son
-function jouerSon(idSon){
-    miseEnPlaceSon(idSon);
+function jouerSon(idSon, isNext = false, isPrev = false){
+    miseEnPlaceSon(idSon, isNext, isPrev);
     fetch('/controlleurApi.php/jouerSon/' + idSon, {
         method: 'POST',
         headers: {
@@ -683,14 +680,22 @@ function jouerSon(idSon){
 }
 
 // met en place l'affichage du son
-function miseEnPlaceSon(idSon){
-    const cover = document.getElementById('cover');
-    const titre = document.getElementById('nom-song');
-    const artiste = document.getElementById('nom-artist');
+function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
+
+    const curMedia = document.getElementById('curMedia');
+
+    // on duplique le curMedia dans son parent
+    const newMedia = curMedia.cloneNode(true);
+    curMedia.parentElement.appendChild(newMedia);
+
+    const cover = newMedia.querySelector('#cover');
+    const titre = newMedia.querySelector('#nom-song');
+    const artiste = newMedia.querySelector('#nom-artist');
     const time0 = document.querySelectorAll('.time0');
     const time1 = document.querySelectorAll('.time1');
-    const slider = document.getElementById('slider');
-    const heart = document.getElementById('main-heart');
+    const slider = document.querySelector('#slider');
+    const heart = newMedia.querySelector('#main-heart');
+
     // slider.style.display = 'flex' ;
     fetch('/controlleurApi.php/infosSon/' + idSon, {
         method: 'POST',
@@ -719,6 +724,31 @@ function miseEnPlaceSon(idSon){
         }
         heart.setAttribute('data-id-song', idSon);
 
+        gsap.to(curMedia, {
+            x: isNext ? "-100%" : isPrev ? "100%" : "0%",
+            opacity: 0,
+            zIndex: 0,
+            scale: 0.9,
+            duration: 0.45,
+            ease: "slow",
+            onComplete: () => {
+                curMedia.remove();
+        }})
+
+        gsap.fromTo(newMedia, {
+            x: isNext ? "100%" : isPrev ? "-100%" : "0%",
+            scale: 1.1,
+            opacity: 0,
+            zIndex: 1,
+        }, {
+            x: "0%",
+            scale: 1,
+            opacity: 1,
+            duration: 0.45,
+            delay: 0.15,
+            ease: "slow",
+        })
+
         // changement de time0 toute les secondes
         setInterval(function () {
             if (listeDattenteObj.sonEnCours && !listeDattenteObj.sonEnCours.paused) {
@@ -729,6 +759,7 @@ function miseEnPlaceSon(idSon){
                 time0.forEach((t0) => t0.innerHTML = timeString);
 
                 const pourcentage = time / listeDattenteObj.sonEnCours.duration * 100;
+                
                 slider.value = pourcentage;
 
                 slider.addEventListener('change', function () {

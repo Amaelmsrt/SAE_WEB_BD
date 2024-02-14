@@ -1007,6 +1007,7 @@ body .content-player .top-sm{
 body .content-player .inner-content{
     min-height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     gap:2.2rem;
     display: flex;
     align-items: center;
@@ -1029,11 +1030,26 @@ body .content-player .cover-container .cover{
     object-fit: cover;
 }
 
-body .content-player .top-content{
+body .content-player .top-content, body .content-player .top-content .container-media{
     display: flex;
     flex-direction: column;
     gap:1rem;
     width: 100%;
+    position: relative;
+}
+
+body .content-player .top-content .container-media .media {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    width: 100%;
+    position: absolute
+}
+
+body .content-player .top-content .container-media .media.alwaysVisible{
+    position: static;
+    z-index: -5;
+    opacity: 0;
 }
 
 body .content-player .media-infos{
@@ -1168,67 +1184,67 @@ body .content-player .media-infos .current-media .texts h4{
     font-size: 1.5rem;
 }
 
-body .content-player .media-infos .actions{
+body .content-player .top-content .actions{
     display: flex;
     flex-direction: column;
     gap:1.6875rem;
 }
 
-body .content-player .media-infos .actions .buttons{
+body .content-player .top-content .actions .buttons{
     display: flex;
     gap: 2rem;
     justify-content: center;
 }
 
-body .content-player .media-infos .actions .buttons button{
+body .content-player .top-content .actions .buttons button{
     background-color: transparent;
     border: none;
 }
 
-body .content-player .media-infos .actions .buttons #random img{
+body .content-player .top-content .actions .buttons #random img{
     height: 1rem;
 }
 
-body .content-player .media-infos .actions .buttons #repeat img
+body .content-player .top-content .actions .buttons #repeat img
 {
     height: 0.7rem;
 }
 
-body .content-player .media-infos .actions .buttons button{
+body .content-player .top-content .actions .buttons button{
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
-body .content-player .media-infos .actions .buttons button:hover{
+body .content-player .top-content .actions .buttons button:hover{
     filter: opacity(0.6);
     transition: all 0.2s ease-in-out;
 }
 
-body .content-player .media-infos .actions .buttons .main-button img {
+body .content-player .top-content .actions .buttons .main-button img {
     height: 1.5rem;
 }
 
-body .content-player .media-infos .actions .buttons #playPause img{
+body .content-player .top-content .actions .buttons #playPause img{
     height: 4rem;
 }
 
 
-body .content-player .media-infos .actions .buttons #playPause:hover{
+body .content-player .top-content .actions .buttons #playPause:hover{
     scale: 1.05;
 }
 
-body .content-player .media-infos .actions .buttons .main-buttons{
+body .content-player .top-content .actions .buttons .main-buttons{
     display: flex;
     gap: 1rem;
 }
 
-body .content-player .media-infos .actions .time-vol{
+body .content-player .top-content .actions .time-vol{
     display: flex;
     justify-content: space-between;
     gap: 1.5rem;
 }
 
-body .content-player .media-infos .actions .progress{
+body .content-player .top-content .actions .progress{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -1237,11 +1253,11 @@ body .content-player .media-infos .actions .progress{
     align-items: center;
 }
 
-body .content-player .media-infos .actions .progress .time-container.sm{
+body .content-player .top-content .actions .progress .time-container.sm{
     display: none;
 }
 
-body .content-player .media-infos .actions .progress .bar{
+body .content-player .top-content .actions .progress .bar{
     border-radius: 0.7rem;
     width: 100%;
     height: 5px;
@@ -1348,7 +1364,7 @@ body .content-player .media-infos .actions .progress .bar{
     height: 1.1rem;
 }
 
-body .content-player .media-infos .actions .progress .bar .inner{
+body .content-player .top-content .actions .progress .bar .inner{
     border-radius: inherit;
     width: 60%;
     height: 5px;
@@ -1757,6 +1773,12 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
     gap:1.75rem;
 }
 
+.pop-up-container .new-playlist form .top-content .container-media .media{
+    display: flex;
+    flex-direction: column;
+    gap:1.75rem;
+}
+
 .pop-up-container .new-playlist form .top-content > .container-cover{
     width: 9rem;
     min-width: 9rem;
@@ -1874,16 +1896,27 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
         height: 100%;
     }
 
-    body .content-player .top-content{
+    body .content-player .top-content, body .content-player .top-content .container-media .media{
         flex-direction: row;
         align-items: center;
-        
+        justify-content: space-between;
+    }
+
+    body .content-player .top-content .container-media{
+        justify-content: unset;
+        overflow-x:hidden;
+        overflow-y: hidden;
+        width: 33%;
+    }
+
+    body .content-player .top-content .container-media .media{
+        justify-content: unset;
+        width: 100%;
     }
 
     body .content-player .media-infos .current-media{
         justify-content: unset;
         gap: 3rem;
-        max-width: 30%;
     }
 
     body .content-player .media-infos .current-media .texts {
@@ -1898,7 +1931,7 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
         font-size: 1rem;
     }
 
-    body .content-player .media-infos .actions{
+    body .content-player .top-content .actions{
         gap: 1rem;
         width: 30%;
         height: 100%;
@@ -1907,15 +1940,15 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
 
     body .content-player .top-content .cover-container{
         height: 5rem;
+        min-height: 5rem;
         border-radius: 10px;
         width: 5rem;
+        min-width: 5rem;
     }
 
     body .content-player .top-content .media-infos{
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-        width: 100%;
         position: relative;
     }
 
@@ -2122,7 +2155,7 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
         filter: blur(150px);
     }
 
-    body .content-player .media-infos .actions{
+    body .content-player .top-content .actions{
         display: none;
     }
 
@@ -2164,48 +2197,48 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
         align-self: center;
     }
 
-    body .content-player .media-infos .actions .buttons {
+    body .content-player .top-content .actions .buttons {
         gap: 3.5rem;
     }
 
-    body .content-player .media-infos .actions .buttons #random img{
+    body .content-player .top-content .actions .buttons #random img{
         height: 2rem;
     }
 
-    body .content-player .media-infos .actions .buttons #repeat img
+    body .content-player .top-content .actions .buttons #repeat img
     {
         height: 1.2rem;
     }
 
-    body .content-player .media-infos .actions .buttons .main-button img {
+    body .content-player .top-content .actions .buttons .main-button img {
         height: 3rem;
     }
 
-    body .content-player .media-infos .actions .buttons #playPause img{
+    body .content-player .top-content .actions .buttons #playPause img{
         height: 7rem;
     }
 
-    body .content-player .media-infos .actions .buttons .main-buttons{
+    body .content-player .top-content .actions .buttons .main-buttons{
         display: flex;
         gap: 2.5rem;
     }
 
-    body .content-player .media-infos .actions .progress .time-container.sm{
+    body .content-player .top-content .actions .progress .time-container.sm{
         display: flex;
         width: 100%;
         justify-content: space-between;
     }
 
-    body .content-player .media-infos .actions .progress{
+    body .content-player .top-content .actions .progress{
         flex-direction: column;
         gap:1rem
     }
 
-    body .content-player .media-infos .actions .progress p{
+    body .content-player .top-content .actions .progress p{
         font-size: 1.5rem;
     }
 
-    body .content-player .media-infos .actions .progress .time.lg{
+    body .content-player .top-content .actions .progress .time.lg{
         display: none;
     }
 
@@ -2267,6 +2300,17 @@ body .content-player .file-attente .content .artiste-row .actions .btn-file-atte
 
     body .content-player .file-attente .top-content a{
         font-size: 1.5rem;
+    }
+
+    body .content-player .top-content .container-media{
+        width: 100%;
+    }
+
+    body .content-player .top-content .container-media{
+        justify-content: unset;
+        overflow-x:visible;
+        overflow-y: visible;
+        width: 100%;
     }
 }
   

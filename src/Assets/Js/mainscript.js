@@ -514,18 +514,23 @@ function handleContentPlayerClick(e){
         newContentPlayer.style.transform = "translateY(0vh)";
         newContentPlayer.style.zIndex = 1000;
         newContentPlayer.style.opacity = 0;
-        
+
         const duplicatedBackground = newContentPlayer.querySelector(".background")
         const duplicatedTopContent = newContentPlayer.querySelector(".top-content")
-        const duplicatedCoverContainer = newContentPlayer.querySelector(".cover-container")
-        const duplicatedPlayPause = newContentPlayer.querySelector(".play-pause")
+        const duplicatedCoverContainer = newContentPlayer.querySelectorAll(".cover-container")
+        const duplicatedPlayPause = newContentPlayer.querySelectorAll(".play-pause")
         const duplicatedInnerContent = newContentPlayer.querySelector(".inner-content")
         const duplicatedTopSm = newContentPlayer.querySelector(".top-sm")
-        const duplicatedLikeSong = newContentPlayer.querySelector(".likeSong")
+        const duplicatedLikeSong = newContentPlayer.querySelectorAll(".likeSong")
         const duplicatedMediaInfos = newContentPlayer.querySelector(".media-infos")
         const duplicatedActions = newContentPlayer.querySelector(".actions")
         const duplicatedFileAttente = newContentPlayer.querySelector(".file-attente")
         const duplicatedProgresssm = newContentPlayer.querySelector(".progress.sm")
+        const duplicatedContainerMediaInfos = newContentPlayer.querySelectorAll(".media")
+
+        duplicatedContainerMediaInfos.forEach(container => {
+            container.style.flexDirection = "column";
+        })
 
         const duplicatedCurSong = newContentPlayer.querySelector("#nom-song")
         const duplicatedCurArtiste = newContentPlayer.querySelector("#nom-artist")
@@ -539,16 +544,20 @@ function handleContentPlayerClick(e){
         duplicatedBackground.style.height = "20%";
 
         duplicatedTopContent.style.flexDirection = "column";
-        
-        duplicatedCoverContainer.style.width = newSizes;
-        duplicatedCoverContainer.style.opacity = 1;
-        duplicatedCoverContainer.style.height = newSizes;
-        duplicatedCoverContainer.style.maxWidth = newSizes;
-        duplicatedCoverContainer.style.maxHeight = newSizes;
-        duplicatedCoverContainer.style.borderRadius = (defaultBorderRadiusCover * scaleValueForCover)+"px";
 
-        duplicatedPlayPause.style.opacity = 0;
+        duplicatedCoverContainer.forEach(coverContainer => {
+            coverContainer.style.width = newSizes;
+            coverContainer.style.height = newSizes;
+            coverContainer.style.maxWidth = newSizes;
+            coverContainer.style.maxHeight = newSizes;
+            coverContainer.style.minHeight = newSizes;
+            coverContainer.style.borderRadius = (defaultBorderRadiusCover * scaleValueForCover)+"px";
+        })
         
+        duplicatedPlayPause.forEach(playPause => {
+            playPause.style.opacity = 0;
+        })
+
         duplicatedInnerContent.style.justifyContent = "unset";
         duplicatedInnerContent.style.padding = "4rem";
 
@@ -567,7 +576,9 @@ function handleContentPlayerClick(e){
 
         duplicatedFileAttente.style.opacity = 1;
 
-        duplicatedLikeSong.style.transform = "translateX(9rem)";
+        duplicatedLikeSong.forEach(likeSong => {
+            likeSong.style.transform = "translateX(9rem)";
+        })
 
         duplicatedProgresssm.style.display = "none";
 
@@ -576,12 +587,12 @@ function handleContentPlayerClick(e){
         const mainNav = document.querySelector(".main-nav")
         const background = contentPlayer.querySelector(".background")
         const topContent = contentPlayer.querySelector(".top-content")
-        const coverContainer = contentPlayer.querySelector(".cover-container")
-        const playPause = contentPlayer.querySelector(".play-pause")
+        const coverContainer = contentPlayer.querySelectorAll(".cover-container")
+        const playPause = contentPlayer.querySelectorAll(".play-pause")
         const innerContent = contentPlayer.querySelector(".inner-content")
         const topSm = contentPlayer.querySelector(".top-sm")
         const likeSong = contentPlayer.querySelector(".likeSong")
-        const mediaInfos = contentPlayer.querySelector(".media-infos")
+        const mediaInfos = contentPlayer.querySelectorAll(".media-infos")
         const actions = contentPlayer.querySelector(".actions")
         const fileAttente = contentPlayer.querySelector(".file-attente")
         const progresssm = contentPlayer.querySelector(".progress.sm")
@@ -601,8 +612,8 @@ function handleContentPlayerClick(e){
         const newCurSongX = -widthCurSong + xCurSongDefault - 7
         
 
-        gsap.to(curSong, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
-        gsap.to(curArtiste, {x:newCurSongX, y:yCurSongDefault, duration:0.4, ease:"custom"})
+        gsap.to(curSong, {opacity:0, x:newCurSongX, y:yCurSongDefault, duration:0.1, ease:"custom"})
+        gsap.to(curArtiste, {opacity:0,x:newCurSongX, y:yCurSongDefault, duration:0.1, ease:"custom"})
 
         const xMainHeart = mainHeart.getBoundingClientRect().x
         const widthMainHeart = mainHeart.getBoundingClientRect().width
@@ -612,7 +623,7 @@ function handleContentPlayerClick(e){
 
         const newHeartX = -xMainHeart + xMainHeartDefault - (widthMainHeart/2) +3
 
-        gsap.to(mainHeart, {x:newHeartX,y:yMainHeartDefault, duration:0.4, ease:"custom"})
+        gsap.to(mainHeart, {opacity: 0,x:newHeartX,y:yMainHeartDefault, duration:0.1, ease:"custom"})
 
         gsap.registerPlugin(CustomEase);
 
@@ -638,28 +649,31 @@ function handleContentPlayerClick(e){
 
         gsap.to(background, {height:"20%", opacity:1, duration:0.4, ease:"custom"})
 
-        const xDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().x
-        const yDuplicatedCover = duplicatedCoverContainer.getBoundingClientRect().top
+        const xDuplicatedCover = duplicatedCoverContainer[0].getBoundingClientRect().x
+        const yDuplicatedCover = duplicatedCoverContainer[0].getBoundingClientRect().top
 
         const duplicatedCoverBorderSize = 70 * vwToPx
 
-        const xCoverDefault = coverContainer.getBoundingClientRect().x
+        const xCoverDefault = coverContainer[0].getBoundingClientRect().x
         // sachant que je vais faire un scale de scaleValueForCover, j'ai besoin de savoir quel sera le x de la cover
         //const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault
-        const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xDuplicatedCover + xCoverDefault -1
+        console.log(xDuplicatedCover, xCoverDefault, duplicatedCoverBorderSize, scaleValueForCover)
+        const resX = -xDuplicatedCover + (duplicatedCoverBorderSize/2) + xCoverDefault +xDuplicatedCover - 1
 
         const midY = (window.innerHeight / 2) - (duplicatedCoverBorderSize/2) // ça correspond à la valeur de y qu'on aura après avoir fait le scale + l'aggrandissement à 100vh du menu
         const resY = -midY + yDuplicatedCover // on fait -midY pour que la cover soit tout en haut de l'écran puis on n'a qu'à ajouter le y de la cover dupliquéeé (qui est invisible) pour qu'elle aille à sa position
 
         //console.log(coverContainer.getBoundingClientRect())
 
-        gsap.to(coverContainer, {
-            scale:scaleValueForCover,
-            duration:0.4,
-            x: resX,
-            y: resY,
-            // je veux le mettre en haut à gauche
-            ease:"custom"
+        coverContainer.forEach(cover => {
+            gsap.to(cover, {
+                scale:scaleValueForCover,
+                duration:0.4,
+                x: resX,
+                y: resY,
+                // je veux le mettre en haut à gauche
+                ease:"custom"
+            })
         })
 
         // setTimeout(() => {
@@ -667,8 +681,11 @@ function handleContentPlayerClick(e){
         //     console.log("scalevalue" + scaleValueForCover)
         //     console.log(coverContainer.getBoundingClientRect())
         // }, 400);
+
+        playPause.forEach(play => {
+            gsap.to(play, {opacity:0, duration:0.2, ease:"custom"})
+        })
         
-        gsap.to(playPause, {opacity:0, duration:0.2, ease:"custom"})
         gsap.to(progresssm, {display:"none", opacity:0, duration:0.4, ease:"custom"})
 
         gsap.to(newContentPlayer, {opacity:1, zIndex:1000, duration:0.6, delay:0.2, ease:"custom"})
@@ -682,9 +699,9 @@ function handleContentPlayerClick(e){
 
             // on va reset les transform sur les textes et les heart
 
-            gsap.to(curSong, {x:0, y:0, duration:0, ease:"custom"})
-            gsap.to(curArtiste, {x:0, y:0, duration:0, ease:"custom"})
-            gsap.to(mainHeart, {x:0, y:0, duration:0, ease:"custom"})
+            gsap.to(curSong, {opacity:1,x:0, y:0, duration:0, ease:"custom"})
+            gsap.to(curArtiste, {opacity:1,x:0, y:0, duration:0, ease:"custom"})
+            gsap.to(mainHeart, {opacity:1,x:0, y:0, duration:0, ease:"custom"})
 
             mainNav.style.opacity = 1;
             mainNav.style.y = 0;
@@ -706,14 +723,18 @@ function handleContentPlayerClick(e){
 
             const finalSizes = "8rem"
             // on va reset le scale et les translate de la cover
-            gsap.to(coverContainer, {scale:1, x:0, y:0, duration:0, ease:"custom"})
-            coverContainer.style.width = finalSizes;
-            coverContainer.style.height = finalSizes;
-            coverContainer.style.maxWidth = finalSizes;
-            coverContainer.style.maxHeight = finalSizes;
+            coverContainer.forEach(cover => {
+                gsap.to(cover, {scale:1, x:0, y:0, duration:0, ease:"custom"})
+                cover.style.width = finalSizes;
+                cover.style.height = finalSizes;
+                cover.style.maxWidth = finalSizes;
+                cover.style.maxHeight = finalSizes;
+                cover.style.minHeight = finalSizes;
+            })
 
-            playPause.style.opacity = 1;
-
+            playPause.forEach(play => {
+                play.style.opacity = 1;
+            })
             innerContent.style.justifyContent = "center";
             innerContent.style.padding = "1rem 2rem";
 
@@ -721,7 +742,9 @@ function handleContentPlayerClick(e){
 
             fileAttente.style.display = "none";
 
-            mediaInfos.style.width = "100%";
+            mediaInfos.forEach(mediaInfo => {
+                mediaInfo.style.width = "70vw";
+            })
 
             topSm.style.display = "none";
 
