@@ -158,10 +158,18 @@ body main form{
 }
 
 body main form legend{
-    font-size: 3.125rem;
-    font-family: "Kicker";
-    font-weight: 100;
+    display: flex;
+    font-size: 3rem;
+    font-family: 'PP Mori';
+    align-items: flex-start;
+    gap:1.5rem;
     color: var(--text-color);
+    white-space: nowrap;
+    text-wrap: nowrap;
+}
+
+body main form legend img{
+    height: 2.5rem;
 }
 
 body main form .top-content{
@@ -271,12 +279,31 @@ body main form .text-field input{
     font-size: 1.25rem;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: transparent;
+  -webkit-text-fill-color: var(--text-color-secondary);
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 body main form .text-field.no-space input{
     padding-left: 1rem;
 }
 
 body main form .text-field input:focus{
     border-bottom: 1.5px solid var(--yellow);
+}
+
+body main form .text-field img{
+    z-index: 999;
 }
 
 body header nav{
