@@ -1,7 +1,6 @@
 <?php
 
 use DB\DataBaseManager;
-use Model\Playlist;
 
 $manager = new DataBaseManager();
 $playlistDB = $manager->getPlaylistDB();

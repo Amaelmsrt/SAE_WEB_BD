@@ -332,7 +332,34 @@ document.querySelectorAll(".btn-supprimerPlaylist").forEach(function(btn) {
 document.querySelectorAll(".btn-consulterPlaylist").forEach(function(btn) {
     btn.onclick = function() {
         document.querySelector("#id_modif_playlist").value = btn.getAttribute("data-idPlaylist");
-        document.querySelector("#titre_modif_playlist").value = btn.getAttribute("data-titrePlaylist");
+        document.querySelector("#nom_modif_playlist").value = btn.getAttribute("data-nomPlaylist");
+        document.querySelector("#id_user").value = btn.getAttribute("data-nomUtilisateur");
         modalConsulterPlaylist.style.display = "block";
+    };
+});
+
+// Album
+
+let modalAjouterAlbum = document.querySelector("#modal-ajouterAlbum");
+let modalConsulterAlbum = document.querySelector("#modal-consulterAlbum");
+let modalSupprimerAlbum = document.querySelector("#modal-supprimerAlbum");
+
+document.querySelector("#btn-ajouterAlbum").onclick = function() {
+    modalAjouterAlbum.style.display = "block";
+}
+
+document.querySelectorAll(".btn-supprimerAlbum").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_album_supprimer").value = btn.getAttribute("data-idAlbum");
+        modalSupprimerAlbum.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterAlbum").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_modif_album").value = btn.getAttribute("data-idAlbum");
+        document.querySelector("#titre_modif_album").value = btn.getAttribute("data-titreAlbum");
+        document.querySelector("#id_artiste").value = btn.getAttribute("data-idArtiste");
+        modalConsulterAlbum.style.display = "block";
     };
 });

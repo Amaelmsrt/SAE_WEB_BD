@@ -539,13 +539,13 @@ $nb_albums = count($liste_albums);
                     </div>
                 </div>
 
-                <div id="modal-modifierPlaylist" class="modal">
+                <div id="modal-consulterPlaylist" class="modal">
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_playlist" method="post">
                             <input type="hidden" name="id_playlist" id="id_modif_playlist">
                             <input type="text" name="nom_playlist" id="nom_modif_playlist" placeholder="Nom de la playlist" required>
-                            <select name="liste_utilisateurs" id="liste_utilisateurs_modif">
+                            <select name="id_user" id="id_user">
                                 <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
                                     <option value="<?= $utilisateur->getId() ?>"><?= $utilisateur->getPseudo() ?></option>
                                 <?php endforeach; ?>
@@ -583,26 +583,61 @@ $nb_albums = count($liste_albums);
                                 <?php $nomArtiste = $artistDB->find($album->getIdArtiste()) ?>
                                 <td> <?= $nomArtiste->getName() ?></td>
                                 <td>
-                                    <button class="btn-consulterAlbum">consulter</button>
-                                    <button class="btn-supprimerAlbum">Supprimer</button>
+                                    <button class="btn-consulterAlbum" id="btn-consulterAlbum">consulter</button>
+                                    <button class="btn-supprimerAlbum" id="btn-supprimerAlbum">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button class="btn-ajouterAlbum">Ajouter</button>
+                <button class="btn-ajouter" id="btn-ajouterAlbum">Ajouter</button>
 
                 <!-- Modales -->
                 <div id="modal-ajouterAlbum" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_album" method="post" enctype="multipart/form-data">
+                            <input type="text" name="titre_album" placeholder="Titre de l'album" required>
+                            <input type="text" name="description_album" placeholder="Description de l'album" required>
+                            <input type="text" name="date_album" placeholder="date de l'album" required>
+                            <input type="file" name="cover_album" accept="image/*">
+                            <select name="id_artiste" id="id_artiste">
+                                <?php foreach ($liste_artistes as $artiste) : ?>
+                                    <option value="<?= $artiste->getId() ?>"><?= $artiste->getName() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="ajouterAlbum">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-supprimerAlbum" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_album" method="post">
+                            <input type="hidden" name="id_album" id="id_album_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer cet album ?</p>
+                            <button id="supprimerAlbum" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-modifierAlbum" class="modal">
-                    
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_album" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id_album" id="id_modif_album">
+                            <input type="text" name="titre_album" id="titre_modif_album" placeholder="Titre de l'album" required>
+                            <input type="date" name="date_album" id="date_modif_album" required>
+                            <input type="file" name="cover_album" id="cover_modif_album" accept="image/*">
+                            <select name="id_artiste" id="id_artiste">
+                                <?php foreach ($liste_artistes as $artiste) : ?>
+                                    <option value="<?= $artiste->getId() ?>"><?= $artiste->getName() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="modifierAlbum">Modifier</button>
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>
