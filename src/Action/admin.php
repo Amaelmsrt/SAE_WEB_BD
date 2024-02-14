@@ -218,7 +218,7 @@ $nb_albums = count($liste_albums);
                                         <button class="btn-consulterArtiste" id="btn-consulterArtiste"
                                         data-idArtiste="<?= $artiste->getId() ?>" 
                                         data-nomArtiste="<?= $artiste->getName() ?>" 
-                                        data-imageArtiste="<?= $artiste->getPicture() ?>">Modifier</button>
+                                        data-imageArtiste="data:image/jpeg;base64,<?= $artiste->getPicture() ?>">Modifier</button>
                                         <button class="btn-supprimerArtiste" data-idArtiste="<?= $artiste->getId() ?>">Supprimer</button>
                                     </td>
                                 </tr>
@@ -254,7 +254,7 @@ $nb_albums = count($liste_albums);
                 <div id="modal-consulterArtiste" class="modal">
                     <div class="modal-content">
                         <span class="close-button">x</span>
-                        <form action="index.php?action=modifier_artiste" method="POST">
+                        <form action="index.php?action=modifier_artiste" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id_artiste" id="id_modif_artiste">
                             <input type="text" name="nom_artiste" id="nom_modif_artiste" placeholder="Nom de l'artiste" required>
                             <input type="file" name="image_artiste" id="image_modif_artiste" accept="image/*">

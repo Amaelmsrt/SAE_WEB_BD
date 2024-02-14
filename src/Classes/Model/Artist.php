@@ -50,9 +50,4 @@ class Artist
             'picture' => $this->picture
         ]);
     }
-
-    public function getPictureBase64() {
-        $imageData = $this->getPicture(); // Supposons que cela renvoie un BLOB
-        return base64_encode($imageData);
-    }
 }
