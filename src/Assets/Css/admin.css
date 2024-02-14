@@ -83,7 +83,6 @@ body{
     font-family: 'PP Mori', sans-serif;
     min-height: 100vh;
     max-width: 100vw;
-    overflow:hidden;
     margin: 0;
     padding: 0;
 }
@@ -203,10 +202,11 @@ body .left img{
     flex-direction: column;
 }
 
-#recherche {
+.recherche {
     background-color: #070808;
     padding: 1rem 1rem;
     display: flex;
+    width: 100%;
     align-items: center;
     margin-left: 0.7rem;
     z-index: 2;
@@ -258,7 +258,7 @@ h2 {
     font-size: 3rem;
     font-weight: 300;
     color: var(--text-color);
-    margin: 3rem 1rem;
+    margin: 2rem 1rem;
 }
 
 header {
@@ -266,6 +266,7 @@ header {
     align-items: center;
     padding-left: 1.5rem
 }
+
 
 .menu {
     margin-top: 1rem;
@@ -337,7 +338,8 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
 }
 
 thead {
@@ -388,6 +390,7 @@ tr:nth-child(even) {
 .btn-supprimer:hover {
     filter: brightness(0.8);
 }
+
 
 #tableArtistes td {
     width: 25%;
@@ -496,4 +499,9 @@ tr:nth-child(even) {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+img {
+    max-height: 20%;
+    max-width: 20%;
 }

@@ -14,11 +14,9 @@ class ArtistDB
         $this->pdo = $pdo;
     }
 
-    public function findAll(): array
-    {
+    public function findAll() {
         $sql = "SELECT * FROM artiste";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
+        $stmt = $this->pdo->query($sql);
         $artists = $stmt->fetchAll();
         $artistList = [];
         foreach ($artists as $artist) {
@@ -27,6 +25,12 @@ class ArtistDB
             $artistList[] = new Artist($artist['idArtiste'], $artist['nomArtiste'], $decodedImage);
         }
         return $artistList;
+    }
+
+    public function countAll() {
+        $sql = "SELECT COUNT(*) FROM ARTISTE";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchColumn();
     }
 
     public function find(int $id): Artist

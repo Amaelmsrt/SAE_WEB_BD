@@ -70,8 +70,6 @@ menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (e) => changeCurrentMenu(e, index));
 });
 
-
-
 goToMenuPrincipal.addEventListener('click', (e) => changeCurrentMenu(e,0));
 goToArtistes.addEventListener('click', (e) => changeCurrentMenu(e,1));
 goToSons.addEventListener('click', (e) => changeCurrentMenu(e,2));
@@ -314,11 +312,3 @@ document.querySelectorAll(".btn-consulterUtilisateur").forEach(function(btn) {
     };
 });
 
-
-
-
-function showActiveSectionContent(index) {
-    const sections = [sectionMenuPrincipal, sectionMenuArtistes, sectionMenuSons, sectionMenuGenres, sectionMenuUtilisateurs, sectionMenuPlaylists, sectionMenuAlbums];
-    sections.forEach(section => section.style.display = 'none');
-    sections[index].style.display = 'flex';
-}

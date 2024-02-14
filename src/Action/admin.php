@@ -1,29 +1,39 @@
 <?php
-
 use DB\DataBaseManager;
 $manager = new DataBaseManager();
 
+// Artistes
 $artistDB = $manager->getArtistDB();
 $liste_artistes = $artistDB->findAll();
 
+// Sons
 $pageSize = 10;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $pageSize;
-
 $sonDB = $manager->getSonDB();
 $liste_sons = $sonDB->findAll($offset, $pageSize);
+$nb_sons = count($liste_sons);
 
+// Genres
 $genreDB = $manager->getGenreDB();
 $liste_genres = $genreDB->findAll();
+$nb_genres = count($liste_genres);
 
+// Utilisateurs
 $utilisateurDB = $manager->getUtilisateurDB();
 $liste_utilisateurs = $utilisateurDB->findAll();
+$nb_utilisateurs = count($liste_utilisateurs);
 
+
+// Playlists
 $playlistDB = $manager->getPlaylistDB();
 $liste_playlists = $playlistDB->findAll();
+$nb_playlists = count($liste_playlists);
 
+// Albums
 $albumDB = $manager->getAlbumDB();
 $liste_albums = $albumDB->findAll();
+$nb_albums = count($liste_albums);
 
 ?>
 
@@ -101,25 +111,18 @@ $liste_albums = $albumDB->findAll();
             </ul>
             <div class="active-square" id="activeSquare"></div>
         </nav>
-
-        <div class="actions">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6V14M14 10H6M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#E2FF08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
     </div>
 </aside>
 
 <div class="right">
-    <!-- barre de recherche -->
-    <div id="recherche" class="wrapper-recherche">
-        <div class="text-field">
-            <img src="/Assets/icons/search.svg" alt="user"/>
-            <input type="text" placeholder="Ma recherche" value="">
-        </div>
-    </div>
 
     <div class="container-tabs">
+        <div class="recherche">
+                    <div class="text-field">
+                        <img src="/Assets/icons/search.svg" alt="user"/>
+                        <input type="text" placeholder="Ma recherche" value="">
+                    </div>
+            </div>
         <main>
             <section id="pagePrincipale" class="page">
                 <header>
@@ -197,33 +200,32 @@ $liste_albums = $albumDB->findAll();
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tableArtistes">
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Nom</td>
-                            <td>Image</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_artistes as $artiste) : ?>
+                <div class="table-container">
+                    <table id="tableArtistes">
+                        <thead>
                             <tr>
-                                <td><?= $artiste->getId() ?></td>
-                                <td><?= $artiste->getName() ?></td>
-                                <td><?= "" ?></td>
-                                <td>
-                                    <button class="btn-consulterArtiste" id="btn-consulterArtiste"
-                                    data-idArtiste="<?= $artiste->getId() ?>"
-                                    data-nomArtiste="<?= $artiste->getName() ?>"
-                                    data-imageArtiste=""
-                                    >Consulter</button>
-                                    <button class="btn-supprimerArtiste" id="btn-supprimerArtiste" data-idArtiste="<?= $artiste->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Nom</td>
+                                <td>Image</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_artistes as $artiste) : ?>
+                                <tr>
+                                    <td><?= $artiste->getName() ?></td>
+                                    <td><img src="data:image/jpeg;base64,<?= $artiste->getPicture() ?>" alt="<?= $artiste->getName() ?>"></td>
+                                    <td>
+                                        <button class="btn-consulterArtiste" id="btn-consulterArtiste"
+                                        data-idArtiste="<?= $artiste->getId() ?>" 
+                                        data-nomArtiste="<?= $artiste->getName() ?>" 
+                                        data-imageArtiste="<?= $artiste->getPicture() ?>">Modifier</button>
+                                        <button class="btn-supprimerArtiste" data-idArtiste="<?= $artiste->getId() ?>">Supprimer</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <button class="btn-ajouter" id="btn-ajouterArtiste" >Ajouter</button>
 
                 <!-- Modales -->
@@ -272,17 +274,32 @@ $liste_albums = $albumDB->findAll();
                 <table id="tableSons">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Titre</td>
                             <td>Duree</td>
-                            <td>MP3</td>
                             <td>Album</td>
                             <td>NbStream</td>
                             <td>Actions</td>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php foreach ($liste_sons as $son) : ?>
+                            <tr>
+                                <td><?= $son->getTitre() ?></td>
+                                <td><?= $son->getDuree() ?></td>
+                                <?php $album = $albumDB->find($son->getIdAlbum()); ?>
+                                <td><?= $album->getTitre() ?></td>
+                                <td><?= $son->getNbStream() ?></td>
+                                <td>
+                                    <button class="btn-consulterSon" id="btn-consulterSon"
+                                    data-idSon="<?= $son->getId() ?>" 
+                                    data-titreSon="<?= $son->getTitre() ?>" 
+                                    data-mp3Son="<?= basename($son->getMp3()) ?>" 
+                                    data-albumSon="<?= $son->getIdAlbum() ?>" 
+                                    data-nbStreamSon="<?= $son->getNbStream() ?>">Modifier</button>
+                                    <button class="btn-supprimerSon" id="btn-supprimerSon" data-idSon="<?= $son->getId() ?>">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <button class="btn-ajouterSons">Ajouter</button>
@@ -310,7 +327,6 @@ $liste_albums = $albumDB->findAll();
                 <table id="tableGenres">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Titre</td>
                             <td>Actions</td>
                         </tr>
@@ -318,7 +334,6 @@ $liste_albums = $albumDB->findAll();
                     <tbody>
                         <?php foreach ($liste_genres as $genre) : ?>
                             <tr>
-                                <td><?= $genre->getId() ?></td>
                                 <td><?= $genre->getTitre() ?></td>
                                 <td>
                                     <button class="btn-consulterGenre" id="btn-consulterGenre"
@@ -375,7 +390,6 @@ $liste_albums = $albumDB->findAll();
                 <table id="tableUtilisateurs">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Nom</td>
                             <td>Prenom</td>
                             <td>Pseudo</td>
@@ -388,7 +402,6 @@ $liste_albums = $albumDB->findAll();
                     <tbody>
                         <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
                             <tr>
-                                <td><?= $utilisateur->getId() ?></td>
                                 <td><?= $utilisateur->getNom() ?></td>
                                 <td><?= $utilisateur->getPrenom() ?></td>
                                 <td><?= $utilisateur->getPseudo() ?></td>
@@ -422,7 +435,7 @@ $liste_albums = $albumDB->findAll();
                             <input type="text" name="prenom_utilisateur" placeholder="Prenom de l'utilisateur" required>
                             <input type="text" name="pseudo_utilisateur" placeholder="Pseudo de l'utilisateur" required>
                             <input type="email" name="email_utilisateur" placeholder="Email de l'utilisateur" required>
-                            <input type="password" name="mdp_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            <input type="text" name="mdp_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
                             <select name="statut_utilisateur" id="statut_utilisateur">
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
@@ -472,7 +485,6 @@ $liste_albums = $albumDB->findAll();
                 <table id="tablePlaylists">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Nom</td>
                             <td>Utilisateur</td>
                             <td>Actions</td>
@@ -481,7 +493,6 @@ $liste_albums = $albumDB->findAll();
                     <tbody>
                         <?php foreach ($liste_playlists as $playlist) : ?>
                             <tr>
-                                <td><?= $playlist->getId() ?></td>
                                 <td><?= $playlist->getNom() ?></td>
                                 <td>
                                     <button class="consultation">
@@ -527,9 +538,7 @@ $liste_albums = $albumDB->findAll();
                 <table id="tableAlbums">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Titre</td>
-                            <td>Description</td>
                             <td>Date</td>
                             <td>Cover</td>
                             <td>Artiste</td>
@@ -539,20 +548,11 @@ $liste_albums = $albumDB->findAll();
                     <tbody>
                         <?php foreach ($liste_albums as $album) : ?>
                             <tr>
-                                <td><?= $album->getId() ?></td>
                                 <td><?= $album->getTitre() ?></td>
-                                <td>
-                                    <button class="consultation">
-                                        Consulter
-                                    </button>
-                                </td>
                                 <td><?= $album->getDate() ?></td>
-                                <td> </td>
-                                <td>
-                                    <button class="consultation">
-                                        Consulter
-                                    </button>
-                                </td>
+                                <td><img src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="<?= $album->getTitre() ?>"></td>
+                                <?php $nomArtiste = $artistDB->find($album->getIdArtiste()) ?>
+                                <td> <?= $nomArtiste->getName() ?></td>
                                 <td>
                                     <button class="btn-consulterAlbum">consulter</button>
                                     <button class="btn-supprimerAlbum">Supprimer</button>
