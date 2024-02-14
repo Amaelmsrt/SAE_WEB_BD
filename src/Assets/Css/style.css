@@ -506,6 +506,9 @@ body .left header .back-btn{
     width: 80%;
     position: sticky;
     bottom: 0;
+    height: calc(100% - 3rem - 4rem);
+    max-height: calc(100% - 3rem - 4rem);
+    overflow-y: auto;
 }
 
 #PageArtiste .infos-artiste .buttons{
@@ -596,6 +599,7 @@ body .left header .back-btn{
     max-height: 100%;
     overflow-y:auto;
     padding-right: 1rem;
+    align-items: flex-start;
 }
 
 #PageArtiste .main-content .content-block #Albums .song-card{
@@ -603,7 +607,6 @@ body .left header .back-btn{
     max-width: 32%;
     padding: 1rem;
     min-height: 0;
-    height: auto;
 }
 
 #PageArtiste .main-content .content-block #Albums .song-card .container-image{
