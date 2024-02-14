@@ -583,8 +583,13 @@ $nb_albums = count($liste_albums);
                                 <?php $nomArtiste = $artistDB->find($album->getIdArtiste()) ?>
                                 <td> <?= $nomArtiste->getName() ?></td>
                                 <td>
-                                    <button class="btn-consulterAlbum" id="btn-consulterAlbum">consulter</button>
-                                    <button class="btn-supprimerAlbum" id="btn-supprimerAlbum">Supprimer</button>
+                                    <button class="btn-consulterAlbum" id="btn-consulterAlbum"
+                                    data-idAlbum="<?= $album->getId() ?>"
+                                    data-titreAlbum="<?= $album->getTitre() ?>"
+                                    data-dateAlbum="<?= $album->getDate() ?>"
+                                    data-coverAlbum="data:image/jpeg;base64,<?= $album->getCover() ?>"
+                                    data-artisteAlbum="<?= $album->getIdArtiste() ?>">Modifier</button>
+                                    <button class="btn-supprimerAlbum" id="btn-supprimerAlbum" data-idAlbum="<?= $album->getId() ?>">Supprimer</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
