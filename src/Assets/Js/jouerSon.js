@@ -223,11 +223,20 @@ btnLikeSon.forEach(function (btn) {
         e.stopPropagation();
         handleLike(this);
     });
+    // envie d'ajouter un listener sur le press et la fin du press pour changer l'icone
+    btn.addEventListener('mousedown', () => {
+        gsap.to(btn, {scale: 0.9, duration: 0.1, ease: "power1.inOut"})
+    })
+    btn.addEventListener('mouseup', () => {
+        gsap.to(btn, {scale: 1, duration: 0.1, ease: "power1.inOut"})
+    })
 });
 
 function handleLike(button){
     const sonId = button.getAttribute('data-id-song');
+    console.log(sonId);
     const idUtilisateur = button.getAttribute('data-id');
+    console.log(idUtilisateur);
 
     fetch('/controlleurApi.php/likeSon/' + sonId + '/' + idUtilisateur, {
         method: 'POST',
@@ -311,10 +320,60 @@ function handleLike(button){
         const btnLikeSon = document.querySelectorAll('.likeSong');
         btnLikeSon.forEach(function (btn) {
             if (btn.getAttribute('data-id-song') === sonId) {
+                const heartSvg = btn.querySelector('svg');
+                const rects = btn.querySelectorAll('.rect');
+                gsap.registerPlugin(CustomEase);
+
+                CustomEase.create("slow", "M0,0 C0.2,0 0.3,1 1,1");
                 if (data.like == true) {
                     btn.classList.add('like');
+                    
+                    gsap.to(btn, {scale: 0.9, duration: 0.1, ease: "power1.inOut"})
+
+                    setTimeout(() => {
+                        gsap.to(btn, {scale: 1, duration: 0.15, ease: "power1.inOut"})
+                    }, 150);
+
+                    // on anime le changement de la couleur de fond du svg vers le
+                    gsap.to(heartSvg, {color: "#ED1C24", fill:"#ED1C24", duration: 0.04, ease: "power1.inOut"})
+                    rects.forEach((rect, index) => {
+                        let tl = gsap.timeline();
+                        tl.fromTo(rect, {
+                            opacity: 0,
+                            left: "50%",
+                            top: "50%",
+                            width: "0px",
+                        }, {
+                            opacity: 1,
+                            duration: 0.04,
+                            ease: "slow",
+                            left: index ===0 ? "0%" : index === 1 ? "10%" : index == 2? "50%" : index == 3 ? "90%" : index == 4 ? "50%" : index == 5 ? "90%" : index == 6 ? "10%": "100%",
+                            top : index ===0 ? "50%" : index === 1 ? "10%" : index == 2 ? "0%" : index == 3 ? "10%" : index == 4 ? "100%" : index == 5 ? "90%" : index == 6 ? "90%" : "50%",
+                            width:"12px",
+                        })
+                        .to(rect, {
+                            width: "8px",
+                            duration: 0.2,
+                            left: index ===0 ? "-25%" : index === 1 ? "-15%" : index == 2? "50%" : index == 3 ? "115%" : index == 4 ? "50%" : index == 5 ? "115%" : index == 6 ? "-15%": "125%",
+                            top : index ===0 ? "50%" : index === 1 ? "-15%" : index == 2 ? "-25%" : index == 3 ? "-15%" : index == 4 ? "125%" : index == 5 ? "115%" : index == 6 ? "115%" : "50%",
+                            ease: "slow"
+                        })
+                        .to(rect, {
+                            opacity:0,
+                            width: "0px",
+                            duration: 0.35,
+                            ease: "slow"
+                        })
+                    })
+
                 } else {
                     btn.classList.remove('like');
+                    gsap.to(heartSvg, {color: "#FEFCE1", fill:"transparent", duration: 0.04, ease: "power1.inOut"})
+                
+                    // on met tous les rect en opacité 0
+                    rects.forEach((rect, index) => {
+                        gsap.to(rect, {opacity: 0, duration: 0.04, ease: "power1.inOut"})
+                    })
                 }
             }
         });
@@ -380,7 +439,7 @@ setInterval(function () {
         }
         if (listeDattenteObj.sonEnCours.paused) {
             const img = document.getElementById('imgPlayPause');
-            img.src = "/assets/icons/play.svg";
+            img.src = "/assets/icons/play-content.svg";
         }
         else {
             const img = document.getElementById('imgPlayPause');
@@ -427,10 +486,18 @@ btnPause.addEventListener('click', function () {
             img.src = "/assets/icons/play-lg.svg";
         } else {
             listeDattenteObj.sonEnCours.pause();
-            img.src = "/assets/icons/play.svg";
+            img.src = "/assets/icons/play-content.svg";
         }
     }
 });
+
+btnPause.addEventListener('mousedown', () => {
+    gsap.to(btnPause, {scale: 0.95, duration: 0.1, ease: "power1.inOut"})
+})
+
+btnPause.addEventListener('mouseup', () => {
+    gsap.to(btnPause, {scale: 1, duration: 0.1, ease: "power1.inOut"})
+})
 
 const btnNextR = document.getElementById('next');
 btnNextR.addEventListener('click', function () {
@@ -620,8 +687,8 @@ function miseEnPlaceSon(idSon){
     const cover = document.getElementById('cover');
     const titre = document.getElementById('nom-song');
     const artiste = document.getElementById('nom-artist');
-    const time0 = document.getElementById('time0');
-    const time1 = document.getElementById('time1');
+    const time0 = document.querySelectorAll('.time0');
+    const time1 = document.querySelectorAll('.time1');
     const slider = document.getElementById('slider');
     const heart = document.getElementById('main-heart');
     // slider.style.display = 'flex' ;
@@ -641,8 +708,8 @@ function miseEnPlaceSon(idSon){
         cover.setAttribute('src', "data:image/png;base64," + data.cover);
         titre.innerHTML = data.titre;
         artiste.innerHTML = data.artiste;
-        time0.innerHTML = "00:00";
-        time1.innerHTML = data.duree;
+        time0.forEach((t0) => t0.innerHTML= "00:00") 
+        time1.forEach((t1) => t1.innerHTML= data.duree);
         isLike = data.isLiked;
         if (isLike == true) {
             heart.classList.add('like');
@@ -659,7 +726,7 @@ function miseEnPlaceSon(idSon){
                 const minutes = Math.floor(time / 60);
                 const secondes = Math.floor(time % 60);
                 const timeString = minutes.toString().padStart(2, '0') + ':' + secondes.toString().padStart(2, '0');
-                time0.innerHTML = timeString;
+                time0.forEach((t0) => t0.innerHTML = timeString);
 
                 const pourcentage = time / listeDattenteObj.sonEnCours.duration * 100;
                 slider.value = pourcentage;
@@ -699,7 +766,7 @@ function recupSon(idSon){
         }
         audio.src = audioBlobURL;
         const img = document.getElementById('imgPlayPause');
-        img.src = "/assets/icons/play.svg";
+        img.src = "/assets/icons/play-content.svg";
         audio.load();
         listeDattenteObj.setSonEnCours(audio, idSon);
     })

@@ -626,6 +626,7 @@ body #SectionRecherche .wrapper-recherche{
     flex-direction: column;
     gap:2rem;
     max-width: 100%;
+    width: 100%;
     position: absolute;
     padding-right: 2rem;
 }
@@ -1054,6 +1055,93 @@ body .content-player .media-infos .current-media .container-heart{
     gap:1rem;
 }
 
+body .content-player .media-infos .current-media .container-heart #main-heart{
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    border:none;
+}
+
+.svg-heart-main{
+    color: var(--text-color);
+    width: 2.2rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect{
+    position: absolute;
+    width: 0.85rem;
+    height: 4px;
+    background-color: var(--red);
+    filter: opacity(0.8);
+    border-radius: 1rem;
+    left:50%;
+    top:50%;
+    z-index: -1;
+    opacity: 0;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:first-of-type{
+    transform:
+    translate(-55%, -70%) 
+    rotate(0deg);
+    left:0;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(2){
+    transform:
+    translate(-55%, -70%)
+    rotate(45deg);
+    top: 10%;
+    left: 10%;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(3){
+    transform: 
+    translate(-55%, -90%)
+    rotate(90deg);
+    top:0;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(4){
+    transform: 
+    translate(-55%, -90%)
+    rotate(-45deg);
+    left: 90%;
+    top: 10%;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(5){
+    transform: 
+    translate(-55%, -90%)
+    rotate(90deg);
+    top:100%;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(6){
+    transform:  
+    translate(-55%, -90%)
+    rotate(45deg);
+    top: 90%;
+    left: 90%;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(7){
+    transform:
+    translate(-55%, -90%)
+    rotate(-45deg);
+    top: 90%;
+    left: 10%;
+}
+
+body .content-player .media-infos .current-media .container-heart #main-heart .rect:nth-of-type(8){
+    transform:  
+    translate(-55%, -90%)
+    rotate(0deg);
+    left: 100%;
+}
+
 body .content-player .media-infos .current-media .container-heart .play-pause{
     display: none;
 }
@@ -1106,12 +1194,27 @@ body .content-player .media-infos .actions .buttons #repeat img
     height: 0.7rem;
 }
 
+body .content-player .media-infos .actions .buttons button{
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+body .content-player .media-infos .actions .buttons button:hover{
+    filter: opacity(0.6);
+    transition: all 0.2s ease-in-out;
+}
+
 body .content-player .media-infos .actions .buttons .main-button img {
     height: 1.5rem;
 }
 
 body .content-player .media-infos .actions .buttons #playPause img{
     height: 4rem;
+}
+
+
+body .content-player .media-infos .actions .buttons #playPause:hover{
+    scale: 1.05;
 }
 
 body .content-player .media-infos .actions .buttons .main-buttons{
@@ -1256,6 +1359,8 @@ body .content-player .file-attente{
     background-color: var(--background-tertiary);
     width: 100%;
     max-height: 50vh;
+    min-height:50vh;
+    height: 50vh;
     border-radius: 1rem;
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
     color: var(--text-color);
@@ -2178,22 +2283,23 @@ html {
     cursor: pointer;
 }
 
-.svg-heart.like{
-    color: var(--red);
-    fill: var(--red);
+.likeSong{
+    background-color: transparent;
+    border: none;
+}
+
+.likeSong.sm{
+    width: 2.2rem;
+}
+
+.likeSong.sm{
     width: 1.5rem;
 }
 
-.svg-heart-main{
-    color: var(--text-color);
-    width: 2.2rem;
-    cursor: pointer;
-}
-
-.svg-heart-main.like{
+.likeSong.like svg
+{
     color: var(--red);
     fill: var(--red);
-    width: 2.2rem;
 }
 
 .no-result{

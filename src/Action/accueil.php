@@ -91,15 +91,19 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                                         <h4><?= $son->getTitre() ?></h4>
                                         <h5><?= $artist->getName() ?></h5>
                                     </div>
-                                    <?php if ($isLike) : ?>
-                                        <svg class="svg-heart like likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    <?php else : ?>
-                                        <svg class="svg-heart likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    <?php endif; ?>
+                                        <button class="likeSong sm <?= $isLike ? 'like' : '' ?>" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>">
+                                            <svg class="svg-heart" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                        </button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -130,15 +134,19 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                                             <h4><?= $son->getTitre() ?></h4>
                                             <h5><?= $artist->getName() ?></h5>
                                         </div>
-                                        <?php if ($isLike) : ?>
-                                            <svg class="svg-heart like likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <button class="likeSong sm <?= $isLike ? 'like' : '' ?>" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>">
+                                            <svg class="svg-heart" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
-                                        <?php else : ?>
-                                            <svg class="svg-heart likeSong" data-id-song="<?= $son->getId() ?>" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        <?php endif; ?>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                            <div class="rect"></div>
+                                        </button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -888,10 +896,20 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                                 <circle cx="33.5" cy="33.5" r="33.5" fill="#FEFCE1"/>
                                 <path d="M25 20H26.8V48H25V20ZM41.2 20H43V48H41.2V20Z" stroke="#0E100F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-
-                            <svg id="main-heart" class="svg-heart-main likeSong" data-id-song="-1" data-id="<?= $_SESSION["user_id"] ?>" width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            
+                            <button id="main-heart" class="likeSong" data-id-song="-1" data-id="<?= $_SESSION["user_id"] ?>">
+                                <svg class="svg-heart-main" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.4999 31.1667C18.4999 31.1667 6.20162 23.1767 2.83328 15.5C-1.67089 5.23832 12.6249 -4.08335 18.4999 6.92249C24.3749 -4.08335 38.6708 5.23832 34.1666 15.5C30.7983 23.1571 18.4999 31.1667 18.4999 31.1667Z" stroke="currentColor" stroke-width="2.84848" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                                <div class="rect"></div>
+                            </button>
                         </div>
                     </div>
                     <div class="actions">
@@ -917,12 +935,12 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                         <div class="time-vol">
                             <div class="progress">
                                 <div class="time-container sm">
-                                    <p id="time0" class="time">1:31</p>
-                                    <p id="time1" class="time">4:32</p>
+                                    <p id="time0" class="time time0">1:31</p>
+                                    <p id="time1" class="time time1">4:32</p>
                                 </div>
-                                <p id="time0" class="time lg"></p>
+                                <p id="time0" class="time lg time0"></p>
                                 <input type="range" class="bar" id="slider"/>
-                                <p id="time1" class="time lg"></p>
+                                <p id="time1" class="time lg time1"></p>
                             </div>
                             <div class="volume isVolume lg">
                                 <button class="isVolume btn-toggle-volume-bar">
