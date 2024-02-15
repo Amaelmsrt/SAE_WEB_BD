@@ -155,7 +155,6 @@ $sonLike = $sonDB->findLike($_SESSION['user']);
                     <section class="content-block">
                         <header>
                             <h2>Sorties récentes <img src="./Assets/icons/star_2.svg"/></h2>
-                            <a href="">Voir tout</a>
                         </header>
                         <div class="content">
 
