@@ -105,6 +105,15 @@ switch ($action) {
     case "modifier_album":
         include 'Action/admin/modifier_album.php';
         break;
+    case "ajouter_son":
+        include 'Action/admin/ajouter_son.php';
+        break;
+    case "supprimer_son":
+        include 'Action/admin/supprimer_son.php';
+        break;
+    case "modifier_son":
+        include 'Action/admin/modifier_son.php';
+        break;
     default:
         include 'Action/connexion.php';
         $layout = "connexion";

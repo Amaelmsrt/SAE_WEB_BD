@@ -7,33 +7,26 @@ $artistDB = $manager->getArtistDB();
 $liste_artistes = $artistDB->findAll();
 
 // Sons
-$pageSize = 10;
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$offset = ($page - 1) * $pageSize;
 $sonDB = $manager->getSonDB();
-$liste_sons = $sonDB->findAll($offset, $pageSize);
-$nb_sons = count($liste_sons);
+$liste_sons = $sonDB->findAll();
 
 // Genres
 $genreDB = $manager->getGenreDB();
 $liste_genres = $genreDB->findAll();
-$nb_genres = count($liste_genres);
 
 // Utilisateurs
 $utilisateurDB = $manager->getUtilisateurDB();
 $liste_utilisateurs = $utilisateurDB->findAll();
-$nb_utilisateurs = count($liste_utilisateurs);
 
 
 // Playlists
 $playlistDB = $manager->getPlaylistDB();
 $liste_playlists = $playlistDB->findAll();
-$nb_playlists = count($liste_playlists);
 
 // Albums
 $albumDB = $manager->getAlbumDB();
 $liste_albums = $albumDB->findAll();
-$nb_albums = count($liste_albums);
+
 
 ?>
 
@@ -271,50 +264,88 @@ $nb_albums = count($liste_albums);
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tableSons">
-                    <thead>
-                        <tr>
-                            <td>Titre</td>
-                            <td>Duree</td>
-                            <td>Album</td>
-                            <td>NbStream</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_sons as $son) : ?>
+                <div class="table-container">
+                    <table id="tableSons">
+                        <thead>
                             <tr>
-                                <td><?= $son->getTitre() ?></td>
-                                <td><?= $son->getDuree() ?></td>
-                                <?php $album = $albumDB->find($son->getIdAlbum()); ?>
-                                <td><?= $album->getTitre() ?></td>
-                                <td><?= $son->getNbStream() ?></td>
-                                <td>
-                                    <button class="btn-consulterSon" id="btn-consulterSon"
-                                    data-idSon="<?= $son->getId() ?>" 
-                                    data-titreSon="<?= $son->getTitre() ?>" 
-                                    data-mp3Son="<?= basename($son->getMp3()) ?>" 
-                                    data-albumSon="<?= $son->getIdAlbum() ?>" 
-                                    data-nbStreamSon="<?= $son->getNbStream() ?>">Modifier</button>
-                                    <button class="btn-supprimerSon" id="btn-supprimerSon" data-idSon="<?= $son->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Titre</td>
+                                <td>Duree</td>
+                                <td>Album</td>
+                                <td>NbStream</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <button class="btn-ajouterSons">Ajouter</button>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_sons as $son) : ?>
+                                <tr>
+                                    <td><?= $son->getTitre() ?></td>
+                                    <td><?= $son->getDuree() ?></td>
+                                    <?php $album = $albumDB->find($son->getIdAlbum()); ?>
+                                    <td><?= $album->getTitre() ?></td>
+                                    <td><?= $son->getNbStream() ?></td>
+                                    <td>
+                                        <button class="btn-consulterSon" id="btn-consulterSon"
+                                        data-idSon="<?= $son->getId() ?>" 
+                                        data-titreSon="<?= $son->getTitre() ?>" 
+                                        data-dureeSon ="<?= $son->getDuree() ?>"
+                                        data-mp3Son="<?= $son->getMp3() ?>" 
+                                        data-albumSon="<?= $album->getTitre() ?>" 
+                                        data-nbStreamSon="<?= $son->getNbStream() ?>">Modifier</button>
+                                        <button class="btn-supprimerSon" id="btn-supprimerSon" data-idSon="<?= $son->getId() ?>">Supprimer</button>
+                                        <button class="btn-chargerMp3" data-idSon="<?= $son->getId() ?>">Charger MP3</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn-ajouter" id="btn-ajouterSon">Ajouter</button>
 
                 <!-- Modales -->
                 <div id="modal-ajouterSon" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=ajouter_son" method="post" enctype="multipart/form-data">
+                            <input type="text" name="titre_nv_son" placeholder="Titre du son" required>
+                            <input type="text" name="duree_nv_son" placeholder="Durée du son" required>
+                            <input type="file" name="mp3_nv_son" accept="audio/*" required>
+                            <select name="album_nv_son" id="album_nv_son" required>
+                                <?php foreach ($liste_albums as $album) : ?>
+                                    <option value="<?= $album->getId() ?>"><?= $album->getTitre() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="ajouterSon">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div id="modal-supprimerSon" class="modal">
-
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=supprimer_son" method="post">
+                            <input type="hidden" name="id_son" id="id_son_supprimer">
+                            <p>Êtes-vous sûr de vouloir supprimer ce son ?</p>
+                            <button id="supprimerSon" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="modal-modifierSon" class="modal">
-                    
+                <div id="modal-consulterSon" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=modifier_son" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id_son" id="id_modif_son">
+                            <input type="text" name="titre_son" id="titre_modif_son" placeholder="Titre du son" required>
+                            <input type="text" name="duree_son" id="duree_modif_son" placeholder="Durée du son" required>
+                            <input type="file" name="mp3_son" id="mp3_modif_son" accept="audio/*">
+                            <select name="album_son" id="album_modif_son" required>
+                                <?php foreach ($liste_albums as $album) : ?>
+                                    <option value="<?= $album->getId() ?>"><?= $album->getTitre() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="modifierSon">Modifier</button>
+                        </form>
+                    </div>
                 </div>
             </section>
             <section id="pageGenres" class="page">
@@ -324,27 +355,29 @@ $nb_albums = count($liste_albums);
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tableGenres">
-                    <thead>
-                        <tr>
-                            <td>Titre</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_genres as $genre) : ?>
+                <div class="table-container">
+                    <table id="tableGenres">
+                        <thead>
                             <tr>
-                                <td><?= $genre->getTitre() ?></td>
-                                <td>
-                                    <button class="btn-consulterGenre" id="btn-consulterGenre"
-                                    data-idGenre="<?= $genre->getId() ?>" 
-                                    data-titreGenre="<?= $genre->getTitre() ?>">Consulter</button>
-                                    <button class="btn-supprimerGenre" id="btn-supprimerGenre" data-idGenre="<?= $genre->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Titre</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_genres as $genre) : ?>
+                                <tr>
+                                    <td><?= $genre->getTitre() ?></td>
+                                    <td>
+                                        <button class="btn-consulterGenre" id="btn-consulterGenre"
+                                        data-idGenre="<?= $genre->getId() ?>" 
+                                        data-titreGenre="<?= $genre->getTitre() ?>">Consulter</button>
+                                        <button class="btn-supprimerGenre" id="btn-supprimerGenre" data-idGenre="<?= $genre->getId() ?>">Supprimer</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <button class="btn-ajouter" id="btn-ajouterGenre">Ajouter</button>
 
                 <!-- Modales -->
@@ -387,43 +420,45 @@ $nb_albums = count($liste_albums);
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tableUtilisateurs">
-                    <thead>
-                        <tr>
-                            <td>Nom</td>
-                            <td>Prenom</td>
-                            <td>Pseudo</td>
-                            <td>Email</td>
-                            <td>Mot de passe</td>
-                            <td>Statut</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
+                <div class="table-container">
+                    <table id="tableUtilisateurs">
+                        <thead>
                             <tr>
-                                <td><?= $utilisateur->getNom() ?></td>
-                                <td><?= $utilisateur->getPrenom() ?></td>
-                                <td><?= $utilisateur->getPseudo() ?></td>
-                                <td><?= $utilisateur->getEmail() ?></td>
-                                <td><?= $utilisateur->getMdp() ?></td>
-                                <td><?= $utilisateur->getStatut() ?></td>
-                                <td>
-                                    <button class="btn-consulterUtilisateur" id="btn-consulterUtilisateur"
-                                    data-idUtilisateur="<?= $utilisateur->getId() ?>"
-                                    data-nomUtilisateur="<?= $utilisateur->getNom() ?>"
-                                    data-prenomUtilisateur="<?= $utilisateur->getPrenom() ?>"
-                                    data-pseudoUtilisateur="<?= $utilisateur->getPseudo() ?>"
-                                    data-emailUtilisateur="<?= $utilisateur->getEmail() ?>"
-                                    data-mdpUtilisateur="<?= $utilisateur->getMdp() ?>"
-                                    data-statutUtilisateur="<?= $utilisateur->getStatut() ?>"
-                                    >Consulter</button>
-                                    <button class="btn-supprimerUtilisateur" id="btn-supprimerUtilisateur" data-idUtilisateur="<?= $utilisateur->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Nom</td>
+                                <td>Prenom</td>
+                                <td>Pseudo</td>
+                                <td>Email</td>
+                                <td>Mot de passe</td>
+                                <td>Statut</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
+                                <tr>
+                                    <td><?= $utilisateur->getNom() ?></td>
+                                    <td><?= $utilisateur->getPrenom() ?></td>
+                                    <td><?= $utilisateur->getPseudo() ?></td>
+                                    <td><?= $utilisateur->getEmail() ?></td>
+                                    <td><?= $utilisateur->getMdp() ?></td>
+                                    <td><?= $utilisateur->getStatut() ?></td>
+                                    <td>
+                                        <button class="btn-consulterUtilisateur" id="btn-consulterUtilisateur"
+                                        data-idUtilisateur="<?= $utilisateur->getId() ?>"
+                                        data-nomUtilisateur="<?= $utilisateur->getNom() ?>"
+                                        data-prenomUtilisateur="<?= $utilisateur->getPrenom() ?>"
+                                        data-pseudoUtilisateur="<?= $utilisateur->getPseudo() ?>"
+                                        data-emailUtilisateur="<?= $utilisateur->getEmail() ?>"
+                                        data-mdpUtilisateur="<?= $utilisateur->getMdp() ?>"
+                                        data-statutUtilisateur="<?= $utilisateur->getStatut() ?>"
+                                        >Consulter</button>
+                                        <button class="btn-supprimerUtilisateur" id="btn-supprimerUtilisateur" data-idUtilisateur="<?= $utilisateur->getId() ?>">Supprimer</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <button class="btn-ajouter" id="btn-ajouterUtilisateur">Ajouter</button>
 
                 <!-- Modales -->
@@ -482,34 +517,36 @@ $nb_albums = count($liste_albums);
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tablePlaylists">
-                    <thead>
-                        <tr>
-                            <td>Nom</td>
-                            <td>Utilisateur</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_playlists as $playlist) : ?>
+                <div class="table-container">
+                    <table id="tablePlaylists">
+                        <thead>
                             <tr>
-                                <td><?= $playlist->getNom() ?></td>
-                                <td>
-                                    <?php $utilisateur = $utilisateurDB->find($playlist->getIdUtilisateur()) ?>
-                                    <?= $utilisateur->getPseudo() ?>
-                                </td>
-                                <td>
-                                    <button class="btn-consulterPlaylist" id="btn-consulterPlaylist"
-                                    data-idPlaylist="<?= $playlist->getId() ?>"
-                                    data-nomPlaylist="<?= $playlist->getNom() ?>"
-                                    data-nomUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
-                                    >Consulter</button>
-                                    <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Nom</td>
+                                <td>Utilisateur</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_playlists as $playlist) : ?>
+                                <tr>
+                                    <td><?= $playlist->getNom() ?></td>
+                                    <td>
+                                        <?php $utilisateur = $utilisateurDB->find($playlist->getIdUtilisateur()) ?>
+                                        <?= $utilisateur->getPseudo() ?>
+                                    </td>
+                                    <td>
+                                        <button class="btn-consulterPlaylist" id="btn-consulterPlaylist"
+                                        data-idPlaylist="<?= $playlist->getId() ?>"
+                                        data-nomPlaylist="<?= $playlist->getNom() ?>"
+                                        data-nomUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
+                                        >Consulter</button>
+                                        <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <button class="btn-ajouter" id="btn-ajouterPlaylist">Ajouter</button>
 
                 <!-- Modales -->
@@ -564,38 +601,40 @@ $nb_albums = count($liste_albums);
                         <path d="M37.6118 9.82166L27.9072 14.9928C32.319 9.33028 28.353 1.28109 19.1767 0V9.98935C15.8932 3.95635 6.60488 3.25634 0.923272 9.82361L10.2961 14.8173C2.99181 14.4254 -2.30948 21.4977 1.01413 29.3226L10.8413 24.0871C6.34922 29.619 9.45097 38.5008 19.1746 39V28.1059C21.8685 34.7941 32.0717 37.0091 37.5188 29.3226L27.2966 23.8766C34.9199 25.066 42.0996 18.019 37.6118 9.82361V9.82166Z" fill="#E2FF08"/>
                     </svg>
                 </header>
-                <table id="tableAlbums">
-                    <thead>
-                        <tr>
-                            <td>Titre</td>
-                            <td>Date</td>
-                            <td>Cover</td>
-                            <td>Artiste</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($liste_albums as $album) : ?>
+                <div class="table-container">
+                    <table id="tableAlbums">
+                        <thead>
                             <tr>
-                                <td><?= $album->getTitre() ?></td>
-                                <td><?= $album->getDate() ?></td>
-                                <td><img src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="<?= $album->getTitre() ?>"></td>
-                                <?php $nomArtiste = $artistDB->find($album->getIdArtiste()) ?>
-                                <td> <?= $nomArtiste->getName() ?></td>
-                                <td>
-                                    <button class="btn-consulterAlbum" id="btn-consulterAlbum"
-                                    data-idAlbum="<?= $album->getId() ?>"
-                                    data-titreAlbum="<?= $album->getTitre() ?>"
-                                    data-descriptionAlbum="<?= $album->getDescription() ?>"
-                                    data-dateAlbum="<?= $album->getDate() ?>"
-                                    data-coverAlbum="data:image/jpeg;base64,<?= $album->getCover() ?>"
-                                    data-artisteAlbum="<?= $album->getIdArtiste() ?>">Modifier</button>
-                                    <button class="btn-supprimerAlbum" id="btn-supprimerAlbum" data-idAlbum="<?= $album->getId() ?>">Supprimer</button>
-                                </td>
+                                <td>Titre</td>
+                                <td>Date</td>
+                                <td>Cover</td>
+                                <td>Artiste</td>
+                                <td>Actions</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($liste_albums as $album) : ?>
+                                <tr>
+                                    <td><?= $album->getTitre() ?></td>
+                                    <td><?= $album->getDate() ?></td>
+                                    <td><img src="data:image/jpeg;base64,<?= $album->getCover() ?>" alt="<?= $album->getTitre() ?>"></td>
+                                    <?php $nomArtiste = $artistDB->find($album->getIdArtiste()) ?>
+                                    <td> <?= $nomArtiste->getName() ?></td>
+                                    <td>
+                                        <button class="btn-consulterAlbum" id="btn-consulterAlbum"
+                                        data-idAlbum="<?= $album->getId() ?>"
+                                        data-titreAlbum="<?= $album->getTitre() ?>"
+                                        data-descriptionAlbum="<?= $album->getDescription() ?>"
+                                        data-dateAlbum="<?= $album->getDate() ?>"
+                                        data-coverAlbum="data:image/jpeg;base64,<?= $album->getCover() ?>"
+                                        data-artisteAlbum="<?= $album->getIdArtiste() ?>">Modifier</button>
+                                        <button class="btn-supprimerAlbum" id="btn-supprimerAlbum" data-idAlbum="<?= $album->getId() ?>">Supprimer</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <button class="btn-ajouter" id="btn-ajouterAlbum">Ajouter</button>
 
                 <!-- Modales -->

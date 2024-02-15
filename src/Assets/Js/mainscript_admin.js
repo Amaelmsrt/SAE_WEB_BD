@@ -365,3 +365,33 @@ document.querySelectorAll(".btn-consulterAlbum").forEach(function(btn) {
         modalConsulterAlbum.style.display = "block";
     };
 });
+
+// Sons
+
+let modalAjouterSon = document.querySelector("#modal-ajouterSon");
+let modalConsulterSon = document.querySelector("#modal-consulterSon");
+let modalSupprimerSon = document.querySelector("#modal-supprimerSon");
+
+document.querySelector("#btn-ajouterSon").onclick = function() {
+    modalAjouterSon.style.display = "block";
+}
+
+document.querySelectorAll(".btn-supprimerSon").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_son_supprimer").value = btn.getAttribute("data-idSon");
+        modalSupprimerSon.style.display = "block";
+    };
+});
+
+document.querySelectorAll(".btn-consulterSon").forEach(function(btn) {
+    btn.onclick = function() {
+        console.log(btn.getAttribute("data-mp3Son"));
+        console.log(btn.getAttribute("data-albumSon"));
+        document.querySelector("#id_modif_son").value = btn.getAttribute("data-idSon");
+        document.querySelector("#titre_modif_son").value = btn.getAttribute("data-titreSon");
+        document.querySelector("#duree_modif_son").value = btn.getAttribute("data-dureeSon");
+        document.querySelector("#mp3_modif_son").value = btn.getAttribute("data-mp3Son");
+        document.querySelector("#album_modif_son").value = btn.getAttribute("data-albumSon");
+        modalConsulterSon.style.display = "block";
+    };
+});
