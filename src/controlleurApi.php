@@ -2,6 +2,7 @@
 // Aucun espace ou texte indésirable avant cette balise
 
 use DB\DataBaseManager as Manager;
+use Model\Playlist;
 
 ini_set('memory_limit', '2048M');
 
@@ -69,6 +70,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Content-Type: audio/mpeg');
             echo $son->getMp3();
 
+            exit();
+
+        case 'jouerPlaylist':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $playlist = $manager->getPlaylistDB()->getSons($id);
+            $response = array();
+            foreach ($playlist as $son) {
+                $response[] = array(
+                    'id' => $son->getId(),
+                    'titre' => $son->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($son->getId())
+                );
+            }
+            header('Content-Type: application/json'); // Indique que le contenu est en format JSON
+            echo json_encode($response);
             exit();
 
         case 'jouerArtiste':
@@ -278,6 +295,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             header('Content-Type: application/json');
             echo json_encode($result);
+            exit();
+
+        case 'newPlaylist':
+            // Type post
+            $manager = new Manager();
+            $titre = array_shift($path);
+            $titreDecoded = urldecode($titre);
+            $songs = array_shift($path);
+            // les sons sont séparés par des virgules
+            $sonsId = explode(',', $songs);
+            $userId = $_SESSION['user_id'];
+            $playlist = new Playlist(0, $titreDecoded, $userId);
+            $idPlaylist = $manager->getPlaylistDB()->createPlaylist($playlist);
+            foreach ($sonsId as $idSon) {
+                $manager->getPlaylistDB()->addSon($idPlaylist, $idSon);
+            }
+            $artisteString = "";
+            foreach ($manager->getPlaylistDB()->getArtistes($idPlaylist) as $artiste) {
+                $artisteString .= $artiste . ", ";
+            }
+            $artisteString = substr($artisteString, 0, -2);
+            $response = ['id' => $idPlaylist, 'titre' => $titreDecoded, 'artiste' => $artisteString];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit();
+
+        case 'getPlaylist':
+            $id = array_shift($path);
+            $manager = new Manager();
+            $playlist = $manager->getPlaylistDB()->getPlaylistId($id);
+            $son = $manager->getPlaylistDB()->getSons($id);
+            $sonJson = array();
+            foreach ($son as $s) {
+                $album = $manager->getAlbumDB()->findAlbum($s->getIdAlbum());
+                $artist = $manager->getArtistDB()->find($album->getIdArtiste());
+                $sonJson[] = array(
+                    'id' => $s->getId(),
+                    'titre' => $s->getTitre(),
+                    'cover' => $manager->getSonDB()->getCover($s->getId()),
+                    'artist' => $artist->getName(),
+                );
+            }
+            $response = array(
+                'id' => $playlist->getId(),
+                'titre' => $playlist->getTitre(),
+                'duree' => $manager->getPlaylistDB()->getDuree($playlist->getId()),
+                'sons' => $sonJson
+            );
+            header('Content-Type: application/json');
+            echo json_encode($response);
             exit();
 
         default:

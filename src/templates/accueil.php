@@ -35,5 +35,6 @@
     <script src="./Assets/Js/mainscript.js"></script>
     <script src="./Assets/Js/jouerSon.js"></script>
     <script src="./Assets/Js/recherche.js"></script>
+    <script src="./Assets/Js/playlist.js"></script>
 </body>
 </html>

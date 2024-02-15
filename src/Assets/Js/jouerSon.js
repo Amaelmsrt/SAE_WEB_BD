@@ -224,7 +224,6 @@ btnLikeArtiste.forEach(function (btn) {
 const btnLikeSon = document.querySelectorAll('.likeSong');
 btnLikeSon.forEach(function (btn) {
     // on regarde si l'id du btn est différent de main-heart
-    console.log(btn.id)
     const isDifferent = btn.id != "main-heart";
     if (isDifferent){
         btn.addEventListener('click', function (e) {
@@ -243,10 +242,7 @@ btnLikeSon.forEach(function (btn) {
 
 function handleLike(button){
     const sonId = button.getAttribute('data-id-song');
-    console.log(sonId);
     const idUtilisateur = button.getAttribute('data-id');
-    console.log(idUtilisateur);
-
     fetch('/controlleurApi.php/likeSon/' + sonId + '/' + idUtilisateur, {
         method: 'POST',
         headers: {
@@ -260,7 +256,6 @@ function handleLike(button){
         return response.json();
     })
     .then(function (data) {
-        console.log(data)
         if (data.like == true) {
             const counLike = document.getElementById('countLike');
             // Format : "5 titres"
@@ -740,7 +735,6 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
         time0.forEach((t0) => t0.innerHTML= "00:00") 
         time1.forEach((t1) => t1.innerHTML= data.duree);
         isLike = data.isLiked;
-        console.log(data)
         if (isLike == true) {
             heart.classList.add('like');
             gsap.to(heart.querySelector('svg'), {color: "#ED1C24", fill:"#ED1C24", duration: 0.15, ease: "power1.inOut"})
@@ -835,4 +829,34 @@ function handleAjouterSonFile(button){
     const idSon = button.getAttribute('data-id');
     listeDattenteObj.addSon(idSon);
     handleFileDattente(1);
+}
+
+function handleJouerPlaylist(idPlaylist){
+    fetch('/controlleurApi.php/jouerPlaylist/' + idPlaylist, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(function (lesAudios) {
+        let cpt = 0;
+        listeDattenteObj.setIndexSonEnCours(0);
+        listeDattenteObj.setListe([]);
+        lesAudios.forEach(function (audio) {
+            if (cpt === 0) {
+                jouerSon(audio.id);
+                listeDattenteObj.addSon(audio.id);
+            }
+            else{
+                listeDattenteObj.addSon(audio.id);
+            }
+            cpt = cpt + 1;
+        });
+    })
 }
