@@ -740,12 +740,16 @@ function miseEnPlaceSon(idSon, isNext = false, isPrev = false){
         time0.forEach((t0) => t0.innerHTML= "00:00") 
         time1.forEach((t1) => t1.innerHTML= data.duree);
         isLike = data.isLiked;
+        console.log(data)
         if (isLike == true) {
             heart.classList.add('like');
+            gsap.to(heart.querySelector('svg'), {color: "#ED1C24", fill:"#ED1C24", duration: 0.15, ease: "power1.inOut"})
         }
         else {
             heart.classList.remove('like');
+            gsap.to(heart.querySelector('svg'), {color: "#FEFCE1", fill:"transparent", duration: 0.15, ease: "power1.inOut"})
         }
+
         heart.setAttribute('data-id-song', idSon);
 
         gsap.to(curMedia, {
