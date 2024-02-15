@@ -30,7 +30,7 @@ const pageArtiste = document.querySelector("#PageArtiste")
 const pageRecherche = document.querySelector("#recherche")
 
 const btnFavoris = document.querySelector("#MesFavoris")
-const btnPlaylist = document.querySelector("#btnPlaylist")
+const btnsPlaylist = document.querySelectorAll(".btnPlaylist")
 const currentDisplay = document.querySelector(".current-display")
 const sectionFavoris= document.querySelector("#favoris")
 const sousSectionPlaylist = document.querySelector("#playlist")
@@ -431,7 +431,9 @@ const closePlaylistPopUp = () => {
     }, 500);
 }
 
-btnPlaylist.addEventListener('click', afficheMaPlaylist)
+// btnsPlaylist.forEach(btn => {
+//     btn.addEventListener('click', afficheMaPlaylist)
+// })
 btnFavoris.addEventListener('click', afficheMesFavoris)
 
 btnNouvellePlaylist.addEventListener('click', openPlaylistPopUp)
@@ -1029,7 +1031,6 @@ const checkIfEmptyBR = new MutationObserver((mutations) => {
 })
 
 const isEveryoneEmpty = () => {
-    console.log(nomBestRecherche.innerHTML, nomBestRecherche2_1.innerHTML, nomBestRecherche2_2.innerHTML, nomBestRecherche2_3.innerHTML)
     if (nomBestRecherche.innerHTML == "" && nomBestRecherche2_1.innerHTML == "" && nomBestRecherche2_2.innerHTML == "" && nomBestRecherche2_3.innerHTML == ""){
         texteRecherche.style.display = "flex";
         texteRecherche.innerHTML = "Aucun résultat "
