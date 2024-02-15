@@ -13,7 +13,6 @@ if (isset($_FILES['image_artiste']) && $_FILES['image_artiste']['error'] == 0) {
 } else {
     $picture = null;
 }
-var_dump($picture);
 $artist->setName($name);
 $artistDB->update($artist);
 header('Location: index.php?action=admin');

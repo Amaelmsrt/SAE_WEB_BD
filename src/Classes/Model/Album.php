@@ -56,9 +56,29 @@ class Album
         return $this->idArtiste;
     }
 
-    function setArtiste($artiste)
+    function setTitre($titre)
     {
-        $this->artiste = $artiste;
+        $this->titre = $titre;
+    }
+
+    function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    function setCover($cover)
+    {
+        $this->cover = $cover;
+    }
+
+    function setIdArtiste($idArtiste)
+    {
+        $this->idArtiste = $idArtiste;
     }
 
     function toJson()

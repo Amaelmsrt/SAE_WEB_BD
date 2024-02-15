@@ -586,6 +586,7 @@ $nb_albums = count($liste_albums);
                                     <button class="btn-consulterAlbum" id="btn-consulterAlbum"
                                     data-idAlbum="<?= $album->getId() ?>"
                                     data-titreAlbum="<?= $album->getTitre() ?>"
+                                    data-descriptionAlbum="<?= $album->getDescription() ?>"
                                     data-dateAlbum="<?= $album->getDate() ?>"
                                     data-coverAlbum="data:image/jpeg;base64,<?= $album->getCover() ?>"
                                     data-artisteAlbum="<?= $album->getIdArtiste() ?>">Modifier</button>
@@ -627,13 +628,14 @@ $nb_albums = count($liste_albums);
                     </div>
                 </div>
 
-                <div id="modal-modifierAlbum" class="modal">
+                <div id="modal-consulterAlbum" class="modal">
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_album" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id_album" id="id_modif_album">
                             <input type="text" name="titre_album" id="titre_modif_album" placeholder="Titre de l'album" required>
-                            <input type="date" name="date_album" id="date_modif_album" required>
+                            <input type="text" name="description_album" id="description_modif_album" placeholder="Description de l'album" required>
+                            <input type="text" name="date_album" id="date_modif_album" required>
                             <input type="file" name="cover_album" id="cover_modif_album" accept="image/*">
                             <select name="id_artiste" id="id_artiste">
                                 <?php foreach ($liste_artistes as $artiste) : ?>

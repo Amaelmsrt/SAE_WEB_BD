@@ -359,6 +359,8 @@ document.querySelectorAll(".btn-consulterAlbum").forEach(function(btn) {
     btn.onclick = function() {
         document.querySelector("#id_modif_album").value = btn.getAttribute("data-idAlbum");
         document.querySelector("#titre_modif_album").value = btn.getAttribute("data-titreAlbum");
+        document.querySelector("#description_modif_album").value = btn.getAttribute("data-descriptionAlbum");
+        document.querySelector("#date_modif_album").value = btn.getAttribute("data-dateAlbum");
         document.querySelector("#id_artiste").value = btn.getAttribute("data-idArtiste");
         modalConsulterAlbum.style.display = "block";
     };
