@@ -81,6 +81,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+for (let i = 1; i <= 3; i++) {
+    const div = document.getElementById('otherResults-' + i);
+    div.addEventListener('click', function () {
+        handleJouerSon(this);
+    });
+}
+
+
 function miseEnPlaceInfos(data){
     const principal = data.principal;
     const albums = data.albums;
@@ -134,7 +142,6 @@ function miseEnPlaceInfos(data){
             if (principal.topSon[i]){
                 const div = document.getElementById('otherResults-' + (i + 1));
                 div.setAttribute('data-id-song', principal.topSon[i].id);
-                div.addEventListener('click', function () {handleJouerSon(this);});
                 const cover = document.getElementById('cover-best-recherche-2-' + (i + 1));
                 cover.classList.remove('no-result');
                 cover.setAttribute('src', "data:image/png;base64," + principal.topSon[i].cover);
