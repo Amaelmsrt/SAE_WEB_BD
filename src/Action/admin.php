@@ -540,6 +540,7 @@ $liste_albums = $albumDB->findAll();
                                         data-nomUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
                                         >Consulter</button>
                                         <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
+                                        <button class="btn-gererSonsPlaylist" id="btn-gererSonsPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Gérer les sons</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -587,6 +588,33 @@ $liste_albums = $albumDB->findAll();
                                 <?php endforeach; ?>
                             </select>
                             <button type="submit" id="modifierPlaylist">Modifier</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="modal-gererSonsPlaylist" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">x</span>
+                        <form action="index.php?action=gerer_sons" method="post">
+                            <input type="hidden" name="id_playlist" id="id_playlist_sons">
+                            <?php
+                                $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
+                                $listeSonsDansPlaylist = $playlistDB->findAllSonsInPlaylist($playlist->getId());
+                            ?>
+                            <label for="sons_a_ajouter">Sons à ajouter</label>
+                            <select name="sons_a_ajouter" id="son_ajoute">
+                                <?php foreach ($listeSonsPasDansPlaylist as $son) : ?>
+                                    <option value="<?= $son->getId() ?>"><?= $son->getTitre() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="ajouterSonPlaylist">Ajouter</button>
+                            <label for="sons_a_supprimer">Sons de la playlist</label>
+                            <select name="sons_a_supprimer" id="son_supprime">
+                                <?php foreach ($listeSonsDansPlaylist as $son) : ?>
+                                    <option value="<?= $son->getId() ?>"><?= $son->getTitre() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" id="supprimerSonPlaylist">Supprimer</button>
                         </form>
                     </div>
                 </div>

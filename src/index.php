@@ -8,6 +8,8 @@ require_once 'Configuration/config.php';
 require 'Classes/autoloader.php'; 
 Autoloader::register(); 
 
+ini_set("memory_limit", "2048M");
+ini_set("max_execution_time", 0);
 
 $action = $_REQUEST['action'] ?? "connexion";
 $layout = "main";
@@ -113,6 +115,9 @@ switch ($action) {
         break;
     case "modifier_son":
         include 'Action/admin/modifier_son.php';
+        break;
+    case "gerer_sons":
+        include 'Action/admin/gerer_sons.php';
         break;
     default:
         include 'Action/connexion.php';

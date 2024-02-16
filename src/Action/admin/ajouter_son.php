@@ -15,7 +15,8 @@ if (isset($_FILES['mp3_nv_son']) && $_FILES['mp3_nv_son']['error'] == 0) {
 } else {
     $mp3 = null;
 }
+var_dump($mp3);
 $son = new Son(null, $titre, $duree, $mp3, $idAlbum, 0);
 $sonDB->insert($son);
-header('Location: index.php?action=admin');
+// header('Location: index.php?action=admin');
 exit();

@@ -395,3 +395,12 @@ document.querySelectorAll(".btn-consulterSon").forEach(function(btn) {
         modalConsulterSon.style.display = "block";
     };
 });
+
+let modalGererSonsPlaylist = document.querySelector("#modal-gererSonsPlaylist");
+
+document.querySelectorAll(".btn-gererSonsPlaylist").forEach(function(btn) {
+    btn.onclick = function() {
+        document.querySelector("#id_playlist_sons").value = btn.getAttribute("data-idPlaylist");
+        modalGererSonsPlaylist.style.display = "block";
+    };
+});

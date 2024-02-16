@@ -15,11 +15,12 @@ class SonDB
     }
 
     function findAll(): array {
-        $sql = "SELECT idSon, titreSon, dureeSon, idAlbum, nbStream FROM son";
-        $stmt = $this->pdo->query($sql);
-        $sons = $stmt->fetchAll();
+        $sql = "SELECT idSon, titreSon, dureeSon, idAlbum, nbStream FROM SON";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
         $sonList = [];
-        foreach ($sons as $son) {
+        while ($son = $stmt->fetch()) {
+            // $mp3 = $son['fichierMp3'] !== null ? base64_encode($son['fichierMp3']) : null;
             $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], null, $son['idAlbum'], $son['nbStream']);
         }
         return $sonList;
