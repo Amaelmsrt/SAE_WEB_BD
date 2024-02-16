@@ -292,7 +292,6 @@ $liste_albums = $albumDB->findAll();
                                         data-albumSon="<?= $album->getTitre() ?>" 
                                         data-nbStreamSon="<?= $son->getNbStream() ?>">Modifier</button>
                                         <button class="btn-supprimerSon" id="btn-supprimerSon" data-idSon="<?= $son->getId() ?>">Supprimer</button>
-                                        <button class="btn-chargerMp3" data-idSon="<?= $son->getId() ?>">Charger MP3</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

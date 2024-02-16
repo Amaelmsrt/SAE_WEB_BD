@@ -120,7 +120,7 @@ class SonDB
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':titreSon', $son->getTitre(), \PDO::PARAM_STR);
         $stmt->bindValue(':dureeSon', $son->getDuree(), \PDO::PARAM_STR);
-        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_STR);
+        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_LOB);
         $stmt->bindValue(':idAlbum', $son->getIdAlbum(), \PDO::PARAM_INT);
         $stmt->bindValue(':nbStream', $son->getNbStream(), \PDO::PARAM_INT);
         $stmt->execute();
@@ -132,7 +132,7 @@ class SonDB
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':titreSon', $son->getTitre(), \PDO::PARAM_STR);
         $stmt->bindValue(':dureeSon', $son->getDuree(), \PDO::PARAM_STR);
-        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_STR);
+        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_LOB);
         $stmt->bindValue(':idAlbum', $son->getIdAlbum(), \PDO::PARAM_INT);
         $stmt->bindValue(':nbStream', $son->getNbStream(), \PDO::PARAM_INT);
         $stmt->bindValue(':idSon', $son->getId(), \PDO::PARAM_INT);
