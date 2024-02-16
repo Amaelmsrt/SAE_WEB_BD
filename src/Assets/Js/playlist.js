@@ -123,9 +123,6 @@ function handleMajPlaylist(id) {
                         <h5>${song.artist}</h5>
                     </div>
                 </div>
-                <div class="actions">
-                    <img class="menu-dots" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
-                </div>
             `;
             contentPlaylist.appendChild(div);
             div.addEventListener('click', function () {handleJouerSon(this);});
@@ -155,5 +152,46 @@ inputSearchPlaylist.addEventListener('keyup', (e) => {
         } else {
             playlist.style.display = 'none';
         }
+    });
+});
+
+
+// Evenet sur les boutons du menu favoris
+
+const btnConsultsArtistes = document.querySelectorAll('.consulteArtiste-fav');
+btnConsultsArtistes.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idArtiste = btn.getAttribute('id-artiste');
+        changeCurrentMenu(e, 1);
+        majArtiste(idArtiste);
+        showArtiste();
+    });
+});
+
+const btnConsultsAlbums = document.querySelectorAll('.consuleAlbum-fav');
+btnConsultsAlbums.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idAlbum = btn.getAttribute('id-album');
+        changeCurrentMenu(e, 1);
+        majAlbum(idAlbum);
+        showArtiste();
+    });
+});
+
+const btnAddQueue = document.querySelectorAll('.fileAttente-fav');
+btnAddQueue.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleAjouterSonFile(btn);
+    });
+});
+
+const btnFav = document.querySelectorAll('.likeSong-fav');
+btnFav.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleLike(btn);
     });
 });

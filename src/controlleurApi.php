@@ -139,8 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'id' => $son->getId(),
                 'titre' => $son->getTitre(),
                 'artiste' => $artist->getName(),
+                'idArtist' => $artist->getId(),
                 'cover' => $album->getCover(),
                 'duree' => $son->getDuree(),
+                'album' => $album->getId(),
+                'idUser' => $_SESSION['user_id'], // 'idUser' => $_SESSION['user_id'] ?? '
                 'isLiked' => $likeSonDB->isLiked($id, $_SESSION['user_id']),
             );
             header('Content-Type: application/json'); // Indique que le contenu est en format JSON
