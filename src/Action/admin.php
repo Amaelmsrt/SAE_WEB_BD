@@ -601,20 +601,21 @@ $liste_albums = $albumDB->findAll();
                                 $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
                                 $listeSonsDansPlaylist = $playlistDB->findAllSonsInPlaylist($playlist->getId());
                             ?>
-                            <label for="sons_a_ajouter">Sons à ajouter</label>
+                            <label for="sons_a_ajouter">Sons à ajouter dasn la playlist</label>
                             <select name="sons_a_ajouter" id="son_ajoute">
+                                <option value="0">Aucun</option>
                                 <?php foreach ($listeSonsPasDansPlaylist as $son) : ?>
                                     <option value="<?= $son->getId() ?>"><?= $son->getTitre() ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" id="ajouterSonPlaylist">Ajouter</button>
-                            <label for="sons_a_supprimer">Sons de la playlist</label>
+                            <label for="sons_a_supprimer">Sons de la playlist à supprimer</label>
                             <select name="sons_a_supprimer" id="son_supprime">
+                                <option value="0">Aucun</option>
                                 <?php foreach ($listeSonsDansPlaylist as $son) : ?>
                                     <option value="<?= $son->getId() ?>"><?= $son->getTitre() ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" id="supprimerSonPlaylist">Supprimer</button>
+                            <button type="submit" id="gererPlaylist">Appliquer les changements</button>
                         </form>
                     </div>
                 </div>
