@@ -584,7 +584,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                         </div>
                         <div class="text-field">
                             <img src="./Assets/icons/search.svg" alt="user"/>
-                            <input type="text" placeholder="Ma recherche" value="">
+                            <input id="inputSearchPlaylist" type="text" placeholder="Ma recherche" value="">
                         </div>
                     </div>
                     <div class="playlists" id="contentPlaylists">

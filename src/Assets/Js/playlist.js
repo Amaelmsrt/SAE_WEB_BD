@@ -140,3 +140,20 @@ buttonPlayPlaylist.addEventListener('click', () => {
     const idPlaylist = buttonPlayPlaylist.getAttribute('id-playlist');
     handleJouerPlaylist(idPlaylist);
 });
+
+
+// Recherche une playlist
+
+const inputSearchPlaylist = document.getElementById('inputSearchPlaylist');
+inputSearchPlaylist.addEventListener('keyup', (e) => {
+    const search = e.target.value;
+    const playlists = document.querySelectorAll('.btnPlaylist');
+    playlists.forEach(playlist => {
+        const titre = playlist.querySelector('h4').innerText;
+        if (titre.toLowerCase().includes(search.toLowerCase())) {
+            playlist.style.display = 'flex';
+        } else {
+            playlist.style.display = 'none';
+        }
+    });
+});

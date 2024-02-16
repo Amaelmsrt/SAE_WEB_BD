@@ -23,7 +23,7 @@ class PlaylistDB
         $stmt->execute();
         $playlist = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $playlist[] = new Playlist($row['idPlaylist'], $row['nomPlaylist'], $row['idUtilisateur'], []);
+            $playlist[] = new Playlist($row['idPlaylist'], $row['nomPlaylist'], $row['idUtilisateur']);
         }
 
         return $playlist;
