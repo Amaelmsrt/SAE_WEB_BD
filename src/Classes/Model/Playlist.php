@@ -2,30 +2,31 @@
 
 namespace Model;
 
-class Playlist 
+class Playlist
 {
+
     private $id;
-    private $nom;
+    private $titre;
     private $idUtilisateur;
 
-    public function __construct($id, $nom, $idUtilisateur)
+    public function __construct($id, $titre, $idUtilisateur)
     {
         $this->id = $id;
-        $this->nom = $nom;
+        $this->titre = $titre;
         $this->idUtilisateur = $idUtilisateur;
     }
 
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
 
-    function getNom()
+    public function getTitre()
     {
-        return $this->nom;
+        return $this->titre;
     }
 
-    function getIdUtilisateur()
+    public function getIdUtilisateur()
     {
         return $this->idUtilisateur;
     }

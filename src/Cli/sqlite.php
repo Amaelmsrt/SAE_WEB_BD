@@ -21,7 +21,7 @@ define('CREATE_ALBUM_TABLE', <<<SQL
         titreAlbum VARCHAR(255) NOT NULL,
         descriptionAlbum VARCHAR(255) NOT NULL,
         dateAlbum DATE NOT NULL,
-        coverAlbum mediumblob,
+        coverAlbum mediumblob NOT NULL,
         idArtiste INTEGER NOT NULL,
         FOREIGN KEY (idArtiste) REFERENCES ARTISTE(idArtiste)
     );
@@ -47,6 +47,9 @@ define('CREATE_SON_TABLE', <<<SQL
         idAlbum INTEGER NOT NULL,
         FOREIGN KEY (idAlbum) REFERENCES ALBUM(idAlbum)
     );
+    CREATE INDEX idx_idAlbum ON son (idAlbum);
+    CREATE INDEX idx_idSon ON son (idSon);
+
 SQL);
 
 define('CREATE_SORTIR_TABLE', <<<SQL
@@ -122,12 +125,43 @@ SQL);
 
 define('CREATE_ECOUTERRECEMENT_TABLE', <<<SQL
     CREATE TABLE IF NOT EXISTS ECOUTERRECEMENT (
+        idEcout INTEGER PRIMARY KEY AUTOINCREMENT,
         idUtilisateur INTEGER NOT NULL,
         idSon INTEGER NOT NULL,
         dataHH DATETIME NOT NULL,
-        PRIMARY KEY (idUtilisateur, idSon, dataHH),
         FOREIGN KEY (idUtilisateur) REFERENCES UTILISATEUR(idUtilisateur),
         FOREIGN KEY (idSon) REFERENCES SON(idSon)
+    );
+    CREATE INDEX idx_idUtilisateur ON EcouterRecement (idUtilisateur);
+    CREATE INDEX idx_idSon_e ON EcouterRecement (idSon);
+
+SQL);
+
+
+define('CREATE_ARTISTE_FTS', <<<SQL
+    CREATE VIRTUAL TABLE IF NOT EXISTS artist_fts USING fts5(
+        idArtiste,
+        nomArtiste,
+        content='ARTISTE',
+        tokenize = 'unicode61 remove_diacritics 1'
+    );
+SQL);
+
+define('CREATE_ALBUM_FTS', <<<SQL
+    CREATE VIRTUAL TABLE IF NOT EXISTS album_fts USING fts5(
+        idAlbum,
+        titreAlbum,
+        content='ALBUM',
+        tokenize = 'unicode61 remove_diacritics 1'
+    );
+SQL);
+
+define('CREATE_SON_FTS', <<<SQL
+    CREATE VIRTUAL TABLE IF NOT EXISTS son_fts USING fts5(
+        idSon,
+        titreSon,
+        content='SON',
+        tokenize = 'unicode61 remove_diacritics 1'
     );
 SQL);
 
@@ -154,11 +188,17 @@ switch ($argv[2]) {
         $pdo->exec(CREATE_PLAYLIST_TABLE);
         $pdo->exec(CREATE_CONSTITUER_TABLE);
         $pdo->exec(CREATE_ECOUTERRECEMENT_TABLE);
+        $pdo->exec(CREATE_ALBUM_FTS);
+        $pdo->exec(CREATE_ARTISTE_FTS);
+        $pdo->exec(CREATE_SON_FTS);
         break;
 
     case 'd':
         echo 'Suppression des tables' . PHP_EOL;
         $pdo->exec('
+            DROP TABLE IF EXISTS artist_fts;
+            DROP TABLE IF EXISTS album_fts;
+            DROP TABLE IF EXISTS son_fts;
             DROP TABLE IF EXISTS ECOUTERRECEMENT;
             DROP TABLE IF EXISTS CONSTITUER;
             DROP TABLE IF EXISTS PLAYLIST;
@@ -189,7 +229,6 @@ switch ($argv[2]) {
                 ':titreGenre' => $genre['titre']
             ]);
         }
-        echo 'Insertion des genres terminée' . PHP_EOL;
 
         // Insertion des artistes
         $file = file_get_contents(__DIR__ . '/../Data/artiste.yml');
@@ -203,8 +242,6 @@ switch ($argv[2]) {
                 ':imageArtiste' => $img
             ]);
         }
-
-        echo 'Insertion des artistes terminée' . PHP_EOL;
 
         // Insertion des albums
         $file = file_get_contents(__DIR__ . '/../Data/album.yml');
@@ -221,7 +258,7 @@ switch ($argv[2]) {
                 ':coverAlbum' => $img,
                 ':idArtiste' => $album['by']
             ]);
-            echo 'Insertion de l\'album ' . $album['title'] . PHP_EOL;
+
             foreach ($album['genre'] as $genre) {
                 $stmt = $pdo->prepare('INSERT INTO APPARTENIR (idGenre, idAlbum) VALUES (:idGenre, :idAlbum)');
                 $stmt->execute([
@@ -230,7 +267,6 @@ switch ($argv[2]) {
                 ]);
             }
             foreach ($album['songs'] as $song) {
-                echo 'Insertion du son ' . $song['title'] . PHP_EOL;
                 $stmt = $pdo->prepare('INSERT INTO SON (titreSon, dureeSon, fichierMp3, idAlbum) VALUES (:titreSon, :dureeSon, :fichierMp3, :idAlbum)');
                 $mp3 = file_get_contents(__DIR__ . '/../Data/Son/' . $album['title'] . "/" . $song['mp3']);
                 $stmt->execute([
@@ -239,10 +275,36 @@ switch ($argv[2]) {
                     ':fichierMp3' => $mp3,
                     ':idAlbum' => $album['entryId']
                 ]);
-                echo 'Insertion du son ' . $song['title'] . ' terminée' . PHP_EOL;
             }
         }
-        echo 'Insertion des albums terminée' . PHP_EOL;
+
+        // Insert dans fts
+        $stmt = $pdo->prepare('INSERT INTO artist_fts (idArtiste, nomArtiste) VALUES (:idArtiste, :nomArtiste)');
+        foreach ($artistes as $artiste) {
+            $stmt->execute([
+                ':idArtiste' => $artiste['idArtiste'],
+                ':nomArtiste' => $artiste['nom']
+            ]);
+        }
+
+        $stmt = $pdo->prepare('INSERT INTO album_fts (idAlbum, titreAlbum) VALUES (:idAlbum, :nomAlbum)');
+
+        foreach ($albums as $album) {
+            $stmt->execute([
+                ':idAlbum' => $album['entryId'],
+                ':nomAlbum' => $album['title']
+            ]);
+        }
+
+        $stmt = $pdo->prepare('INSERT INTO son_fts (idSon, titreSon) VALUES (:idSon, :nomSon)');
+        foreach ($albums as $album) {
+            foreach ($album['songs'] as $song) {
+                $stmt->execute([
+                    ':idSon' => $song['entryId'],
+                    ':nomSon' => $song['title']
+                ]);
+            }
+        }
         break;
 
     case 'u':

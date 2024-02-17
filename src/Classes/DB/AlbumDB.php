@@ -99,7 +99,6 @@ class AlbumDB
         return $albumsArray;
     }
 
-
     function insert($album): void
     {
         $sql = "INSERT INTO album (titreAlbum, descriptionAlbum, dateAlbum, coverAlbum, idArtiste) VALUES (:titreAlbum, :descriptionAlbum, :dateAlbum, :coverAlbum, :idArtiste)";
@@ -131,5 +130,53 @@ class AlbumDB
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
         $stmt->execute();
+
+    function getCover(int $idAlbum): string
+    {
+        $sql = "SELECT coverAlbum FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $cover = $stmt->fetch();
+        return base64_encode($cover['coverAlbum']);
+    }
+
+    function getArtist(int $idAlbum): string
+    {
+        $sql = "SELECT idArtiste FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        $sql = "SELECT nomArtiste FROM artiste WHERE idArtiste = :idArtiste";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idArtiste', $artist['idArtiste'], \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        return $artist['nomArtiste'];
+    }
+
+    function getIdArtist(int $idAlbum): int
+    {
+        $sql = "SELECT idArtiste FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $artist = $stmt->fetch();
+        return $artist['idArtiste'];
+    }
+
+    function findGenres(int $idAlbum): array
+    {
+        $sql = "SELECT * FROM genre JOIN APPARTENIR ON genre.idGenre = APPARTENIR.idGenre WHERE APPARTENIR.idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        $genresArray = [];
+        foreach ($genres as $genre) {
+            $genresArray[] = $genre['titreGenre'];
+        }
+        return $genresArray;
     }
 }

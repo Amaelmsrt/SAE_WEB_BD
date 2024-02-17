@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPOTIUT'O</title>
-    <script src="/Assets/Js/jouerSon.js"></script>
-    <script src="/Assets/Js/listeDattente.js"></script>
+    <script src="./Assets/Js/listeDattente.js"></script>
+    <link type="text/css" rel="stylesheet" href="./Assets/Css/style.css">
     <link type="text/css" rel="stylesheet" href="/Assets/Css/style.css">
 </head>
 <body id="Accueil"> 
@@ -32,7 +32,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     
     <!-- Mon script -->
-    <script src="/Assets/Js/mainscript.js"></script>
-
+    <script src="./Assets/Js/mainscript.js"></script>
+    <script src="./Assets/Js/jouerSon.js"></script>
+    <script src="./Assets/Js/recherche.js"></script>
+    <script src="./Assets/Js/playlist.js"></script>
 </body>
 </html>
