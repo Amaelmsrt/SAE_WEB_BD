@@ -338,13 +338,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'titre' => $s->getTitre(),
                     'cover' => $manager->getSonDB()->getCover($s->getId()),
                     'artist' => $artist->getName(),
+                    'album' => $album->getId(),
+                    'idArtist' => $artist->getId(),
                 );
             }
             $response = array(
                 'id' => $playlist->getId(),
                 'titre' => $playlist->getTitre(),
                 'duree' => $manager->getPlaylistDB()->getDuree($playlist->getId()),
-                'sons' => $sonJson
+                'sons' => $sonJson,
+                'idUser' => $_SESSION['user_id'],
             );
             header('Content-Type: application/json');
             echo json_encode($response);
