@@ -57,7 +57,7 @@ class PlaylistDB
     {
         $sql = "INSERT INTO PLAYLIST (nomPlaylist, idUtilisateur) VALUES (:nomPlaylist, :idUtilisateur)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':nomPlaylist', $playlist->getNom(), \PDO::PARAM_STR);
+        $stmt->bindValue(':nomPlaylist', $playlist->getTitre(), \PDO::PARAM_STR);
         $stmt->bindValue(':idUtilisateur', $playlist->getIdUtilisateur(), \PDO::PARAM_INT);
         $stmt->execute();
     }
@@ -66,7 +66,7 @@ class PlaylistDB
     {
         $sql = "UPDATE PLAYLIST SET nomPlaylist = :nomPlaylist, idUtilisateur = :idUtilisateur WHERE idPlaylist = :idPlaylist";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':nomPlaylist', $playlist->getNom(), \PDO::PARAM_STR);
+        $stmt->bindValue(':nomPlaylist', $playlist->getTitre(), \PDO::PARAM_STR);
         $stmt->bindValue(':idUtilisateur', $playlist->getIdUtilisateur(), \PDO::PARAM_INT);
         $stmt->bindValue(':idPlaylist', $playlist->getId(), \PDO::PARAM_INT);
         $stmt->execute();
@@ -116,6 +116,7 @@ class PlaylistDB
             $songsArray[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], null, $son['idAlbum'], $son['nbStream']);
         }
         return $songsArray;
+    }
 
     public function getPlaylist(int $idUtilisateur): array
     {

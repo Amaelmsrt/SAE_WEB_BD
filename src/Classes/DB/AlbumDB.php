@@ -130,6 +130,7 @@ class AlbumDB
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
         $stmt->execute();
+    }
 
     function getCover(int $idAlbum): string
     {

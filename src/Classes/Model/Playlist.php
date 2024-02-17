@@ -51,7 +51,7 @@ class Playlist
         error_log("PLAYLIST TO JSON");
         $json = json_encode([
             "id" => $this->id,
-            "nom" => $this->nom,
+            "titre" => $this->titre,
             "idUtilisateur" => $this->idUtilisateur
         ]);
         error_log($json);

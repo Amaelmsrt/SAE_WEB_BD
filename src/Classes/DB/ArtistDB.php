@@ -85,6 +85,7 @@ class ArtistDB
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
+    }
 
     public function getPicture(int $id): string
     {
