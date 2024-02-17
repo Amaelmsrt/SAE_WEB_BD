@@ -20,7 +20,7 @@ class RechercheDB
      * C'est une recherche par texte intégral (full text search)
      * J'ai des tables artist_fts, album_fts et son_fts qui sont des tables virtuelles qui contiennent les données des tables artist, album et son
      */
-    public function search(string $recherche) 
+    public function search(string $recherche)
     {
         $recherche = $recherche . '*';
         $query = $this->pdo->prepare('
