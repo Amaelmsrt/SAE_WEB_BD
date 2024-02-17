@@ -23,7 +23,7 @@ class PlaylistDB
         $stmt->execute();
         $playlist = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $playlist[] = new Playlist($row['idPlaylist'], $row['nomPlaylist'], $row['idUtilisateur'], []);
+            $playlist[] = new Playlist($row['idPlaylist'], $row['nomPlaylist'], $row['idUtilisateur']);
         }
 
         return $playlist;
@@ -41,6 +41,15 @@ class PlaylistDB
 
     public function addSon($idPlaylist, $idSon): void
     {
+        // Si le son n'est deja pas dans la playlist on l'ajoute
+        $sql = "SELECT * FROM constituer WHERE idPlaylist = :idPlaylist AND idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        if ($stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return;
+        }
         $sql = "INSERT INTO Constituer (idPlaylist, idSon) VALUES (:idPlaylist, :idSon)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
@@ -98,5 +107,14 @@ class PlaylistDB
             $sons[] = new Son($row['idSon'], $row['titreSon'], $row['dureeSon'], $row['fichierMp3'], $row['idAlbum'], $row['nbStream']);
         }
         return $sons;
+    }
+
+    public function removeSon(int $idPlaylist, int $idSon): void
+    {
+        $sql = "DELETE FROM constituer WHERE idPlaylist = :idPlaylist AND idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

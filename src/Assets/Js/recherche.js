@@ -22,6 +22,29 @@ for (let i = 1; i <= 3; i++) {
         majArtiste(this.getAttribute('data-id'));
         showArtiste();
     });
+
+    const btnAddSonPlaylist = document.querySelectorAll('.addSongToPlaylist');
+    btnAddSonPlaylist.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            handleAjouterSonPlaylist(this);
+        });
+    });
+}
+
+
+function handleAjouterSonPlaylist(button) {
+    const idSong = button.getAttribute('data-id-song');
+    const idPlaylist = button.getAttribute('data-id-playlist');
+    fetch('/controlleurApi.php/ajouterSonPlaylist/' + idSong + '/' + idPlaylist, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+    });
 }
 
 const div = document.getElementById('bestResult');
@@ -45,8 +68,6 @@ div.addEventListener('click', function (e) {
         this.removeEventListener('click', showArtiste);
     }
 });
-
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -168,6 +189,10 @@ function miseEnPlaceInfos(data){
                 consulterAlbum.setAttribute('data-id', principal.topSon[i].idAlbum);
                 const consulterArtiste = document.getElementById('consulteArtiste-' + (i + 1));
                 consulterArtiste.setAttribute('data-id', principal.topSon[i].idArtiste);
+                const btnAddSonPlaylist = div.querySelectorAll('.addSongToPlaylist');
+                btnAddSonPlaylist.forEach(btn => {
+                    btn.setAttribute('data-id-song', principal.topSon[i].id);
+                });
             }
             else{
                 const div = document.getElementById('otherResults-' + (i + 1));
@@ -379,13 +404,21 @@ function majAlbum(id){
                                 Ajouter à la file d'attente
                             </button>
                         </li>
-                        <li>
-                            <button>
+                        <li class="has-sub-menu">
+                            <div class="cursor-container"></div>
+                            
+                            <button class="addToPlaylist">
                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                </svg>                                                        
                                 Ajouter à la playlist
+                                <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </button>
+                            <div class="sub">
+                                <div class="cursor-container right"></div>
+                            </div>
                         </li>
                         <li>
                             <button class="like">
@@ -398,6 +431,26 @@ function majAlbum(id){
                     </ul>
                 </div>
             `;
+            const ul = document.createElement('ul');
+            for (let j = 0; j < data.playlists.length; j++) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <button class="addSongToPlaylist" data-id-playlist="${data.playlists[j].id}" data-id-song="${data.sons[i].id}">
+                        ${data.playlists[j].titre}
+                    </button>
+                `;
+                li.querySelector('button').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    handleAjouterSonPlaylist(this);
+                });
+                ul.appendChild(li);
+            }
+            div.querySelector('.sub').appendChild(ul);
+            div.querySelector('.addToPlaylist').addEventListener('mouseenter', (e)=> handleHoverAddToPlaylist(e, false));
+            
+
+
+
             div.querySelector('.menu-dots').addEventListener('click', handleMenuDotsClick)
             div.addEventListener('click', function () {handleJouerSon(this);});
             div.querySelector('.addToQueue').addEventListener('click', function (e) {
@@ -510,13 +563,21 @@ function majArtiste(id){
                                 Ajouter à la file d'attente
                             </button>
                         </li>
-                        <li>
-                            <button>
+                        <li class="has-sub-menu">
+                            <div class="cursor-container"></div>
+                            
+                            <button class="addToPlaylist">
                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                </svg>                                                        
                                 Ajouter à la playlist
+                                <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </button>
+                            <div class="sub">
+                                <div class="cursor-container right"></div>
+                            </div>
                         </li>
                         <li>
                             <button class="like">
@@ -529,6 +590,23 @@ function majArtiste(id){
                     </ul>
                 </div>
             `;
+            const ul = document.createElement('ul');
+            for (let j = 0; j < data.playlists.length; j++) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <button class="addSongToPlaylist" data-id-playlist="${data.playlists[j].id}" data-id-song="${data.topSon[i].id}">
+                        ${data.playlists[j].titre}
+                    </button>
+                `;
+                li.querySelector('button').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    handleAjouterSonPlaylist(this);
+                });
+                ul.appendChild(li);
+            }
+            div.querySelector('.sub').appendChild(ul);
+            div.querySelector('.addToPlaylist').addEventListener('mouseenter', (e)=> handleHoverAddToPlaylist(e, false));
+
                 div.querySelector('.menu-dots').addEventListener('click', handleMenuDotsClick)
                 div.addEventListener('click', function () {handleJouerSon(this);});
                 div.querySelector('.addToQueue').addEventListener('click', function (e) {
