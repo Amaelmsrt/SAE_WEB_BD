@@ -14,6 +14,20 @@ class SonDB
         $this->pdo = $pdo;
     }
 
+    function findAll(): array {
+        $sql = "SELECT idSon, titreSon, dureeSon, idAlbum, nbStream FROM SON";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $sonList = [];
+        while ($son = $stmt->fetch()) {
+            // $mp3 = $son['fichierMp3'] !== null ? base64_encode($son['fichierMp3']) : null;
+            $sonList[] = new Son($son['idSon'], $son['titreSon'], $son['dureeSon'], null, $son['idAlbum'], $son['nbStream']);
+        }
+        return $sonList;
+    }
+    
+    
+
     function find($id): Son
     {
         $sql = "SELECT * FROM son WHERE idSon = :id";
@@ -224,4 +238,38 @@ class SonDB
         }
         return $sonList;
     }
+
+    function insert(Son $son)
+    {
+        $sql = "INSERT INTO son (titreSon, dureeSon, fichierMp3, idAlbum, nbStream) VALUES (:titreSon, :dureeSon, :fichierMp3, :idAlbum, :nbStream)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':titreSon', $son->getTitre(), \PDO::PARAM_STR);
+        $stmt->bindValue(':dureeSon', $son->getDuree(), \PDO::PARAM_STR);
+        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_LOB);
+        $stmt->bindValue(':idAlbum', $son->getIdAlbum(), \PDO::PARAM_INT);
+        $stmt->bindValue(':nbStream', $son->getNbStream(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    function update(Son $son)
+    {
+        $sql = "UPDATE son SET titreSon = :titreSon, dureeSon = :dureeSon, fichierMp3 = :fichierMp3, idAlbum = :idAlbum, nbStream = :nbStream WHERE idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':titreSon', $son->getTitre(), \PDO::PARAM_STR);
+        $stmt->bindValue(':dureeSon', $son->getDuree(), \PDO::PARAM_STR);
+        $stmt->bindValue(':fichierMp3', $son->getMp3(), \PDO::PARAM_LOB);
+        $stmt->bindValue(':idAlbum', $son->getIdAlbum(), \PDO::PARAM_INT);
+        $stmt->bindValue(':nbStream', $son->getNbStream(), \PDO::PARAM_INT);
+        $stmt->bindValue(':idSon', $son->getId(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    function delete($id)
+    {
+        $sql = "DELETE FROM son WHERE idSon = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 }

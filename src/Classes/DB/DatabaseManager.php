@@ -21,6 +21,8 @@ class DataBaseManager {
 
     private UtilisateurDB $utilisateurDB;
 
+    private GenreDB $genreDB;
+
     private RechercheDB $rechercheDB;
 
     private PlaylistDB $playlistDB;
@@ -34,6 +36,7 @@ class DataBaseManager {
         $this->albumDB = new AlbumDB($pdo);
         $this->likeAlbumDB = new LikeAlbumDB($pdo);
         $this->utilisateurDB = new UtilisateurDB($pdo);
+        $this->genreDB = new GenreDB($pdo);
         $this->rechercheDB = new RechercheDB($pdo);
         $this->playlistDB = new PlaylistDB($pdo);
     }
@@ -66,6 +69,9 @@ class DataBaseManager {
         return $this->utilisateurDB;
     }
 
+    public function getGenreDB(): GenreDB {
+        return $this->genreDB;
+    }
     public function getRechercheDB(): RechercheDB {
         return $this->rechercheDB;
     }

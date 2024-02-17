@@ -14,6 +14,21 @@ class AlbumDB
         $this->pdo = $pdo;
     }
 
+    function findAll(): array
+    {
+        $sql = "SELECT * FROM album";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $albums = $stmt->fetchAll();
+        $albumsArray = [];
+        foreach ($albums as $album) {
+            $imageData = $album['coverAlbum'];
+            $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
+            $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
+        }
+        return $albumsArray;
+    }
+
     function find(int $idSon): Album
     {
         $sql = "SELECT * FROM album JOIN son ON album.idAlbum = son.idAlbum WHERE son.idSon = :idSon";
@@ -22,7 +37,7 @@ class AlbumDB
         $stmt->execute();
         $album = $stmt->fetch();
         $imageData = $album['coverAlbum'];
-        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
         return new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
     }
 
@@ -34,7 +49,7 @@ class AlbumDB
         $stmt->execute();
         $album = $stmt->fetch();
         $imageData = $album['coverAlbum'];
-        $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+        $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
         return new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
     }
 
@@ -48,7 +63,7 @@ class AlbumDB
         $albumsArray = [];
         foreach ($albums as $album) {
             $imageData = $album['coverAlbum'];
-            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
             $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
         }
         return $albumsArray;
@@ -63,7 +78,7 @@ class AlbumDB
         $albumsArray = [];
         foreach ($albums as $album) {
             $imageData = $album['coverAlbum'];
-            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
             $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
         }
         return $albumsArray;
@@ -78,11 +93,43 @@ class AlbumDB
         $albumsArray = [];
         foreach ($albums as $album) {
             $imageData = $album['coverAlbum'];
-            $decodedImage = base64_encode($imageData); // Convertir le blob en base64
+            $decodedImage = ($imageData != null) ? base64_encode($imageData) : null; // Convertir le blob en base64
             $albumsArray[] = new Album($album['idAlbum'], $album['titreAlbum'], $album['descriptionAlbum'], $album['dateAlbum'], $decodedImage, $album['idArtiste']);
         }
         return $albumsArray;
     }
+
+    function insert($album): void
+    {
+        $sql = "INSERT INTO album (titreAlbum, descriptionAlbum, dateAlbum, coverAlbum, idArtiste) VALUES (:titreAlbum, :descriptionAlbum, :dateAlbum, :coverAlbum, :idArtiste)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':titreAlbum', $album->getTitre(), \PDO::PARAM_STR);
+        $stmt->bindValue(':descriptionAlbum', $album->getDescription(), \PDO::PARAM_STR);
+        $stmt->bindValue(':dateAlbum', $album->getDate(), \PDO::PARAM_STR);
+        $stmt->bindValue(':coverAlbum', $album->getCover(), \PDO::PARAM_LOB);
+        $stmt->bindValue(':idArtiste', $album->getIdArtiste(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    function update($album): void
+    {
+        $sql = "UPDATE album SET titreAlbum = :titreAlbum, descriptionAlbum = :descriptionAlbum, dateAlbum = :dateAlbum, coverAlbum = :coverAlbum, idArtiste = :idArtiste WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $album->getId(), \PDO::PARAM_INT);
+        $stmt->bindValue(':titreAlbum', $album->getTitre(), \PDO::PARAM_STR);
+        $stmt->bindValue(':descriptionAlbum', $album->getDescription(), \PDO::PARAM_STR);
+        $stmt->bindValue(':dateAlbum', $album->getDate(), \PDO::PARAM_STR);
+        $stmt->bindValue(':coverAlbum', $album->getCover(), \PDO::PARAM_LOB);
+        $stmt->bindValue(':idArtiste', $album->getIdArtiste(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    function delete(int $idAlbum): void
+    {
+        $sql = "DELETE FROM album WHERE idAlbum = :idAlbum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idAlbum', $idAlbum, \PDO::PARAM_INT);
+        $stmt->execute();
 
     function getCover(int $idAlbum): string
     {

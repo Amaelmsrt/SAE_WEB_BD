@@ -13,17 +13,42 @@ class UtilisateurDB {
         $this->pdo = $pdo;
     }
 
-    public function find($pseudo): ?Utilisateur {
+    public function findAll(): array {
+        $sql = "SELECT * FROM utilisateur";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $utilisateurs = $stmt->fetchAll();
+        $utilisateursArray = [];
+        foreach ($utilisateurs as $utilisateur) {
+            if ($utilisateur['statutUser'] == "Admin") {
+                $user = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+                $user->setStatut("Admin");
+                $utilisateursArray[] = $user;
+            } else {
+                $utilisateursArray[] = new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+            }
+        }
+        return $utilisateursArray;
+    }
+
+    public function find($id): ?Utilisateur {
+        $sql = "SELECT * FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+        $utilisateur = $stmt->fetch();
+        return new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
+    }
+    
+    public function findWithPseudo($pseudo): ?Utilisateur {
         $sql = "SELECT * FROM utilisateur WHERE pseudoUtil = :pseudo";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
         $stmt->execute();
         $utilisateur = $stmt->fetch();
-    
-        if ($utilisateur === false) {
+        if (!$utilisateur) {
             return null;
         }
-    
         return new Utilisateur($utilisateur['idUtilisateur'], $utilisateur['nomUtil'], $utilisateur['prenomUtil'], $utilisateur['pseudoUtil'], $utilisateur['emailUtil'], $utilisateur['mdpUtil']);
     }
     
@@ -37,6 +62,41 @@ class UtilisateurDB {
         $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
         $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
         $stmt->bindValue(':mdp', $mdpHash, \PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function insertAdmin($nom, $prenom, $pseudo, $email, $mdp) {
+        $sql = "INSERT INTO utilisateur (nomUtil, prenomUtil, pseudoUtil, emailUtil, mdpUtil, statutUser) VALUES (:nom, :prenom, :pseudo, :email, :mdp, 'Admin')";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nom', $nom, \PDO::PARAM_STR);
+        $stmt->bindValue(':prenom', $prenom, \PDO::PARAM_STR);
+        $stmt->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+        $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
+        $stmt->bindValue(':mdp', $mdpHash, \PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function update($utilisateur)
+    {
+        $sql = "UPDATE utilisateur SET nomUtil = :nom, prenomUtil = :prenom, pseudoUtil = :pseudo, emailUtil = :email, mdpUtil = :mdp, statutUser = :statut WHERE idUtilisateur = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nom', $utilisateur->getNom(), \PDO::PARAM_STR);
+        $stmt->bindValue(':prenom', $utilisateur->getPrenom(), \PDO::PARAM_STR);
+        $stmt->bindValue(':pseudo', $utilisateur->getPseudo(), \PDO::PARAM_STR);
+        $stmt->bindValue(':email', $utilisateur->getEmail(), \PDO::PARAM_STR);
+        $mdpHash = password_hash($utilisateur->getMdp(), PASSWORD_DEFAULT);
+        $stmt->bindValue(':mdp', $mdpHash, \PDO::PARAM_STR);
+        $stmt->bindValue(':statut', $utilisateur->getStatut(), \PDO::PARAM_STR);
+        $stmt->bindValue(':id', $utilisateur->getId(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
     }
 }

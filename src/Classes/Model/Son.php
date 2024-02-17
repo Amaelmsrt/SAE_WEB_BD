@@ -54,6 +54,26 @@ class Son
         return $this->nbStream;
     }
 
+    function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    function setDuree($duree)
+    {
+        $this->duree = $duree;
+    }
+
+    function setMp3($mp3)
+    {
+        $this->mp3 = $mp3;
+    }
+
+    function setIdAlbum($idAlbum)
+    {
+        $this->idAlbum = $idAlbum;
+    }
+
     function setAlbum($album)
     {
         $this->album = $album;

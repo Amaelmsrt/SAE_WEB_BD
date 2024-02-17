@@ -1,0 +1,539 @@
+@font-face {
+    font-family: 'Kicker';
+    src: url('../fonts/kicker-black/KickerTrial-Black.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kicker';
+    src: url('../fonts/kicker-black/KickerTrial-BlackItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Kicker';
+    src: url('../fonts/kicker-bold/KickerTrial-BlackSlanted.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-ExtraLight.otf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-ExtraLightItalic.otf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-Regular.otf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-RegularItalic.otf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-SemiBold.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Mori';
+    src: url('../fonts/pp-mori/PPMori-SemiBoldItalic.otf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --yellow: #E2FF08;
+    --text-color: #FEFCE1;
+    --text-color-secondary: #7F7E70;
+    --background-color: #000000;
+    --background-secondary: #070808;
+}
+
+body{
+    background-color: var(--background-color);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PP Mori', sans-serif;
+    min-height: 100vh;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav {
+    position: relative;
+    display: flex;
+    background-color: var(--background-secondary);
+    border-radius: 1rem;
+    padding: 1rem;
+    min-height: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    height: 100%;
+    list-style: none;
+    position: relative;
+    padding: 0;
+    z-index: 2;
+}
+
+nav ul li {
+    list-style-type: none;
+    width: 100%;
+}
+
+nav .active-square {
+    position: absolute;
+    width: 85%;
+    height: 3.5rem;
+    z-index: 0;
+    background-color: var(--yellow);
+    border-radius: 0.8rem;
+}
+
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    gap: 0.7rem;
+    height: 3.5rem;
+    max-height: 3.5rem;
+    display: flex;
+    width: 15.5rem;
+    align-items: center;
+    white-space: nowrap;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+nav ul li a svg {
+    position: relative;
+}
+
+body .left{
+    position: relative;
+    width: 15rem;
+    height: 100%;
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    background-color: var(--background-secondary); 
+}
+
+body .left img{
+    align-self: flex-start;
+}
+
+.actions {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+}
+
+.actions a {
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+
+.btn-retour {
+    cursor: pointer;
+    display: flex;
+    gap:1rem;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1.5rem 1rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    width: 13rem;
+    height: 4.4375rem;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    text-decoration: none;
+    background-color: #0E100F;
+    margin: 1rem 1rem;
+}
+
+.btn-retour a:hover{
+    filter: brightness(0.8);
+}
+
+.right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2rem;
+}
+
+.recherche {
+    background-color: #070808;
+    padding: 1rem 1rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-left: 0.7rem;
+    z-index: 2;
+}
+
+.text-field{
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding: 1.625rem 1.875rem;
+    background-color: #070808;
+    color: var(--text-color-secondary);
+    
+}
+
+.text-field img{
+    height: 1.5rem;
+}
+
+.text-field input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 6rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--text-color-secondary);
+    outline: none;
+    color: var(--text-color-secondary);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.text-field.no-space input{
+    padding-left: 1rem;
+}
+
+.text-field input:focus{
+    border-bottom: 1.5px solid var(--yellow);
+    transition: all 0.2s ease-in-out;
+}
+
+h2 {
+    font-family: 'PP Mori', sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin: 2rem 1rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding-left: 1.5rem
+}
+
+
+.menu {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.admin-content {
+    margin-top: 1rem;
+    background-color: #070808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24vw;
+    height: 25vh;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.textes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4.5rem;
+}
+
+.textes h3 {
+    margin-top: 1rem;
+    font-family: "PP Mori";
+    font-weight: 300;
+    color: #FEFCE1;
+    font-size: 2rem;
+    opacity: 50%;
+}
+
+.textes p {
+    font-family: "PP Mori";
+    font-size: 0.875rem;
+    color: #FEFCE1;
+    opacity: 30%;
+    margin-top: 0.5rem;
+}
+
+.admin-content svg {
+    width: 5rem;
+    height: 4.5rem;
+}
+
+#pagePrincipale {
+    opacity: 1;
+    display: block;
+}
+
+.page {
+    position: absolute;
+    opacity: 0;
+    padding-right: 2rem;
+    width: 100%;
+    display: flex;
+    gap: 1.15rem;
+    height: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 80vh;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+thead {
+    background: var(--background-secondary);
+}
+
+th, td {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-color-secondary);
+    text-align: left;
+    color: var(--yellow);
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.btn-consulter {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-consulter:hover {
+    filter: brightness(0.8);
+}
+
+.btn-supprimer {
+    background-color: var(--background-color);
+    color: var(--yellow);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-supprimer:hover {
+    filter: brightness(0.8);
+}
+
+
+#tableArtistes td {
+    width: 25%;
+}
+
+#tableSons td {
+    width: 25%;
+}
+
+#tableGenres td {
+    width: 33%;
+}
+
+#tableUtilisateurs td {
+    width: 12.5%;
+}
+
+#tablePlaylists td {
+    width: 25%;
+}
+
+#tableAlbums td {
+    width: 12.5%;
+}
+
+.consultation {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.consultation:hover {
+    filter: brightness(0.8);
+}
+
+.btn-ajouter {
+    background-color: var(--yellow);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1rem;
+    text-decoration: none;
+    width: 6rem;
+    align-self: center;
+}
+
+.btn-ajouter:hover {
+    filter: brightness(0.8);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+img {
+    max-height: 20%;
+    max-width: 20%;
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Largeur pour les barres de défilement horizontales */
+    height: 4px; /* Hauteur pour les barres de défilement verticales */
+}
+
+/* Style pour le fond des barres de défilement */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 1rem;
+}
+
+/* Style pour les poignées de défilement */
+::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 1rem;
+}
+
+/* Style pour les poignées de défilement au survol */
+::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.2);
+}
