@@ -528,7 +528,7 @@ $liste_albums = $albumDB->findAll();
                         <tbody>
                             <?php foreach ($liste_playlists as $playlist) : ?>
                                 <tr>
-                                    <td><?= $playlist->getNom() ?></td>
+                                    <td><?= $playlist->getTitre() ?></td>
                                     <td>
                                         <?php $utilisateur = $utilisateurDB->find($playlist->getIdUtilisateur()) ?>
                                         <?= $utilisateur->getPseudo() ?>
@@ -536,7 +536,7 @@ $liste_albums = $albumDB->findAll();
                                     <td>
                                         <button class="btn-consulterPlaylist" id="btn-consulterPlaylist"
                                         data-idPlaylist="<?= $playlist->getId() ?>"
-                                        data-nomPlaylist="<?= $playlist->getNom() ?>"
+                                        data-nomPlaylist="<?= $playlist->getTitre() ?>"
                                         data-nomUtilisateur="<?= $playlist->getIdUtilisateur() ?>"
                                         >Consulter</button>
                                         <button class="btn-supprimerPlaylist" id="btn-supprimerPlaylist" data-idPlaylist="<?= $playlist->getId() ?>">Supprimer</button>
@@ -598,10 +598,10 @@ $liste_albums = $albumDB->findAll();
                         <form action="index.php?action=gerer_sons" method="post">
                             <input type="hidden" name="id_playlist" id="id_playlist_sons">
                             <?php
-                                $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
-                                $listeSonsDansPlaylist = $playlistDB->findAllSonsInPlaylist($playlist->getId());
+                            $listeSonsDansPlaylist = $playlistDB->getSons($playlist->getId());
+                            $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
                             ?>
-                            <label for="sons_a_ajouter">Sons à ajouter dasn la playlist</label>
+                            <label for="sons_a_ajouter">Sons à ajouter dans la playlist</label>
                             <select name="sons_a_ajouter" id="son_ajoute">
                                 <option value="0">Aucun</option>
                                 <?php foreach ($listeSonsPasDansPlaylist as $son) : ?>
