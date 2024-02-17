@@ -250,13 +250,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'cover' => $alb->getCover()
                 );
             }
+            $playlists = $manager->getPlaylistDB()->getPlaylist($_SESSION['user_id']);
+            $playlistJson = array();
+            foreach ($playlists as $playlist) {
+                $playlistJson[] = array(
+                    'id' => $playlist->getId(),
+                    'titre' => $playlist->getTitre()
+                );
+            }
             $result = array(
                 'id' => $artist->getId(),
                 'nom' => $artist->getName(),
                 'cover' => $artist->getPicture(),
                 'albums' => $albumJson,
                 'topSon' => $topSonJson,
-                'nbLikes' => $nbLike
+                'nbLikes' => $nbLike,
+                'playlists' => $playlistJson
             );
             header('Content-Type: application/json');
             echo json_encode($result);
@@ -283,6 +292,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($genres as $genre) {
                 $genresToJson[] = $genre;
             }
+            $playlists = $manager->getPlaylistDB()->getPlaylist($_SESSION['user_id']);
+            $playlistJson = array();
+            foreach ($playlists as $playlist) {
+                $playlistJson[] = array(
+                    'id' => $playlist->getId(),
+                    'titre' => $playlist->getTitre()
+                );
+            }
 
             $result = array(
                 'id' => $album->getId(),
@@ -294,7 +311,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'description' => $album->getDescription(),
                 'nbLikes' => $nbLike,
                 'sons' => $sonJson,
-                'idArtiste' => $artist->getId()
+                'idArtiste' => $artist->getId(),
+                'playlists' => $playlistJson
             );
             header('Content-Type: application/json');
             echo json_encode($result);
@@ -358,6 +376,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idPlaylist = array_shift($path);
             $manager = new Manager();
             $manager->getPlaylistDB()->removeSon($idPlaylist, $idSon);
+            $response = ['success' => 'true'];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit();
+
+        case 'ajouterSonPlaylist':
+            $idSon = array_shift($path);
+            $idPlaylist = array_shift($path);
+            $manager = new Manager();
+            $manager->getPlaylistDB()->addSon($idPlaylist, $idSon);
             $response = ['success' => 'true'];
             header('Content-Type: application/json');
             echo json_encode($response);

@@ -259,7 +259,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                             </ul>
                             <div class="active-square" id="activeSquareArtiste"></div>
                         </nav>
-                        <div class="content-block">
+                        <div class="content-block" style="overflow-x: auto;">
                             <section id="TopTitres" id-user="<?= $_SESSION['user'] ?>">
                             </section>
                             <section id="Albums">
@@ -273,7 +273,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                         <img src="./Assets/icons/search.svg" alt="user"/>
                         <input id="search" type="text" placeholder="Ma recherche" value="">
                     </div>
-                    <section id="allResults" class="resultat">
+                    <section id="allResults" class="resultat" style="overflow-x: auto;">
                         <section id="MainResults" class="results-section">
                             <h2 id="TexteResultats">Meilleurs résultats <img src="./Assets/icons/shape_1.svg"/></h2>
                             <div class="content">
@@ -333,8 +333,8 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                     </button>
                                                 </li>
                                                 <li class="has-sub-menu">
-                                                    <div class="cursor-container"></div>
-                                                    
+                                                <div class="cursor-container"></div>
+                                                
                                                     <button class="addToPlaylist">
                                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -344,69 +344,18 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                             <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
                                                     </button>
-                                                
-                                                    <!-- un sous menu avec pleins de boutons sans icones "playlist 1", "playlist 2"... -->
                                                     <div class="sub">
                                                         <div class="cursor-container right"></div>
                                                         <ul>
-                                                            <li class="new-playlist">
-                                                                <button>
-                                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                    </svg> 
-                                                                    Nouvelle playlist  
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 1
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 2
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 3
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 4
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 5
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 1
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 2
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 3
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 4
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button>
-                                                                    playlist 5
-                                                                </button>
-                                                            </li>
+                                                        <?php
+                                                            foreach ($playlists as $playlist) {
+                                                                echo '<li>
+                                                                    <button class="addSongToPlaylist" data-id-playlist="'.$playlist->getId().'" data-id-song="">
+                                                                        '.$playlist->getTitre().'
+                                                                    </button>
+                                                                </li>';
+                                                            }
+                                                        ?>
                                                         </ul>
                                                     </div>
                                                 </li>
@@ -464,13 +413,32 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                         Ajouter à la file d'attente
                                                     </button>
                                                 </li>
-                                                <li>
-                                                    <button>
+                                                <li class="has-sub-menu">
+                                                    <div class="cursor-container"></div>
+                                                    
+                                                    <button class="addToPlaylist">
                                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
                                                         Ajouter à la playlist
+                                                        <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
                                                     </button>
+                                                    <div class="sub">
+                                                        <div class="cursor-container right"></div>
+                                                        <ul>
+                                                        <?php
+                                                            foreach ($playlists as $playlist) {
+                                                                echo '<li>
+                                                                    <button class="addSongToPlaylist" data-id-playlist="'.$playlist->getId().'" data-id-song="">
+                                                                        '.$playlist->getTitre().'
+                                                                    </button>
+                                                                </li>';
+                                                            }
+                                                        ?>
+                                                        </ul>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <button id="like-2" data-id="<?= $_SESSION["user_id"] ?>">
@@ -526,13 +494,32 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                         Ajouter à la file d'attente
                                                     </button>
                                                 </li>
-                                                <li>
-                                                    <button>
+                                                <li class="has-sub-menu">
+                                                <div class="cursor-container"></div>
+                                                
+                                                    <button class="addToPlaylist">
                                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>                                                        
                                                         Ajouter à la playlist
+                                                        <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
                                                     </button>
+                                                    <div class="sub">
+                                                        <div class="cursor-container right"></div>
+                                                        <ul>
+                                                        <?php
+                                                            foreach ($playlists as $playlist) {
+                                                                echo '<li>
+                                                                    <button class="addSongToPlaylist" data-id-playlist="'.$playlist->getId().'" data-id-song="">
+                                                                        '.$playlist->getTitre().'
+                                                                    </button>
+                                                                </li>';
+                                                            }
+                                                        ?>
+                                                        </ul>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <button id="like-3"  data-id="<?= $_SESSION["user_id"] ?>">
@@ -618,7 +605,6 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
 
                     <div id="playlist" class="content-block">
                         <div class="playlist"></div>
-                        <img src="./Assets/icons/menu-dots.svg" alt="open menu" class="menu-dots"/>
                         <div class="top-content">
                             <div class="album-infos">
                                 <div class="container-album">
@@ -731,69 +717,18 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                         <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>
                                                 </button>
-                                            
-                                                <!-- un sous menu avec pleins de boutons sans icones "playlist 1", "playlist 2"... -->
                                                 <div class="sub">
                                                     <div class="cursor-container right"></div>
                                                     <ul>
-                                                        <li class="new-playlist">
-                                                            <button>
-                                                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                </svg> 
-                                                                Nouvelle playlist  
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 1
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 2
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 3
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 4
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 5
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 1
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 2
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 3
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 4
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <button>
-                                                                playlist 5
-                                                            </button>
-                                                        </li>
+                                                    <?php
+                                                        foreach ($playlists as $playlist) {
+                                                            echo '<li>
+                                                                <button class="addSongToPlaylist" data-id-playlist="'.$playlist->getId().'" data-id-song="'.$like->getId().'">
+                                                                    '.$playlist->getTitre().'
+                                                                </button>
+                                                            </li>';
+                                                        }
+                                                    ?>
                                                     </ul>
                                                 </div>
                                             </li>

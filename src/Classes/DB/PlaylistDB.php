@@ -41,6 +41,15 @@ class PlaylistDB
 
     public function addSon($idPlaylist, $idSon): void
     {
+        // Si le son n'est deja pas dans la playlist on l'ajoute
+        $sql = "SELECT * FROM constituer WHERE idPlaylist = :idPlaylist AND idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+        if ($stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return;
+        }
         $sql = "INSERT INTO Constituer (idPlaylist, idSon) VALUES (:idPlaylist, :idSon)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);

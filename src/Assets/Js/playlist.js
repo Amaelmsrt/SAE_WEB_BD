@@ -112,6 +112,7 @@ function handleMajPlaylist(id) {
         songs.forEach(song => {
             const div1 = document.createElement('div');
             div1.classList.add('artiste-wrapper');
+            
             const div = document.createElement('div');
             div.classList.add('artiste-row', 'glass', 'with-dots');
             div.setAttribute('data-id-song', song.id);
@@ -228,9 +229,9 @@ function handleMajPlaylist(id) {
                 handleLike(this);
             });
 
-
-
-            div1.addEventListener('click', function () {handleJouerSon(this);});
+            div1.addEventListener('click', (e) => {
+                handleJouerSon(div);
+            });
             div1.addEventListener('mouseenter', (e)=> handleSongCardHover(e, false))
             div1.addEventListener('mouseleave', (e) => handleSongCardHover(e,true))
         });
