@@ -21,7 +21,7 @@ if (isset($_POST["sons_a_supprimer"]) && $_POST["sons_a_supprimer"] != "0") {
     $sonSupprime = $sonDB->find($_POST["sons_a_supprimer"]);
     $idSonSupprime = $sonSupprime != null ? $sonSupprime->getId() : null;
     if ($idSonSupprime != null) {
-        $playlistDB->deleteSon($idPlaylist, $idSonSupprime);
+        $playlistDB->removeSon($idPlaylist, $idSonSupprime);
         echo "Son supprimé";
     }
 }
