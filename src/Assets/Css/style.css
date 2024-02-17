@@ -2387,3 +2387,9 @@ select:-webkit-autofill:focus {
 #buttonPlayPlaylist{
     cursor: pointer;
 }
+
+#contentPlaylists{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}

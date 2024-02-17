@@ -158,80 +158,13 @@ function handleMajPlaylist(id) {
                                 Ajouter à la file d'attente
                             </button>
                         </li>
-                        <li class="has-sub-menu">
-                            <div class="cursor-container"></div>
-                            <button class="addToPlaylist">
+                        <li>
+                            <button class="remove-playlist" data-id="${song.id}" playlist-id="${id}">
                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="#FEFCE1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>                                                        
-                                Ajouter à la playlist
-                                <svg class="chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 13L7 7L1 1" stroke="#FEFCE1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                Supprimer de la playlist
                             </button>
-                            <div class="sub">
-                                <div class="cursor-container right"></div>
-                                <ul>
-                                    <li class="new-playlist">
-                                        <button>
-                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.271 12.1915V16.1915M16.271 14.1915H12.271M13.271 7.19153H15.271C16.3756 7.19153 17.271 6.2961 17.271 5.19153V3.19153C17.271 2.08696 16.3756 1.19153 15.271 1.19153H13.271C12.1664 1.19153 11.271 2.08696 11.271 3.19153V5.19153C11.271 6.2961 12.1664 7.19153 13.271 7.19153ZM3.271 17.1915H5.271C6.37557 17.1915 7.271 16.2961 7.271 15.1915V13.1915C7.271 12.087 6.37557 11.1915 5.271 11.1915H3.271C2.16643 11.1915 1.271 12.087 1.271 13.1915V15.1915C1.271 16.2961 2.16643 17.1915 3.271 17.1915ZM3.271 7.19153H5.271C6.37557 7.19153 7.271 6.2961 7.271 5.19153V3.19153C7.271 2.08696 6.37557 1.19153 5.271 1.19153H3.271C2.16643 1.19153 1.271 2.08696 1.271 3.19153V5.19153C1.271 6.2961 2.16643 7.19153 3.271 7.19153Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg> 
-                                            Nouvelle playlist  
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 1
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 2
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 3
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 4
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 5
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 1
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 2
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 3
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 4
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button>
-                                            playlist 5
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li>
                             <button data-id="${data.idUser}" class="likeSong-fav" data-id-song="${song.id}">
@@ -251,6 +184,15 @@ function handleMajPlaylist(id) {
             });
 
             // Ajout des events sur les boutons du menu
+            const btnRemovePlaylist = div1.querySelector('.remove-playlist');
+            btnRemovePlaylist.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const idSon = btnRemovePlaylist.getAttribute('data-id');
+                const idPlaylist = btnRemovePlaylist.getAttribute('playlist-id');
+                div1.remove();
+                handleRemoveFromPlaylist(idSon, idPlaylist);
+            });
+
             const btnConsultAlbum = div1.querySelector('.consuleAlbum-fav');
             btnConsultAlbum.addEventListener('click', function (e) {
                 console.log('click');
@@ -358,3 +300,15 @@ btnFav.forEach(btn => {
         handleLike(btn);
     });
 });
+
+function handleRemoveFromPlaylist(idSon, idPlaylist) {
+    fetch('/controlleurApi.php/removeFromPlaylist/' + idSon + '/' + idPlaylist, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(err => console.log(err));
+}

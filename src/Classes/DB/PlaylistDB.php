@@ -99,4 +99,13 @@ class PlaylistDB
         }
         return $sons;
     }
+
+    public function removeSon(int $idPlaylist, int $idSon): void
+    {
+        $sql = "DELETE FROM constituer WHERE idPlaylist = :idPlaylist AND idSon = :idSon";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
+        $stmt->bindValue(':idSon', $idSon, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

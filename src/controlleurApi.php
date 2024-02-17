@@ -353,6 +353,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($response);
             exit();
 
+        case 'removeFromPlaylist':
+            $idSon = array_shift($path);
+            $idPlaylist = array_shift($path);
+            $manager = new Manager();
+            $manager->getPlaylistDB()->removeSon($idPlaylist, $idSon);
+            $response = ['success' => 'true'];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit();
+
         default:
             // Ne définissez pas de code de réponse HTTP ici
             $response = ['error' => 'Not Found'];
