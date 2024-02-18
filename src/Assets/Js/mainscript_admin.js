@@ -59,12 +59,12 @@ function changeCurrentMenu(e, index) {
     localStorage.setItem('currentSectionIndex', index.toString());
 }
 
-function loadActiveSection() {
+function loadsectionAct() {
     const sectionIndex = localStorage.getItem('currentSectionIndex');
     changeCurrentMenu(null, sectionIndex ? parseInt(sectionIndex) : 0);
 }
 
-window.addEventListener('DOMContentLoaded', loadActiveSection);
+window.addEventListener('DOMContentLoaded', loadsectionAct);
 
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (e) => changeCurrentMenu(e, index));
@@ -78,7 +78,15 @@ goToUtilisateurs.addEventListener('click', (e) => changeCurrentMenu(e,4));
 goToPlaylists.addEventListener('click', (e) => changeCurrentMenu(e,5));
 goToAlbums.addEventListener('click', (e) => changeCurrentMenu(e,6));
 
-function clearActiveSections() {
+btnMenuArtistes.addEventListener('click', (e) => changeCurrentMenu(e,1));
+btnMenuSons.addEventListener('click', (e) => changeCurrentMenu(e,2));
+btnMenuGenres.addEventListener('click', (e) => changeCurrentMenu(e,3));
+btnMenuUtilisateurs.addEventListener('click', (e) => changeCurrentMenu(e,4));
+btnMenuPlaylists.addEventListener('click', (e) => changeCurrentMenu(e,5));
+btnMenuAlbums.addEventListener('click', (e) => changeCurrentMenu(e,6));
+
+
+function clearsectionActs() {
     if (sectionMenuPrincipal.classList != null)
         sectionMenuPrincipal.classList.remove("active-section");
     if (sectionMenuSons.classList != null)
@@ -93,128 +101,6 @@ function clearActiveSections() {
         sectionMenuAlbums.classList.remove("active-section");
 }
 
-function showPageArtistes() {
-    sectionMenuArtistes.style.display ="flex";
-    
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuSons.style.display = "none";
-        sectionMenuGenres.style.display = "none";
-        sectionMenuUtilisateurs.style.display = "none";
-        sectionMenuPlaylists.style.display = "none";
-        sectionMenuAlbums.style.display = "none";
-    }, 500);
-
-}
-
-function showPageSons() {
-    sectionMenuSons.style.display ="flex";
-
-    gsap.fromTo(sectionMenuSons, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4,ease:"power4.out"});
-    gsap.to(sectionMenuArtistes, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuGenres, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuUtilisateurs, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuPlaylists, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuAlbums, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuArtistes.style.display = "none";
-        sectionMenuGenres.style.display = "none";
-        sectionMenuUtilisateurs.style.display = "none";
-        sectionMenuPlaylists.style.display = "none";
-        sectionMenuAlbums.style.display = "none";
-    }, 500);
-}
-
-function showPageGenres() {
-    sectionMenuGenres.style.display ="flex";
-
-    gsap.fromTo(sectionMenuGenres, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4,ease:"power4.out"});
-    gsap.to(sectionMenuArtistes, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuSons, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuUtilisateurs, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuPlaylists, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuAlbums, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuArtistes.style.display = "none";
-        sectionMenuSons.style.display = "none";
-        sectionMenuUtilisateurs.style.display = "none";
-        sectionMenuPlaylists.style.display = "none";
-        sectionMenuAlbums.style.display = "none";
-    }, 500);
-}
-
-function showPageUtilisateurs() {
-    sectionMenuUtilisateurs.style.display ="flex";
-
-    gsap.fromTo(sectionMenuUtilisateurs, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4,ease:"power4.out"});
-    gsap.to(sectionMenuArtistes, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuSons, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuGenres, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuPlaylists, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuAlbums, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuArtistes.style.display = "none";
-        sectionMenuSons.style.display = "none";
-        sectionMenuGenres.style.display = "none";
-        sectionMenuPlaylists.style.display = "none";
-        sectionMenuAlbums.style.display = "none";
-    }, 500);
-}
-
-function showPagePlaylists() {
-    sectionMenuPlaylists.style.display ="flex";
-
-    gsap.fromTo(sectionMenuPlaylists, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4,ease:"power4.out"});
-    gsap.to(sectionMenuArtistes, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuSons, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuGenres, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuUtilisateurs, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuAlbums, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuArtistes.style.display = "none";
-        sectionMenuSons.style.display = "none";
-        sectionMenuGenres.style.display = "none";
-        sectionMenuUtilisateurs.style.display = "none";
-        sectionMenuAlbums.style.display = "none";
-    }, 500);
-}
-
-function showPageAlbums() {
-    sectionMenuAlbums.style.display ="flex";
-
-    gsap.fromTo(sectionMenuAlbums, {opacity: 0, scale: 0.9}, {opacity:1, scale:1, duration:0.6, delay:0.4,ease:"power4.out"});
-    gsap.to(sectionMenuArtistes, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuSons, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuGenres, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuUtilisateurs, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-    gsap.to(sectionMenuPlaylists, {opacity:0, scale:0.9, duration:0.6, ease:"power4.out"});
-
-    setTimeout(() => {
-        sectionMenuPrincipal.style.display = "none";
-        sectionMenuArtistes.style.display = "none";
-        sectionMenuSons.style.display = "none";
-        sectionMenuGenres.style.display = "none";
-        sectionMenuUtilisateurs.style.display = "none";
-        sectionMenuPlaylists.style.display = "none";
-    }, 500);
-}
-
-
-
-btnMenuArtistes.addEventListener('click', showPageArtistes);
-btnMenuSons.addEventListener('click', showPageSons);
-btnMenuGenres.addEventListener('click', showPageGenres);
-btnMenuUtilisateurs.addEventListener('click', showPageUtilisateurs);
-btnMenuPlaylists.addEventListener('click', showPagePlaylists);
-btnMenuAlbums.addEventListener('click', showPageAlbums);
 
 // Partie pour les modales
 
@@ -390,8 +276,6 @@ document.querySelectorAll(".btn-consulterSon").forEach(function(btn) {
         document.querySelector("#id_modif_son").value = btn.getAttribute("data-idSon");
         document.querySelector("#titre_modif_son").value = btn.getAttribute("data-titreSon");
         document.querySelector("#duree_modif_son").value = btn.getAttribute("data-dureeSon");
-        document.querySelector("#mp3_modif_son").value = btn.getAttribute("data-mp3Son");
-        document.querySelector("#album_modif_son").value = btn.getAttribute("data-albumSon");
         modalConsulterSon.style.display = "block";
     };
 });
@@ -403,4 +287,46 @@ document.querySelectorAll(".btn-gererSonsPlaylist").forEach(function(btn) {
         document.querySelector("#id_playlist_sons").value = btn.getAttribute("data-idPlaylist");
         modalGererSonsPlaylist.style.display = "block";
     };
+});
+
+let barreDeRecherche = document.querySelector('.recherche input');
+barreDeRecherche.addEventListener('keyup', function(e) {
+    let valRecherchee = e.target.value.toLowerCase();
+    let sectionAct = document.querySelector('.active-section');
+    let table;
+    switch(sectionAct.id) {
+        case 'pagePrincipale':
+            table = document.querySelector('#tablePrincipale');
+            break;
+        case 'pageArtistes':
+            table = document.querySelector('#tableArtistes');
+            break;
+        case 'pageSons':
+            table = document.querySelector('#tableSons');
+            break;
+        case 'pageGenres':
+            table = document.querySelector('#tableGenres');
+            break;
+        case 'pageUtilisateurs':
+            table = document.querySelector('#tableUtilisateurs');
+            break;
+        case 'pagePlaylists':
+            table = document.querySelector('#tablePlaylists');
+            break;
+        case 'pageAlbums':
+            table = document.querySelector('#tableAlbums');
+            break;
+    }
+    if(!table) return;
+    let lignes = table.querySelectorAll('tr');
+    for(let i = 1; i < lignes.length; i++) {
+        let ligne = lignes[i];
+        let cellules = ligne.querySelectorAll('td');
+        let contenu = Array.from(cellules).some(cellule => cellule.textContent.toLowerCase().indexOf(valRecherchee) > -1);
+        if(contenu) {
+            ligne.style.display = "";
+        } else {
+            ligne.style.display = "none";
+        }
+    }
 });
