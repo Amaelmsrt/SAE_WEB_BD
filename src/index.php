@@ -20,20 +20,6 @@ $_SESSION['user'] = $_SESSION['user_id'] ?? null;
 
 ob_start();
 switch ($action) {
-        // case 'artist':
-        //     include 'Action/artist.php';
-        //     $layout = "artist";
-        //     break;
-        // case 'home':
-        //     include 'Action/home.php';
-        //     break;
-        // case "search":
-        //     include 'Action/search.php';
-        //     $layout = "search";
-        //     break;
-        // case "playlist":
-        //     include 'Action/playlist.php';
-        //     break;
     case "home":
         include 'Action/accueil.php';
         $layout = "accueil";

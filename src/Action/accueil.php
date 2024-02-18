@@ -5,21 +5,23 @@ use DB\DataBaseManager;
 $manager = new DataBaseManager();
 $albumDB = $manager->getAlbumDB();
 $artistDB = $manager->getArtistDB();
-$sonDB = $manager->getSonDB();
-$sons = $sonDB->findEcouter($_SESSION['user']);
 $likeSonDB = $manager->getLikeSonDB();
+$sonDB = $manager->getSonDB();
 $likeAlbumDB = $manager->getLikeAlbumDB();
+$rechercheDB = $manager->getRechercheDB();
 $likeArtisteDB = $manager->getLikeArtisteDB();
+$playlistDB = $manager->getPlaylistDB();
+
+
+$sons = $sonDB->findEcouter($_SESSION['user']);
 
 $albumAlea = $albumDB->getAleaAlbums();
 $lastAlbum = $albumDB->getLastAlbums();
 $artisteAlea = $artistDB->getAleaArtists();
-$rechercheDB = $manager->getRechercheDB();
 
 // Partie mes playlists
 
 $sonLike = $sonDB->findLike($_SESSION['user']);
-$playlistDB = $manager->getPlaylistDB();
 $playlists = $playlistDB->getPlaylist($_SESSION['user']);
 
 ?>
