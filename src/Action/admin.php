@@ -111,11 +111,11 @@ $liste_albums = $albumDB->findAll();
 
     <div class="container-tabs">
         <div class="recherche">
-                    <div class="text-field">
-                        <img src="/Assets/icons/search.svg" alt="user"/>
-                        <input type="text" placeholder="Ma recherche" value="">
-                    </div>
+            <div class="text-field">
+                <img src="/Assets/icons/search.svg" alt="user"/>
+                <input type="text" placeholder="Ma recherche" value="">
             </div>
+        </div>
         <main>
             <section id="pagePrincipale" class="page">
                 <header>
@@ -211,7 +211,7 @@ $liste_albums = $albumDB->findAll();
                                         <button class="btn-consulterArtiste" id="btn-consulterArtiste"
                                         data-idArtiste="<?= $artiste->getId() ?>" 
                                         data-nomArtiste="<?= $artiste->getName() ?>" 
-                                        data-imageArtiste="data:image/jpeg;base64,<?= $artiste->getPicture() ?>">Modifier</button>
+                                        data-imageArtiste="data:image/jpeg;base64,<?= $artiste->getPicture() ?>">Consulter</button>
                                         <button class="btn-supprimerArtiste" data-idArtiste="<?= $artiste->getId() ?>">Supprimer</button>
                                     </td>
                                 </tr>
@@ -226,8 +226,12 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=ajouter_artiste" enctype="multipart/form-data" method="post">
+                        <div class="text-field">
                             <input type="text" name="nom_nv_artiste" placeholder="Nom de l'artiste" required>
+                        </div>
+                        <div class="text-field">
                             <input type="file" name="image_nv_artiste" accept="image/*">
+                        </div>
                             <button type="submit" id="ajouterArtiste">Ajouter</button>
                         </form>
                     </div>
@@ -249,9 +253,13 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_artiste" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id_artiste" id="id_modif_artiste">
-                            <input type="text" name="nom_artiste" id="nom_modif_artiste" placeholder="Nom de l'artiste" required>
-                            <input type="file" name="image_artiste" id="image_modif_artiste" accept="image/*">
-                            <button type="submit" id="modifierArtiste">Modifier</button>
+                            <div class="text-field">
+                                <input type="text" name="nom_artiste" id="nom_modif_artiste" placeholder="Nom de l'artiste" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="file" name="image_artiste" id="image_modif_artiste" accept="image/*">
+                            </div>
+                            <button type="submit" id="modifierArtiste">Consulter</button>
                         </form>
                     </div>
                 </div>
@@ -280,7 +288,7 @@ $liste_albums = $albumDB->findAll();
                                 <tr>
                                     <td><?= $son->getTitre() ?></td>
                                     <td><?= $son->getDuree() ?></td>
-                                    <?php $album = $albumDB->find($son->getIdAlbum()); ?>
+                                    <?php $album = $albumDB->findAlbum($son->getIdAlbum()); ?>
                                     <td><?= $album->getTitre() ?></td>
                                     <td><?= $son->getNbStream() ?></td>
                                     <td>
@@ -288,9 +296,8 @@ $liste_albums = $albumDB->findAll();
                                         data-idSon="<?= $son->getId() ?>" 
                                         data-titreSon="<?= $son->getTitre() ?>" 
                                         data-dureeSon ="<?= $son->getDuree() ?>"
-                                        data-mp3Son="<?= $son->getMp3() ?>" 
                                         data-albumSon="<?= $album->getTitre() ?>" 
-                                        data-nbStreamSon="<?= $son->getNbStream() ?>">Modifier</button>
+                                        data-nbStreamSon="<?= $son->getNbStream() ?>">Consulter</button>
                                         <button class="btn-supprimerSon" id="btn-supprimerSon" data-idSon="<?= $son->getId() ?>">Supprimer</button>
                                     </td>
                                 </tr>
@@ -305,10 +312,17 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=ajouter_son" method="post" enctype="multipart/form-data">
-                            <input type="text" name="titre_nv_son" placeholder="Titre du son" required>
-                            <input type="text" name="duree_nv_son" placeholder="Durée du son" required>
-                            <input type="file" name="mp3_nv_son" accept="audio/*" required>
-                            <select name="album_nv_son" id="album_nv_son" required>
+                            <div class="text-field">
+                                <input type="text" name="titre_nv_son" placeholder="Titre du son" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="duree_nv_son" placeholder="Durée du son" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="file" name="mp3_nv_son" accept="audio/*" required>
+                            </div>
+                                <select name="album_nv_son" id="album_nv_son" required>
+                                <option value="" selected disabled>Sélectionnez un album</option>
                                 <?php foreach ($liste_albums as $album) : ?>
                                     <option value="<?= $album->getId() ?>"><?= $album->getTitre() ?></option>
                                 <?php endforeach; ?>
@@ -322,7 +336,9 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=supprimer_son" method="post">
-                            <input type="hidden" name="id_son" id="id_son_supprimer">
+                            <div class="text-field">
+                                <input type="hidden" name="id_son" id="id_son_supprimer">
+                            </div>
                             <p>Êtes-vous sûr de vouloir supprimer ce son ?</p>
                             <button id="supprimerSon" type="submit">Supprimer</button>
                         </form>
@@ -334,15 +350,22 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_son" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id_son" id="id_modif_son">
-                            <input type="text" name="titre_son" id="titre_modif_son" placeholder="Titre du son" required>
-                            <input type="text" name="duree_son" id="duree_modif_son" placeholder="Durée du son" required>
-                            <input type="file" name="mp3_son" id="mp3_modif_son" accept="audio/*">
+                            <div class="text-field">
+                                <input type="text" name="titre_son" id="titre_modif_son" placeholder="Titre du son" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="duree_son" id="duree_modif_son" placeholder="Durée du son" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="file" name="mp3_son" id="mp3_modif_son" accept="audio/*">
+                            </div>
                             <select name="album_son" id="album_modif_son" required>
+                            <option value="" selected disabled>Sélectionnez un album</option>
                                 <?php foreach ($liste_albums as $album) : ?>
                                     <option value="<?= $album->getId() ?>"><?= $album->getTitre() ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" id="modifierSon">Modifier</button>
+                            <button type="submit" id="modifierSon">Consulter</button>
                         </form>
                     </div>
                 </div>
@@ -384,7 +407,9 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=ajouter_genre" method="post">
-                            <input type="text" name="nom_nv_genre" placeholder="Nom du genre" required>
+                            <div class="text-field">
+                                <input type="text" name="nom_nv_genre" placeholder="Nom du genre" required>
+                            </div>
                             <button type="submit" id="ajouterGenre">Ajouter</button>
                         </form>
                     </div>
@@ -406,8 +431,10 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_genre" method="post">
                             <input type="hidden" name="id_genre" id="id_modif_genre">
-                            <input type="text" name="titre_genre" id="titre_modif_genre" placeholder="Nom du genre" required>
-                            <button type="submit" id="modifierGenre">Modifier</button>
+                            <div class="text-field">
+                                <input type="text" name="titre_genre" id="titre_modif_genre" placeholder="Nom du genre" required>
+                            </div>
+                            <button type="submit" id="modifierGenre">Consulter</button>
                         </form>
                     </div>
                 </div>
@@ -423,11 +450,8 @@ $liste_albums = $albumDB->findAll();
                     <table id="tableUtilisateurs">
                         <thead>
                             <tr>
-                                <td>Nom</td>
-                                <td>Prenom</td>
                                 <td>Pseudo</td>
                                 <td>Email</td>
-                                <td>Mot de passe</td>
                                 <td>Statut</td>
                                 <td>Actions</td>
                             </tr>
@@ -435,11 +459,8 @@ $liste_albums = $albumDB->findAll();
                         <tbody>
                             <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
                                 <tr>
-                                    <td><?= $utilisateur->getNom() ?></td>
-                                    <td><?= $utilisateur->getPrenom() ?></td>
                                     <td><?= $utilisateur->getPseudo() ?></td>
                                     <td><?= $utilisateur->getEmail() ?></td>
-                                    <td><?= $utilisateur->getMdp() ?></td>
                                     <td><?= $utilisateur->getStatut() ?></td>
                                     <td>
                                         <button class="btn-consulterUtilisateur" id="btn-consulterUtilisateur"
@@ -465,14 +486,24 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form id="form-ajouterUtilisateur" action="index.php?action=ajouter_utilisateur" method="post">
-                            <input type="text" name="nom_utilisateur" placeholder="Nom de l'utilisateur" required>
-                            <input type="text" name="prenom_utilisateur" placeholder="Prenom de l'utilisateur" required>
-                            <input type="text" name="pseudo_utilisateur" placeholder="Pseudo de l'utilisateur" required>
-                            <input type="email" name="email_utilisateur" placeholder="Email de l'utilisateur" required>
-                            <input type="text" name="mdp_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            <div class="text-field">
+                                <input type="text" name="nom_utilisateur" placeholder="Nom de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="prenom_utilisateur" placeholder="Prenom de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="pseudo_utilisateur" placeholder="Pseudo de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="email" name="email_utilisateur" placeholder="Email de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="mdp_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            </div>
                             <select name="statut_utilisateur" id="statut_utilisateur">
-                                <option value="Admin">Admin</option>
                                 <option value="User">User</option>
+                                <option value="Admin">Admin</option>
                             </select>
                             <button type="submit" id="ajouterUtilisateur">Ajouter</button>
                         </form>
@@ -495,16 +526,26 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_utilisateur" method="post">
                             <input type="hidden" name="id_utilisateur" id="id_modif_utilisateur">
-                            <input type="text" name="nom_utilisateur" id="nom_modif_utilisateur" placeholder="Nom de l'utilisateur" required>
-                            <input type="text" name="prenom_utilisateur" id="prenom_modif_utilisateur" placeholder="Prenom de l'utilisateur" required>
-                            <input type="text" name="pseudo_utilisateur" id="pseudo_modif_utilisateur" placeholder="Pseudo de l'utilisateur" required>
-                            <input type="email" name="email_utilisateur" id="email_modif_utilisateur" placeholder="Email de l'utilisateur" required>
-                            <input type="password" name="mdp_utilisateur" id="mdp_modif_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            <div class="text-field">
+                                <input type="text" name="nom_utilisateur" id="nom_modif_utilisateur" placeholder="Nom de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="prenom_utilisateur" id="prenom_modif_utilisateur" placeholder="Prenom de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="pseudo_utilisateur" id="pseudo_modif_utilisateur" placeholder="Pseudo de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="email" name="email_utilisateur" id="email_modif_utilisateur" placeholder="Email de l'utilisateur" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="mdp_utilisateur" id="mdp_modif_utilisateur" placeholder="Mot de passe de l'utilisateur" required>
+                            </div>
                             <select name="statut_utilisateur" id="statut_modif_utilisateur">
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
                             </select>
-                            <button type="submit" id="modifierUtilisateur">Modifier</button>
+                            <button type="submit" id="modifierUtilisateur">Consulter</button>
                         </form>
                     </div>
                 </div>
@@ -554,7 +595,9 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=ajouter_playlist" method="post">
-                            <input type="text" name="nom_nv_playlist" placeholder="Nom de la playlist" required>
+                            <div class="text-field">
+                                <input type="text" name="nom_nv_playlist" placeholder="Nom de la playlist" required>
+                            </div>
                             <select name="nom_user_playlist" id="nom_nv_user">
                                 <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
                                     <option value="<?= $utilisateur->getId() ?>"><?= $utilisateur->getPseudo() ?></option>
@@ -581,13 +624,15 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_playlist" method="post">
                             <input type="hidden" name="id_playlist" id="id_modif_playlist">
-                            <input type="text" name="nom_playlist" id="nom_modif_playlist" placeholder="Nom de la playlist" required>
+                            <div class="text-field">
+                                <input type="text" name="nom_playlist" id="nom_modif_playlist" placeholder="Nom de la playlist" required>
+                            </div>
                             <select name="id_user" id="id_user">
                                 <?php foreach ($liste_utilisateurs as $utilisateur) : ?>
                                     <option value="<?= $utilisateur->getId() ?>"><?= $utilisateur->getPseudo() ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" id="modifierPlaylist">Modifier</button>
+                            <button type="submit" id="modifierPlaylist">Consulter</button>
                         </form>
                     </div>
                 </div>
@@ -598,8 +643,8 @@ $liste_albums = $albumDB->findAll();
                         <form action="index.php?action=gerer_sons" method="post">
                             <input type="hidden" name="id_playlist" id="id_playlist_sons">
                             <?php
-                            $listeSonsDansPlaylist = $playlistDB->getSons($playlist->getId());
-                            $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
+                                $listeSonsDansPlaylist = $playlistDB->getSonsAdmin($playlist->getId());
+                                $listeSonsPasDansPlaylist = $playlistDB->findAllSonsNotInPlaylist($playlist->getId());
                             ?>
                             <label for="sons_a_ajouter">Sons à ajouter dans la playlist</label>
                             <select name="sons_a_ajouter" id="son_ajoute">
@@ -655,7 +700,7 @@ $liste_albums = $albumDB->findAll();
                                         data-descriptionAlbum="<?= $album->getDescription() ?>"
                                         data-dateAlbum="<?= $album->getDate() ?>"
                                         data-coverAlbum="data:image/jpeg;base64,<?= $album->getCover() ?>"
-                                        data-artisteAlbum="<?= $album->getIdArtiste() ?>">Modifier</button>
+                                        data-artisteAlbum="<?= $album->getIdArtiste() ?>">Consulter</button>
                                         <button class="btn-supprimerAlbum" id="btn-supprimerAlbum" data-idAlbum="<?= $album->getId() ?>">Supprimer</button>
                                     </td>
                                 </tr>
@@ -670,10 +715,18 @@ $liste_albums = $albumDB->findAll();
                     <div class="modal-content">
                         <span class="close-button">x</span>
                         <form action="index.php?action=ajouter_album" method="post" enctype="multipart/form-data">
-                            <input type="text" name="titre_album" placeholder="Titre de l'album" required>
-                            <input type="text" name="description_album" placeholder="Description de l'album" required>
-                            <input type="text" name="date_album" placeholder="date de l'album" required>
-                            <input type="file" name="cover_album" accept="image/*">
+                            <div class="text-field">
+                                <input type="text" name="titre_album" placeholder="Titre de l'album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="description_album" placeholder="Description de l'album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="date_album" placeholder="date de l'album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="file" name="cover_album" accept="image/*">
+                            </div>
                             <select name="id_artiste" id="id_artiste">
                                 <?php foreach ($liste_artistes as $artiste) : ?>
                                     <option value="<?= $artiste->getId() ?>"><?= $artiste->getName() ?></option>
@@ -700,16 +753,24 @@ $liste_albums = $albumDB->findAll();
                         <span class="close-button">x</span>
                         <form action="index.php?action=modifier_album" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id_album" id="id_modif_album">
-                            <input type="text" name="titre_album" id="titre_modif_album" placeholder="Titre de l'album" required>
-                            <input type="text" name="description_album" id="description_modif_album" placeholder="Description de l'album" required>
-                            <input type="text" name="date_album" id="date_modif_album" required>
-                            <input type="file" name="cover_album" id="cover_modif_album" accept="image/*">
+                            <div class="text-field">
+                                <input type="text" name="titre_album" id="titre_modif_album" placeholder="Titre de l'album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="description_album" id="description_modif_album" placeholder="Description de l'album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="text" name="date_album" id="date_modif_album" required>
+                            </div>
+                            <div class="text-field">
+                                <input type="file" name="cover_album" id="cover_modif_album" accept="image/*">
+                            </div>
                             <select name="id_artiste" id="id_artiste">
                                 <?php foreach ($liste_artistes as $artiste) : ?>
                                     <option value="<?= $artiste->getId() ?>"><?= $artiste->getName() ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" id="modifierAlbum">Modifier</button>
+                            <button type="submit" id="modifierAlbum">Consulter</button>
                         </form>
                     </div>
                 </div>

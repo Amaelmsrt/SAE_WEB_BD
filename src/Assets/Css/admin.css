@@ -401,31 +401,6 @@ tr:nth-child(even) {
     filter: brightness(0.8);
 }
 
-
-#tableArtistes td {
-    width: 25%;
-}
-
-#tableSons td {
-    width: 25%;
-}
-
-#tableGenres td {
-    width: 33%;
-}
-
-#tableUtilisateurs td {
-    width: 12.5%;
-}
-
-#tablePlaylists td {
-    width: 25%;
-}
-
-#tableAlbums td {
-    width: 12.5%;
-}
-
 .consultation {
     background-color: var(--yellow);
     color: var(--background-color);
@@ -475,32 +450,25 @@ tr:nth-child(even) {
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 100%;
-}
-
 .close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-left: 1rem;
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #0E100F;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #000000;
     margin: 15% auto;
-    padding: 20px;
+    padding: 1.25rem;
     border: 1px solid #888;
     width: 30%;
 }
@@ -536,4 +504,148 @@ img {
 /* Style pour les poignées de défilement au survol */
 ::-webkit-scrollbar-thumb:hover {
     filter: brightness(1.2);
+}
+
+.text-field input:focus{
+    border-bottom: 1.5px solid var(--yellow);
+}
+
+.text-field{
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding: 1.625rem 1.875rem;
+    color: var(--text-color-secondary);
+}
+
+.modal .text-field input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 1rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--text-color-secondary);
+    outline: none;
+    color: var(--text-color-secondary);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+
+#ajouterGenre, #ajouterArtiste, #ajouterSon, #ajouterAlbum, #ajouterPlaylist, #ajouterUtilisateur {
+    cursor: pointer;
+    display: flex;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    width: 8rem;
+    font-size: 1.1875rem;
+    align-items: center;
+    align-self: flex-end;
+}
+
+#supprimerGenre, #supprimerArtiste, #supprimerSon, #supprimerAlbum, #supprimerPlaylist, #supprimerUtilisateur {
+    cursor: pointer;
+    display: flex;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    width: 9.8rem;
+    font-size: 1.1875rem;
+    align-items: center;
+    align-self: flex-end;
+}
+
+button:hover{
+    filter: brightness(0.8);
+}
+
+#modifierArtiste, #modifierSon, #modifierGenre, #modifierAlbum, #modifierPlaylist, #modifierUtilisateur {
+    cursor: pointer;
+    display: flex;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    width: 9.8rem;
+    font-size: 1.1875rem;
+    align-items: center;
+    align-self: flex-end;
+}
+
+#gererPlaylist {
+    cursor: pointer;
+    display: flex;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 300;
+    width: 12rem;
+    font-size: 1.1875rem;
+    align-items: center;
+    align-self: flex-end;
+}
+
+p {
+    color: var(--text-color);
+    filter: brightness(0.8);
+}
+
+label {
+    color: var(--text-color);
+    filter: brightness(0.8);
+
+}
+
+select {
+    width: 100%;
+    padding: 1rem 1rem;
+    background-color: #070808;
+    color: var(--text-color-secondary);
+    border: none;
+    border-bottom: 1.5px solid var(--text-color-secondary);
+    outline: none;
+    font-family: 'PP Mori';
+    font-weight: 300;
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+select option[disabled] {
+    color: var(--text-color-secondary);
+}
+
+.btn-consulterArtiste, .btn-consulterSon, .btn-consulterGenre, .btn-consulterAlbum, .btn-consulterPlaylist, .btn-consulterUtilisateur,
+.btn-supprimerArtiste, .btn-supprimerSon, .btn-supprimerGenre, .btn-supprimerAlbum, .btn-supprimerPlaylist, .btn-supprimerUtilisateur,
+.btn-gererSonsPlaylist {
+    cursor: pointer;
+    display: flex;
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.7rem;
+    border-radius: 1rem;
+    color:var(--yellow);
+    font-family: 'PP Mori';
+    font-weight: 200;
+    width: 7rem;
+    font-size: 1rem;
+    align-items: center;
 }

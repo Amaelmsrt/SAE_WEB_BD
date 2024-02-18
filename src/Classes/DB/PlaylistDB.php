@@ -212,6 +212,19 @@ class PlaylistDB
         return $sons;
     }
 
+    public function getSonsAdmin(int $idPlaylist): array
+    {
+        $sql = "SELECT s.idSon, s.titreSon, s.dureeSon, s.idAlbum, s.nbStream FROM son s JOIN constituer c ON s.idSon = c.idSon WHERE c.idPlaylist = :idPlaylist";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idPlaylist', $idPlaylist, \PDO::PARAM_INT);
+        $stmt->execute();
+        $sons = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $sons[] = new Son($row['idSon'], $row['titreSon'], $row['dureeSon'], null, $row['idAlbum'], $row['nbStream']);
+        }
+        return $sons;
+    }
+
     public function removeSon(int $idPlaylist, int $idSon): void
     {
         $sql = "DELETE FROM constituer WHERE idPlaylist = :idPlaylist AND idSon = :idSon";
