@@ -27,13 +27,7 @@ Si la base de données n'est pas configurée, voir la partie Configuration de la
 
 ## Configuration de la base de données 
 
-Se mettrre à la racine du projet :
-
-Création de la base de données :
-
-``` bash
-php src/cli.php sqlite db
-```
+Se mettrre à la racine du projet :=
 
 Ajouter les tables :
 
