@@ -56,16 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="container-textfields">
                         <div class="text-field">
-                            <img src="./assets/icons/user.svg" alt="user"/>
+                            <img src="./Assets/icons/user.svg" alt="user"/>
                             <input type="text" placeholder="Nom d'utilisateur" name="pseudo" value="<?php echo isset($pseudo) ? $pseudo : ''; ?>" required>
                         </div>
                         <div class="text-field">
-                            <img src="./assets/icons/mail.svg" alt="mail">
+                            <img src="./Assets/icons/mail.svg" alt="mail">
                             <input type="email" placeholder="Adresse e-mail" name="email" value="<?php echo isset($email) ? $email : ''; ?>" required>
                         </div>
                     </div>
                     <div class="text-field">
-                        <img src="./assets/icons/lock.svg" alt="lock">
+                        <img src="./Assets/icons/lock.svg" alt="lock">
                         <input type="password" placeholder="Mot de passe" name="mdp" value="<?php echo isset($mdp) ? $mdp : ''; ?>" required>
                     </div>
                 </section>
@@ -73,12 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="bottom-content">
                 <button type="button" id="goToConnexion">
-                    <img src="./assets/icons/back-arrow.svg" alt="back-arrow">
+                    <img src="./Assets/icons/back-arrow.svg" alt="back-arrow">
                 </button>
     
                 <div class="buttons">
                     <button type="submit">
-                        <img src="./assets/icons/right-arrow.svg" alt="arrow">    
+                        <img src="./Assets/icons/right-arrow.svg" alt="arrow">    
                         M'inscrire
                     </button>
                 </div>
@@ -94,11 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <section class="inputs">
                     <div class="text-field">
-                        <img src="./assets/icons/user.svg" alt="user"/>
+                        <img src="./Assets/icons/user.svg" alt="user"/>
                         <input type="text" placeholder="Nom d'utilisateur" name="pseudo" value="<?php echo isset($nom) ? $pseudo : '' ?>" required>
                     </div>
                     <div class="text-field">
-                        <img src="./assets/icons/lock.svg" alt="lock">
+                        <img src="./Assets/icons/lock.svg" alt="lock">
                         <input type="password" placeholder="Mot de passe" name="mdp" value="<?php echo isset($nom) ? $mdp : '' ?>" required>
                     </div>
                 </section>
@@ -109,11 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="bottom-content">
                 <div class="buttons">
                     <button type="button" id="goToInscription" class="secondary">
-                        <img src="./assets/icons/user-circle.svg" alt="arrow">    
+                        <img src="./Assets/icons/user-circle.svg" alt="arrow">    
                         Inscription
                     </button>
                     <button type="submit">
-                        <img src="./assets/icons/right-arrow.svg" alt="arrow">    
+                        <img src="./Assets/icons/right-arrow.svg" alt="arrow">    
                         Me connecter
                     </button>
                 </div>

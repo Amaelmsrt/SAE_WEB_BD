@@ -288,7 +288,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                             <h4 class="no-result" id="nom-best-recherche"></h4>
                                             <h5 class="no-result" id="type-best-recherche"></h5>
                                         </div>
-                                        <img id="img-best-recherche" class="no-result expand" src="./assets/icons/expand.svg"/>
+                                        <img id="img-best-recherche" class="no-result expand" src="./Assets/icons/expand.svg"/>
                                     </div>
                                 </div>
                                 <div class="other-results">
@@ -304,7 +304,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <img id="img-best-recherche-2-1" class="menu-dots no-result" src="./assets/icons/menu-dots.svg" alt="open menu"/>
+                                                <img id="img-best-recherche-2-1" class="menu-dots no-result" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -385,7 +385,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                 </div>
                                             </div>
                                             <div class="actions">
-                                                <img id="img-best-recherche-2-2" class="menu-dots no-result" src="./assets/icons/menu-dots.svg" alt="open menu"/>
+                                                <img id="img-best-recherche-2-2" class="menu-dots no-result" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -466,7 +466,7 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                                                 </div>
                                             </div>
                                             <div class="actions">
-                                            <img id="img-best-recherche-2-3" class="menu-dots no-result" src="./assets/icons/menu-dots.svg" alt="open menu"/>
+                                            <img id="img-best-recherche-2-3" class="menu-dots no-result" src="./Assets/icons/menu-dots.svg" alt="open menu"/>
                                             </div>
                                         </div>
                                         <div class="menu">
@@ -539,13 +539,13 @@ $playlists = $playlistDB->getPlaylist($_SESSION['user']);
                         </section>
 
                         <section id="OtherAlbums" class="results-section scrollable">
-                            <h2>Autres albums <img src="/assets/icons/shape_2.svg"/></h2>
+                            <h2>Autres albums <img src="./Assets/icons/shape_2.svg"/></h2>
                             <div id="contentOtherAlbums" class="content" style="width: 1000px;">
                             </div>
                         </section>
 
                         <section id="OtherArtists" class="results-section scrollable">
-                            <h2>Autres Artistes <img src="/assets/icons/shape_3.svg"/></h2>
+                            <h2>Autres Artistes <img src="./Assets/icons/shape_3.svg"/></h2>
                             <div id="contentOtherArtiste" class="content">
                             </div>
                         </section>

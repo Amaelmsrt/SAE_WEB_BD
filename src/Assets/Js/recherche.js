@@ -154,7 +154,7 @@ function miseEnPlaceInfos(data){
                 handleJouerSon(this);
             });
             div.removeEventListener('click', showArtiste);
-            img.setAttribute('src', "./assets/icons/play.svg");
+            img.setAttribute('src', "./Assets/icons/play.svg");
             div.removeEventListener('click', majArtiste);
         }
 

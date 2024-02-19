@@ -604,11 +604,11 @@ setInterval(function () {
         }
         if (listeDattenteObj.sonEnCours.paused) {
             const img = document.getElementById('imgPlayPause');
-            img.src = "/assets/icons/play-content.svg";
+            img.src = "./Assets/icons/play-content.svg";
         }
         else {
             const img = document.getElementById('imgPlayPause');
-            img.src = "/assets/icons/play-lg.svg";
+            img.src = "./Assets/icons/play-lg.svg";
         }
     }
 }, 1000);
@@ -648,10 +648,10 @@ btnPause.addEventListener('click', function () {
     if (listeDattenteObj.sonEnCours) {
         if (listeDattenteObj.sonEnCours.paused) {
             listeDattenteObj.sonEnCours.play();
-            img.src = "/assets/icons/play-lg.svg";
+            img.src = "./Assets/icons/play-lg.svg";
         } else {
             listeDattenteObj.sonEnCours.pause();
-            img.src = "/assets/icons/play-content.svg";
+            img.src = "./Assets/icons/play-content.svg";
         }
     }
 });
@@ -841,7 +841,7 @@ function jouerSon(idSon, isNext = false, isPrev = false){
         });
         listeDattenteObj.setSonEnCours(audio, idSon);
         const img = document.getElementById('imgPlayPause');
-        img.src = "/assets/icons/play-lg.svg";
+        img.src = "./Assets/icons/play-lg.svg";
         audio.play();
         handleFileDattente(1);
     })
@@ -983,7 +983,7 @@ function recupSon(idSon){
         }
         audio.src = audioBlobURL;
         const img = document.getElementById('imgPlayPause');
-        img.src = "/assets/icons/play-content.svg";
+        img.src = "./Assets/icons/play-content.svg";
         audio.load();
         listeDattenteObj.setSonEnCours(audio, idSon);
     })
