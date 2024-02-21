@@ -1,5 +1,39 @@
 # SAE_WEB_BD
 
+## Demo
+
+### Inscription / Connection
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/6b99e6d2-1685-4e91-8a51-d196d3c4e68c
+
+### Accueil
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/84448f2f-a5f2-4d58-8478-20131bc5eb6b
+
+### Content-player
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/3cda3269-9b09-4c88-9379-621eaa8b3730
+
+### Recherche
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/7d8643c3-d64d-4d28-9550-94e0b05c2442
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/84629dd2-ca60-40ca-a9b6-a2cded0bb57f
+
+### Playlist
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/d540bdc6-90f1-4110-8950-bff0a86e217b
+
+### Responsive
+
+#### Ecrans moyens 
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/0fcc1f4a-7c9a-48bd-9b9a-620dce5d34fe
+
+#### Mobile
+
+https://github.com/Amaelmsrt/SAE_WEB_BD/assets/96087993/dcaf1f83-691c-49e7-bae1-2cfb600610cb
+
 ## GitHub
 
 - [Lien du projet](https://github.com/Amaelmsrt/SAE_WEB_BD.git)
